@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import { Layout } from 'antd';
-
+import MenuSider from '../../components/MenuSider'
 const { Header, Sider, Content } = Layout;
 
 export default function Main() {
@@ -9,7 +9,7 @@ export default function Main() {
     <Layout>
       <Header style={{ background: '#fff' }}>Header</Header>
       <Layout>
-        <Sider >Sider</Sider>
+        <Sider ><MenuSider></MenuSider></Sider>
         <Content>Content</Content>
       </Layout>
     </Layout>
