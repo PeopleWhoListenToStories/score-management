@@ -12,8 +12,8 @@ export default function RouterView({ routes }: Iprops) {
     {
       componentList && componentList.map(item => {
         return <Route key={item.path} path={item.path} render={(props: any) => {
-          console.log(item.path)
-          return <item.component key={item.path} {...props} ></item.component>
+          // console.log(item.path)
+          return <item.component key={item.path} {...props} routes={item.children} ></item.component>
         }}>
         </Route>
       })
