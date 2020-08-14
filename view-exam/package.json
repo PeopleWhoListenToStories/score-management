@@ -15,6 +15,7 @@
     "antd": "^4.5.4",
     "ants": "^0.0.3-alpha",
     "axios": "^0.19.2",
+    "mobx": "^5.15.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
