@@ -15,7 +15,7 @@ export default function RouterView({ routes }: Iprops) {
         window.addEventListener('hashchange', (event: HashChangeEvent) => {
           if (routes.findIndex(item => item.path === event.newURL.split('#')[1]) >= 0) {
             return <Route key={item.path} path={item.path} render={(props: any) => {
-              return <item.component key={item.path} {...props} ></item.component>
+              return <item.component key={item.path} {...props} routes={item.children} ></item.component>
             }}>
             </Route>
           } else {
@@ -23,7 +23,7 @@ export default function RouterView({ routes }: Iprops) {
           }
         })
         return <Route key={item.path} path={item.path} render={(props: any) => {
-          return <item.component key={item.path} {...props} ></item.component>
+          return <item.component key={item.path} {...props} routes={item.children}></item.component>
         }}>
         </Route>
       })

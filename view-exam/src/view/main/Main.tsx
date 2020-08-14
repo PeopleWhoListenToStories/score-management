@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import MenuSider from '../../components/MenuSide/MenuSider';
+import HeaderBar from '../../components/HeaderBar/Header'
 import useStore from '../../context/useStore';
 import { Layout } from 'antd';
 const { Header, Sider, Content } = Layout;
@@ -11,10 +12,11 @@ export default function Main() {
   console.log(MainStore.MenuList)
   return <div className="Main"  >
     <Layout>
-      <Header style={{ background: '#fff' }}>Header</Header>
+      <Header style={{ background: '#fff' }}>
+        <HeaderBar />
+      </Header>
       <Layout>
         <Sider style={{ background: '#232A41' }} ><MenuSider></MenuSider></Sider>
-        <Sider ><MenuSider></MenuSider></Sider>
         <Content>Content</Content>
       </Layout>
     </Layout>

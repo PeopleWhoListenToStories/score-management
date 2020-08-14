@@ -18,7 +18,7 @@ instance.interceptors.response.use((response: any) => {
   const code: number | undefined = error.response.status;
   switch (code) {
     
-  }
+  } 
 })
 
 export default instance
