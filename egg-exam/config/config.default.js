@@ -24,10 +24,10 @@ exports.cors = {
 
 exports.mysql = {
     client: {
-        host: 'localhost',
-        port: 7000,
-        user: 'MrSu',
-        password: 'MrSu',
+        host: '120.53.2.185',
+        port: 3306,
+        user: 'exam',
+        password: 'azj33456',
         database: 'exam'
     }
 }
