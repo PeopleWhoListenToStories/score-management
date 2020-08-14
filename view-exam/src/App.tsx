@@ -1,12 +1,22 @@
 import React from 'react';
+import { HashRouter } from 'react-router-dom';
+import RouterView from './router/RouterView';
+import routes from './router/config.route'
+
 import './App.css';
 
+
 function App() {
+
   return (
     <div className="App">
-      成绩管理系统
+      <HashRouter>
+        <RouterView routes={routes} />
+      </HashRouter>
     </div>
+
   );
 }
 
 export default App;
+
