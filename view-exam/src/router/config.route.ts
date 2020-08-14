@@ -27,6 +27,7 @@ import addUser from '../view/main/addUser'
 
 //login
 import Login from '../view/login/Login'
+
 const routes:any = [
   {
     path:'*',

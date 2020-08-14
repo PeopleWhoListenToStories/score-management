@@ -14,6 +14,7 @@ export default function Main() {
       <Header style={{ background: '#fff' }}>Header</Header>
       <Layout>
         <Sider style={{ background: '#232A41' }} ><MenuSider></MenuSider></Sider>
+        <Sider ><MenuSider></MenuSider></Sider>
         <Content>Content</Content>
       </Layout>
     </Layout>
