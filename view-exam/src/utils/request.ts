@@ -1,10 +1,12 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  timeout: 3000
+  timeout: 3000,
+  baseURL:'http://127.0.0.1:7002'
 })
 
 instance.interceptors.request.use((request: any) => {
+ request.headers['authorization'] = window.sessionStorage.getItem('token') ? window.sessionStorage.getItem('token') : '';
   return request;
 }, error => {
   return Promise.reject(error)

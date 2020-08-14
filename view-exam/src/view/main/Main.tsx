@@ -1,15 +1,19 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import MenuSider from '../../components/MenuSide/MenuSider';
+import useStore from '../../context/useStore';
 import { Layout } from 'antd';
-import MenuSider from '../../components/MenuSider'
 const { Header, Sider, Content } = Layout;
 
 export default function Main() {
+  const { MainStore } = useStore();
+  MainStore.initAction()
+  console.log(MainStore.MenuList)
   return <div className="Main"  >
     <Layout>
       <Header style={{ background: '#fff' }}>Header</Header>
       <Layout>
-        <Sider ><MenuSider></MenuSider></Sider>
+        <Sider style={{ background: '#232A41' }} ><MenuSider></MenuSider></Sider>
         <Content>Content</Content>
       </Layout>
     </Layout>

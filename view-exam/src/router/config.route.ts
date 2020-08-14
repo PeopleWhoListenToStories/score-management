@@ -24,6 +24,9 @@ import showUser from '../view/main/showUser'
 import student from '../view/main/student'
 import watchQuestions from '../view/main/watchQuestions'
 import addUser from '../view/main/addUser'
+
+//login
+import Login from '../view/login/Login'
 const routes:any = [
   {
     path:'*',
@@ -124,6 +127,10 @@ const routes:any = [
         name:'待批试卷'
       }
     ]
+  },
+  {
+    path:'/login',
+    component:Login,
   },
   {
     path:'/NoFound',
