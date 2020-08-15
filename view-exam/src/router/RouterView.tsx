@@ -15,29 +15,19 @@ export default function RouterView({ routes }: Iprops) {
         let index: number = 1;
         window.addEventListener('hashchange', (event: HashChangeEvent) => {
           if (routes.findIndex(item => item.path === event.newURL.split('#')[1]) >= 0) {
-<<<<<<< HEAD
             return <Route key={item.path} path={item.path} render={(props: any) => {
               return <item.component key={item.path} {...props} routes={item.children} ></item.component>
-=======
-            return <Route key={item.path} path={item.path} render={(Info: any) => {
-              return <item.component key={item.path} {...Info} ></item.component>
->>>>>>> suleiya
             }}>
             </Route>
           } else {
             return <Redirect key={item.path} to='/NoFound'></Redirect>
           }
         })
-<<<<<<< HEAD
-        return <Route key={item.path} path={item.path} render={(props: any) => {
-          return <item.component key={item.path} {...props} routes={item.children}></item.component>
-=======
         return <Route key={item.path} path={item.path} render={(Info: any) => {
           if(item.children){
              return <item.component routes={item.children} {...Info} ></item.component>
           }
          return <item.component {...Info}></item.component>
->>>>>>> suleiya
         }}>
         </Route>
       })
