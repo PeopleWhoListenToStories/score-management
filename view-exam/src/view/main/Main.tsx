@@ -13,14 +13,15 @@ export default function Main(props: any) {
   const { MainStore } = useStore();
   MainStore.initAction();
   console.log(MainStore.MenuList)
-  return useObserver(() => <div className="Main">
+  console.log(props )
+
+  return useObserver(() => <div className="Main"  >
     <Layout>
       <Header style={{ background: '#fff' }}>
         <HeaderBar />
       </Header>
       <Layout>
         <Sider style={{ background: '#232A41' }} ><MenuSider></MenuSider></Sider>
-        <Sider ><MenuSider></MenuSider></Sider>
         <Content><Roterview routes={props.routes} /></Content>
       </Layout>
     </Layout>
