@@ -11,9 +11,13 @@ import store from './store/index'
 import StoreContext from './context/StroeContext'
 
 ReactDOM.render(
+<<<<<<< HEAD
   <StoreContext.Provider value={store}>
   <App />
 </StoreContext.Provider>,
+=======
+    <App />,
+>>>>>>> e8058cacbee8a90b2bba7579bd043b6b7cf48911
   document.getElementById('root')
 );
 
