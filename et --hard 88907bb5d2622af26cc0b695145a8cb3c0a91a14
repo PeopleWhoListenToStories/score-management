@@ -1,0 +1,156 @@
+[33mcommit 8bb9d9ee38306cb2baae518cc8034282479a2850[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 1f20baa 88907bb
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Sat Aug 15 08:28:34 2020 +0800
+
+    提交
+
+[33mcommit 88907bb5d2622af26cc0b695145a8cb3c0a91a14[m[33m ([m[1;31morigin/suleiya[m[33m, [m[1;32msuleiya[m[33m)[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Sat Aug 15 08:17:19 2020 +0800
+
+    完善
+
+[33mcommit 1f20baa6a5421f81f6aa33f0f24b1ee6b8ffa767[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Sat Aug 15 07:29:30 2020 +0800
+
+    完善
+
+[33mcommit 4ff6fe4e483c6ce32a541a1f58b405d78f89d85e[m
+Merge: 83f9f8a b35a3d0
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 21:40:14 2020 +0800
+
+    合并更新
+
+[33mcommit 83f9f8aaa7ecf018bd686902d869aaef7000fbee[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 21:34:13 2020 +0800
+
+    login 页面的完善 + main 页面的数据请求
+
+[33mcommit b35a3d0fd57dbb2548e8f7de9fcb8fbce7695900[m[33m ([m[1;31morigin/郑其月[m[33m)[m
+Author: zhengqiyue <2535250538@qq.com>
+Date:   Fri Aug 14 21:10:55 2020 +0800
+
+    header头部
+
+[33mcommit 9726c6b81152e7e1e1d7e9e72f6c1523d0fa5c8a[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 19:02:42 2020 +0800
+
+    Main 更新
+
+[33mcommit a55287b53ace0fe93eff5e5bd38ecb66cf86d7c7[m
+Merge: a250e7c b4f38e6
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 18:48:26 2020 +0800
+
+    Merge branch 'suleiya'
+
+[33mcommit b4f38e625be6b56f58adb89e58a32438820243f4[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 18:45:46 2020 +0800
+
+    update login
+
+[33mcommit a250e7c105c7181c9b4bb178358572eae49bb9ad[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 18:42:20 2020 +0800
+
+    完成login
+
+[33mcommit 7cba3d3ecb7afbe44e952f58c550c1496cee4d95[m
+Author: zhengqiyue <2535250538@qq.com>
+Date:   Fri Aug 14 18:30:15 2020 +0800
+
+    '路由'
+
+[33mcommit a88e62920149fe634d5d7cad76d4e60ea9a3e607[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 17:48:23 2020 +0800
+
+    !23
+
+[33mcommit 78f647df6b3821cde7ecf4e4a6a16edb99e966f1[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 17:45:14 2020 +0800
+
+    11
+
+[33mcommit 3a73d2b2230d1abad497f6f300445533d9f8e364[m
+Merge: 428ef58 46c45cd
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 17:40:01 2020 +0800
+
+    1
+
+[33mcommit 428ef58eaedbd20300e54c2cf016bdc53fbb080d[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 17:30:55 2020 +0800
+
+    test
+
+[33mcommit 46c45cd487f1aee331c5774df6594710c45d63ea[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 17:09:36 2020 +0800
+
+    store 创建
+
+[33mcommit 3bf12ad44a5ed092cc99f5b05514470e603827f8[m
+Merge: dcc5044 d8b943a
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 16:40:27 2020 +0800
+
+    Merge branch '郑其月' of github.com:PeopleWhoListenToStories/score-management into suleiya
+
+[33mcommit dcc5044b8ceb9fc08503f0879f980deee34dddd5[m
+Merge: aee797e 61229a1
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 16:37:36 2020 +0800
+
+    Merge branch 'anzhijun' of github.com:PeopleWhoListenToStories/score-management into suleiya
+
+[33mcommit a4a966103ce6dd63390a97d839009f4da3d07937[m
+Merge: d8b943a aee797e
+Author: zhengqiyue <2535250538@qq.com>
+Date:   Fri Aug 14 16:03:10 2020 +0800
+
+    Merge branch 'master' of github.com:PeopleWhoListenToStories/score-management into 郑其月
+
+[33mcommit aee797e85b7c0eaea8d1cd984bb660558391a1c3[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 14:03:39 2020 +0800
+
+    添加layout
+
+[33mcommit f087bedda88ce1ffb29478b8a41e15c8ed27d41d[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 11:56:38 2020 +0800
+
+    路由的封装
+
+[33mcommit 61229a153122a31b370ed185cfde6fd6d0fe74c8[m
+Author: zero_an_two <1793023715@qq.com>
+Date:   Fri Aug 14 10:39:07 2020 +0800
+
+    测试
+
+[33mcommit d8b943ab5db288bb15e8cbb82d24637600e6fd2c[m
+Author: zhengqiyue <2535250538@qq.com>
+Date:   Fri Aug 14 10:35:57 2020 +0800
+
+    郑其月
+
+[33mcommit 81e2bf6cfac1369b1ccfbe37ff14c28113eedd5a[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 09:30:15 2020 +0800
+
+    初始化项目框架
+
+[33mcommit 03bb53b1b520f6eb2c41f8cf226f8fe7f7aa98e0[m
+Author: alwaysaskafter <779647751@qq.com>
+Date:   Fri Aug 14 08:59:14 2020 +0800
+
+    创建 readme 文档
