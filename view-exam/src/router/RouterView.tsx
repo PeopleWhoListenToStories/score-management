@@ -6,6 +6,7 @@ interface Iprops {
 }
 
 export default function RouterView({ routes }: Iprops) {
+  
   const componentList = routes.filter(item => item.component);
   const redirectList = routes.filter(item => item.redirect);
   return <Switch>
@@ -16,22 +17,11 @@ export default function RouterView({ routes }: Iprops) {
           if (routes.findIndex(item => item.path === event.newURL.split('#')[1]) >= 0) {
             return <Route key={item.path} path={item.path} render={(props: any) => {
               return <item.component key={item.path} {...props} routes={item.children} ></item.component>
-            }}>
-            </Route>
+            }}></Route>
           } else {
             return <Redirect key={item.path} to='/NoFound'></Redirect>
           }
         })
-        return <Route key={item.path} path={item.path} render={(props: any) => {
-<<<<<<< HEAD
-
-          // console.log(item.path)
-          return <item.component key={item.path} {...props} routes={item.children} ></item.component>
-=======
-          return <item.component key={item.path} {...props} routes={item.children}></item.component>
->>>>>>> e8058cacbee8a90b2bba7579bd043b6b7cf48911
-        }}>
-        </Route>
       })
     }
     {
