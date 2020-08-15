@@ -11,8 +11,6 @@ const { Header, Sider, Content } = Layout;
 export default function Main(props: any) {
   const { MainStore } = useStore();
   MainStore.initAction();
-  console.log(MainStore.MenuList)
-  console.log(props )
 
   return useObserver(() => <div className="Main"  >
     <Layout>

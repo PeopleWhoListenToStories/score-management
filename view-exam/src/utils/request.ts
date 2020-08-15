@@ -17,7 +17,9 @@ instance.interceptors.response.use((response: any) => {
 }, error => {
   const code: number | undefined = error.response.status;
   switch (code) {
-    
+    case 401:
+      console.warn('您还没有权限');
+      break;
   } 
 })
 

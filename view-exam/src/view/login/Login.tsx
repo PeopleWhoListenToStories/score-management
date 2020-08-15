@@ -7,12 +7,13 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 
 export default function Login() {
-  const { Login } = useStore();
+  const { Login, MainStore } = useStore();
   const history = useHistory();
   async function onFinish(values: any) {
-    const result:any = await Login.loginAction('chenmanjie', 'Chenmanjie123!');
-    if(result.code === 1){
-      history.push('/main')
+    const result: any = await Login.loginAction('chenmanjie', 'Chenmanjie123!');
+    if (result.code === 1) {
+      history.push('/main');
+      MainStore.initAction();
     }
     console.log('Received values of form: ', values);
   };

@@ -22,10 +22,6 @@ export default function RouterView({ routes }: Iprops) {
           }
         }
 
-        // if (!window.sessionStorage.getItem('token')) {
-        //   return <Redirect to='/login' ></Redirect>
-        // }
-
         return <Route key={item.path} path={item.path} render={(props: any) => {
           return <item.component key={item.path} routes={item.children} {...props}></item.component>
         }}>

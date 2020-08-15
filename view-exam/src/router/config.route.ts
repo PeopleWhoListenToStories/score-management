@@ -31,7 +31,7 @@ import Login from '../view/login/Login'
 const routes:any = [
   {
     path:'*',
-    redirect:'/main'
+    redirect:'/login'
   },
   {
     path:'/main',
