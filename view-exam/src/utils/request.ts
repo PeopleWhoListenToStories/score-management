@@ -21,7 +21,7 @@ instance.interceptors.response.use((response: any) => {
       console.warn('您还没有权限');
       break;
     case 500:
-      console.log('123')
+      console.log('500')
       break;
   } 
 })
