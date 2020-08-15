@@ -6,41 +6,40 @@ interface Iprops {
 }
 
 export default function RouterView({ routes }: Iprops) {
-  
+
   const componentList = routes.filter(item => item.component);
   const redirectList = routes.filter(item => item.redirect);
+
   return <Switch>
     {
       componentList && componentList.map(item => {
-        let index: number = 1;
-        window.addEventListener('hashchange', (event: HashChangeEvent) => {
-          if (routes.findIndex(item => item.path === event.newURL.split('#')[1]) >= 0) {
-<<<<<<< HEAD
-            return <Route key={item.path} path={item.path} render={(props: any) => {
-              return <item.component key={item.path} {...props} routes={item.children} ></item.component>
-=======
-            return <Route key={item.path} path={item.path} render={(Info: any) => {
-              return <item.component key={item.path} {...Info} ></item.component>
->>>>>>> suleiya
-            }}>
-            </Route>
+
+        if (item.redirect) {
+          if (item.redirect === '*') {
+            return <Redirect key={item.path} to={item.redirect}></Redirect>
           } else {
-            return <Redirect key={item.path} to='/NoFound'></Redirect>
+            return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
           }
-        })
-<<<<<<< HEAD
+        }
+
+        // if (!window.sessionStorage.getItem('token')) {
+        //   return <Redirect to='/login' ></Redirect>
+        // }
+
         return <Route key={item.path} path={item.path} render={(props: any) => {
-          return <item.component key={item.path} {...props} routes={item.children}></item.component>
-=======
-        return <Route key={item.path} path={item.path} render={(Info: any) => {
-          if(item.children){
-             return <item.component routes={item.children} {...Info} ></item.component>
-          }
-         return <item.component {...Info}></item.component>
->>>>>>> suleiya
+          return <item.component key={item.path} routes={item.children} {...props}></item.component>
         }}>
         </Route>
       })
+      // .concat(routes.map((item: any) => {
+      //   return <Redirect key={item.path} exact from={item.path} to="/403" />
+      // }))
+      //.concat(
+      //   routes.length ? <Redirect key="404" to="/NoFound" /> : <React.Fragment key="404"></React.Fragment>
+      // )
+      // window.addEventListener('hashchange', (event: HashChangeEvent) => {
+      //   changeRoute(routes,  event.newURL.split('#')[1])
+      // })
     }
     {
       redirectList && redirectList.map(item => {
@@ -48,4 +47,13 @@ export default function RouterView({ routes }: Iprops) {
       })
     }
   </Switch>
-} 
+}
+
+function changeRoute(arr: any[], val: string) {
+  console.log(arr, val, '=========')
+  if (arr.find(item => item.path === val)) {
+    return <Redirect to={val}></Redirect>
+  } else {
+    return <Redirect to='/NoFound' ></Redirect>
+  }
+}
