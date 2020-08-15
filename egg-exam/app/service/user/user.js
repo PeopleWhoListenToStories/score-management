@@ -11,6 +11,7 @@ const {
     getStudentInfo
 } = require('../../sql/exam');
 class UserService extends Service {
+   
     // 添加用户
     async createUser(userInfo) {
         let isRepeat = await this.isRepeat('user', 'user_name', userInfo.user_name);
@@ -189,7 +190,7 @@ class UserService extends Service {
         } else if (param === 'userInfo') { //获取当前的用户信息
             let sql = `select avatar from user where user_id='${this.ctx.token.user_id}'`;
             let result = await this.app.mysql.query(sql);
-            return {...this.ctx.token, avatar: result[0].avatar};
+            return { ...this.ctx.token, avatar: result[0].avatar };
         } else if (param === 'identity_view_authority_relation') {
             let sql = `select identity_view_authority_relation_id,identity_text,view_authority_text,view_id from identity_view_authority_relation,identity,view_authority where identity_view_authority_relation.identity_id=identity.identity_id And identity_view_authority_relation.view_authority_id=view_authority.view_authority_id`;
             let result = await this.app.mysql.query(sql);

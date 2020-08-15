@@ -5,7 +5,7 @@ import Addtype from './modules/testManagetion/Addtype'
 
 export default {
   Test:Test.Test,
-  Login:Login.Login,
+  LoginStore:Login.Login,
   MainStore:MainStore.MainStore,
   Addtypes:Addtype.AddType,
 }

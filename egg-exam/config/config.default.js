@@ -48,6 +48,7 @@ function route(url, method) {
 // 超级白名单，登录和身份都不需要验证
 exports.whiteList = [
     route('/user/login', 'POST'),
+    route('/get/code', 'GET'),
     route('/student/login', 'POST'),
     route('/manger/student', 'POST'),
     route('/manger/grade', 'GET'),
