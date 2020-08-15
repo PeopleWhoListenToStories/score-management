@@ -1,5 +1,5 @@
 import React from 'react';
-import { useObserver } from 'mobx-react-lite'
+import { useObserver } from 'mobx-react-lite' 
 import styled from 'styled-components';
 import MenuSider from '../../components/MenuSide/MenuSider';
 import HeaderBar from '../../components/HeaderBar/Header'
