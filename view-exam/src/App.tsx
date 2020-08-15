@@ -11,7 +11,6 @@ function App() {
     <div className="App">
       <HashRouter>
         <RouterView routes={routes} />
-        
       </HashRouter>
     </div>
 

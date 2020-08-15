@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import Header from "../../components/HeaderBar/Header"
 import LoginCss from './Login.module.scss';
 import useStore from '../../context/useStore'
 import { Form, Input, Button, Checkbox } from 'antd';
@@ -19,6 +20,7 @@ export default function Login() {
   };
 
   return <div className={LoginCss.Login}>
+    <Header />
     <div className={LoginCss.innerBox}>
       <Form
         name="normal_login"
