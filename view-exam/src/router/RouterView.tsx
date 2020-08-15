@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 interface Iprops {
   routes: any[]
@@ -11,7 +11,19 @@ export default function RouterView({ routes }: Iprops) {
   return <Switch>
     {
       componentList && componentList.map(item => {
+        let index: number = 1;
+        window.addEventListener('hashchange', (event: HashChangeEvent) => {
+          if (routes.findIndex(item => item.path === event.newURL.split('#')[1]) >= 0) {
+            return <Route key={item.path} path={item.path} render={(props: any) => {
+              return <item.component key={item.path} {...props} ></item.component>
+            }}>
+            </Route>
+          } else {
+            return <Redirect key={item.path} to='/NoFound'></Redirect>
+          }
+        })
         return <Route key={item.path} path={item.path} render={(props: any) => {
+
           // console.log(item.path)
           return <item.component key={item.path} {...props} routes={item.children} ></item.component>
         }}>

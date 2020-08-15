@@ -2,14 +2,20 @@ import React from 'react'
 import { Table } from 'antd';
 
 const columns = [
-  { title: 'Name', dataIndex: 'name', key: 'name' },
-  { title: 'Age', dataIndex: 'age', key: 'age' },
-  { title: 'Address', dataIndex: 'address', key: 'address' },
+  { title: '班级名', dataIndex: 'class', key: 'class' },
+  { title: '课程名', dataIndex: 'scal', key: 'scal' },
+  { title: '教室号', dataIndex: 'address', key: 'address' },
   {
     title: 'Action',
     dataIndex: '',
     key: 'x',
-    render: () => <a>Delete</a>,
+    render: () => <a>修改</a>,
+  },
+  {
+    title: 'Action',
+    dataIndex: '',
+    key: 'x',
+    render: () => <a>删除</a>,
   },
 ];
 

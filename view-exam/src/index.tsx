@@ -7,10 +7,13 @@ import * as serviceWorker from './serviceWorker';
 import 'antd/dist/antd.css';
 import './index.css';
 
+import store from './store/index'
+import StoreContext from './context/StroeContext'
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <StoreContext.Provider value={store}>
+  <App />
+</StoreContext.Provider>,
   document.getElementById('root')
 );
 

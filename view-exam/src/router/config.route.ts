@@ -12,7 +12,7 @@ import NoServer from '../view/error/NoServer';
 
 const routes:any = [
   {
-    path:'*',
+    path:'/',
     redirect:'/main'
   },
   {
