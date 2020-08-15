@@ -1,9 +1,11 @@
 import Test from "./modules/test"
+import Login from './modules/login'
+import MainStore from './modules/MainStore'
 import Addtype from './modules/testManagetion/Addtype'
 
-let Addtypes=new Addtype()
-console.log(Addtype)
 export default {
-  Test,
-  Addtypes,
+  Test:Test.Test,
+  Login:Login.Login,
+  MainStore:MainStore.MainStore,
+  Addtypes:Addtype.AddType,
 }

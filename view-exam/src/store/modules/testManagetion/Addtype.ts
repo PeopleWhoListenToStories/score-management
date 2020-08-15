@@ -15,4 +15,6 @@ class AddType {
   }
 }
 
-export default AddType
+export default {
+  AddType:new AddType()
+}
