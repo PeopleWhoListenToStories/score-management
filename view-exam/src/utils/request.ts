@@ -21,7 +21,7 @@ instance.interceptors.response.use((response: any) => {
       console.warn('您还没有权限');
       break;
     case 404:
-      console.log('404 页面 找不到');
+      console.log('404 找不到');
       break;
     case 500:
       console.log('500')
