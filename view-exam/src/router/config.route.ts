@@ -34,92 +34,92 @@ const routes:any = [
     component:Main,
     children:[
       {
-          path:'/addQuestions',
+          path:'/main/addQuestions',
           component:addQuestions,
           name:'添加试题'
       },
       {
-        path:'/questionsType',
+        path:'/main/questionsType',
         component:questionsType,
         name:'试题分类'
       },
       {
-        path:'/watchQuestions',
+        path:'/main/watchQuestions',
         component:watchQuestions,
         name:'查看试题'
       },
       {
-        path:'/addUser',
+        path:'/main/addUser',
         component:addUser,
         name:'添加用户'
       },
       {
-        path:'/showUser',
+        path:'/main/showUser',
         component:showUser,
         name:'用户展示'
       },
       {
-        path:'/addExam',
+        path:'/main/addExam',
         component:addExam,
         name:'添加考试'
       },
       {
-        path:'/menu',
+        path:'/main/menu',
         component:menu,
         name:'添加菜单'
       },
       {
-        path:'/editQuestions',
+        path:'/main/editQuestions',
         component:editQuestions,
         name:'编辑试题'
       },
       {
-        path:'/questionsDetail',
+        path:'/main/questionsDetail',
         component:questionsDetail,
         name:'试题详情'
       },
       {
-        path:'/grade',
+        path:'/main/grade',
         component:grade,
         name:'班级管理'
       },
       {
-        path:'/student',
+        path:'/main/student',
         component:student,
         name:'学生管理'
       },
       {
-        path:'/room',
+        path:'/main/room',
         component:room,
         name:'教室管理'
       },
       {
-        path:'/examList',
+        path:'/main/examList',
         component:examList,
         name:'试卷列表'
       },
       {
-        path:'/examEdit',
+        path:'/main/examEdit',
         component:examEdit,
         name:'创建试卷'
       },
       {
-        path:'/examDetail',
+        path:'/main/examDetail',
         component:examDetail,
         name:'试卷详情'
       },
       {
-        path:'/examinationPapers',
+        path:'/main/examinationPapers',
         component:examinationPapers,
         name:'阅卷'
       },
       {
-        path:'/examPaperClassList',
+        path:'/main/examPaperClassList',
         component:examPaperClassList,
         name:'批卷班级'
       },
       {
-        path:'/examPaperClassmate',
+        path:'/main/examPaperClassmate',
         component:examPaperClassmate,
         name:'待批试卷'
       }
