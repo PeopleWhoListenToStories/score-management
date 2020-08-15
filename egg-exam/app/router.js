@@ -76,6 +76,10 @@ module.exports = app => {
     // 给身份取消视图
     router.post('/user/cancelIdentityView',controller.user.user.cancelIdentityView);
     /**
+     * 获取验证码
+     */
+    router.get('/get/code',controller.user.login.createRandomNum)
+    /**
      * 老师登录接口
      */
     router.post('/user/login',controller.user.login.login);

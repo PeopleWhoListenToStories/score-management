@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import NProgress from 'nprogress';
 
 const instance = axios.create({
   timeout: 3000,
@@ -13,6 +14,7 @@ instance.interceptors.request.use((request: any) => {
 })
 
 instance.interceptors.response.use((response: any) => {
+  // NProgress.done();
   return response;
 }, error => {
   const code: number | undefined = error.response.status;
