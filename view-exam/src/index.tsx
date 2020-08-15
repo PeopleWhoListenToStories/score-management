@@ -10,12 +10,12 @@ import store from './store/index'
 import StoreContext from './context/StroeContext'
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <StoreContext.Provider value={store}>
       <App />
     </StoreContext.Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  // </React.StrictMode>,
+  ,document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
