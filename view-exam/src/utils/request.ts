@@ -20,6 +20,8 @@ instance.interceptors.response.use((response: any) => {
     case 401:
       console.warn('您还没有权限');
       break;
+    case 500:
+      break;
   } 
 })
 
