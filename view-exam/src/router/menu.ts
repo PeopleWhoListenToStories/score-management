@@ -10,7 +10,7 @@ import ViewTeacher from '../view/main/UserManagement/viewTeacher';
 
 // 考试管理
 import AddExamPage from '../view/main/ExamManagement/addExam';
-import UserListPage from '../view/main/ExamManagement/addUser';
+import UserListPage from '../view/main/ExamManagement/examList';
 
 // 班级管理
 import GeadePage from '../view/main/ClassManagement/grade'
@@ -62,7 +62,7 @@ export default [
       component: AddExamPage,
       meta: { title: '添加考试' }
     }, {
-      path: '/main/userList',
+      path: '/main/examList',
       component: UserListPage,
       meta: { title: '试卷列表' }
     },
