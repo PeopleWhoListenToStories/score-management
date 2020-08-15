@@ -7,11 +7,12 @@ import './App.css';
 
 
 function App() {
-
+console.log(routes)
   return (
     <div className="App">
       <HashRouter>
         <RouterView routes={routes} />
+        
       </HashRouter>
     </div>
 
