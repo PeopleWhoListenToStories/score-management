@@ -1,13 +1,15 @@
 import React from 'react'
 import useStore from '../../../context/useStore'
-import { Button, Radio } from 'antd';
-
+import { Button } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 export default function questionsType() {
     
     return (
         <div>
-            {/* 试题分类 */}
-            111
+        
+        <Button type="primary" icon={<PlusOutlined  />} size="middle">
+          添加类型
+        </Button>
         </div>
     )
 }
