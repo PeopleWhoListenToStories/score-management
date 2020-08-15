@@ -7,7 +7,7 @@ import NoServer from '../view/error/NoServer';
 
 //main
 import addExam from '../view/main/addExam'
-import addQuestions from '../view/main/addQuestions'
+import addQuestions from '../view/main/TestManagement/addQuestions'
 import editQuestions from '../view/main/editQuestions'
 import examDetail from '../view/main/examDetail'
 import examEdit from '../view/main/examEdit'
@@ -18,11 +18,11 @@ import examinationPapers from '../view/main/examinationPapers'
 import grade from '../view/main/grade'
 import menu from '../view/main/menu'
 import questionsDetail from '../view/main/questionsDetail'
-import questionsType from '../view/main/questionsType'
+import questionsType from '../view/main/TestManagement/questionsType'
 import room from '../view/main/room'
 import showUser from '../view/main/showUser'
 import student from '../view/main/student'
-import watchQuestions from '../view/main/watchQuestions'
+import watchQuestions from '../view/main/TestManagement/watchQuestions'
 import addUser from '../view/main/addUser'
 
 //login
@@ -43,7 +43,7 @@ const routes:any = [
           name:'添加试题'
       },
       {
-        path:'/questionsType',
+        path:'/main/questionsType',
         component:questionsType,
         name:'试题分类'
       },
