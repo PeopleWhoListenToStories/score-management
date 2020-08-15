@@ -1,132 +1,98 @@
 import Main from '../view/main/Main'
 
-
 // 错误处理页面
 import NoFound from '../view/error/NoFound';
 import NoServer from '../view/error/NoServer';
 
-//main
-import addExam from '../view/main/addExam'
-import addQuestions from '../view/main/TestManagement/addQuestions'
-import editQuestions from '../view/main/editQuestions'
-import examDetail from '../view/main/examDetail'
-import examEdit from '../view/main/examEdit'
-import examList from '../view/main/examList'
-import examPaperClassList from '../view/main/examPaperClassList'
-import examPaperClassmate from '../view/main/examPaperClassmate'
-import examinationPapers from '../view/main/examinationPapers'
-import grade from '../view/main/grade'
-import menu from '../view/main/menu'
-import questionsDetail from '../view/main/questionsDetail'
-import questionsType from '../view/main/TestManagement/questionsType'
-import room from '../view/main/room'
-import showUser from '../view/main/showUser'
-import student from '../view/main/student'
-import watchQuestions from '../view/main/TestManagement/watchQuestions'
-import addUser from '../view/main/addUser'
-
 //login
 import Login from '../view/login/Login'
+ 
+import menu from './menu'
 
+
+
+// 试题管理
+import AddQuestionPage from '../view/main/TestManagement/addQuestions';
+import QuestionTypePage from '../view/main/TestManagement/questionsType';
+import ViewQuestionPage from '../view/main/TestManagement/watchQuestions';
+
+//用户管理
+import AddTeacher from '../view/main/UserManagement/addTeacher';
+import ViewTeacher from '../view/main/UserManagement/viewTeacher';
+
+// 考试管理
+import AddExamPage from '../view/main/ExamManagement/addExam';
+import UserListPage from '../view/main/ExamManagement/addUser';
+
+// 班级管理
+import GeadePage from '../view/main/ClassManagement/grade'
+import RoomPage from '../view/main/ClassManagement/room'
+import StudentPage from '../view/main/ClassManagement/student'
+
+// 阅卷管理
+import ExamPaperClassListPage from '../view/main/MarkingManagement/examPaperClassList'
+
+ 
 const routes:any = [
   {
     path:'*',
-    redirect:'/main'
+    redirect:'/login'
   },
   {
     path:'/main',
     component:Main,
     children:[
-      {
-          path:'/addQuestions',
-          component:addQuestions,
-          name:'添加试题'
-      },
-      {
-        path:'/main/questionsType',
-        component:questionsType,
-        name:'试题分类'
-      },
-      {
-        path:'/watchQuestions',
-        component:watchQuestions,
-        name:'查看试题'
-      },
-      {
-        path:'/addUser',
-        component:addUser,
-        name:'添加用户'
-      },
-      {
-        path:'/showUser',
-        component:showUser,
-        name:'用户展示'
-      },
-      {
-        path:'/addExam',
-        component:addExam,
-        name:'添加考试'
-      },
-      {
-        path:'/menu',
-        component:menu,
-        name:'添加菜单'
-      },
-      {
-        path:'/editQuestions',
-        component:editQuestions,
-        name:'编辑试题'
-      },
-      {
-        path:'/questionsDetail',
-        component:questionsDetail,
-        name:'试题详情'
-      },
-      {
-        path:'/grade',
-        component:grade,
-        name:'班级管理'
-      },
-      {
-        path:'/student',
-        component:student,
-        name:'学生管理'
-      },
-      {
-        path:'/room',
-        component:room,
-        name:'教室管理'
-      },
-      {
-        path:'/examList',
-        component:examList,
-        name:'试卷列表'
-      },
-      {
-        path:'/examEdit',
-        component:examEdit,
-        name:'创建试卷'
-      },
-      {
-        path:'/examDetail',
-        component:examDetail,
-        name:'试卷详情'
-      },
-      {
-        path:'/examinationPapers',
-        component:examinationPapers,
-        name:'阅卷'
-      },
-      {
-        path:'/examPaperClassList',
-        component:examPaperClassList,
-        name:'批卷班级'
-      },
-      {
-        path:'/examPaperClassmate',
-        component:examPaperClassmate,
-        name:'待批试卷'
-      }
+          {
+            path: '/main/addQuestion',
+            component: AddQuestionPage,
+            meta: { title: '添加试题' }
+          },
+          {
+            path: '/main/questionType',
+            component: QuestionTypePage,
+            meta: { title: '试题分类' }
+          },
+          {
+            path: '/main/viewQuestionPage',
+            component: ViewQuestionPage,
+            meta: { title: '查看试题' }
+          },
+          {
+            path: '/main/addTeacher',
+            component: AddTeacher,
+            meta: { title: '添加用户' }
+          }, {
+            path: '/main/viewTeacher',
+            component: ViewTeacher,
+            meta: { title: '用户展示' }
+          },
+          {
+            path: '/main/addexam',
+            component: AddExamPage,
+            meta: { title: '添加考试' }
+          }, {
+            path: '/main/userList',
+            component: UserListPage,
+            meta: { title: '试卷列表' }
+          },
+          {
+            path: '/main/grade',
+            component: GeadePage,
+            meta: { title: '班级管理' }
+          }, {
+            path: '/main/room',
+            component: RoomPage,
+            meta: { title: '教室管理' }
+          }, {
+            path: '/main/student',
+            component: StudentPage,
+            meta: { title: '学生管理' }
+          },
+          {
+            path: '/main/examPaper',
+            component: ExamPaperClassListPage,
+            meta: { title: '批卷班级' }
+          }
     ]
   },
   {

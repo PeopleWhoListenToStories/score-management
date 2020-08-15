@@ -1,44 +1,46 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb } from 'antd';
 import MenuSideCss from './MenuSide.module.scss'
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from 'react-router-dom'
+import useStore from '../../context/useStore'
+import { useObserver } from 'mobx-react-lite'
+import { Menu } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons'
 const { SubMenu } = Menu;
 
+const defaultIndex: string = '-1';
+
+const showMenu = (menu: any[]) => {
+  return menu.map((item, index) => {
+    if (item.meta.show === false) {
+      return null;
+    }
+    if (item.children && item.children.length) {
+      return <Menu.SubMenu key={'/main' + index} title={item.meta.title}>
+        {showMenu(item.children)}
+      </Menu.SubMenu>
+    } else {
+      // console.log(item.path,"11")
+      return <Menu.Item key={item.path}>
+        <NavLink to={item.path}>{item.meta.title}</NavLink>
+      </Menu.Item>
+    }
+  })
+}
+
 export default function MenuSider() {
+  const history = useHistory();
+  const { MainStore } = useStore();
+  console.log(history.location)
+  console.log(history.location.pathname.split('/'))
   return (
-    <Menu
+    useObserver(() => <Menu
       theme='dark'
       mode="inline"
-      defaultSelectedKeys={['1']}
-      defaultOpenKeys={['sub1']}
+      defaultSelectedKeys={['0']}
+      defaultOpenKeys={['/main' + defaultIndex]}
       style={{ height: '100%', borderRight: 0 }}
     >
-      <SubMenu key="sub1" icon={<UserOutlined />} title='试题管理'>
-        <Menu.Item key="1">option1</Menu.Item>
-        <Menu.Item key="2">option2</Menu.Item>
-        <Menu.Item key="3">option3</Menu.Item>
-        <Menu.Item key="4">option4</Menu.Item>
-      </SubMenu>
-      <SubMenu key="sub2" icon={<LaptopOutlined />} title='用户管理'>
-        <Menu.Item key="5">option5</Menu.Item>
-        <Menu.Item key="6">option6</Menu.Item>
-        <Menu.Item key="7">option7</Menu.Item>
-        <Menu.Item key="8">option8</Menu.Item>
-      </SubMenu>
-      <SubMenu key="sub3" icon={<NotificationOutlined />} title='考试管理'>
-        <Menu.Item key="9">option9</Menu.Item>
-        <Menu.Item key="10">option10</Menu.Item>
-        <Menu.Item key="11">option11</Menu.Item>
-        <Menu.Item key="12">option12</Menu.Item>
-      </SubMenu>
-      <SubMenu key="sub4" icon={<NotificationOutlined />} title='班级管理'>
-        <Menu.Item key="13">option13</Menu.Item>
-      </SubMenu>
-      <SubMenu key="sub5" icon={<NotificationOutlined />} title='阅卷管理'>
-        <Menu.Item key="14">option14</Menu.Item>
-
-      </SubMenu>
-    </Menu>
+      {showMenu(MainStore.ViewAuthority)}
+    </Menu>)
   )
 }

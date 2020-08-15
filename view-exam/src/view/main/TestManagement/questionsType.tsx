@@ -1,5 +1,5 @@
 import React from 'react'
-import useStore from '../../../context/useStore'
+
 import { Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 export default function questionsType() {
