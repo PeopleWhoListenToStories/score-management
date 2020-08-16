@@ -58,9 +58,9 @@ const data :any= [
  function  QuestionsType() {
   let [visibled,setVisible]= useState<any>()
   //使用仓库
-  let {getTypeData,Typedata}=useStore().Addtypes
+  let {Addtypes}=useStore()
   useEffect(()=>{
-    getTypeData()
+    Addtypes.getTypeData()
 },)
 
 
@@ -85,7 +85,7 @@ const data :any= [
         添加类型
         </Button>
 
-      <Table columns={columns} dataSource={Typedata} />
+      <Table columns={columns} dataSource={Addtypes.Typedata} />
         <Modal
           title="创建新类型"
           visible={visibled}

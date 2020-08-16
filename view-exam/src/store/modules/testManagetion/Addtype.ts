@@ -7,10 +7,9 @@ class AddType {
   @action
   getTypeData=()=>{
     testType().then(res=>{
-      console.log(res)
-      // if(res.data.code===1){
-      //     this.Typedata=res.data.data
-      // }
+      if(res.data.code===1){
+          this.Typedata=res.data.data
+      }
   })
   }
 }
