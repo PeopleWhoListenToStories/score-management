@@ -6,7 +6,7 @@ import Roterview from '../../router/RouterView'
 import useStore from '../../context/useStore';
 
 // 引入组件
-import MenuSider from '../../components/MenuSide/MenuSider';
+import MenuSider from '../../components/MenuSide1/MenuSider';
 import HeaderBar from '../../components/HeaderBar/Header'
 
 // 引入antd
