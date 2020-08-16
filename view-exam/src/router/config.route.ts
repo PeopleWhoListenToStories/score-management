@@ -7,7 +7,6 @@ import NoServer from '../view/error/NoServer';
 //login
 import Login from '../view/login/Login'
  
-import menu from './menu'
 // 试题管理
 import AddQuestionPage from '../view/main/TestManagement/addQuestions';
 import QuestionTypePage from '../view/main/TestManagement/questionsType';

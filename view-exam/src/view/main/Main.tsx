@@ -1,7 +1,6 @@
 import React from 'react';
 import {useHistory} from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
-import styled from 'styled-components';
 import Roterview from '../../router/RouterView'
 import useStore from '../../context/useStore';
 
@@ -52,8 +51,3 @@ export default function Main(props: any) {
     </Layout>
   </div>)
 }
-
-const MainWrapper = styled.div` 
-  width: 100%;
-  height: 100%;
-`

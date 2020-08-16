@@ -47,11 +47,11 @@ export default function RouterView({ routes }: Iprops) {
   </Switch>
 }
 
-function changeRoute(arr: any[], val: string) {
-  console.log(arr, val, '=========')
-  if (arr.find(item => item.path === val)) {
-    return <Redirect to={val}></Redirect>
-  } else {
-    return <Redirect to='/NoFound' ></Redirect>
-  }
-}
+// function changeRoute(arr: any[], val: string) {
+//   console.log(arr, val, '=========')
+//   if (arr.find(item => item.path === val)) {
+//     return <Redirect to={val}></Redirect>
+//   } else {
+//     return <Redirect to='/NoFound' ></Redirect>
+//   }
+// }
