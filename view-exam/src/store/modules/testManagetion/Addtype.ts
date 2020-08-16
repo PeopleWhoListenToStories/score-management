@@ -6,12 +6,12 @@ class AddType {
 
   @action
   getTypeData=()=>{
-      const res:any=testType();
-      if(res.code===1){
-          this.Typedata=res.data
-         console.log(res.data)
-        
-      }
+    testType().then(res=>{
+      console.log(res)
+      // if(res.data.code===1){
+      //     this.Typedata=res.data.data
+      // }
+  })
   }
 }
 

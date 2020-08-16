@@ -30,7 +30,6 @@ const getTitle = (path:string) => {
 }
 
 export default function Main(props: any) {
-  console.log(props)
   const history = useHistory();
   // console.log(history.location.pathname)
   const { MainStore } = useStore();
