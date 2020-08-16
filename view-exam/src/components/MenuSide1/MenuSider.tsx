@@ -8,8 +8,6 @@ const { SubMenu } = Menu;
 
 const defaultIndex: string = '-1';
 
-
-
 export default function MenuSider() {
   return (
     useObserver(() => <Menu
