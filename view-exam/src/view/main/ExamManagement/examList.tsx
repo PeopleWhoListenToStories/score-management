@@ -3,7 +3,7 @@ import React from 'react'
 export default function examList() {
     return (
         <div>
-            试卷列表
+            试卷列表2222
         </div>
     )
 }

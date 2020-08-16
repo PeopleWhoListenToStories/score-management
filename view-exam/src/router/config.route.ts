@@ -8,9 +8,6 @@ import NoServer from '../view/error/NoServer';
 import Login from '../view/login/Login'
  
 import menu from './menu'
-
-
-
 // 试题管理
 import AddQuestionPage from '../view/main/TestManagement/addQuestions';
 import QuestionTypePage from '../view/main/TestManagement/questionsType';
@@ -72,6 +69,11 @@ const routes:any = [
             meta: { title: '添加考试' }
           }, {
             path: '/main/examList',
+            component: UserListPage,
+            meta: { title: '试卷列表' }
+          },
+          {
+            path:'/main/userList',
             component: UserListPage,
             meta: { title: '试卷列表' }
           },
