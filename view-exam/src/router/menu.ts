@@ -10,7 +10,7 @@ import ViewTeacher from '../view/main/UserManagement/viewTeacher';
 
 // 考试管理
 import AddExamPage from '../view/main/ExamManagement/addExam';
-import UserListPage from '../view/main/ExamManagement/addUser';
+import UserListPage from '../view/main/ExamManagement/examList';
 
 // 班级管理
 import GeadePage from '../view/main/ClassManagement/grade'
