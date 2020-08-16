@@ -1,6 +1,6 @@
 import React from "react";
 import MenuSideCss from './MenuSide.module.scss'
-import { Link, useHistory } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import useStore from '../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 import { Menu } from 'antd';
@@ -21,7 +21,7 @@ const showMenu = (menu: any[]) => {
     } else {
       // console.log(item.path,"11")
       return <Menu.Item key={item.path}>
-        <Link to={item.path}>{item.meta.title}</Link>
+        <NavLink to={item.path}>{item.meta.title}</NavLink>
       </Menu.Item>
     }
   })

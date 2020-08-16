@@ -23,7 +23,9 @@ export default function RouterView({ routes }: Iprops) {
         }
 
         return <Route key={item.path} path={item.path} render={(props: any) => {
-          return <item.component key={item.path} routes={item.children} {...props}></item.component>
+          return <item.component key={item.path} routes={item.children} {...props}
+               
+          ></item.component>
         }}>
         </Route>
       })

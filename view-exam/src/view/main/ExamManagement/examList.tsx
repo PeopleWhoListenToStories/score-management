@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function addUser() {
+export default function examList() {
     return (
         <div>
-            试卷列表11111
+            试卷列表2222
         </div>
     )
 }
