@@ -36,7 +36,7 @@ const columns = [
   },
 ];
 
-const data = [
+const data :any= [
   {
     key: '1',
     name: 'John Brown',
