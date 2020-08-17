@@ -1,6 +1,6 @@
 import {action,observable} from 'mobx';
 import {AllClass} from '../../../api/module/testmanagetion'
-class AllClasses {
+export default class AllClasses {
   @observable
   AllClass:any [] = []
 
@@ -12,8 +12,4 @@ class AllClasses {
          }
      })
   }
-}
-
-export default {
-    AllClasses:new AllClasses()
 }

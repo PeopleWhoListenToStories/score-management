@@ -39,23 +39,23 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-  },
-];
+// const data = [
+//   {
+//     key: '1',
+//     name: 'John Brown',
+//     age: 32,
+//   },
+//   {
+//     key: '2',
+//     name: 'Jim Green',
+//     age: 42,
+//   },
+//   {
+//     key: '3',
+//     name: 'Joe Black',
+//     age: 32,
+//   },
+// ];
 
 function QuestionsType() {
   let [visibled, setVisible] = useState<any>()

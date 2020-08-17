@@ -10,7 +10,7 @@ interface Item {
   view_id: string,
 }
 
-class MainStore {
+export default class MainStore {
   @observable
   user_info: {} = {}; //用户的id
   @observable
@@ -51,6 +51,4 @@ class MainStore {
   }
 }
 
-export default {
-  MainStore: new MainStore()
-}
+ 

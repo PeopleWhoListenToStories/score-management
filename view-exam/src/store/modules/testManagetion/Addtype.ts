@@ -1,6 +1,7 @@
 import {action,observable} from 'mobx';
 import {testType} from '../../../api/module/testmanagetion'
-class AddType {
+
+export default class AddType {
   @observable
   Typedata:any [] = []
 
@@ -14,7 +15,4 @@ class AddType {
   })
   }
 }
-
-export default {
-  AddType:new AddType()
-}
+ 
