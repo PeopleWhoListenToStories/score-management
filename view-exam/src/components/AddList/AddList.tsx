@@ -7,21 +7,47 @@ interface IItem {
   type: string,
   placeholder: string,
   name: string,
-  list: string[]
+  list: any[],
 }
 
 interface IProps {
-  title: string,
-  list: any
+  list: any,
+  navList: any[]
 }
 
-const handleChange = (value: string, option: any) => {
-  let { key, children, name } = JSON.parse(JSON.stringify(option));
-  console.log(key, children, name)
-  console.log(`selected ${value}${JSON.stringify(option)}`);
+const defaultVal = {
+  defaultIndex: 0,
+  addIdentityName: '1', // 添加身份字段
+  addIdentityName1: '1', // 添加身份字段
+}
+
+const handleChange = (val: string, option: any) => {
+  let { key, value, children, name, url, view_id, method } = JSON.parse(JSON.stringify(option));
+
+  console.log(key, value, children, name, url, view_id, method)
+  console.log(`selected ${val}${JSON.stringify(option)}`);
 
   switch (name) {
 
+  }
+}
+
+// 切换高亮
+const handleTagIndex = (index: number,props:any) => {
+  defaultVal.defaultIndex = index;
+  console.log(defaultVal.defaultIndex,props)
+}
+
+// 修改input 框
+const handleInputText = (e: any) => {
+  console.log(e.target.name, e.target.value)
+  switch (e.target.name) {
+    case [e.target.name]:
+      console.log([e.target.value])
+     
+      break;
+    default:
+      return;
   }
 }
 
@@ -36,16 +62,21 @@ const onReset = () => {
 }
 
 export default function AddList(props: IProps) {
+  console.log(props, 'addIdentityName', props.list[defaultVal.defaultIndex].list)
   return <AddListWrapper>
     <li>
-      <Tag style={{ fontSize: '.07rem', padding: '0.03rem 0.07rem' }}>
-        <span>{props.title}</span>
-      </Tag>
+      {
+        props.navList && props.navList.map((item: any, index: number) => {
+          return <Tag style={{ fontSize: '.07rem', padding: '0.03rem 0.07rem' }} key={index}>
+            <span onClick={() => { handleTagIndex(index,props) }}>{item.title}</span>
+          </Tag>
+        })
+      }
     </li>
     {
-      props.list && props.list.map((item: any, index: number) => {
+      props.list[defaultVal.defaultIndex].list && props.list[defaultVal.defaultIndex].list.map((item: any, index: number) => {
         if (item.type === '1') {
-          return <li key={index}> <Input name={item.name} placeholder={item.placeholder} />  </li>
+          return <li key={index}> <Input name={item.name} placeholder={item.placeholder} onChange={(e) => { handleInputText(e) }} />  </li>
         } else if (item.type === '2') {
           return <li key={index}>
             <Select
@@ -60,18 +91,17 @@ export default function AddList(props: IProps) {
               )}
             >
               {
-                item.list && item.list.map((str: string, i: number) => {
-                  return <Option key={i} name={item.name} value={str}>{str}</Option>
+                item.list && item.list.map((v: any, index: number) => {
+                  return <Option key={v.id} name={item.name} value={v.text}>{v.text}</Option>
                 })
               }
             </Select>
           </li>
-        }else{
+        } else {
           return null;
         }
       })
     }
-
     <li>
       <Button type="primary" size='middle' onClick={() => { onOk() }}>确定</Button>
       <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { onReset() }}>重置</Button>

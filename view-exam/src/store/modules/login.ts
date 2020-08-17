@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx';
 import { loginApi , getRandomCode } from '../../api/index'
 
-class Login {
+export default class Login {
   
   @observable
   RandomCode:string = ""; //验证码
@@ -24,7 +24,4 @@ class Login {
     }
   }
 }
-
-export default {
-  Login: new Login()
-}
+ 

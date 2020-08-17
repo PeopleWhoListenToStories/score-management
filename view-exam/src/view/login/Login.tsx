@@ -67,7 +67,7 @@ export default function Login() {
           position: 'absolute',
           left: '0'
         }}>
-          <Tag color="#55acee" style={{ fontSize: '0.1rem', padding: '.05rem 0.15rem', border: 'none' ,maxHeight: '32px'}} onClick={()=>{changeRandomNum()}}>{LoginStore.RandomCode}</Tag>
+          <Tag color="#55acee" style={{ fontSize: '19px', padding: '15px 30px', border: 'none' , lineHeight:'.5', maxHeight: '32px'}} onClick={()=>{changeRandomNum()}}>{LoginStore.RandomCode}</Tag>
         </div>
 
         <Form.Item

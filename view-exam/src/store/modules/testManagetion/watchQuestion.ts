@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx';
 import { AllClass, GetTest, AllexamType, testType } from '../../../api/module/testmanagetion'
 
-class AllClasses {
+export default class AllClasses {
     @observable
     AllClass: any[] = [];
     AllTests: any[] = [];
@@ -63,6 +63,4 @@ class AllClasses {
     }
 }
 
-export default {
-    AllClasses: new AllClasses()
-}
+ 

@@ -40,7 +40,6 @@ const columns = [
 ];
 
 
-
 function QuestionsType() {
   let [visibled, setVisible] = useState<any>()
   //使用仓库
