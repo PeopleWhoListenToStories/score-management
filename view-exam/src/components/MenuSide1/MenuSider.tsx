@@ -1,9 +1,8 @@
 import React from "react";
-import MenuSideCss from './MenuSide.module.scss'
-import { NavLink, useHistory } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import { Menu } from 'antd';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
+import { MailOutlined, AppstoreOutlined } from '@ant-design/icons';
 const { SubMenu } = Menu;
 
 const defaultIndex: string = '-1';

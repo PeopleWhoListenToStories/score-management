@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default function viewTeacher() {
+export default function ViewTeacher() {
   return (
     <div>
       viewTeacher

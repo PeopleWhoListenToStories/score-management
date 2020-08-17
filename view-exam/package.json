@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "for-editor": "^0.3.5",
     "styled-components": "^5.1.1"
   }
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default function NoFound() {
   return <div className={FoundWrapper}>
-    🦁页面找不到了
+    页面找不到了
   </div>
 }
 

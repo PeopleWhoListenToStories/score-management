@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default function NoFound() {
   return <div className={ServerWrapper}>
-    🐅服务器出错了
+     服务器出错了
   </div>
 }
 

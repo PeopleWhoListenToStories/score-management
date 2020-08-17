@@ -1,4 +1,6 @@
-import React,{useState,useEffect} from 'react'
+
+// 添加类型
+import React, { useState, useEffect } from 'react'
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 
@@ -12,6 +14,7 @@ import { Table, Space } from 'antd';
 import { Modal, } from 'antd';
 //输入框
 import { Input } from 'antd';
+
 const columns = [
   {
     title: '类型ID',
@@ -36,36 +39,20 @@ const columns = [
   },
 ];
 
-const data :any= [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-  },
-];
 
 
- function  QuestionsType() {
-  let [visibled,setVisible]= useState<any>()
+function QuestionsType() {
+  let [visibled, setVisible] = useState<any>()
   //使用仓库
   let {Addtypes}=useStore()
   useEffect(()=>{
     Addtypes.getTypeData()
-},)
+    // data=Addtypes.Typedata
+},[])
 
 
   const showModal = () => {
-     setVisible(true)
+    setVisible(true)
   };
 
   const handleOk = (e: any) => {
@@ -78,7 +65,7 @@ const data :any= [
     console.log(e);
     setVisible(false)
   };
-  return useObserver(()=>
+  return useObserver(() =>
     <div className={style.question}>
 
       <Button type="primary" icon={<PlusOutlined />} size="middle" onClick={showModal}>
