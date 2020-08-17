@@ -2,7 +2,7 @@
  * @Author: jasonandjay 
  * @Date: 2019-03-04 12:00:54 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2020-08-16 21:17:39
+ * @Last Modified time: 2020-08-17 12:33:56
  */
 const Service = require('egg').Service;
 const path = require('path');
