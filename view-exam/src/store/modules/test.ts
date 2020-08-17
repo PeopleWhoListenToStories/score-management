@@ -4,5 +4,5 @@ export default class Test {
   @observable
   str:string = '测试'
 }
-
+ 
  

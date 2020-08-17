@@ -39,31 +39,15 @@ const columns = [
   },
 ];
 
-// const data = [
-//   {
-//     key: '1',
-//     name: 'John Brown',
-//     age: 32,
-//   },
-//   {
-//     key: '2',
-//     name: 'Jim Green',
-//     age: 42,
-//   },
-//   {
-//     key: '3',
-//     name: 'Joe Black',
-//     age: 32,
-//   },
-// ];
 
 function QuestionsType() {
   let [visibled, setVisible] = useState<any>()
   //使用仓库
-  let { getTypeData, Typedata } = useStore().Addtypes
-  useEffect(() => {
-    getTypeData()
-  })
+  let {Addtypes}=useStore()
+  useEffect(()=>{
+    Addtypes.getTypeData()
+    // data=Addtypes.Typedata
+},[])
 
 
   const showModal = () => {
@@ -87,19 +71,19 @@ function QuestionsType() {
         添加类型
         </Button>
 
-      <Table columns={columns} dataSource={Typedata} />
-      <Modal
-        title="创建新类型"
-        visible={visibled}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        cancelText="取消"
-        okText="确定"
-        centered={true}
-      >
-        <Input placeholder="请输入类型名称" bordered={false} />
-      </Modal>
-
+      <Table columns={columns} dataSource={Addtypes.Typedata} />
+        <Modal
+          title="创建新类型"
+          visible={visibled}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          cancelText="取消"
+          okText="确定"
+          centered={true}
+        >
+         <Input placeholder="请输入类型名称" bordered={false}  />
+        </Modal>
+      
     </div>
   )
 }

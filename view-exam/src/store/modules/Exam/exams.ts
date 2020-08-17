@@ -1,7 +1,7 @@
 //获取所有试题类型
 import {action,observable} from 'mobx'
 import {testingTypes,Allcourses,CreateExam,AllExamList} from '../../../api/index'
-class ExamManagement{
+export default class ExamManagement{
     @observable
     ExamTypedata:any []=[];//考试类型的数据
     Allcoursesdata:any []=[];//考试所有课程

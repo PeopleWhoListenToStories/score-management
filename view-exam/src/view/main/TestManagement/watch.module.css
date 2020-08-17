@@ -18,3 +18,29 @@
     display: flex;
     margin:0 25px;
 }
+
+.watch_Q{
+    background:white;
+    margin-top:30px;
+    border-radius: 10px;
+}
+
+.watch_ul{
+    width: 98%;
+    height: 100%;
+    padding: 30px ;
+}
+.watch_li{
+    display: flex;
+    align-items: center;
+    border-bottom:solid 1px #ccc;
+}
+.watch_li:hover{
+    background:skyblue;
+}
+.watch_li>div{
+    width: 95%;
+}
+.watch_li>div>:nth-child(3){
+    color:#0139FD;
+}
