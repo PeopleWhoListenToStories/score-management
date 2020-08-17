@@ -41,17 +41,6 @@ const layout = {
     const rangeConfig = {
     rules: [{ type: 'array', required: true, message: 'Please select time!' }],
     };
-  
-    // function onChange(moment: any) {
-    //     console.log(moment._d);
-    //     // 中国区的时间格式
-    //     // let time = new Date(now._d)
-    //     // console.log(time);
-    //     // let d = new Date(time);
-    //     // // 格式转换
-    //     // let dateValue = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
-    //     // console.log(dateValue);
-    //   }
     return  useObserver(()=>
     <div>
     <Layout style={{ padding: '0 24px 24px' }}>
@@ -71,7 +60,14 @@ const layout = {
         </Form.Item>
         <Form.Item  name={['user', 'exam_type']}  label="选择考试类型" rules={[{ required: true }]}>
         <Select>
-            <Select.Option value="demo" >Demo</Select.Option>
+            
+            {
+               ExamManagement.ExamTypedata.map((item)=>{
+                  return (
+                      <Select.Option value="item.exam_name" key={item.exam_id}>{item.exam_name}</Select.Option>
+                  )
+               })
+            }
         </Select>
         </Form.Item>
         <Form.Item  name={['user', 'subject_text']}  label="选择课程" rules={[{ required: true }]}>
