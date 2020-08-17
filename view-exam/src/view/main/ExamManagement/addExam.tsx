@@ -1,15 +1,18 @@
 import React ,{useEffect} from 'react'
 import {useObserver} from 'mobx-react-lite'
+import {useHistory} from 'react-router-dom'
 import { Layout, Menu, Breadcrumb ,Form, Input, InputNumber, DatePicker,Button, Select} from 'antd';
 import useStore from '../../../context/useStore'
 const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { Content} = Layout;
 export default function (){
+    const history = useHistory();
    let {ExamManagement} =useStore()
    useEffect(()=>{
-    ExamManagement.getExamTypedata()
+    ExamManagement.getExamTypedata();
+    ExamManagement.getAllcourses();
    },[])
-   console.log(ExamManagement.getExamTypedata)
+
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -25,17 +28,9 @@ const layout = {
         range: '${label} must be between ${min} and ${max}',
         },
     };
-    function onFinish (values :any ) {
-        values.user.time.map((item:any )=>{
-             let time = new Date(item._d)
-            // console.log(time);
-            let d = new Date(time);
-            // 格式转换
-            let dateValue = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
-            console.log(dateValue);
-        }) 
-     // console.log(values);
-     console.log(...values)
+   async function onFinish (values :any ) {
+      await ExamManagement.addCreateExam(values.user)//创建
+          history.push('/main/editPage')
     };
     const { RangePicker } = DatePicker;
     const rangeConfig = {
@@ -55,32 +50,37 @@ const layout = {
     }}
     >
     <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
-        <Form.Item name={['user', 'name']} label="试卷名称" rules={[{ required: true }]}>
+        <Form.Item name={['user', 'title']} label="试卷名称" rules={[{ required: true }]}>
             <Input />
         </Form.Item>
-        <Form.Item  name={['user', 'exam_type']}  label="选择考试类型" rules={[{ required: true }]}>
+        <Form.Item  name={['user', 'exam_id']}  label="选择考试类型" rules={[{ required: true }]}>
         <Select>
-            
             {
                ExamManagement.ExamTypedata.map((item)=>{
                   return (
-                      <Select.Option value="item.exam_name" key={item.exam_id}>{item.exam_name}</Select.Option>
+                      <Select.Option value={item.exam_id} key={item.exam_id}>{item.exam_name}</Select.Option>
                   )
                })
             }
         </Select>
         </Form.Item>
-        <Form.Item  name={['user', 'subject_text']}  label="选择课程" rules={[{ required: true }]}>
+        <Form.Item  name={['user', 'subject_id']}  label="选择课程" rules={[{ required: true }]}>
         <Select>
-            <Select.Option value="demo" >Demo</Select.Option>
+        {
+               ExamManagement.Allcoursesdata.map((item)=>{
+                  return (
+                      <Select.Option value={item.subject_id} key={item.subject_id}>{item.subject_text}</Select.Option>
+                  )
+               })
+            }
         </Select>
         </Form.Item>
         <Form.Item name={['user', 'number']} label="设置题量" rules={[{ required: true }]}>
-            <InputNumber min={3} max={10} defaultValue={1}/>
+            <InputNumber min={3} max={10}/>
         </Form.Item>
         <Form.Item name={['user', 'time']} label="设置时间" {...rangeConfig} rules={[{ required: true }]} >
         <RangePicker/>
-    </Form.Item>
+       </Form.Item >
     <Form.Item
     wrapperCol={{
     xs: { span: 24, offset: 0 },
@@ -88,7 +88,7 @@ const layout = {
     }}
     >
     <Button type="primary" htmlType="submit">
-    Submit
+    创建试卷
     </Button>
     </Form.Item>
     </Form>

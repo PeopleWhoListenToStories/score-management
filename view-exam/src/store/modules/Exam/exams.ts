@@ -1,20 +1,71 @@
 //获取所有试题类型
 import {action,observable} from 'mobx'
-import {testingTypes} from '../../../api/index'
+import {testingTypes,Allcourses,CreateExam,AllExamList} from '../../../api/index'
 class ExamManagement{
     @observable
-    ExamTypedata:any []=[]//考试类型的数据
+    ExamTypedata:any []=[];//考试类型的数据
+    Allcoursesdata:any []=[];//考试所有课程
+    Examdata:any[]=[];//所有试卷
+    examinationdata:any=[];//考试题
     @action
-    getExamTypedata=async ()=>{//获取考试类型的数据
+    //获取考试类型的数据
+    getExamTypedata=async ()=>{
         if (this.ExamTypedata.length){
             return;
         }
         let result:any = await testingTypes(); 
        
         if (result.data.code === 1){
-            console.log(result.data.data)
             this.ExamTypedata = result.data.data;
-            console.log(  result.data.data)
+            console.log(this.ExamTypedata )
+        }
+    }
+    getAllcourses=async()=>{
+        if (this.Allcoursesdata.length){
+            return;
+        }
+        let result:any = await Allcourses(); 
+       
+        if (result.data.code === 1){
+            this.Allcoursesdata = result.data.data;
+        }
+    }
+    //获取所有的试卷列表
+    getExamList = async()=>{
+        if (this.Examdata.length){
+            return;
+        }
+        let result:any = await AllExamList(); 
+        if (result.data.code === 1){
+            this.Examdata = result.data.exam;
+        }
+        console.log(this.Examdata )
+    }
+     //增加试卷
+     addCreateExam = async(user:any)=>{
+        console.log(user)
+          const times= user.time.map((item:any )=>{
+            let time = new Date(item._d).getTime()
+             return  time
+        }) 
+        const subject_id=user.subject_id;
+        const exam_id=user.exam_id;
+        const title =user.title;
+        const number =Number( user.number);
+        const start_time=times[0]*1 ;
+        const end_time = times[1]*1;
+        
+        let result:any = await CreateExam(
+            subject_id ,
+            exam_id,
+            title ,
+            start_time*1,
+           end_time*1,
+           Number(number),     
+        ) 
+        if (result.data.code === 1){
+            this.examinationdata=result.data.data
+            console.log( this.examinationdata)
         }
     }
 }
