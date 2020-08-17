@@ -8,11 +8,14 @@ import AllClasses from './modules/testManagetion/watchQuestion'
 
 import AddUserStore from './modules/userManagetion/addUser'
 
+import ExamManagement from './modules/Exam/exams'
+
 export default {
   Test: Test.Test,
   LoginStore: Login.Login,
   MainStore: MainStore.MainStore,
   Addtypes: Addtype.AddType,
   AddUserStore: AddUserStore.AddUser,
-  AllClass:AllClasses.AllClasses
+  AllClass:AllClasses.AllClasses,
+  ExamManagement:ExamManagement.ExamManagement
 }
