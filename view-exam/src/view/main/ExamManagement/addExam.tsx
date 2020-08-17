@@ -9,6 +9,7 @@ export default function (){
    useEffect(()=>{
     ExamManagement.getExamTypedata()
    },[])
+   console.log(ExamManagement.getExamTypedata)
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -34,6 +35,7 @@ const layout = {
             console.log(dateValue);
         }) 
      // console.log(values);
+     console.log(...values)
     };
     const { RangePicker } = DatePicker;
     const rangeConfig = {
