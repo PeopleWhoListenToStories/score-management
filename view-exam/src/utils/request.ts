@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCookie } from "../utils/myCookie"
 // import NProgress from 'nprogress';
 
 const instance = axios.create({
@@ -7,7 +8,8 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use((request: any) => {
-  request.headers['authorization'] = window.sessionStorage.getItem('token') ? window.sessionStorage.getItem('token') : '';
+  // request.headers['authorization'] = window.sessionStorage.getItem('token') ? window.sessionStorage.getItem('token') : '';
+  request.headers['authorization'] =  getCookie('token') ? getCookie('token') : '' ;
   return request;
 }, error => {
   return Promise.reject(error)

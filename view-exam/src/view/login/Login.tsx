@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import LoginCss from './Login.module.scss';
-import useStore from '../../context/useStore'
+import useStore from '../../context/useStore';
+
 
 // 引入antd
 import { Form, Input, Button, Checkbox, Tag } from 'antd';
@@ -33,7 +34,7 @@ export default function Login() {
   };
 
   // 修改随机数
-  function changeRandomNum(){
+  function changeRandomNum() {
     LoginStore.initRandomCode(); //获取验证码
   }
 
@@ -48,7 +49,7 @@ export default function Login() {
         <Form.Item
           name="username"
           rules={[{ required: true, message: 'Please input your Username!' }]}
-          
+
         >
           <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
         </Form.Item>
@@ -67,13 +68,13 @@ export default function Login() {
           position: 'absolute',
           left: '0'
         }}>
-          <Tag color="#55acee" style={{ fontSize: '19px', padding: '15px 30px', border: 'none' , lineHeight:'.5', maxHeight: '32px'}} onClick={()=>{changeRandomNum()}}>{LoginStore.RandomCode}</Tag>
+          <Tag color="#55acee" style={{ fontSize: '19px', padding: '15px 30px', border: 'none', lineHeight: '.5', maxHeight: '32px' }} onClick={() => { changeRandomNum() }}>{LoginStore.RandomCode}</Tag>
         </div>
 
         <Form.Item
           name="randomNum"
           rules={[{ required: true, message: 'Please input your RandomNum!' }]}
-          style={{ marginBottom: '0px' ,textAlign:'right'}}
+          style={{ marginBottom: '0px', textAlign: 'right' }}
         >
           <Input
             type="text"
