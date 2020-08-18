@@ -1,6 +1,7 @@
 import { action, observable } from 'mobx';
 import { getUserInfo, getMenuList } from '../../api/index';
 import menu from '../../router/menu';
+import { setCookie } from '../../utils/myCookie';
 
 interface Item {
   identity_text: string,
@@ -25,7 +26,7 @@ export default class MainStore {
     const result: any = await getUserInfo();
     if (result.data.code === 1) {
       this.user_info = result.data.data;
-      console.log(this.user_info);
+      setCookie('identity_id', result.data.data.identity_id); //设置权限id字段
       await this.getMenuListAction(result.data.data.user_id)
     }
   }
@@ -51,4 +52,3 @@ export default class MainStore {
   }
 }
 
- 
