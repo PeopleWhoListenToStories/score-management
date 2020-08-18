@@ -62,7 +62,7 @@ export default [
       component: AddExamPage,
       meta: { title: '添加考试' }
     }, {
-      path: '/main/userList',
+      path: '/main/examList',
       component: UserListPage,
       meta: { title: '试卷列表' }
     },

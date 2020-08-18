@@ -2,32 +2,38 @@ import React,{useEffect,useState} from 'react'
 import { Button } from 'antd';
 import useStore from '../../../context/useStore'
 import {useObserver} from 'mobx-react-lite'
+import Editor from 'for-editor'
+import style from './Edit.module.css'
 export default function() {
     let {ExamManagement} =useStore();
-  //  let [list, setList] = useState<any []>([]);
     useEffect(()=>{ 
     },[])
-    console.log(ExamManagement.examinationdata)
-   // const {exam_name,user_name,}= ExamManagement.examinationdata.questions
+    function delteexam(id:number){
+    let index=  ExamManagement.examinationdata.questions.findIndex((items:any)=>{
+        return items.exam_id===id
+    })
+    ExamManagement.examinationdata.questions.splice(index, 1);
+  
+}
     return useObserver(()=>
-    <div>                       
-        <Button>创建新题</Button>
-        <div> 
-            <div>
-               {/* <p>
-                   {ExamManagement.examinationdata.questions.exam_name},{ExamManagement.examinationdata.questions.user_name}
-                </p>  */}
-            </div>
-            <div>{  ExamManagement.examinationdata.questions&&ExamManagement.examinationdata.questions.map((item:any,index:number)=>{
+    <div className={style.box}>                       
+        <div className={style.inner}> 
+        <div className={style.title}>
+             <Button>创建新题</Button>
+             <h2>{ExamManagement.examinationdata.title}</h2>
+            <p><span>{ExamManagement.examinationdata.user_id}</span></p>
+        </div>
+           
+            <div className={style.textexam}>{ExamManagement.examinationdata.questions&&ExamManagement.examinationdata.questions.map((item:any,index:number)=>{
                    return (
-                       <div key={item.exam_id}>
+                       <div className={style.exams} key={index}>
                            <p>
-                          {index+1}:{item.title}
-                          <button>删除</button>
+                           <span> {index+1}:{item.title}</span>
+                            <button onClick={()=>{
+                                delteexam(item.exam_id)//调用删除方法
+                            }}>删除</button>
                            </p>
-                           <p>
-                               {item.questions_stem}
-                           </p>
+                           <Editor value={item.questions_stem}></Editor>
                            <p>
                                {item.questions_answer}
                            </p>

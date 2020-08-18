@@ -1,7 +1,13 @@
 import { action, observable } from 'mobx';
-import { showUser, showIdentity, showAuthorityRelation, showViewAuthority, setIdentityView, showApiAuthority } from '../../../api/index'
+import { showUser, showIdentity, showAuthorityRelation, showViewAuthority, setIdentityView, showApiAuthority, showIdentityViewAuthorityRelation } from '../../../api/index'
+
+interface Iv1 {
+  identity_id: string,
+  identity_text: string,
+}
 
 export default class AddUser {
+  [key: string]: any
   @observable
   UserList: any[] = []; // 展示用户数据
   @observable
@@ -11,97 +17,72 @@ export default class AddUser {
   @observable
   ViewAuthorityList: any[] = []; // 获取视图权限数据
   @observable
-  AuthorityRelationList: any[] = []; // //展示身份权限数据
+  AuthorityRelationList: any[] = []; // 展示身份权限数据
   @observable
-  checkedIndex: number = 0; //默认选中的下标
-  @observable
-  data: any[] = [//table 数据
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    }
-  ];
-  @observable
-  columns: any[] = [// table 参数规则
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    }
-    //     {
-    //       title: 'Action',
-    //       key: 'action',
-    //       render: (text: any, record: any) => (
-    //         <Space size= "middle" >
-    //         <a>Invite { record.name } < /a>
-    //     < /Space>
-    //       ),
-    // },
-  ];
-
+  IdentityViewAuthorityRelationList: any[] = []; // 身份和视图权限关系
   @action //  展示用户数据
   async showUserAction() {
-    const result: any = await showUser();
-    if (result.data.code === 1) {
-      this.UserList = result.data.data;
-      console.log('showUserAction ok')
-    } else {
-      console.log('showUserAction error')
+    if (this.UserList.length === 0) {
+      const result: any = await showUser();
+      if (result.data.code === 1) {
+        this.UserList = result.data.data;
+        console.log('showUserAction ok')
+      } else {
+        console.log('showUserAction error')
+      }
     }
   }
 
   @action  // 获取身份数据
   async showIdentityAction() {
-    const result: any = await showIdentity();
-    if (result.data.code === 1) {
-      this.IdentityList = result.data.data;
-      console.log('showIdentityAction ok')
-    } else {
-      console.log('showIdentityAction error')
+    if (this.IdentityList.length === 0) {
+      const result: any = await showIdentity();
+      if (result.data.code === 1) {
+        this.IdentityList = result.data.data;
+        console.log('showIdentityAction ok')
+      } else {
+        console.log('showIdentityAction error')
+      }
     }
   }
 
   @action  // 获取视图权限数据
   async showViewAuthorityAction() {
-    const result: any = await showViewAuthority();
-    if (result.data.code === 1) {
-      this.ViewAuthorityList = result.data.data;
-      console.log('showViewAuthorityAction ok')
-    } else {
-      console.log('showViewAuthorityAction error')
+    if (this.ViewAuthorityList.length === 0) {
+      const result: any = await showViewAuthority();
+      if (result.data.code === 1) {
+        this.ViewAuthorityList = result.data.data;
+        console.log('showViewAuthorityAction ok')
+      } else {
+        console.log('showViewAuthorityAction error')
+      }
     }
   }
 
+
+
   @action  // 展示身份权限数据
   async showAuthorityRelationAction() {
-    const result: any = await showAuthorityRelation(2);
-    if (result.data.code === 1) {
-      this.AuthorityRelationList = result.data.data;
-      console.log('showAuthorityRelation ok')
-    } else {
-      console.log('showAuthorityRelation error')
+    if (this.AuthorityRelationList.length === 0) {
+      this.showIdentityAction();
+      const result: any = await showAuthorityRelation();
+      if (result.data.code === 1) {
+        this.AuthorityRelationList = result.data.data;
+        console.log('showAuthorityRelation ok')
+      } else {
+        console.log('showAuthorityRelation error')
+      }
+    }
+  }
+
+
+  @action // 展示身份和视图权限关系
+  async showIdentityViewAuthorityRelationAction() {
+    if (this.IdentityViewAuthorityRelationList.length === 0) {
+      const result: any = await showIdentityViewAuthorityRelation();
+      if (result.data.code === 1) {
+        this.IdentityViewAuthorityRelationList = result.data.data;
+      }
     }
   }
 
@@ -117,134 +98,16 @@ export default class AddUser {
 
   @action // 展示api接口权限数据
   async showApiAuthorityAction() {
-    const result: any = await showApiAuthority();
-    if (result.data.code === 1) {
-      this.ApiAuthorityList = result.data.data;
-      console.log('showApiAuthorityAction ok')
-    } else {
-      console.log('showApiAuthorityAction error')
+    if (this.ApiAuthorityList.length === 0) {
+      const result: any = await showApiAuthority();
+      if (result.data.code === 1) {
+        this.ApiAuthorityList = result.data.data;
+        console.log('showApiAuthorityAction ok')
+      } else {
+        console.log('showApiAuthorityAction error')
+      }
     }
   }
 
-  @action
-  onChange = async (e: any) => {
-    this.checkedIndex = e.target.value;
-    switch (e.target.value) {
-      case 0:
-        this.columns = [
-          {
-            title: '用户名',
-            dataIndex: 'user_name',
-            key: 'user_name',
-          },
-          {
-            title: '密码',
-            dataIndex: 'user_pwd',
-            key: 'user_pwd',
-          },
-          {
-            title: '身份',
-            dataIndex: 'identity_text',
-            key: 'user_pwd'
-          }
-        ]
-        this.data = this.UserList;
-        break;
-      case 1:
-        this.columns = [
-          {
-            title: '身份名称',
-            dataIndex: 'identity_text'
-          },
-          {
-            title:'身份id',
-            dataIndex:'identity_id'
-          }
-        ]
-        this.data = this.IdentityList
-        break;
-      case 2:
-        this.columns = [
-          {
-            title: 'api权限名称',
-            dataIndex: 'api_authority_text',
-            key: "identity_api_authority_relation_id"
-          },
-          {
-            title: 'api权限url',
-            dataIndex: 'api_authority_url',
-            key: "identity_api_authority_relation_id"
-          },
-          {
-            title: 'api权限方法',
-            dataIndex: 'api_authority_method',
-            key: "identity_api_authority_relation_id"
-          }
-        ]
-        this.data = this.AuthorityRelationList;
-        break;
-      case 3:
-        this.columns = [
-          {
-            title: '身份名称',
-            dataIndex: 'identity_text',
-            key: "identity_api_authority_relation_id"
-          },
-          {
-            title: 'api权限名称',
-            dataIndex: 'api_authority_text',
-            key: "identity_api_authority_relation_id"
-          },
-          {
-            title: 'api权限url',
-            dataIndex: 'api_authority_url',
-            key: "identity_api_authority_relation_id"
-          },
-          {
-            title: 'api权限方法',
-            dataIndex: 'api_authority_method',
-            key: "identity_api_authority_relation_id"
-          }
-        ]
-        this.data = this.AuthorityRelationList;
-        break;
-      case 4:
-        this.columns = [
-          {
-            title: '视图权限名称',
-            dataIndex: 'view_authority_text',
-            key: 'view_authority_id'
-          },
-          {
-            title: '视图id',
-            dataIndex: 'view_id',
-            key: 'view_authority_id'
-          }
-        ]
-        this.data = this.ViewAuthorityList
-        break;
-      case 5:
-        this.columns = [
-          {
-            title: '身份',
-            dataIndex: ''
-          },
-          {
-            title: '视图名称',
-            dataIndex: 'view_authority_text',
-            key: 'view_authority_id'
-          },
-          {
-            title: '视图id',
-            dataIndex: 'view_id',
-            key: 'view_authority_id'
-          }
-        ]
-        this.data =  this.ViewAuthorityList
-        break;
-      default:
-        return undefined;
-    }
-  }
 }
 

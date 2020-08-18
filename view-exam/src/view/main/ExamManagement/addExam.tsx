@@ -6,16 +6,15 @@ import useStore from '../../../context/useStore'
 const { Content } = Layout;
 export default function () {
     const history = useHistory();
-    let { ExamManagement } = useStore()
-    useEffect(() => {
-        ExamManagement.getExamTypedata();
-        ExamManagement.getAllcourses();
-    })
-
-    const layout = {
-        labelCol: { span: 8 },
-        wrapperCol: { span: 16 },
-    };
+   let {ExamManagement} =useStore()
+   useEffect(()=>{
+    ExamManagement.getExamTypedata();
+    ExamManagement.getAllcourses();
+   },[])
+const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span:8 },
+};
 
     const validateMessages = {
         required: '${label} is required!',
@@ -27,9 +26,9 @@ export default function () {
             range: '${label} must be between ${min} and ${max}',
         },
     };
-    async function onFinish(values: any) {
-        await ExamManagement.addCreateExam(values.user)//创建
-        history.push('/main/editPage')
+   async function onFinish (values :any ) {
+      await ExamManagement.addCreateExam(values.user)//创建
+          history.push('/main/edit')
     };
     const { RangePicker } = DatePicker;
     const rangeConfig = {
