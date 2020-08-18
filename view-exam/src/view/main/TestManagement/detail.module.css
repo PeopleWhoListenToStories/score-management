@@ -1,0 +1,16 @@
+.Detail{
+    width: 95%;
+    height: 100%;
+    margin:0 auto;
+    display: flex;
+}
+
+.Detail_left{
+    width: 70%;
+    background:white;
+    margin-right:50px;
+}
+.Detail_right{
+    width: 25%;
+    background:white;
+}
