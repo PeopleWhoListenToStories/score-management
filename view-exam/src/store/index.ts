@@ -11,6 +11,9 @@ import ViewTeacherStore from './modules/userManagetion/viewTeacher'
 
 import ExamManagement from './modules/Exam/exams'
 
+import Class from './modules/classManage/classmanage'
+import Room from './modules/classManage/roommanage'
+
 export default {
   Test: new Test(),
   LoginStore: new Login(),
@@ -20,4 +23,6 @@ export default {
   ViewTeacherStore: new ViewTeacherStore(),
   AllClass: new AllClasses(),
   ExamManagement: new ExamManagement(),
+  Class:Class.Class,
+  Room:Room.Room,
 }
