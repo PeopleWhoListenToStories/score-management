@@ -1,5 +1,6 @@
 import {action,observable} from 'mobx';
 import Axios from '../../../utils/request';
+import {addClass} from '../../../api/module/class'
 
 class Class {
     @observable
@@ -14,8 +15,13 @@ class Class {
     }
 
     @action 
-    addList(){
+    delList(){
 
+    }
+
+    @action
+    addClassAction(){
+        
     }
 
 }

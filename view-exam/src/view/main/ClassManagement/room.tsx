@@ -9,17 +9,25 @@ export default function Grade() {
     const { Room } = useStore();
     useEffect(() => {
         Room.getRoommanage();
-    }, [])
+    }, [Room.roomlist])
 
 
     const columns = [
         { title: '教室号', dataIndex: 'room_text', key: 'room_text' },
         {
-            title: '',
-            dataIndex: '',
-            key: 'del',
-            render: () => <a>删除</a>,
-        }
+            title: '操作',
+            key: 'action',
+            render: (text: number, record: any) => {
+                return <span>
+                    {
+                        <button className='btn' onClick={() => {
+                             Room.Del(record.room_id) 
+                        }}>删除</button>
+                    }
+                </span>
+            }
+        },
+
     ];
 
 
@@ -57,6 +65,7 @@ export default function Grade() {
                     onFinish={(e) => {
                         Room.onFinish(e)
                     }}
+                   
                 >
                     <Form.Item
                         label="Username"
