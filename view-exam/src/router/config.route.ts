@@ -13,6 +13,9 @@ import QuestionTypePage from '../view/main/TestManagement/questionsType';
 import ViewQuestionPage from '../view/main/TestManagement/watchQuestions';
 //详情
 import Detail from '../view/main/TestManagement/testDetail';
+//编辑试题
+import EditQuestion from '../view/main/TestManagement/editQuestion' 
+
 
 //用户管理
 import AddTeacher from '../view/main/UserManagement/addTeacher';
@@ -41,9 +44,14 @@ const routes: any = [
     component: Main,
     children: [
       {
-        path: '/main/detail/:id',
+        path: '/main/detail',
         component: Detail,
         meta: { title: '试题详情' }
+      },
+      {
+        path: '/main/edit',
+        component: EditQuestion,
+        meta: { title: '编辑试题' }
       },
       {
         path: '/main/addQuestion',

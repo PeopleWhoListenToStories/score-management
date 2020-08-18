@@ -7,10 +7,10 @@ function Detail(props: any) {
 
     let { AllClass } = useStore()
 
-    const questions_id = props.match.params.id
-    useEffect(() => {
-        AllClass.getTestData(questions_id)
-    }, [])
+    // const questions_id = props.match.params.id
+    // useEffect(() => {
+    //     AllClass.getTestData(questions_id)
+    // }, [])
     console.log(AllClass.DetailData)
     return useObserver(() =>
         <div className={style.Detail}>
@@ -36,7 +36,10 @@ function Detail(props: any) {
             <div className={style.Detail_right}>
                 {
                     AllClass.DetailData && AllClass.DetailData.map((item, index) => {
-                        return <div key={index}>{item.questions_answer}</div>
+                        return <div key={index}>
+                            {
+                            item.questions_answer
+                            }</div>
                     })
                 }
             </div>
