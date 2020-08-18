@@ -1,7 +1,7 @@
 {
   "name": "egg-exam",
   "version": "1.0.0",
-  "description": "",
+  "description": "网站工程学院摸底考试后端系统，旨在通过高频经典问题来收集学生的学习情况和知识积累深度，不断发现问题、解决问题，以考促学，边学边考的模式提高学生的整体水平",
   "main": "index.js",
   "scripts": {
     "dev": "egg-bin dev",
@@ -26,5 +26,9 @@
   "devDependencies": {
     "egg-bin": "^4.10.0",
     "egg-mock": "^3.21.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
 }

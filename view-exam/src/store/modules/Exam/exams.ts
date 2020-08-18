@@ -1,12 +1,17 @@
 //获取所有试题类型
 import {action,observable} from 'mobx'
-import {testingTypes,Allcourses,CreateExam,AllExamList} from '../../../api/index'
+import {testingTypes,Allcourses,CreateExam,AllExamList,ExamDetail} from '../../../api/index'
 export default class ExamManagement{
     @observable
     ExamTypedata:any []=[];//考试类型的数据
+    @observable
     Allcoursesdata:any []=[];//考试所有课程
+    @observable
     Examdata:any[]=[];//所有试卷
+    @observable
     examinationdata:any=[];//考试题
+    @observable
+    Examdetaildata:any=[];//试卷详情
     @action
     //获取考试类型的数据
     getExamTypedata= ()=>{
@@ -37,12 +42,10 @@ export default class ExamManagement{
         let result:any = await AllExamList(); 
         if (result.data.code === 1){
             this.Examdata = result.data.exam;
-        console.log(this.Examdata )
         }
     }
      //增加试卷
      addCreateExam = async(user:any)=>{
-        console.log(user)
           const times= user.time.map((item:any )=>{
             let time = new Date(item._d).getTime()
              return  time
@@ -64,7 +67,6 @@ export default class ExamManagement{
         ) 
         if (result.data.code === 1){
             this.examinationdata=result.data.data
-            console.log( this.examinationdata)
         }
     }
     //删除试题
@@ -73,7 +75,15 @@ export default class ExamManagement{
             return items.exam_id===id
         })
         this.examinationdata.questions.splice(index, 1);
-        console.log( this.examinationdata.questions)
-    //    this.ExamManagement.examinationdata.questions.splice(0,index)
+    }
+    //试卷详情
+    examdetail = async (id:string)=>{
+        if (this.examinationdata.length){
+            return;
+        }
+        let result:any = await ExamDetail(id); 
+        if (result.data.code === 1){
+            this.examinationdata = result.data.data;
+        }
     }
 }

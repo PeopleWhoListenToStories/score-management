@@ -11,10 +11,9 @@ export default function (){
     ExamManagement.getExamTypedata();
     ExamManagement.getAllcourses();
    },[])
-
 const layout = {
     labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
+    wrapperCol: { span:8 },
 };
 
 const validateMessages = {

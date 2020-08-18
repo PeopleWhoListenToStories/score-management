@@ -11,4 +11,5 @@ export const CreateExam=(subject_id:string,exam_id:string,title:string,number:nu
    })
 // //删除考试
 // export const DeleteExam=()=>ajax.delete('/exam/exam/w5tcy-g2dts')
-   
+//获取试卷详情
+export const ExamDetail=(id:string)=>ajax.get(`/exam/exam/${id}`)
