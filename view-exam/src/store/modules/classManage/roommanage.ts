@@ -32,9 +32,6 @@ class Room {
     @action
    async onFinish(values: any) {
        console.log(values.username)
-        // let newlist = [...this.roomlist]
-        // newlist.push(values.username)
-        // this.roomlist = newlist
         let result=await addRoom(values.username)
         if (result.data.code === '1') {
             console.log(result.data.msg)
