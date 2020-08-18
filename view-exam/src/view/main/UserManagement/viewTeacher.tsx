@@ -10,7 +10,8 @@ const list = [
     type: '用户数据',
     action: 'showUserAction',
     list: 'UserList',
-    columns: [
+    key: 'user_id',
+    colums: [
       {
         title: '用户名',
         dataIndex: 'user_name',
@@ -32,63 +33,59 @@ const list = [
     type: '身份数据',
     action: 'showIdentityAction',
     list: 'IdentityList',
-    columns: [
+    key: 'identity_id',
+    colums: [
       {
         title: '身份名称',
-        dataIndex: 'identity_text'
+        dataIndex: 'identity_text',
       },
       {
         title: '身份id',
-        dataIndex: 'identity_id'
+        dataIndex: 'identity_id',
       }
     ]
   }, {
     id: '3',
     type: 'api接口权限',
-    action: 'showAuthorityRelationAction',
-    list: 'AuthorityRelationList',
-    columns: [
+    action: 'showApiAuthorityAction',
+    list: 'ApiAuthorityList',
+    key: 'identity_api_authority_relation_id',
+    colums: [
       {
         title: 'api权限名称',
         dataIndex: 'api_authority_text',
-        key: "identity_api_authority_relation_id"
       },
       {
         title: 'api权限url',
         dataIndex: 'api_authority_url',
-        key: "identity_api_authority_relation_id"
       },
       {
         title: 'api权限方法',
         dataIndex: 'api_authority_method',
-        key: "identity_api_authority_relation_id"
       }
     ]
   }, {
     id: '4',
     type: '身份和api接口关系',
     action: 'showAuthorityRelationAction',
-    list:'AuthorityRelationList',
+    list: 'AuthorityRelationList',
+    key: 'identity_api_authority_relation_id',
     colums: [
       {
         title: '身份名称',
         dataIndex: 'identity_text',
-        key: "identity_api_authority_relation_id"
       },
       {
         title: 'api权限名称',
         dataIndex: 'api_authority_text',
-        key: "identity_api_authority_relation_id"
       },
       {
         title: 'api权限url',
         dataIndex: 'api_authority_url',
-        key: "identity_api_authority_relation_id"
       },
       {
         title: 'api权限方法',
         dataIndex: 'api_authority_method',
-        key: "identity_api_authority_relation_id"
       }
     ]
   }, {
@@ -96,41 +93,35 @@ const list = [
     type: '视图接口权限',
     action: 'showViewAuthorityAction',
     list: 'ViewAuthorityList',
+    key: 'view_authority_id',
     colums: [
-      {
-        title: '身份',
-        dataIndex: ''
-      },
       {
         title: '视图名称',
         dataIndex: 'view_authority_text',
-        key: 'view_authority_id'
       },
       {
         title: '视图id',
         dataIndex: 'view_id',
-        key: 'view_authority_id'
       }
     ],
   }, {
     id: '6',
     type: '身份和视图权限关系',
-    action: 'showViewAuthorityAction',
-    list: 'ViewAuthorityList',
+    action: 'showIdentityViewAuthorityRelationAction',
+    list: 'IdentityViewAuthorityRelationList',
+    key: 'identity_view_authority_relation_id',
     colums: [
       {
         title: '身份',
-        dataIndex: ''
+        dataIndex: 'identity_text'
       },
       {
         title: '视图名称',
         dataIndex: 'view_authority_text',
-        key: 'view_authority_id'
       },
       {
         title: '视图id',
         dataIndex: 'view_id',
-        key: 'view_authority_id'
       }
     ]
   }
@@ -148,24 +139,23 @@ export default function ViewTeacher() {
   // 切换下标
   const onChange = (index: string) => {
     setCurIndex(Number(index));
-    console.log(AddUserStore,'AddUserStore')
   }
 
-
   return useObserver(() => (
-
     <div className={ViewTeacherCss.ViewTeacher}>
+      {/* 头部tab */}
       <div>
         <Radio.Group onChange={(e) => { onChange(e.target.value) }} defaultValue={0}>
           {
             list && list.map((item: any, index: number) => {
-              return <Radio.Button value={index}>{item.type}</Radio.Button>
+              return <Radio.Button value={index} key={index}>{item.type}</Radio.Button>
             })
           }
         </Radio.Group>
       </div>
       <h2>{list[curIndex].type}</h2>
-      <Table columns={list[curIndex].colums} dataSource={AddUserStore[list[curIndex].list]} rowKey={(record: any) => record.key} />
+      {/* 表格 */}
+      <Table columns={list[curIndex].colums} dataSource={AddUserStore[list[curIndex].list]} rowKey={list[curIndex].key} />
     </div>)
   )
 }
