@@ -30,8 +30,7 @@ const showMenu = (menu: any[]) => {
 export default function MenuSider() {
   const history = useHistory();
   const { MainStore } = useStore();
-  console.log(history.location)
-  console.log(history.location.pathname.split('/'))
+
   return (
     useObserver(() => <Menu
       theme='dark'

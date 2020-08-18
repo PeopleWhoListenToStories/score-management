@@ -1,7 +1,8 @@
 import { action, observable } from 'mobx';
 import { loginApi , getRandomCode } from '../../api/index'
+import { setCookie } from '../../utils/myCookie'
 
-class Login {
+export default class Login {
   
   @observable
   RandomCode:string = ""; //验证码
@@ -10,7 +11,8 @@ class Login {
   async loginAction(user_name: string, user_pwd: string) {
     const result: any = await loginApi(user_name, user_pwd);
     if(result.data.code === 1){
-      window.sessionStorage.setItem('token',result.data.token);
+      // window.sessionStorage.setItem('token',result.data.token);
+      setCookie('token',result.data.token);//设置权限token字段
     }else{
       window.sessionStorage.clearItem('token');
     }
@@ -24,7 +26,4 @@ class Login {
     }
   }
 }
-
-export default {
-  Login: new Login()
-}
+ 

@@ -1,7 +1,6 @@
 import React from 'react'
 import './header.scss'
 import { Menu, Dropdown, Avatar } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import useStore from '../../context/useStore'
@@ -11,7 +10,7 @@ export default function Header() {
   const { MainStore } = useStore();
 
   function onClick(e: any) {
-    if (e.key == '4')//退出
+    if (e.key === '4')//退出
     {
       window.sessionStorage.removeItem('token');
       history.push('/Login')
@@ -32,7 +31,7 @@ export default function Header() {
       </p>
       <p>
         <Dropdown overlay={menu} arrow>
-          <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+          <a className="ant-dropdown-link" href="1" onClick={e => e.preventDefault()}>
             <Avatar src={(MainStore.user_info as any).avatar ? (MainStore.user_info as any).avatar : "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"} />
             {(MainStore.user_info as any).user_name} 
           </a>

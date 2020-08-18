@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCookie } from "../utils/myCookie"
 // import NProgress from 'nprogress';
 
 const instance = axios.create({
@@ -7,7 +8,8 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use((request: any) => {
-  request.headers['authorization'] = window.sessionStorage.getItem('token') ? window.sessionStorage.getItem('token') : '';
+  // request.headers['authorization'] = window.sessionStorage.getItem('token') ? window.sessionStorage.getItem('token') : '';
+  request.headers['authorization'] =  getCookie('token') ? getCookie('token') : '' ;
   return request;
 }, error => {
   return Promise.reject(error)
@@ -17,20 +19,22 @@ instance.interceptors.response.use((response: any) => {
   // NProgress.done();
   return response;
 }, error => {
+  console.log(error.response.status, 'error.response.status')
   const code: number | undefined = error.response.status;
   switch (code) {
     case 401:
-      console.warn('您还没有权限');
-      break;
-      
+      window.location.replace('#/Login');
+      return Promise.reject('401 权限不够');
     case 404:
-      console.log('404 找不到');
-      break;
-
+      window.location.pathname = '/NoFound';
+      return Promise.reject('404 找不到页面');
     case 500:
-      console.log('500')
-      break;
+      window.location.pathname = '/NoServer';
+      return Promise.reject('500 服务器崩溃了');
+    default:
+      return Promise.reject('其他错误');
   }
+
 })
 
 export default instance

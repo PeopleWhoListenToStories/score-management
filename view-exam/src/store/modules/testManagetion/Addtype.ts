@@ -1,20 +1,17 @@
-import {action,observable} from 'mobx';
-import {testType} from '../../../api/module/testmanagetion'
-class AddType {
+import { action, observable } from 'mobx';
+import { testType } from '../../../api/module/testmanagetion'
+export default class AddType {
   @observable
-  Typedata:any [] = []
+  Typedata: any[] = []
 
   @action
-  getTypeData=()=>{
-      const res:any=testType();
-      if(res.code===1){
-          this.Typedata=res.data
-         console.log(res.data)
-        
+  getTypeData = () => {
+    testType().then(res => {
+      if (res.data.code === 1) {
+        this.Typedata = res.data.data
       }
+    })
   }
 }
 
-export default {
-  AddType:new AddType()
-}
+ 
