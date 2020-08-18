@@ -9,16 +9,15 @@ export default class ExamManagement{
     examinationdata:any=[];//考试题
     @action
     //获取考试类型的数据
-    getExamTypedata=async ()=>{
+    getExamTypedata= ()=>{
         if (this.ExamTypedata.length){
             return;
         }
-        let result:any = await testingTypes(); 
-       
-        if (result.data.code === 1){
-            this.ExamTypedata = result.data.data;
-            console.log(this.ExamTypedata )
-        }
+        testingTypes().then((res: { data: { code: number; data: any[]; }; }) => {
+            if (res.data.code === 1) {
+              this.ExamTypedata = res.data.data
+            }
+          })
     }
     getAllcourses=async()=>{
         if (this.Allcoursesdata.length){
@@ -38,8 +37,8 @@ export default class ExamManagement{
         let result:any = await AllExamList(); 
         if (result.data.code === 1){
             this.Examdata = result.data.exam;
-        }
         console.log(this.Examdata )
+        }
     }
      //增加试卷
      addCreateExam = async(user:any)=>{
@@ -67,5 +66,14 @@ export default class ExamManagement{
             this.examinationdata=result.data.data
             console.log( this.examinationdata)
         }
+    }
+    //删除试题
+    delteexam = async (id:number)=>{
+        let index=  this.examinationdata.questions.findIndex((items:any)=>{
+            return items.exam_id===id
+        })
+        this.examinationdata.questions.splice(index, 1);
+        console.log( this.examinationdata.questions)
+    //    this.ExamManagement.examinationdata.questions.splice(0,index)
     }
 }

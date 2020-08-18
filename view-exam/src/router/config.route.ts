@@ -74,6 +74,11 @@ const routes: any = [
         component: AddExamPage,
         meta: { title: '添加考试' }
       }, {
+        path: '/main/edit',
+        component: EditPage,
+        meta: { title: '创建试卷' }
+      },
+      {
         path: '/main/examList',
         component: UserListPage,
         meta: { title: '试卷列表' }

@@ -59,18 +59,15 @@ export default function (){
           title: '操作',
           key: 'action',
           render: (text:number, record:any) => {
-             // console.log(record)
             return <span>
                 {
                     <button onClick={()=>{console.log(record)}}>详情</button>
-             // new Date(text*1).toLocaleString()
                 }
         </span>
          }
         },
       ];
-      const data = ExamManagement.Examdata
      return useObserver(()=>
-        <Table columns={columns} dataSource={data} />
+        <Table columns={columns} dataSource={ExamManagement.Examdata} />
      )
     }

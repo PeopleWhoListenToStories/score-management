@@ -29,7 +29,7 @@ const validateMessages = {
     };
    async function onFinish (values :any ) {
       await ExamManagement.addCreateExam(values.user)//创建
-          history.push('/main/editPage')
+          history.push('/main/edit')
     };
     const { RangePicker } = DatePicker;
     const rangeConfig = {
