@@ -1,21 +1,21 @@
 import React ,{useEffect} from 'react'
 import useStore from '../../../context/useStore'
 import {useObserver} from 'mobx-react-lite'
-import { Table,Select ,Form,Button,} from 'antd';
+import { Table,Select ,Form,Button, Radio } from 'antd';
 import {useHistory} from 'react-router-dom'
 import { SearchOutlined} from '@ant-design/icons';
+import style from './examList.module.css'
 export default function (){
   const history=useHistory()
     let {ExamManagement} =useStore()
     useEffect(()=>{
      ExamManagement.getExamList();
      ExamManagement.getExamTypedata();
-    ExamManagement.getAllcourses();
+     ExamManagement.getAllcourses();
     },[])
-      function onFinish (values :any ) {
-        console.log(values)
-      //  await ExamManagement.addCreateExam(values.user)//创建
-            //history.push('/main/edit')
+ async function onFinish (values :any ) {
+     await  ExamManagement.getdata(values.exam_id,values.subject_id)
+        history.push('/main/condition')
       };
       
 const layout = {
@@ -75,16 +75,18 @@ const layout = {
           render: (text:number, record:any) => {
             return <span>
                 {
-                    <button onClick={()=>{ExamManagement.examdetail(record.exam_exam_id);history.push('/main/edit')}}>详情</button>
+                    <span onClick={()=>{
+                      ExamManagement.examdetail(record.exam_exam_id);
+                      history.push('/main/edits')}}>详情</span>
                 }
-        </span>
+             </span>
          }
         },
       ];
      return useObserver(()=>
-    <div>
-      <div>
-      <Form {...layout}  name="nest-messages" onFinish={onFinish}>
+    <div className={style.box}>
+      <div className={style.headebox}>
+      <Form {...layout}  name="nest-messages" onFinish={onFinish} className={style.from}>
         <Form.Item  name={['user', 'exam_id']}  label="考试类型" rules={[{ required: true }]}>
         <Select>
             {
@@ -107,20 +109,23 @@ const layout = {
             }
         </Select>
         </Form.Item>
-    <Form.Item
-    wrapperCol={{
-    xs: { span: 24, offset: 0 },
-    sm: { span: 16, offset: 8 },
-    }}
-    >
-    <Button type="primary" htmlType="submit" >
-    <SearchOutlined /> 查询
-    </Button>
-    </Form.Item>
-    </Form>
+      <Form.Item
+      wrapperCol={{
+      xs: { span: 24, offset: 0 },
+      sm: { span: 16, offset: 8 },
+      }}
+      >
+      <Button type="primary" htmlType="submit" >
+        <SearchOutlined /> 查询
+      </Button>
+      </Form.Item>
+      </Form>
+        </div>
+        <div className={style.tablebox}>
+        <Table columns={columns} dataSource={ExamManagement.Examdata}  rowKey='11' />
+        </div>
+       
       </div>
-      <Table columns={columns} dataSource={ExamManagement.Examdata}  rowKey={record => record.uid} />
-    </div>
         
      )
     }
