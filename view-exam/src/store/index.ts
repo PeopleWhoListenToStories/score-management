@@ -13,6 +13,7 @@ import ExamManagement from './modules/Exam/exams'
 
 import Class from './modules/classManage/classmanage'
 import Room from './modules/classManage/roommanage'
+import Stu from './modules/classManage/studentmanage'
 
 export default {
   Test: new Test(),
@@ -25,4 +26,5 @@ export default {
   ExamManagement: new ExamManagement(),
   Class:Class.Class,
   Room:Room.Room,
+  Stu:Stu.Stu
 }

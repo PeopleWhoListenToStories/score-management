@@ -75,7 +75,7 @@ const layout = {
           render: (text:number, record:any) => {
             return <span>
                 {
-                    <button onClick={()=>{ExamManagement.examdetail(record.exam_exam_id);history.push('/main/edit')}}>详情</button>
+                    <button onClick={()=>{ExamManagement.examdetail(record.exam_exam_id);history.push('/main/edits')}}>详情</button>
                 }
         </span>
          }

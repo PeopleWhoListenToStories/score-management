@@ -1,7 +1,8 @@
-import React,{useState,useEffect} from 'react'
-import useStore from '../../../context/useStore'
-import {useObserver} from 'mobx-react-lite'
-import { Table, Tag,Form, Input, Button, Select } from 'antd';
+import React from 'react'
+import { Form, Input, Button, Select } from 'antd';
+import useStore from '../../context/useStore'
+
+import style from './mask.module.scss'
 
 const layout = {
     labelCol: {
@@ -17,101 +18,27 @@ const tailLayout = {
         span: 15,
     },
 };
-
-export default function Student() {
-   const {Stu,Class}=useStore();
-   const { Option } = Select;
-    const columns = [
-        {
-          title: '姓名',
-          dataIndex: 'name',
-          key: 'name',
-          render: (text:any) => <a>{text}</a>,
-        },
-        {
-          title: '学号',
-          dataIndex: 'id',
-          key: 'id',
-        },
-        {
-          title: '班级',
-          dataIndex: 'class',
-          key: 'class',
-        },{
-            title: '教室',
-            dataIndex: 'room',
-            key: 'room',
-          },{
-            title: '密码',
-            dataIndex: 'pwd',
-            key: 'pwd',
-          },
-        {
-            title: '操作',
-            key: 'action',
-            render: (text: number, record: any) => {
-              return <span>
-                {
-                  <button className='btn' onClick={() => {
-                    // Class.delList(record.grade_id)
-                  }}>删除</button>
-                }
-              </span>
-            }
-          },
-      ];
-      
-      const data = [
-        {
-          key: '1',
-          name: '张三',
-          id: '1',
-          class: '1711a',
-          room:'12306',
-          pwd:'12345'
-        },
-        {
-            key: '2',
-            name: '李四',
-            id: '2',
-            class: '1711a',
-            room:'15208',
-            pwd:'11111'
-          },
-          {
-            key: '3',
-            name: '王五',
-            id: '3',
-            class: '1711b',
-            room:'11111',
-            pwd:'78796'
-          },{
-            key: '1',
-            name: '赵六',
-            id: '1',
-            class: '1711a',
-            room:'12344406',
-            pwd:'11'
-          },
-      ];
-      const onFinish = (values: any) => {
-        console.log('Success:123', values);
-    };
-      
  
+export default function Mask() {
+
+    let { Class} = useStore();
+
+    const onFinish = (values: any) => {
+        console.log('Success:123', values);
+
+        Class.addClassAction(values)
+    };
+
+    const { Option } = Select;
 
     function handleChange(value: any) {
         console.log(`selected ${value}`);
     }
 
 
-    useEffect(()=>{
-        Stu.list();
-    },[])
-
-    return useObserver(()=>
-        <div>
-            <Form 
+    return (
+        <div className={style.maskBox}>
+            <Form  {...layout}
                 name="basic"
                 initialValues={{
                     remember: true,
@@ -168,11 +95,15 @@ export default function Student() {
                         }
                     </Select>
                 </Form.Item>
-                <Button type="primary">搜索</Button>
-                <Button type="primary">重置</Button>
-                
+
+                <Form.Item {...tailLayout}>
+                    <Button type="primary" htmlType="submit">
+                        修改
+                    </Button>
+                </Form.Item>
             </Form>
-          <Table columns={columns} dataSource={data} />
         </div>
     )
 }
+
+

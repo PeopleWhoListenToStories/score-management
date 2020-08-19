@@ -9,8 +9,7 @@ export default function Grade() {
     const { Room } = useStore();
     useEffect(() => {
         Room.getRoommanage();
-    }, [Room.roomlist])
-
+    }, [])
 
     const columns = [
         { title: '教室号', dataIndex: 'room_text', key: 'room_text' },
@@ -21,7 +20,7 @@ export default function Grade() {
                 return <span>
                     {
                         <button className='btn' onClick={() => {
-                             Room.Del(record.room_id) 
+                            Room.Del(record.room_id)
                         }}>删除</button>
                     }
                 </span>
@@ -65,7 +64,7 @@ export default function Grade() {
                     onFinish={(e) => {
                         Room.onFinish(e)
                     }}
-                   
+
                 >
                     <Form.Item
                         label="Username"
@@ -83,12 +82,13 @@ export default function Grade() {
                     <Form.Item {...tailLayout}>
                         <Button type="primary" htmlType="submit">
                             添加
-        </Button>
+                        </Button>
                     </Form.Item>
                 </Form>
             </Modal>
         </>
         <Table
+            rowKey={Room.roomlist.room_id}
             columns={columns}
             dataSource={Room.roomlist}
         />

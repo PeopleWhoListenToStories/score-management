@@ -28,7 +28,7 @@ const layout = {
     };
    async function onFinish (values :any ) {
       await ExamManagement.addCreateExam(values.user)//创建
-          history.push('/main/edit')
+          history.push('/main/edits')
     };
     const { RangePicker } = DatePicker;
     const rangeConfig = {

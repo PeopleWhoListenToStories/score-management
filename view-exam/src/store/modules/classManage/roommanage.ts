@@ -15,6 +15,7 @@ class Room {
     @action
     getRoommanage() {
         Axios.get('/manger/room').then((res: any) => {
+            console.log(res.data.data)
             this.roomlist = res.data.data
         })
     }
@@ -33,8 +34,9 @@ class Room {
    async onFinish(values: any) {
        console.log(values.username)
         let result=await addRoom(values.username)
-        if (result.data.code === '1') {
+        if (result.data.code === 1) {
             console.log(result.data.msg)
+            this.getRoommanage();
         }
         this.visible = false;
     };
@@ -42,8 +44,9 @@ class Room {
     @action
     async Del(room_id: string) {
         let result = await deleteRoom(room_id)
-        if (result.data.code === '1') {
+        if (result.data.code === 1) {
             console.log(result.data.msg)
+           this.getRoommanage();
         }
 
 
