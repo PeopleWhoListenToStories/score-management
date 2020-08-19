@@ -5,13 +5,14 @@ import QuestionTypePage from '../view/main/TestManagement/questionsType';
 import ViewQuestionPage from '../view/main/TestManagement/watchQuestions';
 
 //用户管理
-import AddTeacher from '../view/main/UserManagement/AddTeacher';
+import AddTeacher from '../view/main/UserManagement/addTeacher';
 import ViewTeacher from '../view/main/UserManagement/viewTeacher';
 
 // 考试管理
 import AddExamPage from '../view/main/ExamManagement/addExam';
 import UserListPage from '../view/main/ExamManagement/examList';
-
+import Condition from '../view/main/ExamManagement/condition'//条件获取的
+import EditPage from '../view/main/ExamManagement/edits'
 // 班级管理
 import GeadePage from '../view/main/ClassManagement/grade'
 import RoomPage from '../view/main/ClassManagement/room'
@@ -61,10 +62,21 @@ export default [
       path: '/main/addexam',
       component: AddExamPage,
       meta: { title: '添加考试' }
-    }, {
+    }, 
+    {
+      path: '/main/condition',
+      component: Condition,
+      meta: { title: '筛选后' }
+    },
+    {
       path: '/main/examList',
       component: UserListPage,
       meta: { title: '试卷列表' }
+    },
+    {
+      path: '/main/edits',
+      component: EditPage,
+      meta: { title: '创建试卷' }
     },
       // {
       //   path: '/main/questionTypePage',
