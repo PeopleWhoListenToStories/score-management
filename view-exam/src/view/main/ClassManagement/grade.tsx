@@ -10,7 +10,7 @@ import Mask from '../../../components/mask/Mask'
 
    
 export default function Grade() {
-    let [visible,setVisible]=useState();
+    let [visible,setVisible]=useState<boolean>(false);
 
     const {Class}=useStore();
     const columns = [
