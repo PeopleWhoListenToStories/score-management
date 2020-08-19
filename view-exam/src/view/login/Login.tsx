@@ -30,7 +30,7 @@ export default function Login(props: any) {
     if (values.randomNum === LoginStore.RandomCode) {
       const result: any = await LoginStore.loginAction(values.username, values.password);
       if (result.code === 1) {
-  MainStore.isGetInitFlag = true;
+        MainStore.isGetInitFlag = true;
         if (values.remember) {
           setCookie('username', values.username);
           setCookie('password', values.password);

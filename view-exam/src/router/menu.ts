@@ -14,7 +14,7 @@ import ViewTeacher from '../view/main/UserManagement/viewTeacher';
 // 考试管理
 import AddExamPage from '../view/main/ExamManagement/addExam';
 import UserListPage from '../view/main/ExamManagement/examList';
-import EditPage from "../view/main/ExamManagement/edit";
+import EditPage from "../view/main/ExamManagement/edits";
 import ConditionPage from "../view/main/ExamManagement/condition"
 
 // 班级管理
