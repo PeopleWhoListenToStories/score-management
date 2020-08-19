@@ -23,6 +23,6 @@ export default {
   // ViewTeacherStore: new ViewTeacherStore(),
   AllClass: new AllClasses(),
   ExamManagement: new ExamManagement(),
-  Class:Class.Class,
-  Room:Room.Room,
+  Class: new Class(),
+  Room:new Room(),
 }

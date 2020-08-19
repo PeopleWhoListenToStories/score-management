@@ -1,8 +1,19 @@
+
+
+.box{
+ opacity: 1; 
+}
+
 .ant_layout_sider{
   background: red;
 }
+:global{
+    .ant-menu.sider{
+      background: red;
+    }
+    .ant-menu {background: #232A41;}
 
-
-:global(.ant-menu-item){
-  color: white;
-}
+    .ant-menu-item-selected {
+      background-color: red !important
+    }
+} 

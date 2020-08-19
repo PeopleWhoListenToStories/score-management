@@ -1,1 +1,1 @@
-.ant_layout_sider{background:red}:global(.ant-menu-item){color:white}
+.ant_layout_sider{background:red}:global(.ant-menu){background:#232A41}:global(.ant-layout .ant-menu-item-selected){background-color:red !important}:global(.ant-menu-item){color:white}

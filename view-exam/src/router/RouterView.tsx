@@ -1,33 +1,45 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { IRouerItem } from "../utils/interface"
+import { getCookie } from "../utils/myCookie"
 
 interface Iprops {
-  routes: any[]
+  routes: IRouerItem[]
 }
 
+// 登录白名单
+const whileList = ['/login', '/main', '/NoFound', 'NoServer']
+
 export default function RouterView({ routes }: Iprops) {
-
-  const componentList = routes.filter(item => item.component);
-  const redirectList = routes.filter(item => item.redirect);
-
   return <Switch>
     {
-      componentList && componentList.map(item => {
-
+      routes && routes.map(item => {
+        // 页面重定向
+        // if (item.redirect) {
+        //   if (item.path === '/') {
+        //     return <Redirect key={item.path} from={item.path} to="/main"></Redirect>
+        //   } else {
+        //     return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
+        //   }
+        // }
         if (item.redirect) {
-          if (item.redirect === '*') {
-            return <Redirect key={item.path} to={item.redirect}></Redirect>
-          } else {
-            return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
-          }
+          return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
         }
 
-        return <Route key={item.path} path={item.path} render={(props: any) => {
-          return <item.component key={item.path} routes={item.children} {...props}
-               
-          ></item.component>
-        }}>
-        </Route>
+        return <Route key={item.path} path={item.path} render={(props) => {
+
+          // 用户登录拦截
+          let isPath = props.match.path;
+          if (!whileList.includes(isPath) && !getCookie('token')) {
+            props.history.replace(`/login?redirect=${encodeURIComponent(isPath)}`);
+          }
+
+          if (item.children) {
+            return <item.component {...props} routes={item.children} meta={item.meta}></item.component>
+          } else {
+            return <item.component {...props} meta={item.meta}></item.component>
+          }
+        }}></Route>
       })
       // .concat(routes.map((item: any) => {
       //   return <Redirect key={item.path} exact from={item.path} to="/403" />
@@ -39,11 +51,7 @@ export default function RouterView({ routes }: Iprops) {
       //   changeRoute(routes,  event.newURL.split('#')[1])
       // })
     }
-    {
-      redirectList && redirectList.map(item => {
-        return <Redirect key={item.path} to={item.redirect}></Redirect>
-      })
-    }
+
   </Switch>
 }
 

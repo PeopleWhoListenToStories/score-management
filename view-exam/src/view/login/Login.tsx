@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import LoginCss from './Login.module.scss';
 import useStore from '../../context/useStore';
-
+import { setCookie, getCookie, removeCookie } from "../../utils/myCookie"
 
 // 引入antd
 import { Form, Input, Button, Checkbox, Tag } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
+export default function Login(props: any) {
+  const [username, UseUsername] = useState<string>(getCookie('username') as string);
+  const [password, UsePassword] = useState<string>(getCookie('password') as string);
+  const [remember, UseRemember] = useState<string>(getCookie('remember') as string);
 
-export default function Login() {
   const { LoginStore, MainStore } = useStore();
   const history = useHistory();
 
@@ -18,11 +21,25 @@ export default function Login() {
     LoginStore.initRandomCode(); //获取验证码
   }, [])
 
+  useEffect(() => {
+
+  }, [LoginStore.isRemember])
+
   async function onFinish(values: any) {
     console.log('Received values of form: ', values);
     if (values.randomNum === LoginStore.RandomCode) {
-      const result: any = await LoginStore.loginAction('chenmanjie', 'Chenmanjie123!');
+      const result: any = await LoginStore.loginAction(values.username, values.password);
       if (result.code === 1) {
+  MainStore.isGetInitFlag = true;
+        if (values.remember) {
+          setCookie('username', values.username);
+          setCookie('password', values.password);
+          setCookie('remember', values.remember);
+        } else {
+          removeCookie('username');
+          removeCookie('password');
+          removeCookie('remember');
+        }
         history.push('/main');
         MainStore.initAction();
       }
@@ -38,28 +55,51 @@ export default function Login() {
     LoginStore.initRandomCode(); //获取验证码
   }
 
+  // 修改密码触发事件
+  function changePwd(event: boolean) {
+    LoginStore.changePwd(event)
+    if (!event) {
+      UseUsername('');
+      UsePassword('');
+      UseRemember('');
+    } else {
+      UseUsername(getCookie('username') as string);
+      UsePassword(getCookie('password') as string);
+      UseRemember(`${event}`);
+    }
+  }
+
   return useObserver(() => <div className={LoginCss.Login}>
     <div className={LoginCss.innerBox}>
       <Form
-        name="normal_login"
+        name="validate_other"
         className="login-form"
-        initialValues={{ remember: false }}
+        initialValues={{ remember: remember ? true : false, username: username, password: password }}
         onFinish={onFinish}
       >
+
         <Form.Item
           name="username"
-          rules={[{ required: true, message: 'Please input your Username!' }]}
+          validateTrigger="onBlur"
+          rules={[{ pattern: /^[a-z]{4,16}$/, message: '请输入您的用户名!', required: true }]}
         >
-          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+          <Input value="123" prefix={<UserOutlined className="site-form-item-icon" />} name="username" placeholder="Username" onChange={(e) => { UseUsername(e.target.value) }} />
         </Form.Item>
         <Form.Item
           name="password"
-          rules={[{ required: true, message: 'Please input your Password!' }]}
+          validateTrigger="onBlur"
+          rules={[{
+            pattern: /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)(?=.*?[#@*!&.]).*$/
+            , message: '请输入您的密码!', required: true
+          }]}
         >
-          <Input
+          <Input.Password
+            value={password}
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
+            name="password"
             placeholder="Password"
+            onChange={(e) => { UsePassword(e.target.value) }}
           />
         </Form.Item>
 
@@ -84,7 +124,7 @@ export default function Login() {
 
         <Form.Item>
           <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
+            <Checkbox onChange={(e) => { changePwd(e.target.checked) }}>Remember me</Checkbox>
           </Form.Item>
         </Form.Item>
 
@@ -95,6 +135,7 @@ export default function Login() {
         Or <a   >去注册</a>
         </Form.Item>
       </Form>
+
     </div>
-  </div>)
+  </div >)
 }
