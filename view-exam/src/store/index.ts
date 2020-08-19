@@ -7,8 +7,12 @@ import AllClasses from './modules/testManagetion/watchQuestion'
 
 
 import AddUserStore from './modules/userManagetion/addUser'
+// import ViewTeacherStore from './modules/userManagetion/viewTeacher'
 
 import ExamManagement from './modules/Exam/exams'
+
+import Class from './modules/classManage/classmanage'
+import Room from './modules/classManage/roommanage'
 
 export default {
   Test: new Test(),
@@ -16,6 +20,9 @@ export default {
   MainStore: new MainStore(),
   Addtypes: new AddType(),
   AddUserStore: new AddUserStore(),
+  // ViewTeacherStore: new ViewTeacherStore(),
   AllClass: new AllClasses(),
   ExamManagement: new ExamManagement(),
+  Class:Class.Class,
+  Room:Room.Room,
 }

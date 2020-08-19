@@ -49,7 +49,6 @@ export default function Login() {
         <Form.Item
           name="username"
           rules={[{ required: true, message: 'Please input your Username!' }]}
-
         >
           <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
         </Form.Item>
