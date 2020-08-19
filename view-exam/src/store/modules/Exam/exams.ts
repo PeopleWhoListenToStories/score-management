@@ -1,6 +1,6 @@
 //获取所有试题类型
 import {action,observable} from 'mobx'
-import {testingTypes,Allcourses,CreateExam,AllExamList,ExamDetail} from '../../../api/index'
+import {testingTypes,Allcourses,CreateExam,AllExamList,ExamDetail,Getdata} from '../../../api/index'
 export default class ExamManagement{
     @observable
     ExamTypedata:any []=[];//考试类型的数据
@@ -85,5 +85,9 @@ export default class ExamManagement{
         if (result.data.code === 1){
             this.examinationdata = result.data.data;
         }
+    }
+    // 条件查找
+    getdata = async (exam_id:string,subject_id:string)=>{
+        let result:any = await Getdata(exam_id,subject_id); 
     }
 }
