@@ -11,13 +11,10 @@ import {
   addIdentity,
   addAuthorityApi,
   addAuthorityView,
-  setIdentityApi
+  setIdentityApi,
+  addUser,
+  renewalUser
 } from '../../../api/index'
-
-interface Iv1 {
-  identity_id: string,
-  identity_text: string,
-}
 
 export default class AddUser {
   [key: string]: any
@@ -33,10 +30,12 @@ export default class AddUser {
   AuthorityRelationList: any[] = []; // 展示身份权限数据
   @observable
   IdentityViewAuthorityRelationList: any[] = []; // 身份和视图权限关系
+
   @action //  展示用户数据
   async showUserAction() {
     if (this.UserList.length === 0) {
       const result: any = await showUser();
+      if (result.data.code === 0) return message.warn(result.data.msg);
       if (result.data.code === 1) {
         this.UserList = result.data.data;
         console.log('showUserAction ok')
@@ -50,6 +49,7 @@ export default class AddUser {
   async showIdentityAction() {
     if (this.IdentityList.length === 0) {
       const result: any = await showIdentity();
+      if (result.data.code === 0) return message.warn(result.data.msg);
       if (result.data.code === 1) {
         this.IdentityList = result.data.data;
         console.log('showIdentityAction ok')
@@ -63,6 +63,7 @@ export default class AddUser {
   async showViewAuthorityAction() {
     if (this.ViewAuthorityList.length === 0) {
       const result: any = await showViewAuthority();
+      if (result.data.code === 0) return message.warn(result.data.msg);
       if (result.data.code === 1) {
         this.ViewAuthorityList = result.data.data;
         console.log('showViewAuthorityAction ok')
@@ -77,6 +78,7 @@ export default class AddUser {
     if (this.AuthorityRelationList.length === 0) {
       this.showIdentityAction();
       const result: any = await showAuthorityRelation();
+      if (result.data.code === 0) return message.warn(result.data.msg);
       if (result.data.code === 1) {
         this.AuthorityRelationList = result.data.data;
         console.log('showAuthorityRelation ok')
@@ -90,6 +92,7 @@ export default class AddUser {
   async showIdentityViewAuthorityRelationAction() {
     if (this.IdentityViewAuthorityRelationList.length === 0) {
       const result: any = await showIdentityViewAuthorityRelation();
+      if (result.data.code === 0) return message.warn(result.data.msg);
       if (result.data.code === 1) {
         this.IdentityViewAuthorityRelationList = result.data.data;
       }
@@ -99,6 +102,7 @@ export default class AddUser {
   @action  // 给身份设定视图权限
   async setIdentityViewAction(identity_id: string, view_authority_id: string) {
     const result: any = await setIdentityView(identity_id, view_authority_id);
+    if (result.data.code === 0) return message.warn(result.data.msg);
     if (result.data.code === 1) {
       message.success(result.data.msg);
     } else {
@@ -109,6 +113,7 @@ export default class AddUser {
   @action // 给身份设定api接口权限
   async setIdentityApiAction(identity_id: string, api_authority_id: string) {
     const result: any = await setIdentityApi(identity_id, api_authority_id);
+    if (result.data.code === 0) return message.warn(result.data.msg);
     if (result.data.code === 1) {
       message.success(result.data.msg);
     } else {
@@ -149,7 +154,7 @@ export default class AddUser {
     }
   }
 
-  @action
+  @action // 添加身份和视图
   async addAuthorityViewAction(view_authority_text: string, view_id: string) {
     const result: any = await addAuthorityView(view_authority_text, view_id);
     if (result.data.code === 1) {
@@ -158,6 +163,28 @@ export default class AddUser {
       message.warn(result.data.msg);
     }
   }
+
+  @action // 添加用户
+  async addUserAction(user_name: string, user_pwd: string, identity_id: string) {
+    const result: any = await addUser(user_name, user_pwd, identity_id);
+    if (result.data.code === 1) {
+      message.success(result.data.msg)
+    } else {
+      message.success(result.data.msg)
+    }
+  }
+
+  @action // 更新用户
+  async renewalUserAction(user_id: string, user_name: string, user_pwd: string, identity_id: string, avatar: string) {
+    console.log(user_id, user_name, user_pwd, identity_id, avatar)
+    const result: any = await renewalUser(user_id, user_name, user_pwd, identity_id);
+    if (result.data.code === 1) {
+      message.success(result.data.msg)
+    } else {
+      message.warn(result.data.msg)
+    }
+  }
+
 
 }
 

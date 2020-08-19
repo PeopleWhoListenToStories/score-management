@@ -1,31 +1,29 @@
-import {action,observable} from 'mobx';
+import { action, observable } from 'mobx';
 import Axios from '../../../utils/request';
-import {addClass} from '../../../api/module/class'
+import { addClass } from '../../../api/module/class'
 
-class Class {
+export default class Class {
     @observable
-    classlist=[]
+    classlist = []
 
     @action
-    getClassmanage(){
-        Axios.get('/manger/grade').then(res=>{
+    getClassmanage() {
+        Axios.get('/manger/grade').then(res => {
             console.log(res.data.data)
-            this.classlist=res.data.data
+            this.classlist = res.data.data
         })
     }
 
-    @action 
-    delList(){
+    @action
+    delList() {
 
     }
 
     @action
-    addClassAction(){
-        
+    addClassAction() {
+
     }
 
 }
 
-export default {
-    Class:new Class()
-}
+

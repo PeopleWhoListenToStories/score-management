@@ -4,12 +4,15 @@ import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 import './room.module.scss'
 
-export default function Grade() {
 
+export default function Grade() {
     const { Room } = useStore();
+
+    // const [flag, UseFlag] = useState<boolean>(Room.visible)
+
     useEffect(() => {
         Room.getRoommanage();
-    }, [Room.roomlist])
+    })
 
 
     const columns = [
@@ -21,15 +24,13 @@ export default function Grade() {
                 return <span>
                     {
                         <button className='btn' onClick={() => {
-                            Room.Del(record.room_id)
+                            // Room.Del(record.room_id)
                         }}>删除</button>
                     }
                 </span>
             }
         },
-
     ];
-
 
     const layout = {
         labelCol: {
@@ -47,14 +48,13 @@ export default function Grade() {
     };
 
 
-    return useObserver(() => <div>
-        <>
-            <Button type="primary" onClick={() => Room.showModal()}>
-                添加教室
-        </Button>
+    return useObserver(() =>
+        <div>
+            <Button type="primary" onClick={() => { Room.visible = true }}> 添加教室  </Button>
             <Modal
                 title="添加教室"
                 visible={Room.visible}
+                footer={null}
             >
                 <Form
                     {...layout}
@@ -81,18 +81,15 @@ export default function Grade() {
                     </Form.Item>
 
                     <Form.Item {...tailLayout}>
-                        <Button type="primary" htmlType="submit">
-                            添加
-        </Button>
+                        <Button type="primary" htmlType="submit">  添加 </Button>
                     </Form.Item>
                 </Form>
             </Modal>
-        </>
-        <Table
-            columns={columns}
-            dataSource={Room.roomlist}
-        />
-    </div>)
+            {/* <Table
+                columns={columns}
+                dataSource={Room.roomlist}
+            /> */}
+        </div>)
 }
 
 

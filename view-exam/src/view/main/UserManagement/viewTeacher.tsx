@@ -153,6 +153,7 @@ export default function ViewTeacher() {
           }
         </Radio.Group>
       </div>
+      {/* 提示标签 */}
       <h2>{list[curIndex].type}</h2>
       {/* 表格 */}
       <Table columns={list[curIndex].colums} dataSource={AddUserStore[list[curIndex].list]} rowKey={list[curIndex].key} />
