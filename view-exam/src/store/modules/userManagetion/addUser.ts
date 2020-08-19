@@ -1,5 +1,18 @@
 import { action, observable } from 'mobx';
-import { showUser, showIdentity, showAuthorityRelation, showViewAuthority, setIdentityView, showApiAuthority, showIdentityViewAuthorityRelation } from '../../../api/index'
+import { message } from 'antd';
+import {
+  showUser,
+  showIdentity,
+  showAuthorityRelation,
+  showViewAuthority,
+  setIdentityView,
+  showApiAuthority,
+  showIdentityViewAuthorityRelation,
+  addIdentity,
+  addAuthorityApi,
+  addAuthorityView,
+  setIdentityApi
+} from '../../../api/index'
 
 interface Iv1 {
   identity_id: string,
@@ -59,8 +72,6 @@ export default class AddUser {
     }
   }
 
-
-
   @action  // 展示身份权限数据
   async showAuthorityRelationAction() {
     if (this.AuthorityRelationList.length === 0) {
@@ -74,7 +85,6 @@ export default class AddUser {
       }
     }
   }
-
 
   @action // 展示身份和视图权限关系
   async showIdentityViewAuthorityRelationAction() {
@@ -90,9 +100,19 @@ export default class AddUser {
   async setIdentityViewAction(identity_id: string, view_authority_id: string) {
     const result: any = await setIdentityView(identity_id, view_authority_id);
     if (result.data.code === 1) {
-      console.log('setIdentityViewAction ok')
+      message.success(result.data.msg);
     } else {
-      console.log('setIdentityViewAction error')
+      message.warn(result.data.msg);
+    }
+  }
+
+  @action // 给身份设定api接口权限
+  async setIdentityApiAction(identity_id: string, api_authority_id: string) {
+    const result: any = await setIdentityApi(identity_id, api_authority_id);
+    if (result.data.code === 1) {
+      message.success(result.data.msg);
+    } else {
+      message.warn(result.data.msg);
     }
   }
 
@@ -106,6 +126,36 @@ export default class AddUser {
       } else {
         console.log('showApiAuthorityAction error')
       }
+    }
+  }
+
+  @action // 添加身份
+  async addIdentityAction(identity_text: string) {
+    const result: any = await addIdentity(identity_text);
+    if (result.data.code === 1) {
+      message.success(result.data.msg);
+    } else {
+      message.warn(result.data.msg);
+    }
+  }
+
+  @action  // 添加api接口权限
+  async addAuthorityApiAction(api_authority_text: string, api_authority_url: string, api_authority_method: string) {
+    const result: any = await addAuthorityApi(api_authority_text, api_authority_url, api_authority_method);
+    if (result.data.code === 1) {
+      message.success(result.data.msg);
+    } else {
+      message.warn(result.data.msg);
+    }
+  }
+
+  @action
+  async addAuthorityViewAction(view_authority_text: string, view_id: string) {
+    const result: any = await addAuthorityView(view_authority_text, view_id);
+    if (result.data.code === 1) {
+      message.success(result.data.msg);
+    } else {
+      message.warn(result.data.msg);
     }
   }
 
