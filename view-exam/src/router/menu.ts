@@ -1,8 +1,11 @@
+import { IMenuItem } from "../utils/interface"
 
 // 试题管理
 import AddQuestionPage from '../view/main/TestManagement/addQuestions';
 import QuestionTypePage from '../view/main/TestManagement/questionsType';
-import ViewQuestionPage from '../view/main/TestManagement/watchQuestions';
+import WatchQuestionPage from '../view/main/TestManagement/watchQuestions';
+import DetailPage from "../view/main/TestManagement/testDetail"
+import EditQuestionPage from "../view/main/TestManagement/editQuestion"
 
 //用户管理
 import AddTeacher from '../view/main/UserManagement/addTeacher';
@@ -11,7 +14,7 @@ import ViewTeacher from '../view/main/UserManagement/viewTeacher';
 // 考试管理
 import AddExamPage from '../view/main/ExamManagement/addExam';
 import UserListPage from '../view/main/ExamManagement/examList';
-import Condition from '../view/main/ExamManagement/condition'//条件获取的
+import ConditionPage from '../view/main/ExamManagement/condition'//条件获取的
 import EditPage from '../view/main/ExamManagement/edits'
 // 班级管理
 import GeadePage from '../view/main/ClassManagement/grade'
@@ -21,92 +24,180 @@ import StudentPage from '../view/main/ClassManagement/student'
 // 阅卷管理
 import ExamPaperClassListPage from '../view/main/MarkingManagement/examPaperClassList'
 
-export default [
+const menus: IMenuItem[] = [
   {
-    meta: { title: '试题管理' },
+    name: '试题管理',
+    meta: {
+      icon: '',
+      name: '试题管理',
+      show: true
+    },
     children: [
       {
         path: '/main/addQuestion',
-        component: AddQuestionPage,
-        meta: { title: '添加试题' }
+        meta: {
+          component: AddQuestionPage,
+          name: '添加试题',
+          show: true
+        }
       },
       {
         path: '/main/questionType',
-        component: QuestionTypePage,
-        meta: { title: '试题分类' }
+        meta: {
+          component: QuestionTypePage,
+          name: '试题分类',
+          show: true
+        }
       },
       {
-        path: '/main/viewQuestionPage',
-        component: ViewQuestionPage,
-        meta: { title: '查看试题' }
+        path: '/main/watchQuestions',
+        meta: {
+          component: WatchQuestionPage,
+          name: '试题详情',
+          show: true
+        }
+      },
+      {
+        path: '/main/detail',
+        meta: {
+          component: DetailPage,
+          name: '详情',
+          show: false
+        }
+      },
+      {
+        path: '/main/editQuestion',
+        meta: {
+          component: EditQuestionPage,
+          name: '编辑',
+          show: false
+        }
       }
     ]
   },
   {
-    meta: { title: '用户管理' },
+    name: '用户管理',
+    meta: {
+      icon: '',
+      name: '',
+      show: true
+    },
     children: [
       {
         path: '/main/addTeacher',
-        component: AddTeacher,
-        meta: { title: '添加用户' }
-      }, {
+        meta: {
+          component: AddTeacher,
+          name: '添加用户',
+          show: true
+        }
+      },
+      {
         path: '/main/viewTeacher',
-        component: ViewTeacher,
-        meta: { title: '用户展示' }
+        meta: {
+          component: ViewTeacher,
+          name: '用户展示',
+          show: true
+        }
       }
     ]
   },
   {
-    meta: { title: '考试管理' },
-    children: [{
-      path: '/main/addexam',
-      component: AddExamPage,
-      meta: { title: '添加考试' }
-    }, 
-    {
-      path: '/main/condition',
-      component: Condition,
-      meta: { title: '筛选后' }
+    name: '考试管理',
+    meta: {
+      icon: '',
+      name: '',
+      show: true
     },
-    {
-      path: '/main/examList',
-      component: UserListPage,
-      meta: { title: '试卷列表' }
-    },
-    {
-      path: '/main/edits',
-      component: EditPage,
-      meta: { title: '创建试卷' }
-    },
-      // {
-      //   path: '/main/questionTypePage',
-      //   component: QuestionTypePage,
-      //   meta: { title: '试卷详情', show: false }
-      // }
+    children: [
+      {
+        path: '/main/addExam',
+        meta: {
+          component: AddExamPage,
+          name: '添加考试',
+          show: true
+        }
+      },
+      {
+        path: '/main/userList',
+        meta: {
+          component: UserListPage,
+          name: '试卷列表',
+          show: true
+        }
+      },
+      {
+        path: '/main/edit',
+        meta: {
+          component: EditPage,
+          name: '编辑页面',
+          show: false
+        }
+      },
+      {
+        path: '/main/condition',
+        meta: {
+          component: ConditionPage,
+          name: '条件',
+          show: false
+        }
+      }
     ]
   },
   {
-    meta: { title: '班级管理' },
-    children: [{
-      path: '/main/grade',
-      component: GeadePage,
-      meta: { title: '班级管理' }
-    }, {
-      path: '/main/room',
-      component: RoomPage,
-      meta: { title: '教室管理' }
-    }, {
-      path: '/main/student',
-      component: StudentPage,
-      meta: { title: '学生管理' }
-    }]
+    name: '班级管理',
+    meta: {
+      icon: '',
+      name: '班级管理',
+      show: true
+    },
+    children: [
+      {
+        path: '/main/grade',
+        meta: {
+          component: GeadePage,
+          name: '教室管理',
+          show: true
+        }
+      },
+      {
+        path: '/main/room',
+        meta: {
+          component: RoomPage,
+          name: '班级管理',
+          show: true
+        }
+      },
+      {
+        path: '/main/student',
+        meta: {
+          component: StudentPage,
+          name: '学生管理',
+          show: true
+        }
+      }
+    ]
   },
   {
-    meta: { title: '阅卷管理' },
-    children: [{
-      path: '/main/examPaper',
-      component: ExamPaperClassListPage,
-      meta: { title: '批卷班级' }
-    }]
+    name: '阅卷管理',
+    meta: {
+      icon: '',
+      name: '阅卷管理',
+      show: true
+    },
+    children: [
+      {
+        path: '/main/examPaperClassList',
+        meta: {
+          component: ExamPaperClassListPage,
+          name: '待批班级',
+          show: true
+        }
+      }
+    ]
   }
+
 ]
+
+
+
+export default menus

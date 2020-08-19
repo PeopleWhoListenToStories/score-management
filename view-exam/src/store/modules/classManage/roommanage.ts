@@ -1,9 +1,9 @@
 import { action, observable } from 'mobx';
 import Axios from '../../../utils/request';
-import { deleteRoom ,addRoom } from '../../../api/module/class'
+import { deleteRoom, addRoom } from '../../../api/module/class'
 
 
-class Room {
+export default class Room {
     [key: string]: any;
 
     @observable
@@ -13,10 +13,11 @@ class Room {
     visible: boolean = false
 
     @action
-    getRoommanage() {
-        Axios.get('/manger/room').then((res: any) => {
-            this.roomlist = res.data.data
-        })
+    async getRoommanage() {
+        const result: any = await Axios.get('/manger/room');
+        if (result.data.code === 1) {
+            this.roomlist = result.data.data
+        }
     }
 
     @action
@@ -24,15 +25,14 @@ class Room {
         this.visible = true;
     };
     @action
-    close(){
+    close() {
         this.visible = false;
     }
 
-
     @action
-   async onFinish(values: any) {
-       console.log(values.username)
-        let result=await addRoom(values.username)
+    async onFinish(values: any) {
+        console.log(values.username)
+        let result = await addRoom(values.username)
         if (result.data.code === '1') {
             console.log(result.data.msg)
         }
@@ -45,12 +45,8 @@ class Room {
         if (result.data.code === '1') {
             console.log(result.data.msg)
         }
-
-
     }
 
 }
 
-export default {
-    Room: new Room()
-}
+

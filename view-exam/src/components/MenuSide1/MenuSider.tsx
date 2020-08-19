@@ -3,13 +3,16 @@ import { NavLink } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import { Menu } from 'antd';
 import { MailOutlined, AppstoreOutlined } from '@ant-design/icons';
+import MenuSiderCss from "./MenuSide.module.scss"
+
 const { SubMenu } = Menu;
 
-const defaultIndex: string = '-1';
 
+const defaultIndex: string = '-1';
 export default function MenuSider() {
   return (
     useObserver(() => <Menu
+      className="sider"
       theme='dark'
       mode="inline"
       defaultSelectedKeys={['0']}
