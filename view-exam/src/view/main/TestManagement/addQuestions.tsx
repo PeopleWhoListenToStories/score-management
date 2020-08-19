@@ -11,9 +11,11 @@ import {
     Input,
     Modal
 } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 const { Option } = Select;
 export default function AddQuestions() {
     let [visible, setVisible] = useState<boolean>(false)
+    let [formData,setformData]=useState<any []>([])
 
     let { AllClass } = useStore()
     useEffect(() => {
@@ -25,12 +27,14 @@ export default function AddQuestions() {
         wrapperCol: { span: 14 },
     };
     let onFinish = (values: any) => {
-        setVisible(false)
+        setVisible(true)
+        setformData(values)
         console.log('Received values of form: ', values);
     };
-    //展示确认
+    //提交
     let showModal = () => {
-        setVisible(true)
+        console.log(formData)
+        setVisible(false)
     };
     //取消
     let handleCancel = () => {
@@ -64,7 +68,7 @@ export default function AddQuestions() {
                 <p>请选择考试类型:</p>
                 <Form.Item
                     name="select1"
-                    hasFeedback
+                  
                 >
                     <Select style={{ width: 350 }}>
                         {
@@ -83,7 +87,7 @@ export default function AddQuestions() {
                 <p>请选择课程类型:</p>
                 <Form.Item
                     name="select2"
-                    hasFeedback
+                   
                 >
                     <Select style={{ width: 350 }}>
                         {
@@ -100,7 +104,7 @@ export default function AddQuestions() {
                 <p>请选择题目类型:</p>
                 <Form.Item
                     name="select3"
-                    hasFeedback
+                   
                 >
                     <Select style={{ width: 350 }}>
                         {
@@ -117,22 +121,37 @@ export default function AddQuestions() {
                     <p>答案信息</p>
                     <Editor style={{ height: 300 }} />
                 </Form.Item>
+
                 <Form.Item wrapperCol={{ span: 12, offset: 0 }}>
-                    <Button type="primary" onClick={showModal}>
+                    <Button type="primary"  htmlType="submit">
                         提交
                     </Button>
+
+                    <Modal
+                        visible={visible}
+                        onOk={onFinish}
+                        onCancel={handleCancel}
+                        cancelText="取消"
+                        okText="确定"
+                        footer={[
+                            // 定义右下角 按钮的地方 可根据需要使用 一个或者 2个按钮
+                            <Button key="back" onClick={handleCancel} style={{ marginLeft: -180 }}>取消</Button>,
+                            <Button key="submit" type="primary" onClick={showModal} size='large' style={{ marginRight: 180 }}>
+                                确定
+                        </Button>]}
+                    >
+                        <div style={{ textAlign: "center" }}>
+                            <ExclamationCircleOutlined />
+                            <p>你确认添加这道试题吗?</p>
+                            <p>真的要添加吗?</p>
+                        </div>
+
+                    </Modal>
+
                 </Form.Item>
 
-                <Modal
-                    visible={visible}
-                    onOk={onFinish}
-                    onCancel={handleCancel}
-                    cancelText="取消"
-                    okText="确定"
-                >
-                    <p>你确认添加这道试题吗?</p>
-                    <p>真的要添加吗?</p>
-                </Modal>
+
+
             </Form>
 
 

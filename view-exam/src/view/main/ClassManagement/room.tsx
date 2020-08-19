@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Table, Button, Modal, Input, Form } from 'antd';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
-import './room.scss'
+import './room.module.scss'
 
 
 export default function Grade() {
