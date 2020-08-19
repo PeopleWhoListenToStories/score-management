@@ -15,3 +15,5 @@ export const GetTest=(questions_type_id?:string,subject_id?:string,exam_id?:stri
 export const GetTests=(questions_id?:string)=>ajax.get('/exam/questions/condition',{params:{questions_id}})
 //获取所有的试题
 export const GetAllTest=()=>ajax.get('/exam/questions/new')
+//添加试题接口
+export const AddText=(questions_type_id:string,questions_stem:string,subject_id:string,exam_id:string,user_id:string,questions_answer:string,title:string)=>ajax.post('/exam/questions',{questions_type_id,questions_stem,subject_id,exam_id,user_id,questions_answer,title})

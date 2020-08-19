@@ -6,12 +6,11 @@ import { useObserver } from 'mobx-react-lite'
 
 import style from './question.module.css'
 //按钮
-import { Button } from 'antd';
+import { Button ,Modal} from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 //表格
 import { Table, Space } from 'antd';
-//对话框
-import { Modal, } from 'antd';
+
 //输入框
 import { Input } from 'antd';
 
@@ -43,11 +42,11 @@ const columns = [
 function QuestionsType() {
   let [visibled, setVisible] = useState<any>()
   //使用仓库
-  let {Addtypes}=useStore()
-  useEffect(()=>{
-    Addtypes.getTypeData()
+  let { AllClass } = useStore()
+  useEffect(() => {
+    AllClass.getClassData()
     // data=Addtypes.Typedata
-},[])
+  }, [])
 
 
   const showModal = () => {
@@ -71,19 +70,26 @@ function QuestionsType() {
         添加类型
         </Button>
 
-      <Table columns={columns} dataSource={Addtypes.Typedata} />
-        <Modal
-          title="创建新类型"
-          visible={visibled}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          cancelText="取消"
-          okText="确定"
-          centered={true}
-        >
-         <Input placeholder="请输入类型名称" bordered={false}  />
-        </Modal>
-      
+      <Table columns={columns} dataSource={AllClass.Typedata} />
+
+      <Modal
+        visible={visibled}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        centered={true}
+        cancelText="取消"
+        okText="确定"
+        footer={[
+          // 定义右下角 按钮的地方 可根据需要使用 一个或者 2个按钮
+          <Button key="submit" type="primary" onClick={handleOk} style={{marginLeft:-180}} size='large'>确定</Button>,
+          <Button   key="back"  onClick={handleCancel}   style={{marginRight:180}}>
+          取消
+          </Button>]}
+      >
+        <h3 style={{textAlign:"center"}}>创建新类型</h3>
+        <Input placeholder="请输入类型名称" bordered={false} />
+      </Modal>
+
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Table, Button, Modal, Input, Form } from 'antd';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
-import './room.scss'
+import './room.module.scss'
 
 export default function Grade() {
 
@@ -21,7 +21,7 @@ export default function Grade() {
                 return <span>
                     {
                         <button className='btn' onClick={() => {
-                             Room.Del(record.room_id) 
+                            Room.Del(record.room_id)
                         }}>删除</button>
                     }
                 </span>
@@ -65,7 +65,7 @@ export default function Grade() {
                     onFinish={(e) => {
                         Room.onFinish(e)
                     }}
-                   
+
                 >
                     <Form.Item
                         label="Username"

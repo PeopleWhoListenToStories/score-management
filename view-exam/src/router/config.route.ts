@@ -18,13 +18,13 @@ import EditQuestion from '../view/main/TestManagement/editQuestion'
 
 
 //用户管理
-import AddTeacher from '../view/main/UserManagement/AddTeacher';
+import AddTeacher from '../view/main/UserManagement/addTeacher';
 import ViewTeacher from '../view/main/UserManagement/viewTeacher';
 
 // 考试管理
 import AddExamPage from '../view/main/ExamManagement/addExam';
 import UserListPage from '../view/main/ExamManagement/examList';
-import EditPage from '../view/main/ExamManagement/edit'
+import EditPage from '../view/main/ExamManagement/edits'
 // 班级管理
 import GeadePage from '../view/main/ClassManagement/grade'
 import RoomPage from '../view/main/ClassManagement/room'
@@ -49,7 +49,7 @@ const routes: any = [
         meta: { title: '试题详情' }
       },
       {
-        path: '/main/edit',
+        path: '/main/editQusetion',
         component: EditQuestion,
         meta: { title: '编辑试题' }
       },

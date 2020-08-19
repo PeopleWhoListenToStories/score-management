@@ -2,33 +2,44 @@ import React, { useEffect, useState } from 'react'
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 import style from './watch.module.css'
-import { Radio } from 'antd';
 //表单
 import {
     Form,
     Button,
     Select,
+    Empty,
 } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 //tag
 import { Tag } from 'antd';
-
+const { CheckableTag } = Tag;
 
 
 export default function WatchQuestions(props: any) {
-
+    
     let { AllClass } = useStore()
     useEffect(() => {
         AllClass.getClassData()
         AllClass.getAllTest()
     }, [])
 
+    let [selectedTag,setselectedTag]=useState<any[]>([])
+    let [sub,setsub]=useState<any>(undefined)
     const onFinish = (values: any) => {
-        let subject_id = values.radio;
+ 
+        let subject_id = sub;
         let exam_id = values.select1;
         let questions_type_id = values.select2;
         AllClass.getTestData(questions_type_id, subject_id, exam_id)
     };
+    const handleChange=(tag:any, checked:boolean)=> {
+
+        const  selectedTags  =  JSON.parse(JSON.stringify(selectedTag)) ;
+        let nextSelectedTags=[]
+        nextSelectedTags[0] = checked ?   tag.subject_text  : selectedTags.filter((t:any) => t !== tag);
+        setselectedTag(nextSelectedTags)
+        setsub(tag.subject_id)
+      }
 
     return useObserver(() =>
         <div className={style.watch_}>
@@ -40,13 +51,24 @@ export default function WatchQuestions(props: any) {
                     onFinish={onFinish}
                 >
                     <div className={style.class_type}>
-                        <Form.Item name="radio" label="课程分类">
-                            <Radio.Group buttonStyle="solid" size="small" style={{ outline: 1 }}>
+                        <Form.Item  label="课程分类">
+
+                            {AllClass.AllClass.map(tag => (
+                                <CheckableTag
+                                    key={tag.subject_text}
+                                    checked={selectedTag.indexOf(tag.subject_text) > -1}
+                                    onChange={(checked) => handleChange(tag, checked)}
+                                >
+                                    {tag.subject_text}
+                                </CheckableTag>
+                            ))}
+
+                            {/* <Radio.Group buttonStyle="solid" size="small" style={{ outline: 1 }}>
                                 <Radio.Button value="All">All</Radio.Button>
                                 {AllClass.AllClass && AllClass.AllClass.map(item => (
                                     <Radio.Button value={item.subject_id}>{item.subject_text}</Radio.Button>
                                 ))}
-                            </Radio.Group>
+                            </Radio.Group> */}
                         </Form.Item>
                     </div>
 
@@ -84,6 +106,8 @@ export default function WatchQuestions(props: any) {
                 <div className={style.watch_Q}>
                     <ul className={style.watch_ul}>
                         {
+                            AllClass.AllTests.length===0?
+                            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
                             AllClass.AllTests && AllClass.AllTests.map((item, index) => {
                                 return (
                                     <li key={index} className={style.watch_li}>

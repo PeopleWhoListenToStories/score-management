@@ -5,7 +5,7 @@ import QuestionTypePage from '../view/main/TestManagement/questionsType';
 import ViewQuestionPage from '../view/main/TestManagement/watchQuestions';
 
 //用户管理
-import AddTeacher from '../view/main/UserManagement/AddTeacher';
+import AddTeacher from '../view/main/UserManagement/addTeacher';
 import ViewTeacher from '../view/main/UserManagement/viewTeacher';
 
 // 考试管理
