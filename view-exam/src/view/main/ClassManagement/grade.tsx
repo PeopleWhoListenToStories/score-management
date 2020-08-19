@@ -1,4 +1,3 @@
-
 import React,{useState,useEffect}from 'react'
 import { Table, Button ,Modal} from 'antd';
 import useStore from '../../../context/useStore'
@@ -6,9 +5,6 @@ import {useObserver} from 'mobx-react-lite'
 import style from './grade.module.scss'
 import Mask from '../../../components/mask/Mask'
 
-
-
-   
 export default function Grade() {
     let [visible,setVisible]=useState();
 
