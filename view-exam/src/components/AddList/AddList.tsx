@@ -48,7 +48,6 @@ export default function AddList(props: IProps) {
      defaultVal[e.target.name] = e.target.value;
   }
 
-
   // 确认
   function onOk() {
     console.log('确认');
@@ -63,7 +62,6 @@ export default function AddList(props: IProps) {
   }
 
   return <AddListWrapper>
-
     <li>
       {
         props.navList && props.navList.map((item: any, index: number) => {
@@ -105,12 +103,10 @@ export default function AddList(props: IProps) {
         }
       })
     }
-
     <li>
       <Button type="primary" size='middle' onClick={() => { onOk() }}>确定</Button>
       <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { onReset() }}>重置</Button>
     </li>
-
   </AddListWrapper>
 }
 
