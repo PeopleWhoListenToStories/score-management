@@ -7,7 +7,7 @@ import AllClasses from './modules/testManagetion/watchQuestion'
 
 
 import AddUserStore from './modules/userManagetion/addUser'
-import ViewTeacherStore from './modules/userManagetion/viewTeacher'
+// import ViewTeacherStore from './modules/userManagetion/viewTeacher'
 
 import ExamManagement from './modules/Exam/exams'
 
@@ -20,7 +20,7 @@ export default {
   MainStore: new MainStore(),
   Addtypes: new AddType(),
   AddUserStore: new AddUserStore(),
-  ViewTeacherStore: new ViewTeacherStore(),
+  // ViewTeacherStore: new ViewTeacherStore(),
   AllClass: new AllClasses(),
   ExamManagement: new ExamManagement(),
   Class:Class.Class,

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useObserver } from 'mobx-react-lite'
 import useStore from '../../../context/useStore'
 import Editor from 'for-editor'
@@ -9,23 +9,33 @@ import {
     Button,
     Select,
     Input,
+    Modal
 } from 'antd';
 const { Option } = Select;
 export default function AddQuestions() {
+    let [visible, setVisible] = useState<boolean>(false)
 
-    let { AllClass, Addtypes } = useStore()
+    let { AllClass } = useStore()
     useEffect(() => {
         AllClass.getClassData()
-
     }, [])
+
     const formItemLayout = {
         labelCol: { span: 6 },
         wrapperCol: { span: 14 },
     };
-    const onFinish = (values: any) => {
+    let onFinish = (values: any) => {
+        setVisible(false)
         console.log('Received values of form: ', values);
     };
-
+    //展示确认
+    let showModal = () => {
+        setVisible(true)
+    };
+    //取消
+    let handleCancel = () => {
+        setVisible(false)
+    };
     return useObserver(() =>
         <div className={style.Add_}>
             <Form
@@ -46,8 +56,11 @@ export default function AddQuestions() {
                 >
                     <Input placeholder="请输入题目标题,不超过20个字" style={{ width: 350 }} />
                 </Form.Item>
+
                 <p>题目主题</p>
-                <Editor style={{ height: 500 }} />
+                <Form.Item name='ques'>
+                    <Editor style={{ height: 500 }} />
+                </Form.Item>
                 <p>请选择考试类型:</p>
                 <Form.Item
                     name="select1"
@@ -100,14 +113,30 @@ export default function AddQuestions() {
                         }
                     </Select>
                 </Form.Item>
-                <p>答案信息</p>
-                <Editor style={{ height: 300 }} />
+                <Form.Item name='ques2'>
+                    <p>答案信息</p>
+                    <Editor style={{ height: 300 }} />
+                </Form.Item>
                 <Form.Item wrapperCol={{ span: 12, offset: 0 }}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" onClick={showModal}>
                         提交
                     </Button>
                 </Form.Item>
+
+                <Modal
+                    visible={visible}
+                    onOk={onFinish}
+                    onCancel={handleCancel}
+                    cancelText="取消"
+                    okText="确定"
+                >
+                    <p>你确认添加这道试题吗?</p>
+                    <p>真的要添加吗?</p>
+                </Modal>
             </Form>
+
+
+
         </div>
     )
 }

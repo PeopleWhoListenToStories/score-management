@@ -9,10 +9,8 @@
     border-radius: 10px;
 }
 .class_type{
-    height: 65px;
-    margin:40px 25px;
-    line-height: 65px;
-    
+    height: 80px;
+    padding: 20px 0;
 }
 .test_type{
     display: flex;

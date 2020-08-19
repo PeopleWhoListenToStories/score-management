@@ -1,24 +1,28 @@
 //获取所有试题类型
 import {action,observable} from 'mobx'
-import {testingTypes,Allcourses,CreateExam,AllExamList} from '../../../api/index'
+import {testingTypes,Allcourses,CreateExam,AllExamList,ExamDetail} from '../../../api/index'
 export default class ExamManagement{
     @observable
     ExamTypedata:any []=[];//考试类型的数据
+    @observable
     Allcoursesdata:any []=[];//考试所有课程
+    @observable
     Examdata:any[]=[];//所有试卷
+    @observable
     examinationdata:any=[];//考试题
+    @observable
+    Examdetaildata:any=[];//试卷详情
     @action
     //获取考试类型的数据
-    getExamTypedata=async ()=>{
+    getExamTypedata= ()=>{
         if (this.ExamTypedata.length){
             return;
         }
-        let result:any = await testingTypes(); 
-       
-        if (result.data.code === 1){
-            this.ExamTypedata = result.data.data;
-            console.log(this.ExamTypedata )
-        }
+        testingTypes().then((res: { data: { code: number; data: any[]; }; }) => {
+            if (res.data.code === 1) {
+              this.ExamTypedata = res.data.data
+            }
+          })
     }
     getAllcourses=async()=>{
         if (this.Allcoursesdata.length){
@@ -39,11 +43,9 @@ export default class ExamManagement{
         if (result.data.code === 1){
             this.Examdata = result.data.exam;
         }
-        console.log(this.Examdata )
     }
      //增加试卷
      addCreateExam = async(user:any)=>{
-        console.log(user)
           const times= user.time.map((item:any )=>{
             let time = new Date(item._d).getTime()
              return  time
@@ -65,7 +67,23 @@ export default class ExamManagement{
         ) 
         if (result.data.code === 1){
             this.examinationdata=result.data.data
-            console.log( this.examinationdata)
+        }
+    }
+    //删除试题
+    delteexam = async (id:number)=>{
+        let index=  this.examinationdata.questions.findIndex((items:any)=>{
+            return items.exam_id===id
+        })
+        this.examinationdata.questions.splice(index, 1);
+    }
+    //试卷详情
+    examdetail = async (id:string)=>{
+        if (this.examinationdata.length){
+            return;
+        }
+        let result:any = await ExamDetail(id); 
+        if (result.data.code === 1){
+            this.examinationdata = result.data.data;
         }
     }
 }

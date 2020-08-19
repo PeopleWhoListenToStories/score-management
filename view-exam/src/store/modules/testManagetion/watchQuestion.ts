@@ -1,13 +1,17 @@
 import { action, observable } from 'mobx';
-import { AllClass, GetTest, AllexamType, testType } from '../../../api/module/testmanagetion'
+import { AllClass, GetTest, AllexamType, testType ,GetAllTest,GetTests} from '../../../api/module/testmanagetion'
 
 export default class AllClasses {
     @observable
     AllClass: any[] = [];
+    @observable
     AllTests: any[] = [];
+    @observable
     AllexamType: any[] = [];
+    @observable
     Typedata: any[] = [];
-    DetailData:any[]=[];
+    @observable
+    DetailData: any[] = [];
 
 
     @action
@@ -39,40 +43,54 @@ export default class AllClasses {
             })
         }
     }
-
+    //获取全部试题
     @action
-     getTestData = (questions_id?: string, questions_type_id?: string, subject_id?: string, exam_id?: string) => {
-        console.log(questions_id)
-         GetTest(questions_id , questions_type_id, subject_id, exam_id).then(res => {
-             
+    getAllTest=()=>{
+        GetAllTest().then(res=>{
             if (res.data.code === 1) {
-                if(questions_id){
-                    console.log(111)
-                    this.DetailData=res.data.data
-                    
-                }else{
-
-                    this.AllTests = res.data.data
-                }
-                
-
+                console.log(res.data.data)
+                this.AllTests = res.data.data
+            }
+        })
+    }
+    //按条件
+    @action
+    getTestData = ( questions_type_id?: string, subject_id?: string, exam_id?: string) => {
+        console.log( questions_type_id, subject_id, exam_id)
+        GetTest( questions_type_id, subject_id, exam_id).then(res => {
+            if (res.data.code === 1) {
+                console.log(res.data.data)
+                this.AllTests = res.data.data
             }
         })
     }
 
     //跳转详情
     @action
-    toDetail=(props:any,questions_id:string)=>{
-        GetTest(questions_id).then(res=>{
-            if(res.data.code===1){
-                this.DetailData=res.data.data 
-             props.history.push({
-            pathname:`/main/detail`,
-        })
+    toDetail = (props: any, questions_id: string) => {
+        GetTests(questions_id).then(res => {
+            if (res.data.code === 1) {
+                this.DetailData = res.data.data
+                props.history.push({
+                    pathname: `/main/detail`,
+                })
             }
         })
-      
+
     }
+
+    //编辑试题
+    @action
+    toEdit=(props: any,questions_id: string)=>{
+        GetTests(questions_id).then(res => {
+            if (res.data.code === 1) {
+                this.DetailData = res.data.data
+                props.history.push({
+                    pathname: `/main/edit`,
+                })
+            }
+        })
+    }
+
 }
 
- 

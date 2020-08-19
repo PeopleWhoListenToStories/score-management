@@ -36,7 +36,10 @@ function Detail(props: any) {
             <div className={style.Detail_right}>
                 {
                     AllClass.DetailData && AllClass.DetailData.map((item, index) => {
-                        return <div key={index}>{item.questions_answer}</div>
+                        return <div key={index}>
+                            {
+                            item.questions_answer
+                            }</div>
                     })
                 }
             </div>
