@@ -1,19 +1,35 @@
 import React from "react";
-import menu from "../../router/menu"
-import { Menu } from 'antd';
-import MenuSideCss from './MenuSide.module.scss'
-import { NavLink, useHistory, Link } from 'react-router-dom'
-import useStore from '../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
+import { Link } from 'react-router-dom'
+import MenuSideCss from './MenuSide.module.scss'
+
+import { Menu } from 'antd';
+
+import { IMenuItem } from "../../utils/interface"
+import useStore from '../../context/useStore'
+
+import menu from "../../router/menu"
+
 const { SubMenu } = Menu;
 
-console.log(MenuSideCss,'MenuSideCss')
+console.log(MenuSideCss, 'MenuSideCss')
+function changeOpenKey(menu: IMenuItem[]) {
+  let index: string = "0";
+  menu.forEach((item, i) => {
+    item.children.forEach(value => {
+      if (value.path === window.location.hash.slice(1) + "") {
+        index = i + "";
+      }
+    })
+  })
+  return index;
+}
 export default function MenuSider() {
-  return (
+  return useObserver(() => (
     <div className={MenuSideCss.box}>
       <Menu
-        defaultSelectedKeys={['0']}
-        defaultOpenKeys={[`${window.location.hash.slice(1)}`]}
+        defaultSelectedKeys={[`${window.location.hash.slice(1)}`]}
+        defaultOpenKeys={[changeOpenKey(menu)]}
         mode="inline"
         theme="dark"
       >
@@ -32,5 +48,5 @@ export default function MenuSider() {
 
         })}
       </Menu> </div>
-  )
+  ))
 }

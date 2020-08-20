@@ -76,7 +76,7 @@ const AddTeacher: React.FC = () => {
     AddUserStore.addUserAction(addUserInput, addUserPwdInput, selectHasViewAuthority0.identity_id)
   }
   const onOk01 = () => {
-    AddUserStore.renewalUserAction(selectHasViewAuthority0.user_id,addUserInput1, addUserPwdInput1, selectHasViewAuthority1.identity_id,avatar)
+    AddUserStore.renewalUserAction(selectHasViewAuthority0.user_id, addUserInput1, addUserPwdInput1, selectHasViewAuthority1.identity_id, avatar)
     SetAddUserInput1('')
     SetAddUserPwdInput1('')
     // AddUserStore.addUserAction(addUserInput1, addUserPwdInput1, selectHasViewAuthority1.identity_id)
@@ -179,44 +179,19 @@ const AddTeacher: React.FC = () => {
     <div className={AddCss.addTeacher}>
 
       <div className={AddCss.item}>
-        <li>
-          <Tabs defaultActiveKey="1" onChange={callback}>
-            <TabPane tab="添加用户" key="1">
-              <li>
-                <Input name="addUserInput" placeholder="请输入身份名称" value={addUserInput} onChange={(e) => { SetAddUserInput(e.target.value) }} />
-              </li>
-              <li>
-                <Input name="addUserPwdInput" placeholder="请输入密码" value={addUserPwdInput} onChange={(e) => { SetAddUserPwdInput(e.target.value) }} />
-              </li>
-              <li>
-                <Select
-                  style={{ width: 160 }}
-                  placeholder="选择身份id"
-                  onChange={handleChange0}
-                  dropdownRender={menu => (
-                    <div>
-                      {menu}
-                      <Divider style={{ margin: '4px 0' }} />
-                    </div>
-                  )}
-                >
-                  {
-                    AddUserStore.IdentityList && AddUserStore.IdentityList.map((v: any, index: number) => {
-                      return <Option key={v.identity_id} value={v.identity_text}>{v.identity_text}</Option>
-                    })
-                  }
-                </Select>
-              </li>
-              <li>
-                <Button type="primary" size='middle' onClick={() => { onOk0() }}>确定</Button>
-                <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { SetAddUserInput(''); SetAddUserPwdInput('') }}>重置</Button>
-              </li>
-            </TabPane>
-            <TabPane tab="更新用户" key="2">
+        <Tabs defaultActiveKey="1" onChange={callback}>
+          <TabPane tab="添加用户" key="1">
+            <li>
+              <Input name="addUserInput" placeholder="请输入身份名称" value={addUserInput} onChange={(e) => { SetAddUserInput(e.target.value) }} />
+            </li>
+            <li>
+              <Input name="addUserPwdInput" placeholder="请输入密码" value={addUserPwdInput} onChange={(e) => { SetAddUserPwdInput(e.target.value) }} />
+            </li>
+            <li>
               <Select
                 style={{ width: 160 }}
-                placeholder="选择用户id"
-                onChange={handleChange00}
+                placeholder="选择身份id"
+                onChange={handleChange0}
                 dropdownRender={menu => (
                   <div>
                     {menu}
@@ -225,43 +200,66 @@ const AddTeacher: React.FC = () => {
                 )}
               >
                 {
-                  AddUserStore.UserList && AddUserStore.UserList.map((v: any, index: number) => {
-                    return <Option key={v.user_id} value={v.user_name}>{v.user_name}</Option>
+                  AddUserStore.IdentityList && AddUserStore.IdentityList.map((v: any, index: number) => {
+                    return <Option key={v.identity_id} value={v.identity_text}>{v.identity_text}</Option>
                   })
                 }
               </Select>
-              <li>
-                <Input name="addUserInput1" placeholder="请输入用户名" value={addUserInput1} onChange={(e) => { SetAddUserInput1(e.target.value) }} />
-              </li>
-              <li>
-                <Input name="addUserPwdInput1" placeholder="请输入密码" value={addUserPwdInput1} onChange={(e) => { SetAddUserPwdInput1(e.target.value) }} />
-              </li>
-              <li>
-                <Select
-                  style={{ width: 160 }}
-                  placeholder="选择身份id"
-                  onChange={handleChange000}
-                  dropdownRender={menu => (
-                    <div>
-                      {menu}
-                      <Divider style={{ margin: '4px 0' }} />
-                    </div>
-                  )}
-                >
-                  {
-                    AddUserStore.IdentityList && AddUserStore.IdentityList.map((v: any, index: number) => {
-                      return <Option key={v.identity_id} value={v.identity_text}>{v.identity_text}</Option>
-                    })
-                  }
-                </Select>
-              </li>
-              <li>
-                <Button type="primary" size='middle' onClick={() => { onOk01() }}>确定</Button>
-                <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { SetAddUserInput1(''); SetAddUserPwdInput1('') }}>重置</Button>
-              </li>
-            </TabPane>
-          </Tabs>
-        </li>
+            </li>
+            <li>
+              <Button type="primary" size='middle' onClick={() => { onOk0() }}>确定</Button>
+              <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { SetAddUserInput(''); SetAddUserPwdInput('') }}>重置</Button>
+            </li>
+          </TabPane>
+          <TabPane tab="更新用户" key="2">
+            <Select
+              style={{ width: 160 }}
+              placeholder="选择用户id"
+              onChange={handleChange00}
+              dropdownRender={menu => (
+                <div>
+                  {menu}
+                  <Divider style={{ margin: '4px 0' }} />
+                </div>
+              )}
+            >
+              {
+                AddUserStore.UserList && AddUserStore.UserList.map((v: any, index: number) => {
+                  return <Option key={v.user_id} value={v.user_name}>{v.user_name}</Option>
+                })
+              }
+            </Select>
+            <li>
+              <Input name="addUserInput1" placeholder="请输入用户名" value={addUserInput1} onChange={(e) => { SetAddUserInput1(e.target.value) }} />
+            </li>
+            <li>
+              <Input name="addUserPwdInput1" placeholder="请输入密码" value={addUserPwdInput1} onChange={(e) => { SetAddUserPwdInput1(e.target.value) }} />
+            </li>
+            <li>
+              <Select
+                style={{ width: 160 }}
+                placeholder="选择身份id"
+                onChange={handleChange000}
+                dropdownRender={menu => (
+                  <div>
+                    {menu}
+                    <Divider style={{ margin: '4px 0' }} />
+                  </div>
+                )}
+              >
+                {
+                  AddUserStore.IdentityList && AddUserStore.IdentityList.map((v: any, index: number) => {
+                    return <Option key={v.identity_id} value={v.identity_text}>{v.identity_text}</Option>
+                  })
+                }
+              </Select>
+            </li>
+            <li>
+              <Button type="primary" size='middle' onClick={() => { onOk01() }}>确定</Button>
+              <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { SetAddUserInput1(''); SetAddUserPwdInput1('') }}>重置</Button>
+            </li>
+          </TabPane>
+        </Tabs>
         {/* <AddList navList={[{ title: "添加用户" }, { title: "修改用户" }]} list={ShowIdentityList1}  /> */}
       </div>
 

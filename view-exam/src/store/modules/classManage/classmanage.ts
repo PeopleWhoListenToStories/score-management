@@ -1,5 +1,5 @@
 import { action, observable } from 'mobx';
-import Axios from '../../../utils/request';
+import ajax from '../../../utils/request';
 import { addClass } from '../../../api/module/class'
 
 export default class Class {
@@ -7,11 +7,11 @@ export default class Class {
     classlist = []
 
     @action
-    getClassmanage() {
-        Axios.get('/manger/grade').then(res => {
-            console.log(res.data.data)
-            this.classlist = res.data.data
-        })
+    async getClassmanage() {
+        const result: any = await ajax.get('/manger/grade');
+        if (result.data.code === 1) {
+            this.classlist = result.data.data
+        }
     }
 
     @action

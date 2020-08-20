@@ -84,7 +84,7 @@ export default class AllClasses {
             if (res.data.code === 1) {
                 this.DetailData = res.data.data
                 props.history.push({
-                    pathname: `/main/editQusetion`,
+                    pathname: `/main/editQuestion`,
                 })
             }
         })

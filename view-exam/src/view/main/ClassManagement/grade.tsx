@@ -63,6 +63,7 @@ export default function Grade() {
     <Table
       columns={columns}
       dataSource={Class.classlist}
+      rowKey={(record:any) => record.grade_id}
     />
     <>
       <Modal

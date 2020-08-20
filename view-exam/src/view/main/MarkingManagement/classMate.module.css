@@ -1,0 +1,28 @@
+.wrapper {
+  width: auto;
+  height: auto;
+  padding: 20px;
+}
+
+.top {
+  border-radius: 5px;
+  background: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 30px;
+}
+
+.content {
+  border-radius: 5px;
+  background: white;
+}
+
+:global(.top) .ant-form {
+  display: flex;
+  justify-items: center;
+}
+
+:global(.top) .ant-row {
+  padding: 0 10px 0 20px;
+}

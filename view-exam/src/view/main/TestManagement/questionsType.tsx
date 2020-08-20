@@ -70,7 +70,7 @@ function QuestionsType() {
         添加类型
         </Button>
 
-      <Table columns={columns} dataSource={AllClass.Typedata} />
+      <Table columns={columns} dataSource={AllClass.Typedata} rowKey={(record) => record.questions_type_id}/>
 
       <Modal
         visible={visibled}

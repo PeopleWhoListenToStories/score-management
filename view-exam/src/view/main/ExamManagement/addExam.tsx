@@ -4,7 +4,8 @@ import { useHistory } from 'react-router-dom'
 import { Layout, Breadcrumb, Form, Input, InputNumber, DatePicker, Button, Select } from 'antd';
 import useStore from '../../../context/useStore'
 const { Content } = Layout;
-export default function () {
+
+export default function() {
     const history = useHistory();
    let {ExamManagement} =useStore()
    useEffect(()=>{
@@ -63,7 +64,7 @@ export default function () {
                 </Select>
             </Form.Item>
             <Form.Item name={['user', 'subject_id']} label="选择课程" rules={[{ required: true }]}>
-                <Select>
+                {/* <Select>
                     {
                         ExamManagement.Allcoursesdata.map((item: any) => {
                             return (
@@ -71,7 +72,7 @@ export default function () {
                             )
                         })
                     }
-                </Select>
+                </Select> */}
             </Form.Item>
             <Form.Item name={['user', 'number']} label="设置题量" rules={[{ required: true }]}>
                 <InputNumber min={3} max={10} />

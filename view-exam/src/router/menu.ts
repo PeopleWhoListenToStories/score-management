@@ -23,6 +23,7 @@ import StudentPage from '../view/main/ClassManagement/student'
 
 // 阅卷管理
 import ExamPaperClassListPage from '../view/main/MarkingManagement/examPaperClassList'
+import ClassMate from "../view/main/MarkingManagement/classmate"
 
 const menus: IMenuItem[] = [
   {
@@ -191,6 +192,14 @@ const menus: IMenuItem[] = [
           component: ExamPaperClassListPage,
           name: '待批班级',
           show: true
+        }
+      },
+      {
+        path: '/main/classmate',
+        meta: {
+          component: ClassMate,
+          name: '',
+          show: false
         }
       }
     ]

@@ -1,9 +1,19 @@
-.box {
-  width: auto;
-  height: auto;
-  background-color: red;
+:global(.box) .ant-menu-item-selected {
+  background: red;
 }
 
-:global(.box) .ant_layout_sider {
-  background: red;
+:global(.box) .ant-layout-sider {
+  background: #232A41 !important;
+}
+
+:global(.box) .ant-menu-dark {
+  background: #232A41 !important;
+}
+
+:global(.box) .ant-menu {
+  background: #232A41 !important;
+}
+
+:global(.box) .ant-layout-sider-children {
+  background: wheat;
 }
