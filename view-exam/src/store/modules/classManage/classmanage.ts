@@ -2,7 +2,7 @@ import { action, observable } from 'mobx';
 import Axios from '../../../utils/request';
 import { addClass, deleteclass, addGrade } from '../../../api/module/class'
 
-class Class {
+export default   class Class {
     @observable
     classlist = []
 
@@ -39,6 +39,4 @@ class Class {
     }
 }
 
-export default {
-    Class: new Class()
-}
+

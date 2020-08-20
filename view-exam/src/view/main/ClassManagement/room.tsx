@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { Table, Button, Modal, Input, Form } from 'antd';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
-import './room.scss'
+import './room.module.scss'
+
 
 export default function Grade() {
-
     const { Room } = useStore();
+
+    // const [flag, UseFlag] = useState<boolean>(Room.visible)
+
     useEffect(() => {
         Room.getRoommanage();
     }, [])
@@ -26,9 +29,7 @@ export default function Grade() {
                 </span>
             }
         },
-
     ];
-
 
     const layout = {
         labelCol: {
@@ -46,14 +47,14 @@ export default function Grade() {
     };
 
 
-    return useObserver(() => <div>
-        <>
-            <Button type="primary" onClick={() => Room.showModal()}>
-                添加教室
-        </Button>
+    return useObserver(() =>
+        <div>
+            <Button type="primary" onClick={() => { Room.visible = true }}> 添加教室  </Button>
+            <>
             <Modal
                 title="添加教室"
                 visible={Room.visible}
+                footer={null}
             >
                 <Form
                     {...layout}

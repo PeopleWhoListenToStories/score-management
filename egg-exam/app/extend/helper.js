@@ -17,9 +17,10 @@ const createKeys = () => {
     return 'tao';
 }
 const sha256 = (secret) => {
-    return crypto.createHmac('sha256', secret)
+   let str = crypto.createHmac('sha256', secret)
                    .update(createKeys())
                    .digest('hex');
+                   return str;
 }
 // console.log(sha256('w916521PP!'));
 /**

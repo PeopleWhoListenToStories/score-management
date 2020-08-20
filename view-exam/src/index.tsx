@@ -8,7 +8,6 @@ import * as serviceWorker from './serviceWorker';
 
 import store from './store/index'
 import StoreContext from './context/StroeContext'
-
 ReactDOM.render(
   // <React.StrictMode>
     <StoreContext.Provider value={store}>

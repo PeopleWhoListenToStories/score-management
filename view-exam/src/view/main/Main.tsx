@@ -6,7 +6,7 @@ import Roterview from '../../router/RouterView';
 import useStore from '../../context/useStore';
 
 // 引入组件
-import MenuSider from '../../components/MenuSide1/MenuSider';
+import MenuSider from '../../components/MenuSide/MenuSider';
 import HeaderBar from '../../components/HeaderBar/Header';
 
 // 引入antd
@@ -18,17 +18,17 @@ import menu from '../../router/menu';
 const { Header, Sider, Content } = Layout;
 
 // 获取右侧渲染组件名称
-// const getTitle = (path: string) => {
-//   let title = '';
-//   menu.forEach(item => {
-//     item.children.forEach((value:any) => {
-//       if (value.path === path) {
-//         title = value.meta.title;
-//       }
-//     })
-//   })
-//   return title;
-// }
+const getTitle = (path: string) => {
+  let title = '';
+  menu.forEach(item => {
+    item.children.forEach((value: any) => {
+      if (value.path === path) {
+        title = value.meta.title;
+      }
+    })
+  })
+  return title;
+}
 
 export default function Main(props: any) {
   const history = useHistory();
@@ -45,6 +45,7 @@ export default function Main(props: any) {
       <Layout>
         <Sider style={{ background: '#232A41' }} ><MenuSider></MenuSider></Sider>
         <Content>
+          {/* <h2>{props.routes.find((v: any) => v.path == props.location.pathname).meta.name && " "}</h2> */}
           {/* <h2>{getTitle(history.location.pathname) ? getTitle(history.location.pathname) : '欢迎光临'}</h2> */}
           <Roterview routes={props.routes} />
         </Content>

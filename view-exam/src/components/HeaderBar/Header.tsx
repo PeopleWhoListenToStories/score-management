@@ -33,7 +33,7 @@ export default function Header() {
         <Dropdown overlay={menu} arrow>
           <a className="ant-dropdown-link" href="1" onClick={e => e.preventDefault()}>
             <Avatar src={(MainStore.user_info as any).avatar ? (MainStore.user_info as any).avatar : "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"} />
-            {(MainStore.user_info as any).user_name} 
+            {(MainStore.user_info as any).user_name} · {(MainStore.user_info as any).identity_text}
           </a>
         </Dropdown>
       </p>

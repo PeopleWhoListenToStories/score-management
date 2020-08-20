@@ -17,17 +17,23 @@ export default class MainStore {
   @observable
   MenuList: Item[] = []; // 菜单列表
   @observable
-  ViewAuthority: any[] = []; //有权限视图列表
+  ViewAuthority: any[] = []; // 有权限视图列表
   @observable
-  NoViewAuthority: any[] = []; //没 有权限视图列表
+  NoViewAuthority: any[] = []; // 没有权限视图列表
+  @observable
+  isGetInitFlag: boolean = true; // 获取个人信息开关
 
   @action  // 获取列表数据方法
   async initAction() {
-    const result: any = await getUserInfo();
-    if (result.data.code === 1) {
-      this.user_info = result.data.data;
-      setCookie('identity_id', result.data.data.identity_id); //设置权限id字段
-      // await this.getMenuListAction(result.data.data.user_id)
+    if (this.isGetInitFlag) {
+      const result: any = await getUserInfo();
+      if (result.data.code === 1) {
+        this.user_info = result.data.data;
+        setCookie('user_id', result.data.data.user_id)
+        setCookie('identity_id', result.data.data.identity_id); //设置权限id字段
+        // await this.getMenuListAction(result.data.data.user_id)
+        this.isGetInitFlag = false;
+      }
     }
   }
   //@action // 获取用户的视图权限数据

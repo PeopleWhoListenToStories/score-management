@@ -3,7 +3,7 @@ import {action,observable} from 'mobx';
 import Axios from '../../../utils/request';
 import {already} from '../../../api/module/class'
 
-class Stu {
+export default  class Stu {
     @observable
     stulist=[]
 
@@ -15,6 +15,4 @@ class Stu {
     }
 }
 
-export default {
-    Stu:new Stu()
-}
+ 

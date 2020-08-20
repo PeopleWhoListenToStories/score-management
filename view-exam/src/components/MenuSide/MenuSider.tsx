@@ -1,45 +1,36 @@
 import React from "react";
+import menu from "../../router/menu"
+import { Menu } from 'antd';
 import MenuSideCss from './MenuSide.module.scss'
-import { NavLink, useHistory } from 'react-router-dom'
+import { NavLink, useHistory, Link } from 'react-router-dom'
 import useStore from '../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
-import { Menu } from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons'
 const { SubMenu } = Menu;
 
-const defaultIndex: string = '-1';
-
-const showMenu = (menu: any[]) => {
-  return menu.map((item, index) => {
-    if (item.meta.show === false) {
-      return null;
-    }
-    if (item.children && item.children.length) {
-      return <Menu.SubMenu key={'/main' + index} title={item.meta.title}>
-        {showMenu(item.children)}
-      </Menu.SubMenu>
-    } else {
-      // console.log(item.path,"11")
-      return <Menu.Item key={item.path}>
-        <NavLink to={item.path}>{item.meta.title}</NavLink>
-      </Menu.Item>
-    }
-  })
-}
-
+console.log(MenuSideCss,'MenuSideCss')
 export default function MenuSider() {
-  const history = useHistory();
-  const { MainStore } = useStore();
-
   return (
-    useObserver(() => <Menu
-      theme='dark'
-      mode="inline"
-      defaultSelectedKeys={['0']}
-      defaultOpenKeys={['/main' + defaultIndex]}
-      style={{ height: '100%', borderRight: 0 }}
-    >
-      {showMenu(MainStore.ViewAuthority)}
-    </Menu>)
+    <div className={MenuSideCss.box}>
+      <Menu
+        defaultSelectedKeys={['0']}
+        defaultOpenKeys={[`${window.location.hash.slice(1)}`]}
+        mode="inline"
+        theme="dark"
+      >
+        {menu.map((item, index) => {
+          return <SubMenu key={index} title={item.name} >
+            {
+              item.children && item.children.map((v, i) => {
+                if ((v.meta as any).show) {
+                  return <Menu.Item key={v.path}>
+                    <Link to={v.path} >{(v.meta as any).name}</Link>
+                  </Menu.Item>
+                }
+              })
+            }
+          </SubMenu>
+
+        })}
+      </Menu> </div>
   )
 }
