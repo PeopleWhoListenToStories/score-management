@@ -1,7 +1,7 @@
 import React ,{useEffect} from 'react'
 import useStore from '../../../context/useStore'
 import {useObserver} from 'mobx-react-lite'
-import { Table,Select ,Form,Button, Radio } from 'antd';
+import { Table,Select ,Form,Button } from 'antd';
 import {useHistory} from 'react-router-dom'
 import { SearchOutlined} from '@ant-design/icons';
 import style from './examList.module.css'
@@ -12,7 +12,7 @@ export default function (){
      ExamManagement.getExamList();
      ExamManagement.getExamTypedata();
      ExamManagement.getAllcourses();
-    },[])
+    },[]);
  async function onFinish (values :any ) {
      await  ExamManagement.getdata(values.exam_id,values.subject_id)
         history.push('/main/condition')

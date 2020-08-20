@@ -6,6 +6,7 @@ import Editor from 'for-editor'
 import style from './Edit.module.css'
 import {useHistory} from 'react-router-dom'
 export default function() {
+
     let {ExamManagement} =useStore();
     let history=useHistory()
     useEffect(()=>{ 

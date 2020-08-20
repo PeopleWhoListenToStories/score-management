@@ -98,6 +98,7 @@ export default class ExamManagement{
             return;
         }
         let result:any = await ExamDetail(id); 
+        console.log(result)
         if (result.data.code === 1){
             message.success(result.data.msg);
             this.examinationdata = result.data.data;
