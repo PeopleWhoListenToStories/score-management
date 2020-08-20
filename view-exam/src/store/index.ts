@@ -11,7 +11,8 @@ import ExamManagement from './modules/Exam/exams'
 
 import Class from './modules/classManage/classmanage'
 import Room from './modules/classManage/roommanage'
-import Stu from './modules/classManage/studentmanage'
+
+// import Stu from './modules/'
 
 import Marking from "./modules/MarkingManagement/index"
 
@@ -25,5 +26,5 @@ export default {
   Class: new Class(),
   Room:new Room(),
   Marking:new Marking(),
-  Stu: new Stu()
+  // Stu: new Stu()
 }

@@ -12,7 +12,8 @@ export default function Grade() {
 
     useEffect(() => {
         Room.getRoommanage();
-    }, [])
+    })
+
 
     const columns = [
         { title: '教室号', dataIndex: 'room_text', key: 'room_text' },
@@ -24,7 +25,6 @@ export default function Grade() {
                     {
                         <button className='btn' onClick={() => {
                             // Room.Del(record.room_id)
-                            Room.Del(record.room_id)
                         }}>删除</button>
                     }
                 </span>
@@ -48,9 +48,9 @@ export default function Grade() {
     };
 
 
-    return useObserver(() => <div>
-        <Button type="primary" onClick={() => { Room.visible = true }}> 添加教室  </Button>
-        <>
+    return useObserver(() =>
+        <div>
+            <Button type="primary" onClick={() => { Room.visible = true }}> 添加教室  </Button>
             <Modal
                 title="添加教室"
                 visible={Room.visible}
@@ -81,19 +81,16 @@ export default function Grade() {
                     </Form.Item>
 
                     <Form.Item {...tailLayout}>
-                        <Button type="primary" htmlType="submit">
-                            添加
-                        </Button>
+                        <Button type="primary" htmlType="submit">  添加 </Button>
                     </Form.Item>
                 </Form>
             </Modal>
-        </>
-        <Table
-            rowKey={Room.roomlist.room_id}
-            columns={columns}
-            dataSource={Room.roomlist}
-        />
-    </div>)
+            {/* <Table
+                columns={columns}
+                dataSource={Room.roomlist}
+            /> */}
+        </div>)
 }
+
 
 

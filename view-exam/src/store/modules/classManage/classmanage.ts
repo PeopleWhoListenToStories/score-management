@@ -1,8 +1,8 @@
 import { action, observable } from 'mobx';
 import ajax from '../../../utils/request';
-import { addClass, deleteclass, addGrade } from '../../../api/module/class'
+import { addClass, deleteclass } from '../../../api/module/class'
 
-export default   class Class {
+export default class Class {
     @observable
     classlist = []
 
@@ -15,26 +15,15 @@ export default   class Class {
     }
 
     @action
-    async delList(id: string) {
-        let result = await deleteclass(id)
-        if (result.data.code === 1) {
-            console.log(result.data.msg)
-            this.getClassmanage()
-        }
+    delList() {
+
     }
 
     @action
-    upd(val:any) {
-        console.log(val);
+    addClassAction() {
+
     }
-    @action
-    async addClassAction(val: any) {
-        console.log(val)
-            let { grade_name, room_text, subject_text } = val;
-            let result = await addGrade(grade_name, room_text, subject_text)
-            if (result.data.code === 1) {
-                console.log(result.data.msg)
-                this.getClassmanage();
-         }
-    }
+
 }
+
+

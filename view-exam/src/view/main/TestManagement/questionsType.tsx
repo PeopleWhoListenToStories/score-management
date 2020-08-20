@@ -46,7 +46,7 @@ function QuestionsType() {
   useEffect(() => {
     AllClass.getClassData()
     // data=Addtypes.Typedata
-  }, [])
+  }, [AllClass])
 
 
   const showModal = () => {

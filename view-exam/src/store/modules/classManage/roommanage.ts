@@ -35,7 +35,6 @@ export default class Room {
         let result = await addRoom(values.username)
         if (result.data.code === '1') {
             console.log(result.data.msg)
-            this.getRoommanage();
         }
         this.visible = false;
     };
@@ -43,9 +42,8 @@ export default class Room {
     @action
     async Del(room_id: string) {
         let result = await deleteRoom(room_id)
-        if (result.data.code === 1) {
+        if (result.data.code === '1') {
             console.log(result.data.msg)
-           this.getRoommanage();
         }
     }
 

@@ -10,6 +10,9 @@ import userStore from '../../../context/useStore'
 
 import { FormInstance } from 'antd/lib/form';
 
+//表单6
+import FormSix from './addForm/addFormsix'
+
 const { Option } = Select;
 const { TabPane } = Tabs;
 const { useForm } = Form;
@@ -194,10 +197,6 @@ const AddTeacher: React.FC = () => {
     console.log(key);
   }
 
-  {
-    console.log(AddUserStore.UserList);
-  }
-
   return useObserver(() => (
 
     <div className={AddCss.addTeacher}>
@@ -237,7 +236,7 @@ const AddTeacher: React.FC = () => {
             </Form>
           </TabPane>
           <TabPane tab="更新用户" key="2">
-            <Form {...layout} name="register" onFinish={(values: any) => {AddUserStore.renewalUserAction(values.user_id,values.user_name, values.user_pwd,values.identity_id, avatar)  ; formRefOnes.resetFields() }} initialValues={{ identity_text: '' }} form={formRefOnes}>
+            <Form {...layout} name="register" onFinish={(values: any) => { AddUserStore.renewalUserAction(values.user_id, values.user_name, values.user_pwd, values.identity_id, avatar); formRefOnes.resetFields() }} initialValues={{ identity_text: '' }} form={formRefOnes}>
               <Form.Item name="user_id" rules={[{ required: true }]}>
                 <Select
                   style={{ width: 160 }}
@@ -345,7 +344,7 @@ const AddTeacher: React.FC = () => {
                 </Select>
               </Form.Item>
               <Form.Item {...tailLayout} style={{ textAlign: 'left' }}>
-                <Button type="primary" htmlType="submit" >  确认  </Button>
+                <Button type="primary" htmlType="submit" style={{marginLeft: 0}} >  确认  </Button>
                 <Button htmlType="button" onClick={() => { formRefFour.resetFields() }} style={{ marginLeft: 20 }}> 重置 </Button>
               </Form.Item>
             </Form>
@@ -410,59 +409,53 @@ const AddTeacher: React.FC = () => {
         {/* <AddList navList={[{ title: "给身份设置api接口权限" }]} list={ShowIdentityList3} /> */}
       </div>
 
+      {/* 改写身份权限api */}
       <div className={AddCss.item}>
-        <li>
-          <Tag style={{ fontSize: '.07rem', padding: '0.03rem 0.07rem' }}  >
-            <span>给身份设置api接口权限 </span>
-          </Tag>
-        </li>
-        <li>
-          <Select
-            style={{ width: 160 }}
-            placeholder="选择身份id"
-            onChange={handleChange3}
-            dropdownRender={menu => (
-              <div>
-                {menu}
-                <Divider style={{ margin: '4px 0' }} />
-              </div>
-            )}
-          >
-            {
-              AddUserStore.IdentityList && AddUserStore.IdentityList.map((v: any, index: number) => {
-                return <Option key={v.identity_id} value={v.identity_text}>{v.identity_text}</Option>
-              })
-            }
-          </Select>
-        </li>
-        <li>
-          <Select
-            style={{ width: 160 }}
-            placeholder="请给身份设置视图权限"
-            onChange={handleChange4}
-            dropdownRender={menu => (
-              <div>
-                {menu}
-                <Divider style={{ margin: '4px 0' }} />
-              </div>
-            )}
-          >
-            {
-              AddUserStore.ViewAuthorityList && AddUserStore.ViewAuthorityList.map((v: any, index: number) => {
-                return <Option key={v.view_authority_id} value={v.view_authority_text}>{v.view_authority_text}</Option>
-              })
-            }
-          </Select>
-        </li>
-        <li>
-          <Button type="primary" size='middle' onClick={() => { onOk5() }}>确定</Button>
-          <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => {
-            UseSelectHasViewAuthority({
-              view_authority_text: '',
-              view_id: ''
-            })
-          }}>重置</Button>
-        </li>
+        <Tabs defaultActiveKey="1"  >
+          <TabPane tab="给身份设置视图接口权限" key="1">
+            <Form
+              name="register"
+              onFinish={(values: any) => { AddUserStore.setIdentityApiAction(values.identity_id, values.view_authority_id) }}
+              form={formRefSix}
+            >
+              <Form.Item
+                name="identity_id"
+                rules={[{ required: true }]}
+              >
+                <Select allowClear
+                  placeholder="选择身份id"
+                >
+                  {
+                    AddUserStore.IdentityList && AddUserStore.IdentityList.map((v: any) => {
+                      return <Option key={v.identity_id} value={v.identity_id}>{v.identity_text}</Option>
+                    })
+                  }
+                </Select>
+              </Form.Item>
+
+              <Form.Item
+                name="view_authority_id"
+                rules={[{ required: true }]}
+              >
+                <Select allowClear
+                  placeholder="请给身份设置视图权限"
+                >
+                  {
+                    AddUserStore.ViewAuthorityList && AddUserStore.ViewAuthorityList.map((v: any) => {
+                      return <Option key={v.view_authority_id} value={v.view_authority_id}>{v.view_authority_text}</Option>
+                    })
+                  }
+                </Select>
+              </Form.Item>
+
+              <Form.Item>
+                <Button htmlType="submit" style={{ backgroundImage: "linear-gradient(to right,blue,skyblue)" }}>  确定 </Button>
+                <Button htmlType="button" onClick={() => { formRefSix.resetFields() }} style={{ marginLeft: 20 }}>   重置  </Button>
+              </Form.Item>
+            </Form>
+          </TabPane>
+        </Tabs>
+
         {/* <AddList navList={[{ title: "给身份设置视图权限" }]} list={ShowIdentityList4} /> */}
       </div>
 

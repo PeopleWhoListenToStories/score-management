@@ -3,8 +3,8 @@ import menus from "../router/menu"
 
 //login
 import Login from '../view/login/Login'
-import Main from '../view/main/Main'
 
+import Main from '../view/main/Main'
 
 // 错误处理页面
 import NoFound from '../view/error/NoFound';

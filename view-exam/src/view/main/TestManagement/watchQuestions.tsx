@@ -21,7 +21,7 @@ export default function WatchQuestions(props: any) {
     useEffect(() => {
         AllClass.getClassData()
         AllClass.getAllTest()
-    }, [])
+    }, [AllClass])
 
     let [selectedTag,setselectedTag]=useState<any[]>([])
     let [sub,setsub]=useState<any>(undefined)
