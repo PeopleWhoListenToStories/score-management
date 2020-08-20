@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from "react-router-dom"
-
+import { useObserver } from "mobx-react-lite"
 import useStore from "../../../context/useStore"
-import { Table, Tag, Space } from 'antd';
-
+import { Table, Space } from 'antd';
 
 import ExamPaperClassListCss from "./examPaperClassList.module.scss";
-
-
 
 const ExamPaperClassList: React.FC = () => {
     const history = useHistory();
@@ -15,7 +12,7 @@ const ExamPaperClassList: React.FC = () => {
     const [pageSize, UsePageSize] = useState<number>(10);
     const [current, UseCurrent] = useState<number>(1);
 
-    const { Marking, Class } = useStore();
+    const { Class } = useStore();
 
     const columns = [
         {
@@ -38,26 +35,6 @@ const ExamPaperClassList: React.FC = () => {
             dataIndex: 'room_text',
             key: 'grade_id',
         },
-        // {
-        //   title: 'Tags',
-        //   key: 'tags',
-        //   dataIndex: 'tags',
-        //   render: tags => (
-        //     <>
-        //       {tags.map(tag => {
-        //         let color = tag.length > 5 ? 'geekblue' : 'green';
-        //         if (tag === 'loser') {
-        //           color = 'volcano';
-        //         }
-        //         return (
-        //           <Tag color={color} key={tag}>
-        //             {tag.toUpperCase()}
-        //           </Tag>
-        //         );
-        //       })}
-        //     </>
-        //   ),
-        // },
         {
             title: '操作',
             key: 'action',
@@ -97,9 +74,9 @@ const ExamPaperClassList: React.FC = () => {
         // Marking.getExamStudentDetailAction();
         // Marking.putExamStudentListAction();
         Class.getClassmanage(); // 获取班级数据
-    })
+    },[])
 
-    return (
+    return useObserver(() => (
         <div className={ExamPaperClassListCss.wrapper}>
             <h1>待批班级</h1>
             <div className="box">
@@ -113,7 +90,7 @@ const ExamPaperClassList: React.FC = () => {
                     }}
                     pagination={paginationConfig} />
             </div>
-        </div>
+        </div>)
     )
 }
 

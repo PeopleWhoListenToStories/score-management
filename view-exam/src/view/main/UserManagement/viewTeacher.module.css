@@ -1,9 +1,17 @@
-.ViewTeacher{
+.ViewTeacher {
   width: 100%;
   height: 100%;
-  padding:0 20px;
+  padding: 0 20px;
 }
 
-:global(.ViewTeacher  h2){
+:global(.ViewTeacher h2) {
   padding: 0;
+}
+
+:global .ant-table-thead > tr > th {
+  text-align: center;
+}
+
+:global .ant-table-row > tr > td {
+  text-align: center;
 }

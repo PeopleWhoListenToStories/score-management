@@ -8,7 +8,6 @@ class Marking {
   @action
   async getInitStudentAction() {
     const result: any = await getStudent('1', '2', '2', 1, 2, 3, 4);
-    console.log(result)
     if (result.data.code === 1) {
       this.StudentList = result.data.exam;
     }

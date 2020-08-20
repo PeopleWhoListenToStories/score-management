@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { useObserver } from 'mobx-react-lite';
 import AddCss from './addTeacher.module.css';
 
-import { Button, Input, Select, Divider, Tag, Tabs } from 'antd'
+import { Button, Input, Select, Divider, Tag, Tabs, Form } from 'antd'
 
 import AddList from '../../../components/AddList/AddList';
 import userStore from '../../../context/useStore'
 
+
+import { FormInstance } from 'antd/lib/form';
+
 const { Option } = Select;
 const { TabPane } = Tabs;
+const { useForm } = Form;
 
 
 const AddTeacher: React.FC = () => {
@@ -32,6 +36,14 @@ const AddTeacher: React.FC = () => {
   const { AddUserStore } = userStore();
 
   const avatar = ' '; //更改的用户头像
+  const [formRefOne] = Form.useForm();
+  const [formRefOnes] = Form.useForm();
+  const [formRefTwo] = Form.useForm();
+  const [formRefThree] = Form.useForm();
+  const [formRefFour] = Form.useForm();
+  const [formRefFive] = Form.useForm();
+  const [formRefSix] = Form.useForm();
+
 
   // const [showIdentityList, setIdentityList] = useState<any[]>([]);
 
@@ -56,6 +68,14 @@ const AddTeacher: React.FC = () => {
       ]
     }
   ]
+
+  const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
+  };
+  const tailLayout = {
+    wrapperCol: { offset: 8, span: 16 },
+  };
 
 
   useEffect(() => {
@@ -174,6 +194,10 @@ const AddTeacher: React.FC = () => {
     console.log(key);
   }
 
+  {
+    console.log(AddUserStore.UserList);
+  }
+
   return useObserver(() => (
 
     <div className={AddCss.addTeacher}>
@@ -181,153 +205,152 @@ const AddTeacher: React.FC = () => {
       <div className={AddCss.item}>
         <Tabs defaultActiveKey="1" onChange={callback}>
           <TabPane tab="添加用户" key="1">
-            <li>
-              <Input name="addUserInput" placeholder="请输入身份名称" value={addUserInput} onChange={(e) => { SetAddUserInput(e.target.value) }} />
-            </li>
-            <li>
-              <Input name="addUserPwdInput" placeholder="请输入密码" value={addUserPwdInput} onChange={(e) => { SetAddUserPwdInput(e.target.value) }} />
-            </li>
-            <li>
-              <Select
-                style={{ width: 160 }}
-                placeholder="选择身份id"
-                onChange={handleChange0}
-                dropdownRender={menu => (
-                  <div>
-                    {menu}
-                    <Divider style={{ margin: '4px 0' }} />
-                  </div>
-                )}
-              >
-                {
-                  AddUserStore.IdentityList && AddUserStore.IdentityList.map((v: any, index: number) => {
-                    return <Option key={v.identity_id} value={v.identity_text}>{v.identity_text}</Option>
-                  })
-                }
-              </Select>
-            </li>
-            <li>
-              <Button type="primary" size='middle' onClick={() => { onOk0() }}>确定</Button>
-              <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { SetAddUserInput(''); SetAddUserPwdInput('') }}>重置</Button>
-            </li>
+            <Form {...layout} name="register" onFinish={(values: any) => { AddUserStore.addUserAction(values.user_name, values.user_pwd, values.identity_id); formRefOne.resetFields() }} initialValues={{ identity_text: '' }} form={formRefOne}>
+              <Form.Item name="user_name" rules={[{ required: true }]}>
+                <Input placeholder="输入用户名" />
+              </Form.Item>
+              <Form.Item name="user_pwd" rules={[{ required: true }]}>
+                <Input placeholder="输入密码" />
+              </Form.Item>
+              <Form.Item name="identity_id" rules={[{ required: true }]}>
+                <Select
+                  style={{ width: 160 }}
+                  placeholder="选择身份id"
+                  dropdownRender={menu => (
+                    <div>
+                      {menu}
+                      <Divider style={{ margin: '4px 0' }} />
+                    </div>
+                  )}
+                >
+                  {
+                    AddUserStore.IdentityList && AddUserStore.IdentityList.map((v: any, index: number) => {
+                      return <Option key={v.identity_id} value={v.identity_id}>{v.identity_text}</Option>
+                    })
+                  }
+                </Select>
+              </Form.Item>
+              <Form.Item {...tailLayout} style={{ textAlign: 'left' }}>
+                <Button type="primary" htmlType="submit" >  确认  </Button>
+                <Button htmlType="button" onClick={() => { formRefOne.resetFields() }} style={{ marginLeft: 20 }}> 重置 </Button>
+              </Form.Item>
+            </Form>
           </TabPane>
           <TabPane tab="更新用户" key="2">
-            <Select
-              style={{ width: 160 }}
-              placeholder="选择用户id"
-              onChange={handleChange00}
-              dropdownRender={menu => (
-                <div>
-                  {menu}
-                  <Divider style={{ margin: '4px 0' }} />
-                </div>
-              )}
-            >
-              {
-                AddUserStore.UserList && AddUserStore.UserList.map((v: any, index: number) => {
-                  return <Option key={v.user_id} value={v.user_name}>{v.user_name}</Option>
-                })
-              }
-            </Select>
-            <li>
-              <Input name="addUserInput1" placeholder="请输入用户名" value={addUserInput1} onChange={(e) => { SetAddUserInput1(e.target.value) }} />
-            </li>
-            <li>
-              <Input name="addUserPwdInput1" placeholder="请输入密码" value={addUserPwdInput1} onChange={(e) => { SetAddUserPwdInput1(e.target.value) }} />
-            </li>
-            <li>
-              <Select
-                style={{ width: 160 }}
-                placeholder="选择身份id"
-                onChange={handleChange000}
-                dropdownRender={menu => (
-                  <div>
-                    {menu}
-                    <Divider style={{ margin: '4px 0' }} />
-                  </div>
-                )}
-              >
-                {
-                  AddUserStore.IdentityList && AddUserStore.IdentityList.map((v: any, index: number) => {
-                    return <Option key={v.identity_id} value={v.identity_text}>{v.identity_text}</Option>
-                  })
-                }
-              </Select>
-            </li>
-            <li>
-              <Button type="primary" size='middle' onClick={() => { onOk01() }}>确定</Button>
-              <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { SetAddUserInput1(''); SetAddUserPwdInput1('') }}>重置</Button>
-            </li>
+            <Form {...layout} name="register" onFinish={(values: any) => {AddUserStore.renewalUserAction(values.user_id,values.user_name, values.user_pwd,values.identity_id, avatar)  ; formRefOnes.resetFields() }} initialValues={{ identity_text: '' }} form={formRefOnes}>
+              <Form.Item name="user_id" rules={[{ required: true }]}>
+                <Select
+                  style={{ width: 160 }}
+                  placeholder="选择用户id"
+                  dropdownRender={menu => (
+                    <div>
+                      {menu}
+                      <Divider style={{ margin: '4px 0' }} />
+                    </div>
+                  )}
+                >
+                  {
+                    AddUserStore.UserList && AddUserStore.UserList.map((v: any, index: number) => {
+                      return <Option key={v.user_id} value={v.user_id}>{v.user_name}</Option>
+                    })
+                  }
+                </Select>
+              </Form.Item>
+              <Form.Item name="user_name" rules={[{ required: true }]}>
+                <Input placeholder="输入用户名" />
+              </Form.Item>
+              <Form.Item name="user_pwd" rules={[{ required: true }]}>
+                <Input placeholder="输入密码" />
+              </Form.Item>
+              <Form.Item name="identity_id" rules={[{ required: true }]}>
+                <Select
+                  style={{ width: 160 }}
+                  placeholder="选择身份id"
+                  dropdownRender={menu => (
+                    <div>
+                      {menu}
+                      <Divider style={{ margin: '4px 0' }} />
+                    </div>
+                  )}
+                >
+                  {
+                    AddUserStore.IdentityList && AddUserStore.IdentityList.map((v: any, index: number) => {
+                      return <Option key={v.identity_id} value={v.identity_id}>{v.identity_text}</Option>
+                    })
+                  }
+                </Select>
+              </Form.Item>
+              <Form.Item {...tailLayout} style={{ textAlign: 'left' }}>
+                <Button type="primary" htmlType="submit" >  确认  </Button>
+                <Button htmlType="button" onClick={() => { formRefOnes.resetFields() }} style={{ marginLeft: 20 }}> 重置 </Button>
+              </Form.Item>
+            </Form>
           </TabPane>
         </Tabs>
         {/* <AddList navList={[{ title: "添加用户" }, { title: "修改用户" }]} list={ShowIdentityList1}  /> */}
       </div>
 
       <div className={AddCss.item}>
-        <li>
-          <Tag style={{ fontSize: '.07rem', padding: '0.03rem 0.07rem' }}  >
-            <span>添加身份 </span>
-          </Tag>
-        </li>
-        <li> <Input name="addIdentityName" placeholder="请输入身份名称" value={addIdentityName} onChange={(e) => { updateText(e) }} />  </li>
-        <li>
-          <Button type="primary" size='middle' onClick={() => { onOk1() }}>确定</Button>
-          <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { UseAddIdentityName('') }}>重置</Button>
-        </li>
+        <Tabs defaultActiveKey="1"  >
+          <TabPane tab="添加身份" key="1">
+            <Form {...layout} name="register" onFinish={(values: any) => { AddUserStore.addIdentityAction(values.identity_text); formRefTwo.resetFields() }} initialValues={{ identity_text: '' }} form={formRefTwo}>
+              <Form.Item name="identity_text" rules={[{ required: true }]}>
+                <Input placeholder="请输入用户名" />
+              </Form.Item>
+              <Form.Item {...tailLayout} style={{ textAlign: 'left' }}>
+                <Button type="primary" htmlType="submit" >  确认  </Button>
+                <Button htmlType="button" onClick={() => { formRefTwo.resetFields() }} style={{ marginLeft: 20 }}> 重置 </Button>
+              </Form.Item>
+            </Form>
+          </TabPane>
+        </Tabs>
         {/* <AddList navList={[{ title: "添加身份" }]} list={addIdentityList} okBtn={(e:any)=>{console.log(e)}} /> */}
       </div>
 
       <div className={AddCss.item}>
-        <li>
-          <Tag style={{ fontSize: '.07rem', padding: '0.03rem 0.07rem' }}  >
-            <span>添加api接口权限 </span>
-          </Tag>
-        </li>
-        <li> <Input name="addApiName" placeholder="请输入api接口权限名称" value={addApiName} onChange={(e) => { UseAddApiName(e.target.value) }} />  </li>
-        <li> <Input name="addApiUrl" placeholder="请输入api接口权限url" value={addApiUrl} onChange={(e) => { UseAddApiUrl(e.target.value) }} />  </li>
-        <li> <Input name="addApiMethod" placeholder="请输入api接口权限方法" value={addApiMethod} onChange={(e) => { UseAddApiMethod(e.target.value) }} />  </li>
-
-        <li>
-          <Button type="primary" size='middle' onClick={() => { onOk2() }}>确定</Button>
-          <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { UseAddApiName(''); UseAddApiUrl(''); UseAddApiMethod('') }}>重置</Button>
-        </li>
+        <Tabs defaultActiveKey="1"  >
+          <TabPane tab="添加api接口权限" key="1">
+            <Form {...layout} name="register" onFinish={(values: any) => { AddUserStore.addAuthorityApiAction(values.identity_text, values.api_authority_url, values.api_authority_method); formRefThree.resetFields() }} initialValues={{ identity_text: '' }} form={formRefThree}>
+              <Form.Item name="identity_text" rules={[{ required: true }]}>
+                <Input placeholder="输入api接口权限名称" />
+              </Form.Item>
+              <Form.Item name="api_authority_url" rules={[{ required: true }]}>
+                <Input placeholder="输入api接口权限url" />
+              </Form.Item>
+              <Form.Item name="api_authority_method" rules={[{ required: true }]}>
+                <Input placeholder="输入api接口权限方法" />
+              </Form.Item>
+              <Form.Item {...tailLayout} style={{ textAlign: 'left' }}>
+                <Button type="primary" htmlType="submit" >  确认  </Button>
+                <Button htmlType="button" onClick={() => { formRefThree.resetFields() }} style={{ marginLeft: 20 }}> 重置 </Button>
+              </Form.Item>
+            </Form>
+          </TabPane>
+        </Tabs>
         {/* <AddList navList={[{ title: "添加api接口权限" }]} list={addApiAuthority} okBtn={(e:any)=>{console.log(e)}}/> */}
       </div>
 
       <div className={AddCss.item}>
-        <li>
-          <Tag style={{ fontSize: '.07rem', padding: '0.03rem 0.07rem' }}  >
-            <span>添加视图接口权限 </span>
-          </Tag>
-        </li>
-        <li>
-          <Select
-            style={{ width: 160 }}
-            placeholder="添加视图接口权限"
-            onChange={handleChange}
-            dropdownRender={menu => (
-              <div>
-                {menu}
-                <Divider style={{ margin: '4px 0' }} />
-              </div>
-            )}
-          >
-            {
-              AddUserStore.ViewAuthorityList && AddUserStore.ViewAuthorityList.map((v: any, index: number) => {
-                return <Option key={v.view_authority_id} value={v.view_authority_text}>{v.view_authority_text}</Option>
-              })
-            }
-          </Select>
-        </li>
-        <li>
-          <Button type="primary" size='middle' onClick={() => { onOk3() }}>确定</Button>
-          <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => {
-            UseSelectHasViewAuthority({
-              view_authority_text: '',
-              view_id: ''
-            })
-          }}>重置</Button>
-        </li>
+        <Tabs defaultActiveKey="1"  >
+          <TabPane tab="添加视图接口权限" key="1">
+            <Form {...layout} name="register" onFinish={(values: any) => { AddUserStore.addAuthorityViewAction(AddUserStore.ViewAuthorityList[values.gender].view_authority_text, AddUserStore.ViewAuthorityList[values.gender].view_id); formRefFour.resetFields() }} initialValues={{ addAuthorityView: '' }} form={formRefFour}>
+              <Form.Item name="gender" label="" rules={[{ required: true }]}>
+                <Select
+                  placeholder="请选择已有视图"
+                  allowClear
+                >
+                  {AddUserStore.ViewAuthorityList && AddUserStore.ViewAuthorityList.map((v: any, index: number) => {
+                    return <Option key={v.view_authority_id} value={index}>{v.view_authority_text}</Option>
+                  })}
+                </Select>
+              </Form.Item>
+              <Form.Item {...tailLayout} style={{ textAlign: 'left' }}>
+                <Button type="primary" htmlType="submit" >  确认  </Button>
+                <Button htmlType="button" onClick={() => { formRefFour.resetFields() }} style={{ marginLeft: 20 }}> 重置 </Button>
+              </Form.Item>
+            </Form>
+          </TabPane>
+        </Tabs>
         {/* <AddList navList={[{ title: "添加视图接口权限" }]} list={ShowIdentityList2} /> */}
       </div>
 

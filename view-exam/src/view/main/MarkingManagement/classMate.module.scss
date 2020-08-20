@@ -17,13 +17,12 @@
   border-radius: 5px;
   background: white;
 }
-
-:global(.top){
-  .ant-form {
-    display: flex;
-    justify-items: center;
+ 
+:global {
+  .ant-table-thead > tr > th {
+    text-align: center;
   }
-  .ant-row{
-    padding:0 10px 0 20px
+  .ant-table-tbody > tr > td {
+    text-align: center;
   }
 }
