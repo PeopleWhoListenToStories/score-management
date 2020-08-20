@@ -24,5 +24,8 @@ export const addGrade = (grade_name:string,room_id:string,subject_id:string) => 
 // 学生列表
 export const studentList = (student_id:string,student_name:string,student_pwd:string,grade_id:string) => ajax.put('/manger/student/edit',{student_id,student_name,student_pwd,grade_id});
 
-// 已分班
-export const already = () => ajax.get('/manger/student');
+// 已分班学生
+export const already = () => ajax.get('/manger/student/new');
+
+// 删除学生
+export const delStu = (student_id:string) => ajax.delete('/manger/student/:id=>student_id',{data:{student_id}});

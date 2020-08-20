@@ -10,7 +10,7 @@ const layout = {
     },
     wrapperCol: {
         span: 13,
-    },
+    }
 };
 const tailLayout = {
     wrapperCol: {
@@ -23,25 +23,31 @@ const tailLayout = {
 export default function Mask() {
 
     let { Class } = useStore();
+   console.log(Class.classlist)
+    const { Option } = Select;
+    
+//    let data=Class.classlist.filter(item=>{
+     
+//    })
 
+
+    function handleChange(value: any) {
+        console.log(`selected ${value}`);
+    }
+    
     const onFinish = (values: any) => {
         console.log('Success:123', values);
 
         Class.addClassAction(values)
     };
 
-    const { Option } = Select;
-
-    function handleChange(value: any) {
-        console.log(`selected ${value}`);
-    }
 
     return (
         <div className={style.maskBox}>
             <Form  {...layout}
                 name="basic"
                 initialValues={{
-                    remember: true,
+                    status: ''
                 }}
                 onFinish={onFinish}
             >
@@ -95,31 +101,7 @@ export default function Mask() {
                             })
                         }
                     </Select>
-                    label="课程名"
-                    name="subject_text"
-                    rules={[
-                        {
-                            required: true,
-                            message: '请输入课程名!',
-                        },
-                    ]}
-                    >
-                    <Input />
-                </Form.Item>
-
-                <Form.Item
-                    label="教室号"
-                    name="room_text"
-                    rules={[
-                        {
-                            required: true,
-                            message: '请输入教室号!',
-                        },
-                    ]}
-                >
-                    <Input />
-
-                </Form.Item>
+                    </Form.Item>
 
                 <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">

@@ -7,8 +7,8 @@ export default   class Class {
     classlist = []
 
     @action
-    getClassmanage() {
-        Axios.get('/manger/grade').then(res => {
+   async getClassmanage() {
+      await  Axios.get('/manger/grade').then(res => {
             console.log(res.data.data)
             this.classlist = res.data.data
         })
@@ -25,7 +25,7 @@ export default   class Class {
 
     @action
     upd(val:any) {
-        console.log(val);
+        console.log(val.grade_name,val.room_text);
     }
     @action
     async addClassAction(val: any) {

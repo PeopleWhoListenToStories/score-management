@@ -41,21 +41,16 @@ export default function Mask() {
             <Form  {...layout}
                 name="basic"
                 initialValues={{
-                    remember: true,
+                    status: '',
                 }}
                 onFinish={onFinish}
             >
                 <Form.Item
                     label="班级名"
                     name="grade_name"
-                    rules={[
-                        {
-                            required: true,
-                            message: '请输入班级名!',
-                        },
-                    ]}
+                   
                 >
-                    <Input />
+                     <Input prefix="班级名" disabled />
                 </Form.Item>
 
                 <Form.Item

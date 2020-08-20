@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Modal } from 'antd';
+import { Table, Button, Modal ,Popconfirm, message } from 'antd';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 import style from './grade.module.scss'
@@ -8,10 +8,19 @@ import Update from '../../../components/mask/Update'
 
 
 export default function Grade() {
-  let [visible, setVisible] = useState<boolean>();
+  let [visible, setVisible] = useState();
   let [flag, setFlag] = useState();
 
   const { Class } = useStore();
+
+  function confirm(val:any) {
+    message.success('删除成功');
+    Class.delList(val.grade_id);
+  }
+  
+  function cancel(e:any) {
+    console.log(e);
+  }
   const columns = [
     { title: '班级名', dataIndex: 'grade_name', key: 'grade_name' },
     { title: '课程名', dataIndex: 'subject_text', key: 'subject_text' },
@@ -29,32 +38,27 @@ export default function Grade() {
         </span>
       }
     },
-    //   {
-    //     title: '操作',
-    //     key: 'action',
-    //     render: (text: number, record: any) => {
-    //         return <span>
-    //             {
-    //                 <button className='btn' onClick={() => {
-    //                      Room.Del(record.room_id) 
-    //                 }}>修改</button>
-    //             }
-    //         </span>
-    //     }
-    // },
     {
       title: '操作',
       key: 'action',
       render: (text: number, record: any) => {
-        return <span>
-          {
-            <button className='btn' onClick={() => {
-              Class.delList(record.grade_id)
-            }}>删除</button>
-          }
-        </span>
+          return <span>
+              {
+                  <Popconfirm
+                  title="确定要删除这项任务吗?"
+                  onConfirm={()=>{
+                     confirm(record)
+                  }}
+                  onCancel={cancel}
+                  okText="确定"
+                  cancelText="取消"
+                >
+                  <a href="#" >删除</a>
+                </Popconfirm>
+              }
+          </span>
       }
-    },
+  }
   ];
   const showModal = () => {
     setVisible(true)
@@ -67,6 +71,7 @@ export default function Grade() {
   const handleCancel = () => {
     setVisible(false)
   };
+
   const showFlag = (val:any) => {
     Class.upd(val)
     setFlag(true)
@@ -79,12 +84,6 @@ export default function Grade() {
   const FlagCancel = () => {
     setFlag(false)
   };
-
-
-  // const handleCancel = () => {
-  //   setVisible(false)
-  // };
-
   useEffect(() => {
     Class.getClassmanage();
   }, [])
@@ -94,6 +93,7 @@ export default function Grade() {
     <Table
       columns={columns}
       dataSource={Class.classlist}
+      rowKey={(r)=>r.grade_id}
     />
     <>
       <Modal
@@ -113,6 +113,7 @@ export default function Grade() {
         visible={flag}
         onOk={FlagOk}
         onCancel={FlagCancel}
+          footer={null}
       >
         <Update />
       </Modal>

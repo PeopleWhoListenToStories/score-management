@@ -1,7 +1,7 @@
 
 import {action,observable} from 'mobx';
 import Axios from '../../../utils/request';
-import {already} from '../../../api/module/class'
+import {delStu} from '../../../api/module/class'
 
 export default  class Stu {
     @observable
@@ -9,9 +9,18 @@ export default  class Stu {
 
     @action
     list(){
-        Axios.get('/manger/student').then(res=>{
+        Axios.get('/manger/student/new').then(res=>{
             console.log(res)
+            this.stulist=res.data.data
         })
+    }
+    @action 
+   async Del(id:string){
+       let result=await delStu(id);
+       console.log(result)
+       if(result){
+           console.log(result.data.msg)
+       }
     }
 }
 
