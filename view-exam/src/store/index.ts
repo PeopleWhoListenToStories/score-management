@@ -24,12 +24,7 @@ export default {
   // ViewTeacherStore: new ViewTeacherStore(),
   AllClass: new AllClasses(),
   ExamManagement: new ExamManagement(),
-<<<<<<< HEAD
-  Class:Class.Class,
-  Room:Room.Room,
-  Stu:Stu.Stu
-=======
   Class: new Class(),
-  Room:new Room(),
->>>>>>> 68ae0a1268738766907fe9aa2e6e8b4c4b5c411b
+  Room: new Room(),
+  Stu: new Stu()
 }

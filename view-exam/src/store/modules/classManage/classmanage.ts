@@ -1,12 +1,8 @@
 import { action, observable } from 'mobx';
 import Axios from '../../../utils/request';
-<<<<<<< HEAD
 import { addClass, deleteclass, addGrade } from '../../../api/module/class'
-=======
-import { addClass } from '../../../api/module/class'
->>>>>>> 68ae0a1268738766907fe9aa2e6e8b4c4b5c411b
 
-export default class Class {
+export default   class Class {
     @observable
     classlist = []
 
@@ -19,7 +15,6 @@ export default class Class {
     }
 
     @action
-<<<<<<< HEAD
     async delList(id: string) {
         let result = await deleteclass(id)
         if (result.data.code === 1) {
@@ -41,22 +36,5 @@ export default class Class {
                 console.log(result.data.msg)
                 this.getClassmanage();
          }
-=======
-    delList() {
-
-    }
-
-    @action
-    addClassAction() {
-
->>>>>>> 68ae0a1268738766907fe9aa2e6e8b4c4b5c411b
     }
 }
-
-<<<<<<< HEAD
-export default {
-    Class: new Class()
-}
-=======
-
->>>>>>> 68ae0a1268738766907fe9aa2e6e8b4c4b5c411b
