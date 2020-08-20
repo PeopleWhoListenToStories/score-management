@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useObserver } from 'mobx-react-lite'
 import useStore from '../../../context/useStore'
 import Editor from 'for-editor'
-
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import style from './addQues.module.css'
 import {
     Form,
@@ -134,15 +134,18 @@ export default function Edit() {
                     onCancel={handleCancel}
                     cancelText="取消"
                     okText="确定"
+                    footer={[
+                        // 定义右下角 按钮的地方 可根据需要使用 一个或者 2个按钮
+                        <Button key="back" onClick={handleCancel} style={{ marginLeft: -180 }}>取消</Button>,
+                        <Button key="submit" type="primary" onClick={showModal} size='large' style={{ marginRight: 180 }}>
+                            确定
+                    </Button>]}
                 >
-                    <p>你确认添加这道试题吗?</p>
-                    <p>真的要添加吗?</p>
-                    <Button type="primary" onClick={onFinish} style={{ marginLeft: 180, marginTop: 20, marginRight: 20 }}>
-                        确定
-        </Button>
-                    <Button type="primary" onClick={handleCancel}>
-                        取消
-        </Button>
+                    <div style={{ textAlign: "center" }}>
+                        <ExclamationCircleOutlined />
+                        <p>你确认添加这道试题吗?</p>
+                        <p>真的要添加吗?</p>
+                    </div>
                 </Modal>
             </Form>
 
