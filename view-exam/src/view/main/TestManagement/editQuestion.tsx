@@ -18,7 +18,7 @@ export default function Edit() {
     let { AllClass } = useStore()
     useEffect(() => {
         AllClass.getClassData()
-    }, [])
+    }, [AllClass])
 
     const formItemLayout = {
         labelCol: { span: 6 },

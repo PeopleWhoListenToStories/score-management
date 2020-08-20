@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useObserver } from 'mobx-react-lite'
 import useStore from '../../../context/useStore'
 import style from './detail.module.css'

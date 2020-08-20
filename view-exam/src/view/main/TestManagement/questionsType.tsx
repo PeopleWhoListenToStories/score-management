@@ -46,7 +46,7 @@ function QuestionsType() {
   useEffect(() => {
     AllClass.getClassData()
     // data=Addtypes.Typedata
-  }, [])
+  }, [AllClass])
 
 
   const showModal = () => {
@@ -70,7 +70,7 @@ function QuestionsType() {
         添加类型
         </Button>
 
-      <Table columns={columns} dataSource={AllClass.Typedata} />
+      <Table columns={columns} dataSource={AllClass.Typedata} rowKey="questions_type_id"/>
 
       <Modal
         visible={visibled}

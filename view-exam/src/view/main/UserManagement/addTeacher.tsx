@@ -7,6 +7,11 @@ import { Button, Input, Select, Divider, Tag, Tabs } from 'antd'
 import AddList from '../../../components/AddList/AddList';
 import userStore from '../../../context/useStore'
 
+
+//表单6
+import FormSix from './addForm/addFormsix'
+
+import Form from 'antd/lib/form/Form';
 const { Option } = Select;
 const { TabPane } = Tabs;
 
@@ -389,8 +394,10 @@ const AddTeacher: React.FC = () => {
         {/* <AddList navList={[{ title: "给身份设置api接口权限" }]} list={ShowIdentityList3} /> */}
       </div>
 
+{/* 改写身份权限api */}
       <div className={AddCss.item}>
-        <li>
+        <FormSix />
+        {/* <li>
           <Tag style={{ fontSize: '.07rem', padding: '0.03rem 0.07rem' }}  >
             <span>给身份设置api接口权限 </span>
           </Tag>
@@ -414,6 +421,7 @@ const AddTeacher: React.FC = () => {
             }
           </Select>
         </li>
+
         <li>
           <Select
             style={{ width: 160 }}
@@ -441,7 +449,7 @@ const AddTeacher: React.FC = () => {
               view_id: ''
             })
           }}>重置</Button>
-        </li>
+        </li> */}
         {/* <AddList navList={[{ title: "给身份设置视图权限" }]} list={ShowIdentityList4} /> */}
       </div>
 

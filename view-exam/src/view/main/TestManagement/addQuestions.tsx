@@ -20,7 +20,7 @@ export default function AddQuestions() {
     let { AllClass } = useStore()
     useEffect(() => {
         AllClass.getClassData()
-    }, [])
+    }, [AllClass])
 
     const formItemLayout = {
         labelCol: { span: 6 },
@@ -52,12 +52,13 @@ export default function AddQuestions() {
                 <Form.Item>
                     <span className="ant-form-text">题目信息</span>
                 </Form.Item>
-                <p>题干</p>
+                
                 <Form.Item
                     {...formItemLayout}
                     name="username"
                     colon={false}
                 >
+                    <p>题干</p>
                     <Input placeholder="请输入题目标题,不超过20个字" style={{ width: 350 }} />
                 </Form.Item>
 
