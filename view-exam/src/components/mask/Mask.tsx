@@ -18,14 +18,20 @@ const tailLayout = {
         span: 15,
     },
 };
+<<<<<<< HEAD
  
 export default function Mask() {
 
     let { Class} = useStore();
+=======
+
+export default function Mask() {
+>>>>>>> 68ae0a1268738766907fe9aa2e6e8b4c4b5c411b
 
     const onFinish = (values: any) => {
         console.log('Success:123', values);
 
+<<<<<<< HEAD
         Class.addClassAction(values)
     };
 
@@ -36,6 +42,10 @@ export default function Mask() {
     }
 
 
+=======
+    };
+
+>>>>>>> 68ae0a1268738766907fe9aa2e6e8b4c4b5c411b
     return (
         <div className={style.maskBox}>
             <Form  {...layout}
@@ -59,6 +69,7 @@ export default function Mask() {
                 </Form.Item>
 
                 <Form.Item
+<<<<<<< HEAD
                     label="教室号"
                     name="room_text"
                     rules={[
@@ -94,6 +105,31 @@ export default function Mask() {
                             })
                         }
                     </Select>
+=======
+                    label="课程名"
+                    name="subject_text"
+                    rules={[
+                        {
+                            required: true,
+                            message: '请输入课程名!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    label="教室号"
+                    name="room_text"
+                    rules={[
+                        {
+                            required: true,
+                            message: '请输入教室号!',
+                        },
+                    ]}
+                >
+                    <Input />
+>>>>>>> 68ae0a1268738766907fe9aa2e6e8b4c4b5c411b
                 </Form.Item>
 
                 <Form.Item {...tailLayout}>
@@ -103,7 +139,13 @@ export default function Mask() {
                 </Form.Item>
             </Form>
         </div>
+<<<<<<< HEAD
     )
 }
 
 
+=======
+
+    )
+}
+>>>>>>> 68ae0a1268738766907fe9aa2e6e8b4c4b5c411b

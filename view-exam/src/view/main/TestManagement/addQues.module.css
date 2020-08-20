@@ -1,5 +1,8 @@
 .Add_{
     width: 95%;
-    height: 90%;
+    height: 100%;
     margin:0 auto;
+}
+.ant-modal-footer{
+    display: block;
 }

@@ -10,7 +10,6 @@ import {
     Select,
     Input,
     Modal,
-    Cascader,
 } from 'antd';
 const { Option } = Select;
 export default function Edit() {
@@ -138,6 +137,12 @@ export default function Edit() {
                 >
                     <p>你确认添加这道试题吗?</p>
                     <p>真的要添加吗?</p>
+                    <Button type="primary" onClick={onFinish} style={{ marginLeft: 180, marginTop: 20, marginRight: 20 }}>
+                        确定
+        </Button>
+                    <Button type="primary" onClick={handleCancel}>
+                        取消
+        </Button>
                 </Modal>
             </Form>
 

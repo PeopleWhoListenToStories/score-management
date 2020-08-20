@@ -48,7 +48,6 @@ export default class AllClasses {
     getAllTest=()=>{
         GetAllTest().then(res=>{
             if (res.data.code === 1) {
-                console.log(res.data.data)
                 this.AllTests = res.data.data
             }
         })
@@ -56,7 +55,6 @@ export default class AllClasses {
     //按条件
     @action
     getTestData = ( questions_type_id?: string, subject_id?: string, exam_id?: string) => {
-        console.log( questions_type_id, subject_id, exam_id)
         GetTest( questions_type_id, subject_id, exam_id).then(res => {
             if (res.data.code === 1) {
                 console.log(res.data.data)
@@ -86,7 +84,7 @@ export default class AllClasses {
             if (res.data.code === 1) {
                 this.DetailData = res.data.data
                 props.history.push({
-                    pathname: `/main/edit`,
+                    pathname: `/main/editQusetion`,
                 })
             }
         })

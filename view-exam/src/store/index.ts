@@ -2,7 +2,7 @@ import Test from "./modules/test"
 import Login from './modules/login'
 import MainStore from './modules/MainStore'
 //试题管理仓库
-import AddType from './modules/testManagetion/Addtype'
+
 import AllClasses from './modules/testManagetion/watchQuestion'
 
 
@@ -19,12 +19,17 @@ export default {
   Test: new Test(),
   LoginStore: new Login(),
   MainStore: new MainStore(),
-  Addtypes: new AddType(),
+
   AddUserStore: new AddUserStore(),
   // ViewTeacherStore: new ViewTeacherStore(),
   AllClass: new AllClasses(),
   ExamManagement: new ExamManagement(),
+<<<<<<< HEAD
   Class:Class.Class,
   Room:Room.Room,
   Stu:Stu.Stu
+=======
+  Class: new Class(),
+  Room:new Room(),
+>>>>>>> 68ae0a1268738766907fe9aa2e6e8b4c4b5c411b
 }

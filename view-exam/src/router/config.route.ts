@@ -1,12 +1,10 @@
-import Main from '../view/main/Main'
-
-// 错误处理页面
-import NoFound from '../view/error/NoFound';
-import NoServer from '../view/error/NoServer';
+import { IMenuItem, IRouerItem } from "../utils/interface"
+import menus from "../router/menu"
 
 //login
 import Login from '../view/login/Login'
 
+<<<<<<< HEAD
 // 试题管理
 import AddQuestionPage from '../view/main/TestManagement/addQuestions';
 import QuestionTypePage from '../view/main/TestManagement/questionsType';
@@ -32,16 +30,34 @@ import StudentPage from '../view/main/ClassManagement/student'
 
 // 阅卷管理
 import ExamPaperClassListPage from '../view/main/MarkingManagement/examPaperClassList'
+=======
+import Main from '../view/main/Main'
+>>>>>>> 68ae0a1268738766907fe9aa2e6e8b4c4b5c411b
 
+// 错误处理页面
+import NoFound from '../view/error/NoFound';
+import NoServer from '../view/error/NoServer';
 
-const routes: any = [
-  {
-    path: '*',
-    redirect: '/login'
-  },
+// 格式化nume数据格式
+function genterRouter(numes: IMenuItem[]) {
+  let routes: IRouerItem[] = [];
+  numes.forEach(item => {
+    item.children.forEach(value => (value as any).component = value.meta?.component);
+    routes = routes.concat(item.children as IRouerItem[])
+  })
+  return routes;
+}
+
+// 获取到重定向数据 默认为数组的第一项
+function getFirstRedirect(menus: IMenuItem[]) {
+  return menus[0]?.children[0].path;
+}
+
+const routes = [
   {
     path: '/main',
     component: Main,
+<<<<<<< HEAD
     children: [
       {
         path: '/main/detail',
@@ -115,6 +131,9 @@ const routes: any = [
         meta: { title: '批卷班级' }
       }
     ]
+=======
+    children: genterRouter(menus)
+>>>>>>> 68ae0a1268738766907fe9aa2e6e8b4c4b5c411b
   },
   {
     path: '/login',
@@ -127,6 +146,11 @@ const routes: any = [
   {
     path: '/NoServer',
     component: NoServer
+  },
+  {
+    path: '/',
+    // redirect:'/main'
+    redirect: getFirstRedirect(menus)
   }
 ]
 export default routes

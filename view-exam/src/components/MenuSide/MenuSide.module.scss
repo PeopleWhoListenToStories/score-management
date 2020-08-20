@@ -1,8 +1,16 @@
-.ant_layout_sider{
-  background: red;
+.box{
+  width: auto;
+  height: auto;
+  background-color: red;
 }
 
-
-:global(.ant-menu-item){
-  color: white;
+:global(.box){
+  .ant_layout_sider{
+    background: red;
+  }
+  // .box{
+  //   width: auto;
+  //   height: auto;
+  //   background-color: red;
+  // }
 }

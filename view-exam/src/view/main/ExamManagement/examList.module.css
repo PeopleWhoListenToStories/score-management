@@ -1,0 +1,24 @@
+.headebox{
+    width: 100%;
+    height: auto;;
+    background:#fff;
+    padding:20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.from{
+    padding:40px;
+    width: 100%;
+}
+.tablebox{
+    width: 100%;
+    height: auto;;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.box{
+    width: 100%;
+    height: 100%;;
+    padding: 20px;
+  
+}

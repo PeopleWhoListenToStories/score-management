@@ -1,1 +1,1 @@
-.ant_layout_sider{background:red}:global(.ant-menu-item){color:white}
+.box{width:auto;height:auto;background-color:red}:global(.box) .ant_layout_sider{background:red}
