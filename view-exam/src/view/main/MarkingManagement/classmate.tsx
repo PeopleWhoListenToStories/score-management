@@ -62,7 +62,7 @@ const columns = [
     key: 'student_id',
     render: (text: any) => (
       <Space size="middle">
-        <a  >批改</a>
+        <span  >批改</span>
       </Space>
     ),
   },
@@ -75,7 +75,7 @@ const ClassMate: React.FC = () => {
   useEffect(() => {
     Class.getClassmanage()
     Marking.getInitStudentAction()
-  }, [])
+  }, [Class,Marking])
 
   // 表单成功
   const onFinish = (values: any) => {

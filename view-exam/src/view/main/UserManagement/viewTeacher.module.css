@@ -4,14 +4,14 @@
   padding: 0 20px;
 }
 
-:global(h2) {
-  padding: 20px 10px;
+:local(h2) {
+  padding: 20px 0px;
 }
 
-:global .ant-table-thead > tr > th {
+:local .ant-table-thead > tr > th {
   text-align: center;
 }
 
-:global .ant-table-row > tr > td {
+:local .ant-table-row > tr > td {
   text-align: center;
 }

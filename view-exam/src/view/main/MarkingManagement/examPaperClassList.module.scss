@@ -8,27 +8,35 @@ $bg-color:red;
 
 
 
-:global(.ant-pagination-item-active){
-  // .box{
-  //   width: 100%;
-  //   height: 100%;
-  //   border-radius: 5px;
-  //   background-color: white;
-  // }
-  .ant-pagination-item-active{
-    background: linear-gradient(45deg, black, transparent);
-  }
+:local(.ant-pagination-item-active){
+  background: linear-gradient(45deg, black, transparent);
 }
 
-:global {
-  .ant-table-content {
-    padding: 20px;
-  } 
-  .ant-table-thead > tr > th {
-    text-align: center;
-    background: #F0F2F5;
-  }
-  .ant-table-tbody > tr > td {
-    text-align: center;
-  }
+.ant-pagination-item-active{
+  background: linear-gradient(45deg, black, transparent);
+}
+
+// :global(.ant-table-thead > tr > th) {
+//   text-align: center;
+//   background: #F0F2F5;
+// }
+
+// :global(.ant-table-tbody > tr > td){
+//   text-align: center;
+// }
+
+:local(.ant-table-content ) {
+  color: red;
+  text-align: center;
+}
+
+.ant-table-content {
+  padding: 20px;
+} 
+.ant-table-thead > tr > th {
+  text-align: center;
+  background: #F0F2F5;
+}
+.ant-table-tbody > tr > td {
+  text-align: center;
 }

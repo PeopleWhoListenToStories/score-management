@@ -52,7 +52,7 @@ export default function Grade() {
                   okText="确定"
                   cancelText="取消"
                 >
-                  <a href="#" >删除</a>
+                  <span   >删除</span>
                 </Popconfirm>
               }
           </span>
@@ -87,7 +87,7 @@ export default function Grade() {
   };
   useEffect(() => {
     Class.getClassmanage();
-  }, [])
+  }, [Class])
 
   return useObserver(() => <div className={style.grade}>
     <Button className={style.addBtn} onClick={showModal}> + 添加班级 </Button>

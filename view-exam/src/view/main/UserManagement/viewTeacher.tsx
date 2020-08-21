@@ -134,7 +134,7 @@ export default function ViewTeacher() {
 
   useEffect(() => {
     AddUserStore[list[curIndex].action]();
-  }, [curIndex])
+  }, [AddUserStore,curIndex])
 
   // 切换下标
   const onChange = (index: string) => {

@@ -9,7 +9,7 @@
   background: white;
 }
 
-:local .top {
+.top {
   border-radius: 5px;
   background: white;
   display: flex;

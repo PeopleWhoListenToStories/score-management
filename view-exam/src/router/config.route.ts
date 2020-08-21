@@ -14,7 +14,7 @@ import NoServer from '../view/error/NoServer';
 function genterRouter(numes: IMenuItem[]) {
   let routes: IRouerItem[] = [];
   numes.forEach(item => {
-    item.children.forEach(value => (value as any).component = value.meta?.component);
+    item.children.forEach((value: any) => (value as any).component = value.meta?.component);
     routes = routes.concat(item.children as IRouerItem[])
   })
   return routes;
@@ -29,6 +29,7 @@ const routes = [
   {
     path: '/main',
     component: Main,
+    redirect: getFirstRedirect(menus),
     children: genterRouter(menus)
   },
   {
@@ -45,8 +46,7 @@ const routes = [
   },
   {
     path: '/',
-    // redirect:'/main'
-    redirect: getFirstRedirect(menus)
+    redirect: '/main'
   }
 ]
 export default routes

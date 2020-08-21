@@ -43,7 +43,7 @@ export default function Grade() {
                             okText="确定"
                             cancelText="取消"
                         >
-                            <a href="#" >删除</a>
+                            <span  >删除</span>
                         </Popconfirm>
                     }
                 </span>

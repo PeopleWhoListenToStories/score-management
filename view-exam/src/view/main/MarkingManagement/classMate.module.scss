@@ -8,16 +8,17 @@
   border-radius: 5px;
   background: white;
 }
+
+.top{
+  border-radius: 5px;
+  background: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding:30px;
+}
  
 :local {
-  .top{
-    border-radius: 5px;
-    background: white;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding:30px;
-  }
   .ant-form  {
     width: auto;
     display: flex;
@@ -33,6 +34,5 @@
   .ant-table-tbody > tr > td {
     text-align: center;
   }
-
 }
   
