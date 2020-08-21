@@ -4,7 +4,12 @@
   padding: 20px;
 }
 
-.top {
+.content {
+  border-radius: 5px;
+  background: white;
+}
+
+:global(.top) {
   border-radius: 5px;
   background: white;
   display: flex;
@@ -13,15 +18,21 @@
   padding: 30px;
 }
 
-.content {
-  border-radius: 5px;
-  background: white;
+:global(.top) .ant-form {
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-:global .ant-table-thead > tr > th {
+:global(.top) .ant-row {
+  margin-left: 70px;
+}
+
+:global(.top) .ant-table-thead > tr > th {
   text-align: center;
 }
 
-:global .ant-table-tbody > tr > td {
+:global(.top) .ant-table-tbody > tr > td {
   text-align: center;
 }

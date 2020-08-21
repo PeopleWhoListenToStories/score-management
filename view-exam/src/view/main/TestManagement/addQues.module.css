@@ -1,7 +1,10 @@
 .Add_{
     width: 95%;
-    height: 100%;
+    height: auto;
     margin:0 auto;
+    background:white;
+    border-radius: 10px;
+    padding: 40px 50px;
 }
 .ant-modal-footer{
     display: block;

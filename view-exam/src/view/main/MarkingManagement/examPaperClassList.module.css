@@ -7,3 +7,16 @@
 :global(.ant-pagination-item-active) .ant-pagination-item-active {
   background: linear-gradient(45deg, black, transparent);
 }
+
+:global .ant-table-content {
+  padding: 20px;
+}
+
+:global .ant-table-thead > tr > th {
+  text-align: center;
+  background: #F0F2F5;
+}
+
+:global .ant-table-tbody > tr > td {
+  text-align: center;
+}
