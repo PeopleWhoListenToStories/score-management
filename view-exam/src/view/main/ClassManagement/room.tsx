@@ -14,7 +14,6 @@ export default function Grade() {
         Room.getRoommanage();
     }, [Room])
 
-
     function confirm(val: any) {
         message.success('删除成功');
         Room.Del(val.room_id);
