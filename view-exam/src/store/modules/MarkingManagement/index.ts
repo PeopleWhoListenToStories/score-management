@@ -5,9 +5,9 @@ class Marking {
   @observable
   StudentList: any = [];
 
-  @action
+  @action //初始化学生阅卷数据
   async getInitStudentAction() {
-    const result: any = await getStudent('1', '2', '2', 1, 2, 3, 4);
+    const result: any = await getStudent(undefined, undefined, undefined, undefined, undefined, undefined, undefined);
     if (result.data.code === 1) {
       this.StudentList = result.data.exam;
     }

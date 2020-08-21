@@ -7,7 +7,7 @@ import WatchQuestionPage from '../view/main/TestManagement/watchQuestions';
 import DetailPage from "../view/main/TestManagement/testDetail"
 import EditQuestionPage from "../view/main/TestManagement/editQuestion"
 
-//用户管理
+// 用户管理
 import AddTeacher from '../view/main/UserManagement/addTeacher';
 import ViewTeacher from '../view/main/UserManagement/viewTeacher';
 
@@ -37,6 +37,7 @@ const menus: IMenuItem[] = [
     children: [
       {
         path: '/main/addQuestion',
+        redirect: '/main/addQuestion',
         meta: {
           component: AddQuestionPage,
           name: '添加试题',
@@ -81,7 +82,7 @@ const menus: IMenuItem[] = [
     name: '用户管理',
     meta: {
       icon: '',
-      name: '',
+      name: '用户管理',
       show: true
     },
     children: [
@@ -199,7 +200,7 @@ const menus: IMenuItem[] = [
         path: '/main/classmate',
         meta: {
           component: ClassMate,
-          name: '',
+          name: ' ',
           show: false
         }
       }
@@ -207,7 +208,5 @@ const menus: IMenuItem[] = [
   }
 
 ]
-
-
 
 export default menus

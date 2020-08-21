@@ -16,15 +16,14 @@ export default function RouterView({ routes }: Iprops) {
       routes && routes.map(item => {
         // 页面重定向
         // if (item.redirect) {
-        //   if (item.path === '/') {
-        //     return <Redirect key={item.path} from={item.path} to="/main"></Redirect>
-        //   } else {
-        //     return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
-        //   }
+        //   return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
+
+        //   // if (item.path === '/') {
+        //   //   return <Redirect key={item.path} from={item.path} to="/main"></Redirect>
+        //   // } else {
+        //   //   return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
+        //   // }
         // }
-        if (item.redirect) {
-          return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
-        }
 
         return <Route key={item.path} path={item.path} render={(props) => {
 
@@ -33,7 +32,6 @@ export default function RouterView({ routes }: Iprops) {
           if (!whileList.includes(isPath) && !getCookie('token')) {
             props.history.replace(`/login?redirect=${encodeURIComponent(isPath)}`);
           }
-
           if (item.children) {
             return <item.component {...props} routes={item.children} meta={item.meta}></item.component>
           } else {
@@ -50,6 +48,11 @@ export default function RouterView({ routes }: Iprops) {
       // window.addEventListener('hashchange', (event: HashChangeEvent) => {
       //   changeRoute(routes,  event.newURL.split('#')[1])
       // })
+    }
+    {
+      routes.filter(v => v.redirect).map((item, index) => {
+        return <Redirect key={item.path} from={item.path} to={item.redirect as string}></Redirect>
+      })
     }
 
   </Switch>

@@ -1,1 +1,1 @@
-.ViewTeacher{width:100%;height:100%;padding:0 20px}:global(.ViewTeacher h2){padding:0}:global .ant-table-thead>tr>th{text-align:center}:global .ant-table-row>tr>td{text-align:center}
+.ViewTeacher{width:100%;height:auto;padding:0 20px}:local(h2){padding:20px 0px}:local .ant-table-thead>tr>th{text-align:center}:local .ant-table-row>tr>td{text-align:center}

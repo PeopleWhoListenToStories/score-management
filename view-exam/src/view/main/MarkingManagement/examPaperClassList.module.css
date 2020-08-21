@@ -4,6 +4,28 @@
   padding: 20px;
 }
 
-:global(.ant-pagination-item-active) .ant-pagination-item-active {
+:local(.ant-pagination-item-active) {
   background: linear-gradient(45deg, black, transparent);
+}
+
+.ant-pagination-item-active {
+  background: linear-gradient(45deg, black, transparent);
+}
+
+:local(.ant-table-content) {
+  color: red;
+  text-align: center;
+}
+
+.ant-table-content {
+  padding: 20px;
+}
+
+.ant-table-thead > tr > th {
+  text-align: center;
+  background: #F0F2F5;
+}
+
+.ant-table-tbody > tr > td {
+  text-align: center;
 }

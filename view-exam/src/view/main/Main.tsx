@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useObserver } from 'mobx-react-lite';
 import Roterview from '../../router/RouterView';
-import useStore from '../../context/useStore';
+// import useStore from '../../context/useStore';
 
-// 引入组件
+// 引入菜单组件
 import MenuSider from '../../components/MenuSide/MenuSider';
+// 引入头部组件
 import HeaderBar from '../../components/HeaderBar/Header';
 
 // 引入antd
@@ -23,7 +24,7 @@ const getTitle = (path: string) => {
   menu.forEach(item => {
     item.children.forEach((value: any) => {
       if (value.path === path) {
-        title = value.meta.title;
+        title = value.meta.name;
       }
     })
   })
@@ -32,10 +33,9 @@ const getTitle = (path: string) => {
 
 export default function Main(props: any) {
   const history = useHistory();
-  // console.log(history.location.pathname)
-  const { MainStore } = useStore();
+  // const { MainStore } = useStore();
 
-  MainStore.initAction();
+  // MainStore.initAction(); //初始化获取数据
 
   return useObserver(() => <MainWrapper className="Main"  >
     <Layout>
@@ -45,9 +45,8 @@ export default function Main(props: any) {
       <Layout>
         <Sider style={{ background: '#232A41' }} ><MenuSider></MenuSider></Sider>
         <Content>
-         
-          <h2>{props.routes.find((v: any) => v.path == props.location.pathname).meta.name}</h2>
-          {/* <h2>{getTitle(history.location.pathname) ? getTitle(history.location.pathname) : '欢迎光临'}</h2> */}
+          {/* <h2>{props.routes.find((v: any) => v.path == props.location.pathname)?.meta?.name}</h2> */}
+          <h2 style={{padding:'20px'}}>{getTitle(history.location.pathname) ? getTitle(history.location.pathname) : '默认参数'}</h2>
           <Roterview routes={props.routes} />
         </Content>
       </Layout>
@@ -58,7 +57,4 @@ export default function Main(props: any) {
 const MainWrapper = styled.div`
   wdith:100%;
   height:100%;
-  h2 {
-    padding:20px ;
-  }
 `

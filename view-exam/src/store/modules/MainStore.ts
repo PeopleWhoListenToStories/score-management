@@ -1,6 +1,5 @@
 import { action, observable } from 'mobx';
-import { getUserInfo, getMenuList } from '../../api/index';
-import menu from '../../router/menu';
+import { getUserInfo } from '../../api/index';
 import { setCookie } from '../../utils/myCookie';
 
 interface Item {

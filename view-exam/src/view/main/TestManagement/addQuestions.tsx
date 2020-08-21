@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useObserver } from 'mobx-react-lite'
 import useStore from '../../../context/useStore'
 import Editor from 'for-editor'
-
 import style from './addQues.module.css'
 import {
     Form,
@@ -12,10 +11,11 @@ import {
     Modal
 } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { getCookie } from '../../../utils/myCookie'
 const { Option } = Select;
 export default function AddQuestions() {
     let [visible, setVisible] = useState<boolean>(false)
-    let [formData,setformData]=useState<any []>([])
+    let [formData, setformData] = useState<any>({})
 
     let { AllClass } = useStore()
     useEffect(() => {
@@ -23,18 +23,30 @@ export default function AddQuestions() {
     }, [AllClass])
 
     const formItemLayout = {
-        labelCol: { span: 6 },
+        labelCol: { span: 0 },
         wrapperCol: { span: 14 },
+    };
+    //清空表单
+    const [form] = Form.useForm();
+    const onReset = () => {
+        form.resetFields();
     };
     let onFinish = (values: any) => {
         setVisible(true)
         setformData(values)
-        console.log('Received values of form: ', values);
     };
-    //提交
+    //确定提交
     let showModal = () => {
-        console.log(formData)
         setVisible(false)
+        onReset()
+        let user_id = getCookie('user_id');
+        let questions_type_id = formData.select3;
+        let questions_stem = formData.ques;
+        let subject_id = formData.select2;
+        let exam_id = formData.select1;
+        let questions_answer = formData.ques2;
+        let title = formData.username;
+        AllClass.AddQuestion(questions_type_id, questions_stem, subject_id, exam_id, (user_id as string), questions_answer, title)
     };
     //取消
     let handleCancel = () => {
@@ -46,36 +58,40 @@ export default function AddQuestions() {
                 name="validate_other"
                 {...formItemLayout}
                 onFinish={onFinish}
+                form={form}
                 hideRequiredMark={true}
-
+                layout="horizontal"
             >
-                <Form.Item>
-                    <span className="ant-form-text">题目信息</span>
+                <Form.Item style={{ height: 10 }}>
+                    <h3 className="ant-form-text">题目信息</h3>
                 </Form.Item>
-                
+                <Form.Item style={{ height: 10 }}>
+                    <p>题干</p>
+                </Form.Item>
                 <Form.Item
                     {...formItemLayout}
                     name="username"
                     colon={false}
                 >
-                    <p>题干</p>
                     <Input placeholder="请输入题目标题,不超过20个字" style={{ width: 350 }} />
                 </Form.Item>
 
-                <p>题目主题</p>
+                <Form.Item style={{ height: 10 }}>
+                    <p>题目主题</p>
+                </Form.Item>
                 <Form.Item name='ques'>
-                    <Editor style={{ height: 500 }} />
+                    <Editor style={{ height: 500, width: 1000 }} />
                 </Form.Item>
                 <p>请选择考试类型:</p>
                 <Form.Item
                     name="select1"
-                  
+
                 >
-                    <Select style={{ width: 350 }}>
+                    <Select style={{ width: 200 }}>
                         {
                             AllClass.AllexamType && AllClass.AllexamType.map((item: any, index) => {
                                 return (
-                                    <Option value={item.exam_name} key={index}>{item.exam_name}</Option>
+                                    <Option value={item.exam_id} key={index}>{item.exam_name}</Option>
                                 )
 
                             })
@@ -85,16 +101,18 @@ export default function AddQuestions() {
                     </Select>
                 </Form.Item>
 
-                <p>请选择课程类型:</p>
+                <Form.Item style={{ height: 10 }}>
+                    <p>请选择考试类型</p>
+                </Form.Item>
                 <Form.Item
                     name="select2"
-                   
+
                 >
-                    <Select style={{ width: 350 }}>
+                    <Select style={{ width: 200 }}>
                         {
                             AllClass.AllClass && AllClass.AllClass.map((item: any, index) => {
                                 return (
-                                    <Option value={item.subject_text} key={index}>{item.subject_text}</Option>
+                                    <Option value={item.subject_id} key={index}>{item.subject_text}</Option>
                                 )
 
                             })
@@ -102,29 +120,35 @@ export default function AddQuestions() {
                     </Select>
                 </Form.Item>
 
-                <p>请选择题目类型:</p>
+
+                <Form.Item style={{ height: 10 }}>
+                    <p>请选择题目类型:</p>
+                </Form.Item>
                 <Form.Item
                     name="select3"
-                   
+
                 >
-                    <Select style={{ width: 350 }}>
+                    <Select style={{ width: 200 }}>
                         {
                             AllClass.Typedata && AllClass.Typedata.map((item: any, index) => {
                                 return (
-                                    <Option value={item.questions_type_text} key={index}>{item.questions_type_text}</Option>
+                                    <Option value={item.questions_type_id} key={index}>{item.questions_type_text}</Option>
                                 )
 
                             })
                         }
                     </Select>
                 </Form.Item>
-                <Form.Item name='ques2'>
+
+                <Form.Item style={{ height: 10 }}>
                     <p>答案信息</p>
-                    <Editor style={{ height: 300 }} />
+                </Form.Item>
+                <Form.Item name='ques2'>
+                    <Editor style={{ height: 300, width: 1000 }} />
                 </Form.Item>
 
-                <Form.Item wrapperCol={{ span: 12, offset: 0 }}>
-                    <Button type="primary"  htmlType="submit">
+                <Form.Item wrapperCol={{ span: 12, offset: 0 }} >
+                    <Button type="primary" htmlType="submit" style={{ height: 40, width: 100 }}>
                         提交
                     </Button>
 
