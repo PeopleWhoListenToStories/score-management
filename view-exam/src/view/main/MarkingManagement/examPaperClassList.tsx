@@ -78,8 +78,6 @@ const ExamPaperClassList: React.FC = () => {
 
     return useObserver(() => (
         <div className={ExamPaperClassListCss.wrapper}>
-            <h1>待批班级</h1>
-            <div className="box">
                 <Table columns={columns}
                     dataSource={Class.classlist}
                     rowKey={(record: any) => record.grade_id}
@@ -89,7 +87,6 @@ const ExamPaperClassList: React.FC = () => {
                         return className;
                     }}
                     pagination={paginationConfig} />
-            </div>
         </div>)
     )
 }
