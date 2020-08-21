@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Input, Button, Select } from 'antd';
 import useStore from '../../context/useStore'
+import { useObserver } from 'mobx-react-lite'
 
 import style from './mask.module.scss'
 
@@ -36,8 +37,7 @@ export default function Mask() {
     }
 
 
-    return (
-        <div className={style.maskBox}>
+    return useObserver(()=> <div className={style.maskBox}>
             <Form  {...layout}
                 name="basic"
                 initialValues={{
@@ -97,8 +97,7 @@ export default function Mask() {
                     </Button>
                 </Form.Item>
             </Form>
-        </div>
-    )
+        </div>) 
 }
 
 

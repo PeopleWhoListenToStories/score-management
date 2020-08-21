@@ -12,7 +12,7 @@ export default function Grade() {
 
     useEffect(() => {
         Room.getRoommanage();
-    })
+    },[])
 
 
     function confirm(val: any) {
