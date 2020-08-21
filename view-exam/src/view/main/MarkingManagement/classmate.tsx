@@ -112,18 +112,18 @@ const ClassMate: React.FC = () => {
 
   return useObserver(() =>
     (<div className={ClassMateCss.wrapper}>
-      <div className={ClassMateCss.top}>
+      <div className="top">
         <Form {...layout} name="nest-messages" onFinish={onFinish} initialValues={{ status: '请选择', grade: '请选择' }} >
 
           <Form.Item name={['status']} label="状态" rules={[{ required: false }]}>
-            <Select style={{ width: 120 }} onChange={handleChange}>
+            <Select style={{ width: 200 }} onChange={handleChange}>
               <Option value="0">0</Option>
               <Option value="1">1</Option>
             </Select>
           </Form.Item>
 
           <Form.Item name={['grade']} label="班级" rules={[{ required: false }]}>
-            <Select style={{ width: 120 }} onChange={handleChange}>
+            <Select style={{ width: 200 }} onChange={handleChange}>
               {
                 Class.classlist && Class.classlist.map((item: any) => {
                   return <Option key={item.grade_name} value={item.grade_name}>{item.grade_name}</Option>
@@ -133,12 +133,12 @@ const ClassMate: React.FC = () => {
           </Form.Item>
 
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-            <Button type="primary" htmlType="submit" icon={<SearchOutlined />}>  查询 </Button>
+            <Button type="primary" htmlType="submit" style={{ width: 120, borderRadius: '3px', backgroundImage: `linear-gradient(90deg, #0C41FD, #6B8CFE)` }} icon={<SearchOutlined />}>  查询 </Button>
           </Form.Item>
         </Form>
       </div>
       <div className={ClassMateCss.content}>
-        <Table columns={columns} dataSource={Marking.StudentList}  pagination={paginationConfig} rowKey={(record) => record.student_id} />
+        <Table columns={columns} dataSource={Marking.StudentList} pagination={paginationConfig} rowKey={(record) => record.student_id} />
       </div>
     </div>)
   )

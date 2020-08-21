@@ -4,25 +4,35 @@
   padding:20px;
 }
 
-.top{
-  border-radius: 5px;
-  background: white;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding:30px;
-}
-
 .content{
   border-radius: 5px;
   background: white;
 }
  
-:global {
+:local {
+  .top{
+    border-radius: 5px;
+    background: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding:30px;
+  }
+  .ant-form  {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .ant-row {
+    margin-left: 70px;
+  }
   .ant-table-thead > tr > th {
     text-align: center;
   }
   .ant-table-tbody > tr > td {
     text-align: center;
   }
+
 }
+  

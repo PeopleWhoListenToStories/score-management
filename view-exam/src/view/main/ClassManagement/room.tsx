@@ -108,10 +108,6 @@ export default function Grade() {
                     </Form.Item>
                 </Form>
             </Modal>
-            {/* <Table
-                columns={columns}
-                dataSource={Room.roomlist}
-            /> */}
             < Table
                 rowKey={(r) => r.room_text}
                 columns={columns}
