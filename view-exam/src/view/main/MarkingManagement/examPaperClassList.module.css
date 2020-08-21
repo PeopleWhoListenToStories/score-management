@@ -4,13 +4,13 @@
   padding: 20px;
 }
 
-:global .box {
+:global(.box) .box {
   width: 100%;
   height: 100%;
   border-radius: 5px;
   background-color: white;
 }
 
-:global .ant-pagination-item-active {
+:global(.box) .ant-pagination-item-active {
   background: linear-gradient(45deg, black, transparent);
 }
