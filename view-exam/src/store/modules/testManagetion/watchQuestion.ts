@@ -1,5 +1,5 @@
 import { action, observable } from 'mobx';
-import { AllClass, GetTest, AllexamType, testType ,GetAllTest,GetTests} from '../../../api/module/testmanagetion'
+import { AllClass, GetTest, AllexamType, testType ,GetAllTest,GetTests,AddText} from '../../../api/module/testmanagetion'
 
 export default class AllClasses {
     @observable
@@ -87,6 +87,14 @@ export default class AllClasses {
                     pathname: `/main/editQuestion`,
                 })
             }
+        })
+    }
+
+    //添加试题
+    @action
+    AddQuestion=(questions_type_id:string,questions_stem:string,subject_id:string,exam_id:string,user_id:string,questions_answer:string,title:string)=>{
+        AddText(questions_type_id,questions_stem,subject_id,exam_id,user_id,questions_answer,title).then(res=>{
+            
         })
     }
 
