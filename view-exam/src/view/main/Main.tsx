@@ -45,7 +45,8 @@ export default function Main(props: any) {
       <Layout>
         <Sider style={{ background: '#232A41' }} ><MenuSider></MenuSider></Sider>
         <Content>
-          {/* <h2>{props.routes.find((v: any) => v.path == props.location.pathname).meta.name && " "}</h2> */}
+         
+          <h2>{props.routes.find((v: any) => v.path == props.location.pathname).meta.name}</h2>
           {/* <h2>{getTitle(history.location.pathname) ? getTitle(history.location.pathname) : '欢迎光临'}</h2> */}
           <Roterview routes={props.routes} />
         </Content>

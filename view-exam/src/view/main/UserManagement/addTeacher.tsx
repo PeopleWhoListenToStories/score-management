@@ -3,7 +3,6 @@ import { useObserver } from 'mobx-react-lite';
 import AddCss from "./addTeacher.module.css";
 import { Button, Input, Select, Divider, Tag, Tabs, Form } from 'antd'
 
-import AddList from '../../../components/AddList/AddList';
 import userStore from '../../../context/useStore'
 
 const { Option } = Select;
@@ -26,9 +25,6 @@ const AddTeacher: React.FC = () => {
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
-  };
-  const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
   };
 
   useEffect(() => {
@@ -63,7 +59,8 @@ const AddTeacher: React.FC = () => {
                 }]}>
                 <Input placeholder="输入密码" />
               </Form.Item>
-              <Form.Item name="identity_id" >
+              <Form.Item name="identity_id" rules={
+                [{ required: true }]} >
                 <Select
                   style={{ width: 160 }}
                   placeholder="选择身份id"
