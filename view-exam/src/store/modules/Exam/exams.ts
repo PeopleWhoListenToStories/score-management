@@ -76,6 +76,7 @@ export default class ExamManagement {
             end_time * 1,
             Number(number),
         )
+        console.log(result)
         if (result.data.code === 1) {
             this.examinationdata = result.data.data
             message.success(result.data.msg);

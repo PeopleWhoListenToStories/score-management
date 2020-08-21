@@ -54,9 +54,9 @@ export default function () {
                         <Form.Item name={['user', 'exam_id']} label="选择考试类型" rules={[{ required: true }]}>
                             <Select>
                                 {
-                                    ExamManagement.ExamTypedata.map((item: any) => {
+                                    ExamManagement.ExamTypedata.map((item: any,index:any) => {
                                         return (
-                                            <Select.Option value={item.exam_id} key={item.exam_id}>{item.exam_name}</Select.Option>
+                                            <Select.Option value={item.exam_id} key={index}>{item.exam_name}</Select.Option>
                                         )
                                     })
                                 }
@@ -65,9 +65,9 @@ export default function () {
                         <Form.Item name={['user', 'subject_id']} label="选择课程" rules={[{ required: true }]}>
                             <Select>
                                 {
-                                    ExamManagement.Allcoursesdata.map((item: any) => {
+                                    ExamManagement.Allcoursesdata.map((item: any,index:any) => {
                                         return (
-                                            <Select.Option value={item.subject_id} key={item.subject_id}>{item.subject_text}</Select.Option>
+                                            <Select.Option value={item.subject_id} key={index}>{item.subject_text}</Select.Option>
                                         )
                                     })
                                 }
