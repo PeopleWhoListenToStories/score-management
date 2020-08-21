@@ -70,7 +70,9 @@ export default function Login(props: any) {
   }
 
   return useObserver(() => <div className={LoginCss.Login}>
+    
     <div className={LoginCss.innerBox}>
+
       <Form
         name="validate_other"
         className="login-form"
