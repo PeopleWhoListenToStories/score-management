@@ -1,6 +1,6 @@
 //获取所有试题类型
 import { action, observable } from 'mobx'
-import {message} from "antd"
+// import {message} from "antd"
 import { testingTypes, Allcourses, CreateExam, AllExamList, ExamDetail, Getdata } from '../../../api/index'
 export default class ExamManagement {
     @observable
