@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
+import style from './student.module.scss'
 import { Table, Form, Input, Button, Select ,Popconfirm, message } from 'antd';
 
 
@@ -83,7 +84,7 @@ export default function Student() {
     }
     
     return useObserver(() =>
-        <div>
+        <div className={style.ac} >
             <Form
                 name="basic"
                 initialValues={{
@@ -116,7 +117,7 @@ export default function Student() {
                         },
                     ]}
                 >
-                    <Select defaultValue="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
+                    <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
                         {
                            Class.classlist&& Class.classlist.map((item: any) => {
                                 return <Option key={item.room_id} value={item.room_id}>{item.room_text}</Option>
@@ -135,7 +136,7 @@ export default function Student() {
                         },
                     ]}
                 >
-                    <Select defaultValue="请选择课程" style={{ width: 180 }} onChange={handleChange}>
+                    <Select placeholder="请选择课程" style={{ width: 180 }} onChange={handleChange}>
                         {
                            Class.classlist&&  Class.classlist.map((item: any) => {
                                 return <Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Option>
