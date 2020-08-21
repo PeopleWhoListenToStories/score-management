@@ -109,7 +109,6 @@ export default class ExamManagement {
 
     getdata = async (exam_id: string, subject_id: string) => {
         let result: any = await Getdata(exam_id, subject_id);
-        console.log(result)
         if (result.data.code === 1) {
             message.success(result.data.msg);
             this.conditionsdata = result.data.data

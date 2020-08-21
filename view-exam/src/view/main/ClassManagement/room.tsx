@@ -12,7 +12,7 @@ export default function Grade() {
 
     useEffect(() => {
         Room.getRoommanage();
-    })
+    }, [Room])
 
 
     function confirm(val: any) {
@@ -23,8 +23,6 @@ export default function Grade() {
     function cancel(e: any) {
         console.log(e);
     }
-
-
 
     const columns = [
         { title: '教室号', dataIndex: 'room_text', key: 'room_text' },
@@ -107,10 +105,6 @@ export default function Grade() {
                     </Form.Item>
                 </Form>
             </Modal>
-            {/* <Table
-                columns={columns}
-                dataSource={Room.roomlist}
-            /> */}
             < Table
                 rowKey={(r) => r.room_text}
                 columns={columns}

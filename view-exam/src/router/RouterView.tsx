@@ -15,15 +15,12 @@ export default function RouterView({ routes }: Iprops) {
     {
       routes && routes.map(item => {
         // 页面重定向
-        // if (item.redirect) {
-        //   if (item.path === '/') {
-        //     return <Redirect key={item.path} from={item.path} to="/main"></Redirect>
-        //   } else {
-        //     return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
-        //   }
-        // }
         if (item.redirect) {
-          return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
+          if (item.path === '/') {
+            return <Redirect key={item.path} from={item.path} to="/main"></Redirect>
+          } else {
+            return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
+          }
         }
 
         return <Route key={item.path} path={item.path} render={(props) => {

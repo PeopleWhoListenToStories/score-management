@@ -19,3 +19,16 @@ $bg-color:red;
     background: linear-gradient(45deg, black, transparent);
   }
 }
+
+:global {
+  .ant-table-content {
+    padding: 20px;
+  } 
+  .ant-table-thead > tr > th {
+    text-align: center;
+    background: #F0F2F5;
+  }
+  .ant-table-tbody > tr > td {
+    text-align: center;
+  }
+}
