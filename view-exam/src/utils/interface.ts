@@ -10,7 +10,7 @@ export interface IMenuItem {
   redirect?: string,
   children: Array<{
     path: string,
-    redirect?: string,
+    redirect?:string,
     meta?: {
       component: any,
       name: string,

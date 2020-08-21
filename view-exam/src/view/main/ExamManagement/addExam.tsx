@@ -17,13 +17,13 @@ export default function () {
         wrapperCol: { span: 8 },
     };
     const validateMessages = {
-        required: '${label} is required!',
+        required: `${'label'} is required!`,
         types: {
-            email: '${label}',
-            number: '${label} is not a validate number!',
+            email: `${'label'}`,
+            number: `${'label'} is not a validate number!`,
         },
         number: {
-            range: '${label} must be between ${min} and ${max}',
+            range: `${'label'} must be between ${'min'} and ${'max'}`,
         },
     };
     async function onFinish(values: any) {

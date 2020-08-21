@@ -19,7 +19,7 @@ export default function Login(props: any) {
 
   useEffect(() => {
     LoginStore.initRandomCode(); //获取验证码
-  }, [])
+  }, [LoginStore])
 
   useEffect(() => {
 
@@ -133,8 +133,7 @@ export default function Login(props: any) {
         <Form.Item>
           <Button type="primary" htmlType="submit" className="login-form-button">
             登录
-        </Button>
-        Or <a   >去注册</a>
+        </Button> Or <span  >去注册</span>
         </Form.Item>
       </Form>
 

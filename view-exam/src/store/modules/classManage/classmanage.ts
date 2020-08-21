@@ -1,6 +1,6 @@
 import { action, observable } from 'mobx';
 import ajax from '../../../utils/request';
-import { addClass, deleteclass } from '../../../api/module/class'
+import {  deleteclass } from '../../../api/module/class'
 
 export default class Class {
     @observable
