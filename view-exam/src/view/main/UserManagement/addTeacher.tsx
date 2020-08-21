@@ -51,17 +51,19 @@ const AddTeacher: React.FC = () => {
         <Tabs defaultActiveKey="1" onChange={callback}>
           <TabPane tab="添加用户" key="1">
             <Form {...layout} name="nest-messages" onFinish={(values: any) => { AddUserStore.addUserAction(values.user_name, values.user_pwd, values.identity_id); formRefOne.resetFields() }} initialValues={{ identity_text: '' }} form={formRefOne}>
-              <Form.Item name="user_name" >
+              <Form.Item name="user_name" validateTrigger="onBlur" rules={
+                [{ required: true, pattern: /^[a-z]{4,16}$/, message: '输入4-16位小写字母' }]
+              }>
                 <Input placeholder="输入用户名" />
               </Form.Item>
               <Form.Item name="user_pwd" validateTrigger="onBlur"
                 rules={[{
                   pattern: /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)(?=.*?[#@*!&.]).*$/
-                  , message: '请输入合适的密码!', required: true
+                  , message: '密码应有符号大小写字母数字各一个!', required: true
                 }]}>
                 <Input placeholder="输入密码" />
               </Form.Item>
-              <Form.Item name="identity_id" rules={[{ required: true }]}>
+              <Form.Item name="identity_id" >
                 <Select
                   style={{ width: 160 }}
                   placeholder="选择身份id"
@@ -73,7 +75,7 @@ const AddTeacher: React.FC = () => {
                   )}
                 >
                   {
-                    AddUserStore.IdentityList && AddUserStore.IdentityList.map((v: any, index: number) => {
+                    AddUserStore.IdentityList && AddUserStore.IdentityList.map((v: any) => {
                       return <Option key={v.identity_id} value={v.identity_id}>{v.identity_text}</Option>
                     })
                   }
@@ -81,7 +83,7 @@ const AddTeacher: React.FC = () => {
               </Form.Item>
 
               <Form.Item >
-                <Button type="primary" htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #023AFD, #4E75FF)` }}>   确定 </Button>
+                <Button type="primary" htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #0C41FD, #6B8CFE)` }}>   确定 </Button>
                 <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { formRefOne.resetFields() }}> 重置 </Button>
               </Form.Item>
             </Form>
@@ -106,10 +108,10 @@ const AddTeacher: React.FC = () => {
                   }
                 </Select>
               </Form.Item>
-              <Form.Item name="user_name" rules={[{ required: true }]}>
+              <Form.Item name="user_name" validateTrigger="onBlur" rules={[{ required: true, pattern: /^[a-z]{4,16}$/, message: '用户名只能写小写字母4-16位' }]}>
                 <Input placeholder="输入用户名" />
               </Form.Item>
-              <Form.Item name="user_pwd" rules={[{ required: true }]}>
+              <Form.Item name="user_pwd" rules={[{ required: true, pattern: /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)(?=.*?[#@*!&.]).*$/, message: '密码应有符号大小写字母数字各一个' }]}>
                 <Input placeholder="输入密码" />
               </Form.Item>
               <Form.Item name="identity_id" rules={[{ required: true }]}>
@@ -132,7 +134,7 @@ const AddTeacher: React.FC = () => {
               </Form.Item>
 
               <Form.Item >
-                <Button type="primary" htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #023AFD, #4E75FF)` }}>   确定 </Button>
+                <Button type="primary" htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #0C41FD, #6B8CFE)` }}>   确定 </Button>
                 <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { formRefOnes.resetFields() }}> 重置 </Button>
               </Form.Item>
 
@@ -146,11 +148,11 @@ const AddTeacher: React.FC = () => {
         <Tabs defaultActiveKey="1"  >
           <TabPane tab="添加身份" key="1">
             <Form {...layout} name="nest-messages" onFinish={(values: any) => { AddUserStore.addIdentityAction(values.identity_text); formRefTwo.resetFields() }} initialValues={{ identity_text: '' }} form={formRefTwo}>
-              <Form.Item name="identity_text" rules={[{ required: true }]}>
+              <Form.Item name="identity_text" validateTrigger="onBlur" rules={[{ required: true, pattern: /^[\u4e00-\u9fa5_a-zA-Z0-9]+$/, message: '请输入合理的身份' }]}>
                 <Input placeholder="请输入用户名" />
               </Form.Item>
               <Form.Item >
-                <Button type="primary" htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #023AFD, #4E75FF)` }}>   确定 </Button>
+                <Button type="primary" htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #0C41FD, #6B8CFE)` }}>   确定 </Button>
                 <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { formRefTwo.resetFields() }}> 重置 </Button>
               </Form.Item>
             </Form>
@@ -163,17 +165,17 @@ const AddTeacher: React.FC = () => {
         <Tabs defaultActiveKey="1"  >
           <TabPane tab="添加api接口权限" key="1">
             <Form {...layout} name="nest-messages" onFinish={(values: any) => { AddUserStore.addAuthorityApiAction(values.identity_text, values.api_authority_url, values.api_authority_method); formRefThree.resetFields() }} initialValues={{ identity_text: '' }} form={formRefThree}>
-              <Form.Item name="identity_text" rules={[{ required: true }]}>
+              <Form.Item name="identity_text" validateTrigger="onBlur" rules={[{ required: true, pattern: /^[\u4e00-\u9fa5]{1,99}$/, message: '请输入汉字' }]}>
                 <Input placeholder="输入api接口权限名称" />
               </Form.Item>
-              <Form.Item name="api_authority_url" rules={[{ required: true }]}>
+              <Form.Item name="api_authority_url" validateTrigger="onBlur" rules={[{ required: true, pattern: /^[a-zA-Z\_\\]+$/, message: '请输入正确url' }]}>
                 <Input placeholder="输入api接口权限url" />
               </Form.Item>
-              <Form.Item name="api_authority_method" rules={[{ required: true }]}>
+              <Form.Item name="api_authority_method" validateTrigger="onBlur" rules={[{ required: true, pattern: /^[A-Z]+$/, message: '输入api接口 (大写)' }]}>
                 <Input placeholder="输入api接口权限方法" />
               </Form.Item>
               <Form.Item >
-                <Button type="primary" htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #023AFD, #4E75FF)` }}>   确定 </Button>
+                <Button type="primary" htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #0C41FD, #6B8CFE)` }}>   确定 </Button>
                 <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { formRefThree.resetFields() }}> 重置 </Button>
               </Form.Item>
             </Form>
@@ -198,7 +200,7 @@ const AddTeacher: React.FC = () => {
               </Form.Item>
               <Form.Item
               >
-                <Button type="primary" htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #023AFD, #4E75FF)` }}>   确定 </Button>
+                <Button type="primary" htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #0C41FD, #6B8CFE)` }}>   确定 </Button>
                 <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { formRefFour.resetFields() }}> 重置 </Button>
               </Form.Item>
             </Form>
@@ -233,7 +235,7 @@ const AddTeacher: React.FC = () => {
               </Form.Item>
               <Form.Item
               >
-                <Button type="primary" htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #023AFD, #4E75FF)` }}>   确定 </Button>
+                <Button type="primary" htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #0C41FD, #6B8CFE)` }}>   确定 </Button>
                 <Button size='middle' style={{ marginLeft: '.1rem' }} onClick={() => { formRefFive.resetFields() }}> 重置 </Button>
               </Form.Item>
             </Form>
@@ -282,7 +284,7 @@ const AddTeacher: React.FC = () => {
               </Form.Item>
 
               <Form.Item>
-                <Button htmlType="submit" style={{ width: 100, backgroundImage: "linear-gradient(to right,blue,skyblue)" }}>  确定 </Button>
+                <Button htmlType="submit" style={{ width: 100, backgroundImage: `linear-gradient(90deg, #0C41FD, #6B8CFE)` }}>  确定 </Button>
                 <Button htmlType="button" onClick={() => { formRefSix.resetFields() }} style={{ marginLeft: 20 }}>   重置  </Button>
               </Form.Item>
             </Form>

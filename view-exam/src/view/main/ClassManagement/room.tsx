@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Table, Button, Modal, Input, Form } from 'antd';
+import React, { useEffect } from 'react'
+import { Table, Button, Modal, Input, Form, Popconfirm, message } from 'antd';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 import './room.module.scss'
@@ -15,6 +15,17 @@ export default function Grade() {
     })
 
 
+    function confirm(val: any) {
+        message.success('删除成功');
+        Room.Del(val.room_id);
+    }
+
+    function cancel(e: any) {
+        console.log(e);
+    }
+
+
+
     const columns = [
         { title: '教室号', dataIndex: 'room_text', key: 'room_text' },
         {
@@ -23,13 +34,24 @@ export default function Grade() {
             render: (text: number, record: any) => {
                 return <span>
                     {
-                        <button className='btn' onClick={() => {
-                            // Room.Del(record.room_id)
-                        }}>删除</button>
+                        // <button className='btn' onClick={() => {
+                        //     // Room.Del(record.room_id)
+                        // }}>删除</button>
+                        <Popconfirm
+                            title="确定要删除这项任务吗?"
+                            onConfirm={() => {
+                                confirm(record)
+                            }}
+                            onCancel={cancel}
+                            okText="确定"
+                            cancelText="取消"
+                        >
+                            <a href="#" >删除</a>
+                        </Popconfirm>
                     }
                 </span>
             }
-        },
+        }
     ];
 
     const layout = {
@@ -89,7 +111,14 @@ export default function Grade() {
                 columns={columns}
                 dataSource={Room.roomlist}
             /> */}
+            < Table
+                rowKey={(r) => r.room_text}
+                columns={columns}
+                dataSource={Room.roomlist}
+            >
+            </Table >
         </div>)
+
 }
 
 

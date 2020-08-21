@@ -15,12 +15,20 @@ export default class Class {
     }
 
     @action
-    delList() {
-
+    async delList(id: string) {
+        let result = await deleteclass(id)
+        if (result.data.code === 1) {
+            this.classlist = result.data.data
+        }
     }
 
     @action
-    addClassAction() {
+    upd(val: any) {
+        console.log(val.grade_name, val.room_text);
+    }
+
+    @action
+    addClassAction(values: any) {
 
     }
 

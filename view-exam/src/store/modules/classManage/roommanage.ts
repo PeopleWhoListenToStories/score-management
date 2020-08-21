@@ -33,7 +33,7 @@ export default class Room {
     async onFinish(values: any) {
         console.log(values.username)
         let result = await addRoom(values.username)
-        if (result.data.code === '1') {
+        if (result.data.code === 1) {
             console.log(result.data.msg)
         }
         this.visible = false;
