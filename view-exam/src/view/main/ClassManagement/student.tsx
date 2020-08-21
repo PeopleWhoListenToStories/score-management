@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
+import style from './student.module.scss'
 import { Table, Form, Input, Button, Select, Popconfirm, message } from 'antd';
 
 
@@ -82,7 +83,7 @@ export default function Student() {
     }
 
     return useObserver(() =>
-        <div>
+        <div className={style.studentBox} >
             <Form
                 name="basic"
                 onFinish={onFinish}
@@ -90,7 +91,6 @@ export default function Student() {
                 initialValues={{ grade_name: '', room_text: '请选择教室号', subject_text: '请选择课程' }}
             >
                 <Form.Item
-                    label="班级名"
                     name="grade_name"
                     rules={[
                         {
@@ -99,11 +99,29 @@ export default function Student() {
                         },
                     ]}
                 >
-                    <Input />
+                    <Input placeholder='姓名' />
+                    <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
+                        {
+                            Class.classlist && Class.classlist.map((item: any,index) => {
+                                return <Option key={index} value={item.room_id}>{item.room_text}</Option>
+                            })
+                        }
+                    </Select>
+                    <Select className={style.Select} placeholder="请选择课程" style={{ width: 180 }} onChange={handleChange}>
+                        {
+                            Class.classlist && Class.classlist.map((item: any,index) => {
+                                return <Option key={index} value={item.subject_id}>{item.subject_text}</Option>
+                            })
+                        }
+                    </Select>
+                    <Button type="primary">搜索</Button>
+                    <Button type="primary"
+                        onClick={() => addConsumerForm.resetFields()}
+                    >重置</Button>
+
                 </Form.Item>
 
                 <Form.Item
-                    label="教室号"
                     name="room_text"
 
                     rules={[
@@ -123,7 +141,6 @@ export default function Student() {
 
                 </Form.Item>
                 <Form.Item
-                    label="课程名"
                     name="subject_text"
                     rules={[
                         {

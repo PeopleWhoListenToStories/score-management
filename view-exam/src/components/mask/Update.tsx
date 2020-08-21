@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Input, Button, Select } from 'antd';
 import useStore from '../../context/useStore'
+import { useObserver } from 'mobx-react-lite'
 
 import style from './mask.module.scss'
 
@@ -36,8 +37,7 @@ export default function Mask() {
     }
 
 
-    return (
-        <div className={style.maskBox}>
+    return useObserver(()=> <div className={style.maskBox}>
             <Form  {...layout}
                 name="basic"
                 initialValues={{
@@ -63,10 +63,13 @@ export default function Mask() {
                         },
                     ]}
                 >
-                    <Select defaultValue="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
+                    <Select 
+                    // placeholder={Class.con.grade_name} 
+                    placeholder='12306'
+                    style={{ width: 180 }} onChange={handleChange}>
                         {
-                           Class.classlist.map((item: any) => {
-                                return <Option key={item.room_id} value={item.room_id}>{item.room_text}</Option>
+                           Class.classlist.map((item: any,index) => {
+                                return <Option key={index} value={item.room_id}>{item.room_text}</Option>
                             })
                         }
                     </Select>
@@ -82,10 +85,13 @@ export default function Mask() {
                         },
                     ]}
                 >
-                    <Select defaultValue="请选择课程" style={{ width: 180 }} onChange={handleChange}>
+                    <Select
+                    //  placeholder={Class.con.room_text}
+                     placeholder='node基础'
+                     style={{ width: 180 }} onChange={handleChange}>
                         {
-                            Class.classlist.map((item: any) => {
-                                return <Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Option>
+                            Class.classlist.map((item: any,index) => {
+                                return <Option key={index} value={item.subject_id}>{item.subject_text}</Option>
                             })
                         }
                     </Select>
@@ -96,9 +102,9 @@ export default function Mask() {
                         修改
                     </Button>
                 </Form.Item>
+                
             </Form>
-        </div>
-    )
+        </div>) 
 }
 
 
