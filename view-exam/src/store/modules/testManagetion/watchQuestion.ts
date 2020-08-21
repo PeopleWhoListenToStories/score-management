@@ -43,19 +43,18 @@ export default class AllClasses {
             })
         }
     }
-    //获取全部试题
-    @action
-    getAllTest=()=>{
-        GetAllTest().then(res=>{
+
+    @action  // 获取全部试题
+    getAllTest = () => {
+        GetAllTest().then(res => {
             if (res.data.code === 1) {
                 this.AllTests = res.data.data
             }
         })
     }
-    //按条件
-    @action
-    getTestData = ( questions_type_id?: string, subject_id?: string, exam_id?: string) => {
-        GetTest( questions_type_id, subject_id, exam_id).then(res => {
+    @action // 按条件
+    getTestData = (questions_type_id?: string, subject_id?: string, exam_id?: string) => {
+        GetTest(questions_type_id, subject_id, exam_id).then(res => {
             if (res.data.code === 1) {
                 console.log(res.data.data)
                 this.AllTests = res.data.data
@@ -63,8 +62,8 @@ export default class AllClasses {
         })
     }
 
-    //跳转详情
-    @action
+
+    @action // 跳转详情
     toDetail = (props: any, questions_id: string) => {
         GetTests(questions_id).then(res => {
             if (res.data.code === 1) {
@@ -77,9 +76,8 @@ export default class AllClasses {
 
     }
 
-    //编辑试题
-    @action
-    toEdit=(props: any,questions_id: string)=>{
+    @action // 编辑试题
+    toEdit = (props: any, questions_id: string) => {
         GetTests(questions_id).then(res => {
             if (res.data.code === 1) {
                 this.DetailData = res.data.data

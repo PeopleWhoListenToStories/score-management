@@ -63,12 +63,6 @@ export default function WatchQuestions(props: any) {
                                 </CheckableTag>
                             ))}
 
-                            {/* <Radio.Group buttonStyle="solid" size="small" style={{ outline: 1 }}>
-                                <Radio.Button value="All">All</Radio.Button>
-                                {AllClass.AllClass && AllClass.AllClass.map(item => (
-                                    <Radio.Button value={item.subject_id}>{item.subject_text}</Radio.Button>
-                                ))}
-                            </Radio.Group> */}
                         </Form.Item>
                     </div>
 
