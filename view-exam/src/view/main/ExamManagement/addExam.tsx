@@ -5,18 +5,17 @@ import { Layout, Breadcrumb, Form, Input, InputNumber, DatePicker, Button, Selec
 import useStore from '../../../context/useStore'
 const { Content } = Layout;
 
-export default function() {
+export default function () {
     const history = useHistory();
-   let {ExamManagement} =useStore()
-   useEffect(()=>{
-    ExamManagement.getExamTypedata();
-    ExamManagement.getAllcourses();
-   },[])
-const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span:8 },
-};
-
+    let { ExamManagement } = useStore()
+    useEffect(() => {
+        ExamManagement.getExamTypedata();
+        ExamManagement.getAllcourses();
+    })
+    const layout = {
+        labelCol: { span: 8 },
+        wrapperCol: { span: 8 },
+    };
     const validateMessages = {
         required: '${label} is required!',
         types: {
@@ -27,9 +26,9 @@ const layout = {
             range: '${label} must be between ${min} and ${max}',
         },
     };
-   async function onFinish (values :any ) {
-      await ExamManagement.addCreateExam(values.user)//创建
-          history.push('/main/edit')
+    async function onFinish(values: any) {
+        await ExamManagement.addCreateExam(values.user)//创建
+        history.push('/main/edits')
     };
     const { RangePicker } = DatePicker;
     const rangeConfig = {

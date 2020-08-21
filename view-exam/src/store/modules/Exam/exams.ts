@@ -13,10 +13,8 @@ export default class ExamManagement {
     examinationdata: any = [];//考试题
     @observable
     Examdetaildata: any = [];//试卷详情
-
     @observable
     conditionsdata:any = [];
-    
     @action
     //获取考试类型的数据
     getExamTypedata = () => {
@@ -37,6 +35,10 @@ export default class ExamManagement {
 
         if (result.data.code === 1) {
             this.Allcoursesdata = result.data.data;
+            message.success(result.data.msg);
+        }
+        else {
+            message.warn(result.data.msg);
         }
     }
     //获取所有的试卷列表
@@ -47,6 +49,10 @@ export default class ExamManagement {
         let result: any = await AllExamList();
         if (result.data.code === 1) {
             this.Examdata = result.data.exam;
+            message.success(result.data.msg);
+        }
+        else {
+            message.warn(result.data.msg);
         }
     }
     //增加试卷
@@ -72,6 +78,10 @@ export default class ExamManagement {
         )
         if (result.data.code === 1) {
             this.examinationdata = result.data.data
+            message.success(result.data.msg);
+        }
+        else {
+            message.warn(result.data.msg);
         }
     }
     //删除试题
@@ -90,6 +100,10 @@ export default class ExamManagement {
         console.log(result)
         if (result.data.code === 1) {
             this.examinationdata = result.data.data;
+             message.success(result.data.msg);
+        }
+        else {
+            message.warn(result.data.msg);
         }
     }
 

@@ -12,7 +12,7 @@ export default function () {
     ExamManagement.getExamList();
     ExamManagement.getExamTypedata();
     ExamManagement.getAllcourses();
-  }, []);
+  });
   async function onFinish(values: any) {
     await ExamManagement.getdata(values.exam_id, values.subject_id)
     history.push('/main/condition')
@@ -75,7 +75,7 @@ export default function () {
       render: (text: number, record: any) => {
         return <span>
           {
-            <button onClick={() => { ExamManagement.examdetail(record.exam_exam_id); history.push('/main/edit') }}>详情</button>
+            <Button onClick={() => { ExamManagement.examdetail(record.exam_exam_id); history.push('/main/edits') }}>详情</Button>
           }
         </span>
       }
@@ -115,7 +115,7 @@ export default function () {
           >
             <Button type="primary" htmlType="submit" >
               <SearchOutlined /> 查询
-      </Button>
+         </Button>
           </Form.Item>
         </Form>
       </div>
