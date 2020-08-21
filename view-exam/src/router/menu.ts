@@ -128,7 +128,7 @@ const menus: IMenuItem[] = [
         }
       },
       {
-        path: '/main/edit',
+        path: '/main/edits',
         meta: {
           component: EditPage,
           name: '编辑页面',

@@ -4,16 +4,19 @@ import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 import Editor from 'for-editor'
 import style from './Edit.module.css'
-export default function () {
-    let { ExamManagement } = useStore();
-    useEffect(() => {
-    }, [])
-    function delteexam(id: number) {
-        let index = ExamManagement.examinationdata.questions.findIndex((items: any) => {
-            return items.exam_id === id
-        })
-        ExamManagement.examinationdata.questions.splice(index, 1);
+import {useHistory} from 'react-router-dom'
+export default function() {
 
+    let {ExamManagement} =useStore();
+    let history=useHistory()
+    useEffect(()=>{ 
+    },[])
+    console.log(ExamManagement.examinationdata)
+    function delteexam(id:number){
+    let index=  ExamManagement.examinationdata.questions.findIndex((items:any)=>{
+        return items.exam_id===id
+    })
+    ExamManagement.examinationdata.questions.splice(index, 1);
     }
     return useObserver(() =>
         <div className={style.box}>
