@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useObserver } from 'mobx-react-lite';
 import ClassMateCss from "./classMate.module.scss";
 import useStore from "../../../context/useStore";
-import { Form, Table, Select, Button, Space } from 'antd';
+import { Form, Table, Select, Button, Space, Row, Col } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 const { Option } = Select;
 const layout = {
@@ -75,7 +75,7 @@ const ClassMate: React.FC = () => {
   useEffect(() => {
     Class.getClassmanage()
     Marking.getInitStudentAction()
-  }, [])
+  }, [Class, Marking])
 
   // 表单成功
   const onFinish = (values: any) => {
@@ -110,35 +110,43 @@ const ClassMate: React.FC = () => {
 
   }
 
+  const formItemLayout = {
+    labelCol: { span: 4 },
+    // wrapperCol: { span: 14 },
+  };
+
   return useObserver(() =>
     (<div className={ClassMateCss.wrapper}>
       <div className={ClassMateCss.top}>
-        <Form {...layout} name="nest-messages" onFinish={onFinish} initialValues={{ status: '请选择', grade: '请选择' }} >
-
-          <Form.Item name={['status']} label="状态" rules={[{ required: false }]}>
-            <Select style={{ width: 120 }} onChange={handleChange}>
-              <Option value="0">0</Option>
-              <Option value="1">1</Option>
-            </Select>
-          </Form.Item>
-
-          <Form.Item name={['grade']} label="班级" rules={[{ required: false }]}>
-            <Select style={{ width: 120 }} onChange={handleChange}>
-              {
-                Class.classlist && Class.classlist.map((item: any) => {
-                  return <Option key={item.grade_name} value={item.grade_name}>{item.grade_name}</Option>
-                })
-              }
-            </Select>
-          </Form.Item>
-
-          <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-            <Button type="primary" htmlType="submit" icon={<SearchOutlined />}>  查询 </Button>
-          </Form.Item>
+        <Form {...layout} name="nest-messages" {...formItemLayout} onFinish={onFinish} initialValues={{ status: '请选择', grade: '请选择' }} >
+          <Row style={{ width: 800 }}>
+            <Col style={{ width: 350 }}>
+              <Form.Item name={['status']} label="状态" rules={[{ required: false }]} >
+                <Select style={{ width: 200 }} onChange={handleChange}>
+                  <Option value="0">0</Option>
+                  <Option value="1">1</Option>
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col>
+              <Form.Item name={['grade']} label="班级" rules={[{ required: false }]} >
+                <Select style={{ width: 200 }} onChange={handleChange}>
+                  {
+                    Class.classlist && Class.classlist.map((item: any) => {
+                      return <Option key={item.grade_name} value={item.grade_name}>{item.grade_name}</Option>
+                    })
+                  }
+                </Select>
+              </Form.Item>
+            </Col>
+            <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 20 }}>
+              <Button type="primary" htmlType="submit" icon={<SearchOutlined />}>  查询 </Button>
+            </Form.Item>
+          </Row>
         </Form>
       </div>
       <div className={ClassMateCss.content}>
-        <Table columns={columns} dataSource={Marking.StudentList}  pagination={paginationConfig} rowKey={(record) => record.student_id} />
+        <Table columns={columns} dataSource={Marking.StudentList} pagination={paginationConfig} rowKey={(record) => record.student_id} />
       </div>
     </div>)
   )
