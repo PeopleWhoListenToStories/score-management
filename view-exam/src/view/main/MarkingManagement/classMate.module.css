@@ -9,7 +9,7 @@
   background: white;
 }
 
-:global(.top) {
+:local .top {
   border-radius: 5px;
   background: white;
   display: flex;
@@ -18,21 +18,21 @@
   padding: 30px;
 }
 
-:global(.top) .ant-form {
+:local .ant-form {
   width: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-:global(.top) .ant-row {
+:local .ant-row {
   margin-left: 70px;
 }
 
-:global(.top) .ant-table-thead > tr > th {
+:local .ant-table-thead > tr > th {
   text-align: center;
 }
 
-:global(.top) .ant-table-tbody > tr > td {
+:local .ant-table-tbody > tr > td {
   text-align: center;
 }
