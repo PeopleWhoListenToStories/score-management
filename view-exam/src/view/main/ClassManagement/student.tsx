@@ -2,31 +2,31 @@ import React, { useEffect } from 'react'
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 import style from './student.module.scss'
-import { Table, Form, Input, Button, Select ,Popconfirm, message } from 'antd';
+import { Table, Form, Input, Button, Select, Popconfirm, message } from 'antd';
 
 
 export default function Student() {
     const { Stu, Class } = useStore();
     const { Option } = Select;
-    const {useForm}=Form;
+    const { useForm } = Form;
 
-    const [addConsumerForm]=useForm();
+    const [addConsumerForm] = useForm();
 
     useEffect(() => {
         Stu.list();
         console.log(Stu.stulist)
     }, [])
 
-    function confirm(val:any) {
+    function confirm(val: any) {
         message.success('删除成功');
         Stu.Del(val.student_id);
-      }
-      
-      function cancel(e:any) {
-        console.log(e);
-      }
+    }
 
-      
+    function cancel(e: any) {
+        console.log(e);
+    }
+
+
     const columns = [
         {
             title: '姓名',
@@ -58,17 +58,17 @@ export default function Student() {
             render: (text: number, record: any) => {
                 return <span>
                     {
-                         <Popconfirm
-                         title="确定要删除这项任务吗?"
-                         onConfirm={()=>{
-                            confirm(record)
-                         }}
-                         onCancel={cancel}
-                         okText="确定"
-                         cancelText="取消"
-                       >
-                         <a href="#" >删除</a>
-                       </Popconfirm>
+                        <Popconfirm
+                            title="确定要删除这项任务吗?"
+                            onConfirm={() => {
+                                confirm(record)
+                            }}
+                            onCancel={cancel}
+                            okText="确定"
+                            cancelText="取消"
+                        >
+                            <a href="#" >删除</a>
+                        </Popconfirm>
                     }
                 </span>
             }
@@ -82,9 +82,9 @@ export default function Student() {
     function handleChange(value: any) {
         console.log(`selected ${value}`);
     }
-    
+
     return useObserver(() =>
-        <div className={style.ac} >
+        <div className={style.studentBox} >
             <Form
                 name="basic"
                 initialValues={{
@@ -94,7 +94,6 @@ export default function Student() {
                 form={addConsumerForm}
             >
                 <Form.Item
-                    label="班级名"
                     name="grade_name"
                     rules={[
                         {
@@ -103,11 +102,29 @@ export default function Student() {
                         },
                     ]}
                 >
-                    <Input />
+                    <Input placeholder='姓名' />
+                    <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
+                        {
+                            Class.classlist && Class.classlist.map((item: any,index) => {
+                                return <Option key={index} value={item.room_id}>{item.room_text}</Option>
+                            })
+                        }
+                    </Select>
+                    <Select className={style.Select} placeholder="请选择课程" style={{ width: 180 }} onChange={handleChange}>
+                        {
+                            Class.classlist && Class.classlist.map((item: any,index) => {
+                                return <Option key={index} value={item.subject_id}>{item.subject_text}</Option>
+                            })
+                        }
+                    </Select>
+                    <Button type="primary">搜索</Button>
+                    <Button type="primary"
+                        onClick={() => addConsumerForm.resetFields()}
+                    >重置</Button>
+
                 </Form.Item>
 
-                <Form.Item
-                    label="教室号"
+                {/* <Form.Item
                     name="room_text"
                     
                     rules={[
@@ -127,7 +144,6 @@ export default function Student() {
 
                 </Form.Item>
                 <Form.Item
-                    label="课程名"
                     name="subject_text"
                     rules={[
                         {
@@ -143,14 +159,10 @@ export default function Student() {
                             })
                         }
                     </Select>
-                </Form.Item>
-                <Button type="primary">搜索</Button>
-                <Button type="primary" 
-                onClick={()=>addConsumerForm.resetFields()}
-                >重置</Button>
+                </Form.Item> */}
 
             </Form>
-            <Table columns={columns} dataSource={Stu.stulist} rowKey={(r)=>r.student_id}/>
+            <Table columns={columns} dataSource={Stu.stulist} rowKey={(r) => r.student_id} />
         </div>
     )
 }

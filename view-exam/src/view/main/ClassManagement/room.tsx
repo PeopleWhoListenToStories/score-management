@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Table, Button, Modal, Input, Form, Popconfirm, message } from 'antd';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
+import style from './room.module.scss'
 import './room.module.scss'
 
 
@@ -71,8 +72,8 @@ export default function Grade() {
 
 
     return useObserver(() =>
-        <div>
-            <Button type="primary" onClick={() => { Room.visible = true }}> 添加教室  </Button>
+        <div className={style.roomBox}>
+            <Button type="primary" className={style.btn} onClick={() => { Room.visible = true }}> 添加教室  </Button>
             <Modal
                 title="添加教室"
                 visible={Room.visible}

@@ -63,10 +63,13 @@ export default function Mask() {
                         },
                     ]}
                 >
-                    <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
+                    <Select 
+                    // placeholder={Class.con.grade_name} 
+                    placeholder='12306'
+                    style={{ width: 180 }} onChange={handleChange}>
                         {
-                           Class.classlist.map((item: any) => {
-                                return <Option key={item.room_id} value={item.room_id}>{item.room_text}</Option>
+                           Class.classlist.map((item: any,index) => {
+                                return <Option key={index} value={item.room_id}>{item.room_text}</Option>
                             })
                         }
                     </Select>
@@ -82,10 +85,13 @@ export default function Mask() {
                         },
                     ]}
                 >
-                    <Select placeholder="请选择课程" style={{ width: 180 }} onChange={handleChange}>
+                    <Select
+                    //  placeholder={Class.con.room_text}
+                     placeholder='node基础'
+                     style={{ width: 180 }} onChange={handleChange}>
                         {
-                            Class.classlist.map((item: any) => {
-                                return <Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Option>
+                            Class.classlist.map((item: any,index) => {
+                                return <Option key={index} value={item.subject_id}>{item.subject_text}</Option>
                             })
                         }
                     </Select>
