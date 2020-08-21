@@ -35,10 +35,6 @@ export default class ExamManagement {
 
         if (result.data.code === 1) {
             this.Allcoursesdata = result.data.data;
-            message.success(result.data.msg);
-        }
-        else {
-            message.warn(result.data.msg);
         }
     }
     //获取所有的试卷列表
@@ -49,10 +45,6 @@ export default class ExamManagement {
         let result: any = await AllExamList();
         if (result.data.code === 1) {
             this.Examdata = result.data.exam;
-            message.success(result.data.msg);
-        }
-        else {
-            message.warn(result.data.msg);
         }
     }
     //增加试卷
@@ -76,13 +68,11 @@ export default class ExamManagement {
             end_time * 1,
             Number(number),
         )
+  
         if (result.data.code === 1) {
             this.examinationdata = result.data.data
-            message.success(result.data.msg);
         }
-        else {
-            message.warn(result.data.msg);
-        }
+
     }
     //删除试题
     delteexam = async (id: number) => {
@@ -100,23 +90,14 @@ export default class ExamManagement {
         console.log(result)
         if (result.data.code === 1) {
             this.examinationdata = result.data.data;
-             message.success(result.data.msg);
-        }
-        else {
-            message.warn(result.data.msg);
         }
     }
 
     getdata = async (exam_id: string, subject_id: string) => {
         let result: any = await Getdata(exam_id, subject_id);
-        console.log(result)
         if (result.data.code === 1) {
-            message.success(result.data.msg);
             this.conditionsdata = result.data.data
             // this.examinationdata = result.data.data;
-        }
-        else {
-            message.warn(result.data.msg);
         }
     }
 
