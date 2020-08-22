@@ -11,7 +11,7 @@ interface Iprops {
 const whileList = ['/login', '/main', '/NoFound', 'NoServer']
 
 export default function RouterView({ routes }: Iprops) {
-  return <Switch>
+  return  <Switch>
     {
       routes && routes.map(item => {
         // 页面重定向
@@ -26,7 +26,6 @@ export default function RouterView({ routes }: Iprops) {
         // }
 
         return <Route key={item.path} path={item.path} render={(props) => {
-          console.log(props)
           // 用户登录拦截
           let isPath = props.match.path;
           if (!whileList.includes(isPath) && !getCookie('token')) {
@@ -50,7 +49,9 @@ export default function RouterView({ routes }: Iprops) {
       // })
     }
     {
+
       routes.filter(v => v.redirect).map((item, index) => {
+        console.log(item)
         return <Redirect key={item.path} from={item.path} to={item.redirect as string}></Redirect>
       })
     }
