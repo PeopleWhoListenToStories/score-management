@@ -34,7 +34,6 @@ const menus: IMenuItem[] = [
       name: '试题管理',
       show: true
     },
-    redirect: '/main/addQuestion',
     children: [
       {
         path: '/main/addQuestion',
@@ -83,7 +82,7 @@ const menus: IMenuItem[] = [
     name: '用户管理',
     meta: {
       icon: '',
-      name: '',
+      name: '用户管理',
       show: true
     },
     children: [
@@ -201,7 +200,7 @@ const menus: IMenuItem[] = [
         path: '/main/classmate',
         meta: {
           component: ClassMate,
-          name: '',
+          name: ' ',
           show: false
         }
       }

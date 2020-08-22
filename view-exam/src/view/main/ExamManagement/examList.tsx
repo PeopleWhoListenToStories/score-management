@@ -85,23 +85,24 @@ export default function () {
     <div>
       <div>
         <Form {...layout} name="nest-messages" onFinish={onFinish}>
-          <Form.Item name={['user', 'exam_id']} label="考试类型" rules={[{ required: true }]}>
+          <Form.Item name={['user', 'exam_id']} label="考试类型" rules={[{ required: true }]} >
             <Select>
               {
-                ExamManagement.ExamTypedata.map((item: any) => {
+                ExamManagement.ExamTypedata.map((item: any,index:any) => {
                   return (
-                    <Select.Option value={item.exam_id} key={item.exam_id}>{item.exam_name}</Select.Option>
+                    <Select.Option value={item.exam_id} key={index}>{item.exam_name}</Select.Option>
                   )
                 })
               }
             </Select>
+            
           </Form.Item>
           <Form.Item name={['user', 'subject_id']} label="课程" rules={[{ required: true }]}>
             <Select>
               {
-                ExamManagement.Allcoursesdata.map((item: any) => {
+                ExamManagement.Allcoursesdata.map((item: any,index:any) => {
                   return (
-                    <Select.Option value={item.subject_id} key={item.subject_id}>{item.subject_text}</Select.Option>
+                    <Select.Option value={item.subject_id} key={index}>{item.subject_text}</Select.Option>
                   )
                 })
               }

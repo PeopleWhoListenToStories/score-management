@@ -6,7 +6,6 @@ import MenuSideCss from './MenuSide.module.scss'
 import { Menu } from 'antd';
 
 import { IMenuItem } from "../../utils/interface"
-import useStore from '../../context/useStore'
 
 import menu from "../../router/menu"
 
@@ -16,7 +15,7 @@ console.log(MenuSideCss, 'MenuSideCss')
 function changeOpenKey(menu: IMenuItem[]) {
   let index: string = "0";
   menu.forEach((item, i) => {
-    item.children.forEach(value => {
+    item.children.forEach((value: any) => {
       if (value.path === window.location.hash.slice(1) + "") {
         index = i + "";
       }
@@ -33,10 +32,10 @@ export default function MenuSider() {
         mode="inline"
         theme="dark"
       >
-        {menu.map((item, index) => {
+        {menu.map((item: any, index: number) => {
           return <SubMenu key={index} title={item.name} >
             {
-              item.children && item.children.map((v, i) => {
+              item.children && item.children.map((v: any) => {
                 if ((v.meta as any).show) {
                   return <Menu.Item key={v.path}>
                     <Link to={v.path} >{(v.meta as any).name}</Link>

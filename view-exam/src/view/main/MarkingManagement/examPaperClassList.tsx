@@ -40,7 +40,7 @@ const ExamPaperClassList: React.FC = () => {
             key: 'action',
             render: (text: any) => (
                 <Space size="middle">
-                    <a onClick={() => { history.push('/main/classmate') }}>批卷</a>
+                    <span onClick={() => { history.push('/main/classmate') }}>批卷</span>
                 </Space>
             ),
         },
@@ -74,7 +74,7 @@ const ExamPaperClassList: React.FC = () => {
         // Marking.getExamStudentDetailAction();
         // Marking.putExamStudentListAction();
         Class.getClassmanage(); // 获取班级数据
-    },[])
+    },[Class])
 
     return useObserver(() => (
         <div className={ExamPaperClassListCss.wrapper}>

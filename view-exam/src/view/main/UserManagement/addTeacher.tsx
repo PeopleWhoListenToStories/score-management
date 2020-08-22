@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useObserver } from 'mobx-react-lite';
 import AddCss from "./addTeacher.module.css";
-import { Button, Input, Select, Divider, Tag, Tabs, Form } from 'antd'
+import { Button, Input, Select, Divider, Tabs, Form } from 'antd'
 
 import userStore from '../../../context/useStore'
 
 const { Option } = Select;
 const { TabPane } = Tabs;
-const { useForm } = Form;
+// const { useForm } = Form;
 
 const AddTeacher: React.FC = () => {
 
@@ -169,7 +169,7 @@ const AddTeacher: React.FC = () => {
                 <Form.Item name="identity_text" validateTrigger="onBlur" rules={[{ required: true, pattern: /^[\u4e00-\u9fa5]{1,99}$/, message: '请输入汉字' }]}>
                   <Input placeholder="输入api接口权限名称" />
                 </Form.Item>
-                <Form.Item name="api_authority_url" validateTrigger="onBlur" rules={[{ required: true, pattern: /^[a-zA-Z\_\\]+$/, message: '请输入正确url' }]}>
+                <Form.Item name="api_authority_url" validateTrigger="onBlur" rules={[{ required: true, pattern: /^[a-zA-Z_\\]+$/, message: '请输入正确url' }]}>
                   <Input placeholder="输入api接口权限url" />
                 </Form.Item>
                 <Form.Item name="api_authority_method" validateTrigger="onBlur" rules={[{ required: true, pattern: /^[A-Z]+$/, message: '输入api接口 (大写)' }]}>
