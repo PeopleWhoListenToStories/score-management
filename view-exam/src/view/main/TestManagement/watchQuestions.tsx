@@ -22,9 +22,12 @@ export default function WatchQuestions(props: any) {
         AllClass.getClassData()
         AllClass.getAllTest()
     }, [AllClass])
-
+    //单选
     let [selectedTag,setselectedTag]=useState<any[]>([])
     let [sub,setsub]=useState<any>(undefined)
+
+    //全选控制
+    let [allflag,setallflag]=useState<boolean>(false)
     const onFinish = (values: any) => {
  
         let subject_id = sub;
@@ -39,8 +42,13 @@ export default function WatchQuestions(props: any) {
         nextSelectedTags[0] = checked ?   tag.subject_text  : selectedTags.filter((t:any) => t !== tag);
         setselectedTag(nextSelectedTags)
         setsub(tag.subject_id)
-      }
-
+    }
+    
+    //全选
+    const handAll=()=>{
+        setallflag(!allflag)
+        // setselectedTag(AllClass.AllClass)
+    }
     return useObserver(() =>
         <div className={style.watch_}>
             <div className={style.watch_top}>
@@ -52,7 +60,7 @@ export default function WatchQuestions(props: any) {
                 >
                     <div className={style.class_type}>
                         <Form.Item  label="课程分类">
-
+                             <CheckableTag checked={allflag} onChange={handAll}>All</CheckableTag>
                             {AllClass.AllClass.map(tag => (
                                 <CheckableTag
                                     key={tag.subject_text}
