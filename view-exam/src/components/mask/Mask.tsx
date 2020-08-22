@@ -49,12 +49,8 @@ export default function Mask() {
                 <Form.Item
                     label="班级名"
                     name="grade_name"
-                    rules={[
-                        {
-                            required: true,
-                            message: '请输入班级名!',
-                        },
-                    ]}
+                    rules={
+                        [{ required: true, pattern: /^[0-9]*$/, message: '输入班级名' }]}
                 >
                     <Input />
                 </Form.Item>

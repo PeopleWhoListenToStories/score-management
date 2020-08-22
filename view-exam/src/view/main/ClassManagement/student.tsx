@@ -91,12 +91,8 @@ export default function Student() {
             >
                 <Form.Item
                     name="grade_name"
-                    rules={[
-                        {
-                            required: true,
-                            message: '请输入班级名!',
-                        },
-                    ]}
+                    rules={
+                        [{ required: true, pattern: /^[a-z]{4,16}$/, message: '输入4-16位小写字母' }]}
                 >
                     <Input placeholder='姓名' />
                     <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
@@ -121,7 +117,7 @@ export default function Student() {
                 </Form.Item>
 
             </Form>
-            <Table columns={columns} dataSource={Stu.stulist} rowKey={(r) => r.student_id} />
+            <Table columns={columns} dataSource={Stu.stulist&&Stu.stulist} rowKey={(r) => r.student_id} />
         </div>
     )
 }

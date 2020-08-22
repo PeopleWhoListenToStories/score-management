@@ -88,14 +88,10 @@ export default function Grade() {
 
                 >
                     <Form.Item
-                        label="Username"
+                        label="教室号"
                         name="username"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your username!',
-                            },
-                        ]}
+                        rules={
+                            [{ required: true, pattern: /^[0-9]*$/, message: '输入教室号' }]}
                     >
                         <Input />
                     </Form.Item>
