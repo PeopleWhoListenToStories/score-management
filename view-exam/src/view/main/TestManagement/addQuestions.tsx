@@ -72,6 +72,7 @@ export default function AddQuestions() {
                     {...formItemLayout}
                     name="username"
                     colon={false}
+                    rules={[{ required: true, message: '请输入题干!' }]}
                 >
                     <Input placeholder="请输入题目标题,不超过20个字" style={{ width: 350 }} />
                 </Form.Item>
@@ -79,13 +80,13 @@ export default function AddQuestions() {
                 <Form.Item style={{ height: 10 }}>
                     <p>题目主题</p>
                 </Form.Item>
-                <Form.Item name='ques'>
+                <Form.Item name='ques' rules={[{ required: true, message: '请输入试题!' }]}>
                     <Editor style={{ height: 500, width: 1000 }} />
                 </Form.Item>
                 <p>请选择考试类型:</p>
                 <Form.Item
                     name="select1"
-
+                    rules={[{ required: true, message: '请选择考试类型!' }]}
                 >
                     <Select style={{ width: 200 }}>
                         {
@@ -101,12 +102,12 @@ export default function AddQuestions() {
                     </Select>
                 </Form.Item>
 
-                <Form.Item style={{ height: 10 }}>
-                    <p>请选择考试类型</p>
+                <Form.Item style={{ height: 10 }} >
+                    <p>请选择课程类型</p>
                 </Form.Item>
                 <Form.Item
                     name="select2"
-
+                    rules={[{ required: true, message: '请选择课程类型!' }]}
                 >
                     <Select style={{ width: 200 }}>
                         {
@@ -126,7 +127,7 @@ export default function AddQuestions() {
                 </Form.Item>
                 <Form.Item
                     name="select3"
-
+                    rules={[{ required: true, message: '请选择题目类型!' }]}
                 >
                     <Select style={{ width: 200 }}>
                         {
@@ -143,7 +144,7 @@ export default function AddQuestions() {
                 <Form.Item style={{ height: 10 }}>
                     <p>答案信息</p>
                 </Form.Item>
-                <Form.Item name='ques2'>
+                <Form.Item name='ques2' rules={[{ required: true, message: '请输入答案信息!' }]}>
                     <Editor style={{ height: 300, width: 1000 }} />
                 </Form.Item>
 
