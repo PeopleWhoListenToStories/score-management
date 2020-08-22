@@ -19,7 +19,7 @@ instance.interceptors.response.use((response: any) => {
   // NProgress.done();
   return response;
 }, error => {
-  console.log(error.response.status, 'error.response.status')
+  // console.log(error.response.status, 'error.response.status')
   const code: number | undefined = error.response.status;
   switch (code) {
     case 401:
@@ -32,6 +32,7 @@ instance.interceptors.response.use((response: any) => {
       window.location.pathname = '/NoServer';
       return Promise.reject('500 服务器崩溃了');
     default:
+      // window.location.pathname = '/NoServer';
       return Promise.reject('其他错误');
   }
 
