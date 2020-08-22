@@ -48,7 +48,9 @@ export default function () {
                     }}
                 >
                     <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
-                        <Form.Item name={['user', 'title']} label="试卷名称" rules={[{ required: true }]}>
+                        <Form.Item name={['user', 'title']} label="试卷名称"  rules={
+                        [{ required: true, pattern: /^[a-z]{4,16}$/, message: '用户名只能写小写字母4-16位' }]
+                        }>
                             <Input />
                         </Form.Item>
                         <Form.Item name={['user', 'exam_id']} label="选择考试类型" rules={[{ required: true }]}>
