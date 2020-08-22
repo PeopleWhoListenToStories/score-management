@@ -26,7 +26,7 @@ export default function RouterView({ routes }: Iprops) {
         // }
 
         return <Route key={item.path} path={item.path} render={(props) => {
-
+          console.log(props)
           // 用户登录拦截
           let isPath = props.match.path;
           if (!whileList.includes(isPath) && !getCookie('token')) {
