@@ -102,14 +102,14 @@ export default function Student() {
                     <Input placeholder='姓名' />
                     <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
                         {
-                            Class.classlist && Class.classlist.map((item: any,index) => {
+                            Class.classlist && Class.classlist.map((item: any, index) => {
                                 return <Option key={index} value={item.room_id}>{item.room_text}</Option>
                             })
                         }
                     </Select>
                     <Select className={style.Select} placeholder="请选择课程" style={{ width: 180 }} onChange={handleChange}>
                         {
-                            Class.classlist && Class.classlist.map((item: any,index) => {
+                            Class.classlist && Class.classlist.map((item: any, index) => {
                                 return <Option key={index} value={item.subject_id}>{item.subject_text}</Option>
                             })
                         }
@@ -118,10 +118,9 @@ export default function Student() {
                     <Button type="primary"
                         onClick={() => addConsumerForm.resetFields()}
                     >重置</Button>
-
                 </Form.Item>
 
-                <Form.Item
+                {/* <Form.Item
                     name="room_text"
 
                     rules={[
@@ -158,7 +157,7 @@ export default function Student() {
                     </Select>
                 </Form.Item>
                 <Button type="primary">搜索</Button>
-                <Button type="primary" onClick={() => addConsumerForm.resetFields()} >重置</Button>
+                <Button type="primary" onClick={() => addConsumerForm.resetFields()} >重置</Button> */}
 
             </Form>
             <Table columns={columns} dataSource={Stu.stulist} rowKey={(r) => r.student_id} />
