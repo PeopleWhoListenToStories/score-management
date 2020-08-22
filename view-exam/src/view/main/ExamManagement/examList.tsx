@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
-import { Table, Select, Form, Button } from 'antd';
+import { Table, Select, Form, Button, Row, Col } from 'antd';
 import { useHistory } from 'react-router-dom'
 import { SearchOutlined } from '@ant-design/icons';
 import style from './examList.module.css'
@@ -19,8 +19,8 @@ export default function () {
   };
 
   const layout = {
-    labelCol: { span: 5 },
-    wrapperCol: { span: 5 },
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
   };
   const columns = [
     {
@@ -85,8 +85,10 @@ export default function () {
     <div>
       <div>
         <Form {...layout} name="nest-messages" onFinish={onFinish}>
+        <Row style={{ width: 800 }}>
+            <Col style={{ width: 350 }}>
           <Form.Item name={['user', 'exam_id']} label="考试类型" rules={[{ required: true }]} >
-            <Select>
+            <Select style={{ width: 200 }}>
               {
                 ExamManagement.ExamTypedata.map((item: any,index:any) => {
                   return (
@@ -95,10 +97,11 @@ export default function () {
                 })
               }
             </Select>
-            
           </Form.Item>
+          </Col>
+            <Col>
           <Form.Item name={['user', 'subject_id']} label="课程" rules={[{ required: true }]}>
-            <Select>
+            <Select style={{ width: 200 }}>
               {
                 ExamManagement.Allcoursesdata.map((item: any,index:any) => {
                   return (
@@ -108,16 +111,15 @@ export default function () {
               }
             </Select>
           </Form.Item>
+          </Col>
           <Form.Item
-            wrapperCol={{
-              xs: { span: 24, offset: 0 },
-              sm: { span: 16, offset: 8 },
-            }}
+           wrapperCol={{ ...layout.wrapperCol, offset: 20 }}
           >
             <Button type="primary" htmlType="submit" >
               <SearchOutlined /> 查询
          </Button>
           </Form.Item>
+          </Row>
         </Form>
       </div>
       <div className={style.tablebox}>
