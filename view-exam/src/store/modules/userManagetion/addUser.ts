@@ -127,6 +127,7 @@ export default class AddUser {
       const result: any = await showApiAuthority();
       if (result.data.code === 1) {
         this.ApiAuthorityList = result.data.data;
+        
         console.log('showApiAuthorityAction ok')
       } else {
         console.log('showApiAuthorityAction error')
