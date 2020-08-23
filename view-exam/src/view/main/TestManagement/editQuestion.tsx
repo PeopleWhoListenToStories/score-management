@@ -1,9 +1,3 @@
-//defaultValue={AllClass.DetailData[0].title}
-//value={AllClass.DetailData[0].questions_stem}
-//defaultValue={AllClass.DetailData[0].exam_name}
-//defaultValue={AllClass.DetailData[0].subject_text}
-//defaultValue={AllClass.DetailData[0].questions_type_text}
-//value={AllClass.DetailData[0].questions_answer}
 import React, { useEffect, useState } from 'react'
 import { useObserver } from 'mobx-react-lite'
 import useStore from '../../../context/useStore'
@@ -45,14 +39,16 @@ export default function AddQuestions() {
     let showModal = () => {
         setVisible(false)
         // onReset()
-        let user_id = getCookie('user_id');
-        let questions_type_id = formData.select3;
+        let questions_id = sessionStorage.questions_id;
+        console.log(questions_id)
         let questions_stem = formData.ques;
-        let subject_id = formData.select2;
-        let exam_id = formData.select1;
+        let questions_type_id = formData.select3===AllClass.DetailData[0].questions_type_text?AllClass.DetailData[0].questions_type_id:formData.select3;
+        let subject_id = formData.select2===AllClass.DetailData[0].subject_text?AllClass.DetailData[0].subject_id:formData.select2;
+        let exam_id = formData.select1===AllClass.DetailData[0].exam_name?AllClass.DetailData[0].exam_id:formData.select1;
         let questions_answer = formData.ques2;
         let title = formData.username;
-        AllClass.AddQuestion(questions_type_id, questions_stem, subject_id, exam_id, (user_id as string), questions_answer, title)
+        
+        AllClass.xiugai(questions_id,questions_type_id, questions_stem, subject_id, exam_id, questions_answer, title)
     };
     //取消
     let handleCancel = () => {

@@ -19,3 +19,7 @@ export const GetTests = (questions_id?: string) => ajax.get('/exam/questions/con
 export const GetAllTest=()=>ajax.get('/exam/questions/new')
 //添加试题接口
 export const AddText=(questions_type_id:string,questions_stem:string,subject_id:string,exam_id:string,user_id:string,questions_answer:string,title:string)=>ajax.post('/exam/questions',{questions_type_id,questions_stem,subject_id,exam_id,user_id,questions_answer,title})
+//添加试题类型
+export const AddTestType=(text:string,sort:string='774318-730z8m')=>ajax.get('/exam/insertQuestionsType',{params:{text,sort}})
+//更新试题
+export const newTest=(exam_id:string,questions_type_id?:string,questions_stem?:string,subject_id?:string,questions_id?:string,questions_answer?:string,title?:string)=>ajax.put('/exam/questions/update',{questions_type_id,questions_stem,subject_id,exam_id,questions_id,questions_answer,title})
