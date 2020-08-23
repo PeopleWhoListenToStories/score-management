@@ -6,7 +6,7 @@ import { useObserver } from 'mobx-react-lite'
 
 import style from './question.module.css'
 //按钮
-import { Button, Modal } from 'antd';
+import { Button, Modal, Form } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 //表格
 import { Table, Space } from 'antd';
@@ -41,6 +41,7 @@ const columns = [
 
 function QuestionsType() {
   let [visibled, setVisible] = useState<any>()
+
   //使用仓库
   let { AllClass } = useStore()
   useEffect(() => {
@@ -53,40 +54,52 @@ function QuestionsType() {
     setVisible(true)
   };
 
-  const handleOk = (e: any) => {
-    console.log(e);
-    setVisible(false)
-
-  };
-
   const handleCancel = (e: any) => {
     console.log(e);
+    setVisible(false)
+  };
+
+  let onFinish = (values: any) => {
+    AllClass.AddTestType(values.value)
     setVisible(false)
   };
   return useObserver(() =>
     <div className={style.question}>
 
-      <Button type="primary" icon={<PlusOutlined />} size="middle" style={{margin:'10px'}} onClick={showModal}>  添加类型  </Button>
-
-      <Table columns={columns} dataSource={AllClass.Typedata} rowKey={(record) => record.questions_type_id} />
+      <Button type="primary" icon={<PlusOutlined />} size="middle" style={{ margin: '10px' }} onClick={showModal}>  添加类型  </Button>
 
       <Modal
         visible={visibled}
-        onOk={handleOk}
-        onCancel={handleCancel}
         centered={true}
-        cancelText="取消"
-        okText="确定"
-        footer={[
-          // 定义右下角 按钮的地方 可根据需要使用 一个或者 2个按钮
-          <Button key="submit" type="primary" onClick={handleOk} style={{ marginLeft: -180 }} size='large'>确定</Button>,
-          <Button key="back" onClick={handleCancel} style={{ marginRight: 180 }}>
-            取消
-          </Button>]}
+        // cancelText="取消"
+        // okText="确定"
+        // footer={[
+        // // 定义右下角 按钮的地方 可根据需要使用 一个或者 2个按钮
+        // <Button key="submit" htmlType="submit"  style={{ marginLeft: -180 }} size='large'>确定</Button>,
+        // <Button key="back" onClick={handleCancel} style={{ marginRight: 180 }}>
+        //   取消
+        // </Button>]}
+        footer={null}
       >
         <h3 style={{ textAlign: "center" }}>创建新类型</h3>
-        <Input placeholder="请输入类型名称" bordered={false} />
+        <Form onFinish={onFinish}>
+          <Form.Item name="value">
+            <Input placeholder="请输入类型名称" bordered={false} />
+          </Form.Item>
+          <Form.Item>
+            <Button key="submit" htmlType="submit" type="primary" style={{marginLeft:180}} size='large'>确定</Button>
+            <Button key="back" onClick={handleCancel}  style={{marginLeft:20}} >
+              取消
+        </Button>
+          </Form.Item>
+
+        </Form>
       </Modal>
+
+
+      <Table columns={columns} dataSource={AllClass.Typedata} rowKey={(record) => record.questions_type_id} />
+
+
 
     </div>
   )

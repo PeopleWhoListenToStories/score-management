@@ -1,5 +1,5 @@
-import { action, observable } from 'mobx';
-import { AllClass, GetTest, AllexamType, testType, GetAllTest, GetTests, AddText } from '../../../api/module/testmanagetion'
+import { action, observable, } from 'mobx';
+import { AllClass, GetTest, AllexamType, testType, GetAllTest, GetTests, AddText, AddTestType, newTest } from '../../../api/module/testmanagetion'
 
 export default class AllClasses {
     @observable
@@ -38,18 +38,21 @@ export default class AllClasses {
             testType().then(res => {
                 if (res.data.code === 1) {
                     this.Typedata = res.data.data
-                    sessionStorage.Typedata = JSON.stringify(res.data.data)
                 }
             })
         }
     }
 
     @action  // 获取全部试题
-    getAllTest = async () => {
-        const result: any = await GetAllTest();
-        if (result.data.code === 1) {
-            this.AllTests = result.data.data
-        }
+    getAllTest = () => {
+        GetAllTest().then(res => {
+            console.log(res)
+            if (res.data.code === 1) {
+                console.log(res)
+                this.AllTests = res.data.data
+            }
+        });
+
     }
     @action // 按条件
     getTestData = (questions_type_id?: string, subject_id?: string, exam_id?: string) => {
@@ -73,9 +76,22 @@ export default class AllClasses {
         })
 
     }
-
+    //添加试题类型
+    @action
+    AddTestType = (text: string, sort?: string) => {
+        AddTestType(text, sort).then(res => {
+            if (res.data.code === 1) {
+                testType().then(res => {
+                    if (res.data.code === 1) {
+                        this.Typedata = res.data.data
+                    }
+                })
+            }
+        })
+    }
     @action // 编辑试题
     toEdit = (props: any, questions_id: string) => {
+        sessionStorage.questions_id=questions_id
         GetTests(questions_id).then(res => {
             if (res.data.code === 1) {
                 this.DetailData = res.data.data
@@ -93,6 +109,17 @@ export default class AllClasses {
 
         })
     }
+    //修改试题
+    @action
+    xiugai = (exam_id: string, questions_type_id?: string, questions_stem?: string, subject_id?: string, questions_id?: string, questions_answer?: string, title?: string) => {
+        newTest(exam_id,questions_type_id,questions_stem,subject_id,questions_id,questions_answer,title).then(res => {
+           if(res.data.code===1){
+              this.getAllTest()
+           }
+        })
+    }
 
 }
+
+
 
