@@ -49,6 +49,7 @@ export default class ExamManagement {
     }
     //增加试卷
     addCreateExam = async (user: any) => {
+      //  console.log(user.time)
         const times = user.time.map((item: any) => {
             let time = new Date(item._d).getTime()
             return time
@@ -60,7 +61,7 @@ export default class ExamManagement {
         const number = Number(user.number);
         const start_time = times[0] ;
         const end_time = times[1];
-         console.log(subject_id,exam_id,title,number,start_time,end_time)
+        // console.log(subject_id,exam_id,title,number,start_time,end_time)
         let result: any = await CreateExam(
             subject_id,
             exam_id,
@@ -69,7 +70,7 @@ export default class ExamManagement {
             end_time * 1,
             Number(number),
         )
-        console.log(result)
+      //  console.log(result)
         if (result.data.code === 1) {
             this.examinationdata = result.data.data
         }

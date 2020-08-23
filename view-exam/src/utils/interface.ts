@@ -3,7 +3,7 @@ import React from 'react';
 export interface IMenuItem {
   name: string,
   meta?: {
-    icon: string,
+    icon: any,
     name: string,
     show: boolean
   },
@@ -14,7 +14,7 @@ export interface IMenuItem {
     meta?: {
       component: any,
       name: string,
-      icon?: string,
+      icon?: any,
       show: boolean
     }
   }>
@@ -27,7 +27,7 @@ export interface IRouerItem {
   component?: any,
   children?: IRouerItem[],
   meta: {
-    icon?: string,
+    icon?: any,
     name: string,
     show: boolean,
     component: any

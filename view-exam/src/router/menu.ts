@@ -1,4 +1,5 @@
 import { IMenuItem } from "../utils/interface"
+import { AppstoreOutlined, UserOutlined, ScheduleOutlined, TableOutlined, MergeCellsOutlined } from '@ant-design/icons';
 
 // 试题管理
 import AddQuestionPage from '../view/main/TestManagement/addQuestions';
@@ -30,7 +31,7 @@ const menus: IMenuItem[] = [
   {
     name: '试题管理',
     meta: {
-      icon: '',
+      icon: AppstoreOutlined,
       name: '试题管理',
       show: true
     },
@@ -81,7 +82,7 @@ const menus: IMenuItem[] = [
   {
     name: '用户管理',
     meta: {
-      icon: '',
+      icon: UserOutlined,
       name: '用户管理',
       show: true
     },
@@ -107,8 +108,8 @@ const menus: IMenuItem[] = [
   {
     name: '考试管理',
     meta: {
-      icon: '',
-      name: '',
+      icon: ScheduleOutlined,
+      name: '考试管理',
       show: true
     },
     children: [
@@ -149,7 +150,7 @@ const menus: IMenuItem[] = [
   {
     name: '班级管理',
     meta: {
-      icon: '',
+      icon: TableOutlined,
       name: '班级管理',
       show: true
     },
@@ -183,7 +184,7 @@ const menus: IMenuItem[] = [
   {
     name: '阅卷管理',
     meta: {
-      icon: '',
+      icon: MergeCellsOutlined,
       name: '阅卷管理',
       show: true
     },

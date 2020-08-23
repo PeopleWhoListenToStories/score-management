@@ -33,69 +33,60 @@ export default class AddUser {
 
   @action //  展示用户数据
   async showUserAction() {
-    if (this.UserList.length === 0) {
       const result: any = await showUser();
       if (result.data.code === 0) return message.warn(result.data.msg);
       if (result.data.code === 1) {
         this.UserList = result.data.data;
+        console.log(this.UserList,'UserList')
         console.log('showUserAction ok')
       } else {
         console.log('showUserAction error')
       }
-    }
   }
 
   @action  // 获取身份数据
   async showIdentityAction() {
-    if (this.IdentityList.length === 0) {
-      const result: any = await showIdentity();
-      if (result.data.code === 0) return message.warn(result.data.msg);
-      if (result.data.code === 1) {
-        this.IdentityList = result.data.data;
-        console.log('showIdentityAction ok')
-      } else {
-        console.log('showIdentityAction error')
-      }
+    const result: any = await showIdentity();
+    if (result.data.code === 0) return message.warn(result.data.msg);
+    if (result.data.code === 1) {
+      this.IdentityList = result.data.data;
+      console.log('showIdentityAction ok')
+    } else {
+      console.log('showIdentityAction error')
     }
   }
 
   @action  // 获取视图权限数据
   async showViewAuthorityAction() {
-    if (this.ViewAuthorityList.length === 0) {
-      const result: any = await showViewAuthority();
-      if (result.data.code === 0) return message.warn(result.data.msg);
-      if (result.data.code === 1) {
-        this.ViewAuthorityList = result.data.data;
-        console.log('showViewAuthorityAction ok')
-      } else {
-        console.log('showViewAuthorityAction error')
-      }
+    const result: any = await showViewAuthority();
+    if (result.data.code === 0) return message.warn(result.data.msg);
+    if (result.data.code === 1) {
+      this.ViewAuthorityList = result.data.data;
+      console.log('showViewAuthorityAction ok')
+    } else {
+      console.log('showViewAuthorityAction error')
     }
   }
 
   @action  // 展示身份权限数据
   async showAuthorityRelationAction() {
-    if (this.AuthorityRelationList.length === 0) {
-      this.showIdentityAction();
-      const result: any = await showAuthorityRelation();
-      if (result.data.code === 0) return message.warn(result.data.msg);
-      if (result.data.code === 1) {
-        this.AuthorityRelationList = result.data.data;
-        console.log('showAuthorityRelation ok')
-      } else {
-        console.log('showAuthorityRelation error')
-      }
+    this.showIdentityAction();
+    const result: any = await showAuthorityRelation();
+    if (result.data.code === 0) return message.warn(result.data.msg);
+    if (result.data.code === 1) {
+      this.AuthorityRelationList = result.data.data;
+      console.log('showAuthorityRelation ok')
+    } else {
+      console.log('showAuthorityRelation error')
     }
   }
 
   @action // 展示身份和视图权限关系
   async showIdentityViewAuthorityRelationAction() {
-    if (this.IdentityViewAuthorityRelationList.length === 0) {
-      const result: any = await showIdentityViewAuthorityRelation();
-      if (result.data.code === 0) return message.warn(result.data.msg);
-      if (result.data.code === 1) {
-        this.IdentityViewAuthorityRelationList = result.data.data;
-      }
+    const result: any = await showIdentityViewAuthorityRelation();
+    if (result.data.code === 0) return message.warn(result.data.msg);
+    if (result.data.code === 1) {
+      this.IdentityViewAuthorityRelationList = result.data.data;
     }
   }
 
@@ -123,14 +114,12 @@ export default class AddUser {
 
   @action // 展示api接口权限数据
   async showApiAuthorityAction() {
-    if (this.ApiAuthorityList.length === 0) {
-      const result: any = await showApiAuthority();
-      if (result.data.code === 1) {
-        this.ApiAuthorityList = result.data.data;
-        console.log('showApiAuthorityAction ok')
-      } else {
-        console.log('showApiAuthorityAction error')
-      }
+    const result: any = await showApiAuthority();
+    if (result.data.code === 1) {
+      this.ApiAuthorityList = result.data.data;
+      console.log('showApiAuthorityAction ok')
+    } else {
+      console.log('showApiAuthorityAction error')
     }
   }
 
@@ -165,8 +154,8 @@ export default class AddUser {
   }
 
   @action // 添加用户
-  async addUserAction(user_name: string, user_pwd: string, identity_id: string) {
-    const result: any = await addUser(user_name, user_pwd, identity_id);
+  async addUserAction(user_name: string, user_pwd: string, identity_id: string, avatar: string) {
+    const result: any = await addUser(user_name, user_pwd, identity_id, avatar);
     if (result.data.code === 1) {
       message.success(result.data.msg)
     } else {

@@ -9,8 +9,8 @@ export default function () {
     const history = useHistory();
     let { ExamManagement } = useStore()
     useEffect(() => {
-        ExamManagement.getExamTypedata();
-        ExamManagement.getAllcourses();
+        ExamManagement.getExamTypedata();//获取考试类型
+        ExamManagement.getAllcourses();//获取课程
     })
     const layout = {
         labelCol: { span: 8 },
@@ -48,15 +48,15 @@ export default function () {
                     }}
                 >
                     <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
-                        <Form.Item name={['user', 'title']} label="试卷名称"  rules={
-                        [{ required: true, pattern: /^[a-z]{4,16}$/, message: '用户名只能写小写字母4-16位' }]
+                        <Form.Item name={['user', 'title']} label="试卷名称" rules={
+                            [{ required: true, pattern: /^[a-z]{4,16}$/, message: '用户名只能写小写字母4-16位' }]
                         }>
                             <Input />
                         </Form.Item>
                         <Form.Item name={['user', 'exam_id']} label="选择考试类型" rules={[{ required: true }]}>
-                            <Select>
+                            <Select >
                                 {
-                                    ExamManagement.ExamTypedata.map((item: any,index:any) => {
+                                    ExamManagement.ExamTypedata.map((item: any, index: any) => {
                                         return (
                                             <Select.Option value={item.exam_id} key={index}>{item.exam_name}</Select.Option>
                                         )
@@ -67,7 +67,7 @@ export default function () {
                         <Form.Item name={['user', 'subject_id']} label="选择课程" rules={[{ required: true }]}>
                             <Select>
                                 {
-                                    ExamManagement.Allcoursesdata.map((item: any,index:any) => {
+                                    ExamManagement.Allcoursesdata.map((item: any, index: any) => {
                                         return (
                                             <Select.Option value={item.subject_id} key={index}>{item.subject_text}</Select.Option>
                                         )
@@ -85,11 +85,10 @@ export default function () {
                             wrapperCol={{
                                 xs: { span: 24, offset: 0 },
                                 sm: { span: 16, offset: 8 },
-                            }}
-                        >
+                            }}>
                             <Button type="primary" htmlType="submit">
                                 创建试卷
-    </Button>
+                                </Button>
                         </Form.Item>
                     </Form>
                 </Content>
