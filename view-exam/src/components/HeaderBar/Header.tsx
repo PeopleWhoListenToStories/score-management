@@ -4,6 +4,7 @@ import { Menu, Dropdown, Avatar } from 'antd';
 import { useHistory } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import useStore from '../../context/useStore'
+import { removeCookie } from "../../utils/myCookie"
 
 export default function Header() {
   const history = useHistory();
@@ -13,6 +14,7 @@ export default function Header() {
     if (e.key === '4')//退出
     {
       window.sessionStorage.removeItem('token');
+      removeCookie('user_id');
       history.push('/Login')
     }
   };

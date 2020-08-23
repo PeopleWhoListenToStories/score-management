@@ -48,7 +48,6 @@ export default class AllClasses {
     getAllTest = async () => {
         const result: any = await GetAllTest();
         if (result.data.code === 1) {
-            console.log(result)
             this.AllTests = result.data.data
         }
     }
