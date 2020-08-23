@@ -28,35 +28,42 @@ export default function () {
     }
     return useObserver(() =>
         <div className={style.box}>
-            <div className={style.inner}>
+            <div className={style.inner}> 
+            <Button  onClick={() => { history.push('/main/addQuestion') }}>创建新题</Button>
                 <div className={style.title}>
-                    <Button onClick={() => { history.push('/main/addQuestion') }}>创建新题</Button>
                     <h2>{ExamManagement.examinationdata.title}</h2>
                     <p><span>{ExamManagement.examinationdata.user_id}</span></p>
+                    <div  className={style.addexam}>
+                        {
+                            ExamManagement.examinationdata.questions&&ExamManagement.examinationdata.questions.length === 0 ?
+                                <Button  type="primary" onClick={() => { history.push('/main/examList') }}>创建试卷</Button>
+                                :
+                                <div className={style.textexam}>{ExamManagement.examinationdata.questions && ExamManagement.examinationdata.questions.map((item: any, index: number) => {
+                                    return (
+                                        <div className={style.exams} key={index}>
+                                            <p>
+                                                <span> {index + 1}:{item.title}</span>
+                                                <Popconfirm
+                                                    title="集美你确定要删除嘛"
+                                                    onConfirm={() => { confirm(item.exam_id) }}
+                                                    onCancel={cancel}
+                                                    okText="Yes"
+                                                    cancelText="No"
+                                                >
+                                                    <a href="/#">删除</a>
+                                                </Popconfirm>
+                                            </p>
+                                            <Editor value={item.questions_stem}></Editor>
+                                            <p>
+                                                {item.questions_answer}
+                                            </p>
+                                        </div>
+                                    )
+                                })}</div>
+                        }
+                    </div>
                 </div>
 
-                <div className={style.textexam}>{ExamManagement.examinationdata.questions && ExamManagement.examinationdata.questions.map((item: any, index: number) => {
-                    return (
-                        <div className={style.exams} key={index}>
-                            <p>
-                                <span> {index + 1}:{item.title}</span>
-                                <Popconfirm
-                                    title="集美你确定要删除嘛"
-                                    onConfirm={() => { confirm(item.exam_id) }}
-                                    onCancel={cancel}
-                                    okText="Yes"
-                                    cancelText="No"
-                                >
-                                    <a href="/#">删除</a>
-                                </Popconfirm>
-                            </p>
-                            <Editor value={item.questions_stem}></Editor>
-                            <p>
-                                {item.questions_answer}
-                            </p>
-                        </div>
-                    )
-                })}</div>
             </div>
         </div>
     )

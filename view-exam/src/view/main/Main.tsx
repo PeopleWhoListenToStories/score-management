@@ -8,6 +8,7 @@ import useStore from '../../context/useStore';
 // 引入组件
 import MenuSider from '../../components/MenuSide/MenuSider';
 import HeaderBar from '../../components/HeaderBar/Header';
+import TagBar from '../../components/TagBar/TagBar';
 
 // 引入antd
 import { Layout } from 'antd';
@@ -30,7 +31,7 @@ const getTitle = (path: string) => {
   return title;
 }
 
-export default function Main(props: any) {
+const Main: React.FC = (props: any) => {
   const history = useHistory();
   // console.log(history.location.pathname)
   const { MainStore } = useStore();
@@ -45,14 +46,16 @@ export default function Main(props: any) {
       <Layout>
         <Sider style={{ background: '#232A41' }} ><MenuSider></MenuSider></Sider>
         <Content>
+          <TagBar />
           {/* <h2>{props.routes.find((v: any) => v.path == props.location.pathname)?.meta?.name}</h2> */}
-          <h2 style={{padding:'20px'}}>{getTitle(history.location.pathname) ? getTitle(history.location.pathname) : '默认参数'}</h2>
+          <h2 style={{ padding: '20px' }}>{getTitle(history.location.pathname) ? getTitle(history.location.pathname) : '默认参数'}</h2>
           <Roterview routes={props.routes} />
         </Content>
       </Layout>
     </Layout>
   </MainWrapper>)
 }
+export default Main;
 
 const MainWrapper = styled.div`
   wdith:100%;

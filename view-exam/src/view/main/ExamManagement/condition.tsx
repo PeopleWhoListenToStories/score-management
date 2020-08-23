@@ -3,9 +3,11 @@ import { useObserver } from 'mobx-react-lite'
 import useStore from '../../../context/useStore'
 import Editor from 'for-editor'
 import style from './Edit.module.css'
-import { message, Popconfirm, } from 'antd';
+import { message, Popconfirm,Button } from 'antd';
+import { useHistory } from 'react-router-dom'
 export default function () {
     let { ExamManagement } = useStore()
+    let history =useHistory()
     useEffect(() => {
     })
     function delteexam(id: number) {
@@ -24,8 +26,13 @@ export default function () {
         message.error('删除失败');
     }
     return useObserver(() =>
-        <div>
+        <div className={style.box}>
+            <div>
             {
+                 ExamManagement.conditionsdata.length===0
+                 ?
+                 <Button onClick={() => { history.push('/main/addQuestion') }}>创建新题</Button>
+                :
                 ExamManagement.conditionsdata.map((item: any, index: number) => {
 
                     return (
@@ -51,7 +58,7 @@ export default function () {
 
                 })
             }
-
+            </div>
         </div>
     )
 }

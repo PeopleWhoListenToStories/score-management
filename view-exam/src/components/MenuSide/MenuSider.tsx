@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useObserver } from 'mobx-react-lite'
 import { Link } from 'react-router-dom'
+import useStore from "../../context/useStore"
 import MenuSideCss from './MenuSide.module.scss'
 
 import { Menu } from 'antd';
@@ -10,10 +11,11 @@ import { IMenuItem } from "../../utils/interface"
 import menu from "../../router/menu"
 
 const { SubMenu } = Menu;
-
 export default function MenuSider() {
   const [defaultKey, setOpenKey] = useState<string>('0');
+  const [defaultName, setOpenName] = useState<string>('0');
 
+  const { MainStore } = useStore();
   function changeOpenKey(menu: IMenuItem[]) {
     let index: string = "0";
     menu.forEach((item, i) => {
@@ -29,8 +31,9 @@ export default function MenuSider() {
   useEffect(() => {
     setOpenKey(changeOpenKey(menu))
   }, [changeOpenKey(menu)])
+
   function OpenClickMenu(obj: any) {
-    console.log(obj)
+    // console.log(obj)
   }
 
   function OpenChangeMenu(openKeys: any) {
@@ -50,11 +53,11 @@ export default function MenuSider() {
         theme="dark"
       >
         {menu.map((item: any, index: number) => {
-          return <SubMenu key={index} title={item.name} icon={<item.meta.icon/>}  >
+          return <SubMenu key={index} title={item.name} icon={<item.meta.icon />}  >
             {
               item.children && item.children.map((v: any) => {
                 if ((v.meta as any).show) {
-                  return <Menu.Item key={v.path} >
+                  return <Menu.Item key={v.path} onClick={() => { MainStore.TagAction({ path: v.path, name: v.meta.name }) }}>
                     <Link to={v.path} >{(v.meta as any).name}</Link>
                   </Menu.Item>
                 }

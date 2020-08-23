@@ -9,8 +9,8 @@ export default function () {
     const history = useHistory();
     let { ExamManagement } = useStore()
     useEffect(() => {
-        ExamManagement.getExamTypedata();
-        ExamManagement.getAllcourses();
+        ExamManagement.getExamTypedata();//获取考试类型
+        ExamManagement.getAllcourses();//获取课程
     })
     const layout = {
         labelCol: { span: 8 },
@@ -85,11 +85,10 @@ export default function () {
                             wrapperCol={{
                                 xs: { span: 24, offset: 0 },
                                 sm: { span: 16, offset: 8 },
-                            }}
-                        >
+                            }}>
                             <Button type="primary" htmlType="submit">
                                 创建试卷
-    </Button>
+                                </Button>
                         </Form.Item>
                     </Form>
                 </Content>

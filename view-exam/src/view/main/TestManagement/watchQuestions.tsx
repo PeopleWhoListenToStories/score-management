@@ -47,7 +47,18 @@ export default function WatchQuestions(props: any) {
     //全选
     const handAll=()=>{
         setallflag(!allflag)
-        // setselectedTag(AllClass.AllClass)
+        let  selectedTags  =  JSON.parse(JSON.stringify(AllClass.AllClass)) 
+        let newarr:any[]=[]
+        selectedTags.forEach((item:any)=>{
+            newarr.push(item.subject_text)
+        })
+        console.log(selectedTags)
+        if(allflag===!false){
+            setselectedTag([])
+        }else{
+            setselectedTag(newarr)
+        }
+        
     }
     return useObserver(() =>
         <div className={style.watch_}>

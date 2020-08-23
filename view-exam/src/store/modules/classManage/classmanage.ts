@@ -1,6 +1,6 @@
 import { action, observable } from 'mobx';
 import ajax from '../../../utils/request';
-import { deleteclass, addGrade ,updateClass } from '../../../api/module/class'
+import { deleteclass, addGrade , updateClass } from '../../../api/module/class'
 
 export default class Class {
     @observable
@@ -12,7 +12,6 @@ export default class Class {
     async getClassmanage() {
         const result: any = await ajax.get('/manger/grade');
         if (result.data.code === 1) {
-            console.log(result.data.data)
             this.classlist = result.data.data
         }
     }
