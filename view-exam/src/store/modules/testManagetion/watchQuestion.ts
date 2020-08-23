@@ -55,7 +55,6 @@ export default class AllClasses {
     getTestData = (questions_type_id?: string, subject_id?: string, exam_id?: string) => {
         GetTest(questions_type_id, subject_id, exam_id).then(res => {
             if (res.data.code === 1) {
-                console.log(res.data.data)
                 this.AllTests = res.data.data
             }
         })
