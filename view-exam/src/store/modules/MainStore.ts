@@ -21,12 +21,13 @@ export default class MainStore {
   NoViewAuthority: any[] = []; // 没有权限视图列表
   @observable
   isGetInitFlag: boolean = true; // 获取个人信息开关
+  @observable
+  TagList: Array<{ name: string, path: string }> = []; // 标签列表
 
   @action  // 获取列表数据方法
   async initAction() {
     if (this.isGetInitFlag) {
       const result: any = await getUserInfo();
-      console.log(result,'result')
       if (result.data.code === 1) {
         this.user_info = result.data.data;
         setCookie('user_id', result.data.data.user_id)
@@ -35,6 +36,20 @@ export default class MainStore {
         this.isGetInitFlag = false;
       }
     }
+  }
+
+  @action
+  async TagAction(obj: { path: string, name: string }) {
+    const isHas = this.TagList.find(v => v.path === obj.path);
+    if (!isHas) {
+      this.TagList.push(obj)
+    }
+  }
+
+  @action 
+  async removePathAction(path:string){
+    const index = this.TagList.findIndex(v => v.path === path);
+      this.TagList.splice(index,1);
   }
   //@action // 获取用户的视图权限数据
   // async getMenuListAction(user_id: string) {
