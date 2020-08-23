@@ -28,4 +28,4 @@ export const already = () => ajax.get('/manger/student/new');
 export const delStu = (student_id:string) => ajax.delete('/manger/student/:id=>student_id',{data:{student_id}});
 
 //跟新班级
-export const updateClass = (room_id:string,room_text:string) => ajax.get('/manger/room/update',{params:{room_id,room_text}});
+export const updateClass = (grade_id:string,grade_name:string,room_id:string,subject_id:string) => ajax.get('/manger/grade/update',{params:{grade_id,grade_name,room_id,subject_id}});

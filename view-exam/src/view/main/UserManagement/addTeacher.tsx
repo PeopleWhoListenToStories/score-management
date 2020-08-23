@@ -48,7 +48,6 @@ const AddTeacher: React.FC = () => {
 
     <div className={AddCss.addTeacher}>
       <div className={AddCss.innerBox}>
-
         <div className={AddCss.item}>
           <Tabs defaultActiveKey="1" onChange={callback}>
             <TabPane tab="添加用户" key="1">

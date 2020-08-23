@@ -20,47 +20,7 @@ export default function Grade() {
   function cancel(e:any) {
     console.log(e);
   }
-  const columns = [
-    { title: '班级名', dataIndex: 'grade_name', key: 'grade_name' },
-    { title: '课程名', dataIndex: 'subject_text', key: 'subject_text' },
-    { title: '教室号', dataIndex: 'room_text', key: 'room_text' },
-    {
-      title: '操作',
-      key: 'action',
-      render: (text: number, record: any) => {
-        return <span>
-          {
-            <button className='btn' onClick={()=>{
-              showFlag(record)
-            }}>修改</button>
-          }
-        </span>
-      }
-    },
-    {
-      title: '操作',
-      key: 'action',
-      render: (text: number, record: any) => {
-          return <span>
-              {
-                  <Popconfirm
-                  title="确定要删除这项任务吗?"
-                  onConfirm={()=>{
-                     confirm(record)
-                  }}
-                  onCancel={cancel}
-                  okText="确定"
-                  cancelText="取消"
-                >
-                  <span   >删除</span>
-                </Popconfirm>
-              }
-          </span>
-      }
-  }
-  ];
-
-
+ 
   const showModal = () => {
     setVisible(true)
   };
@@ -88,6 +48,47 @@ export default function Grade() {
   useEffect(() => {
     Class.getClassmanage();
   }, [Class])
+  const columns = [
+    { title: '班级名', dataIndex: 'grade_name', key: 'grade_name' },
+    { title: '课程名', dataIndex: 'subject_text', key: 'subject_text' },
+    { title: '教室号', dataIndex: 'room_text', key: 'room_text' },
+    {
+      title: '操作1',
+      key: 'action',
+      render: (text: number, record: any) => {
+        return <span>
+          {
+            <button className='btn' onClick={()=>{
+              showFlag(record)
+            }}>修改</button>
+          }
+        </span>
+      }
+    },
+    {
+      title: '操作2',
+      key: 'action',
+      render: (text: number, record: any) => {
+          return <span>
+              {
+                  <Popconfirm
+                  title="确定要删除这项任务吗?"
+                  onConfirm={()=>{
+                     confirm(record)
+                  }}
+                  onCancel={cancel}
+                  okText="确定"
+                  cancelText="取消"
+                >
+                  <span   >删除</span>
+                </Popconfirm>
+              }
+          </span>
+      }
+  }
+  ];
+
+
 
   return useObserver(() => <div className={style.grade}>
     <Button className={style.addBtn} onClick={showModal}> + 添加班级 </Button>

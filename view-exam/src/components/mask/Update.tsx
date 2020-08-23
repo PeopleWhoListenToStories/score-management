@@ -50,7 +50,7 @@ export default function Mask() {
                     name="grade_name"
                    
                 >
-                     <Input prefix="班级名" disabled />
+                     <Input value={Class.con.grade_name} placeholder={Class.con.grade_name}  />
                 </Form.Item>
 
                 <Form.Item
@@ -64,8 +64,8 @@ export default function Mask() {
                     ]}
                 >
                     <Select 
-                    // placeholder={Class.con.grade_name} 
-                    placeholder='12306'
+                    // placeholder='12306'
+                    placeholder={Class.con.room_text}
                     style={{ width: 180 }} onChange={handleChange}>
                         {
                            Class.classlist.map((item: any,index) => {
@@ -86,8 +86,8 @@ export default function Mask() {
                     ]}
                 >
                     <Select
-                    //  placeholder={Class.con.room_text}
-                     placeholder='node基础'
+                     placeholder={Class.con.subject_text}
+                    //  placeholder='node基础'
                      style={{ width: 180 }} onChange={handleChange}>
                         {
                             Class.classlist.map((item: any,index) => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table, Button, Modal, Input, Form, Popconfirm, message } from 'antd';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
@@ -8,6 +8,7 @@ import './room.module.scss'
 
 export default function Grade() {
     const { Room } = useStore();
+    let [visible, setVisible] = useState<boolean>();
 
     // const [flag, UseFlag] = useState<boolean>(Room.visible)
 
@@ -44,7 +45,7 @@ export default function Grade() {
                             okText="确定"
                             cancelText="取消"
                         >
-                            <span  >删除</span>
+                            <span>删除</span>
                         </Popconfirm>
                     }
                 </span>
@@ -65,15 +66,30 @@ export default function Grade() {
             offset: 8,
             span: 16,
         },
-    };
+    }; 
+    const showModal = () => {
+        setVisible(true)
+      Room.visible = true 
+      };
+    
+      const handleOk = () => {
+        setVisible(false)
+      };
+    
+      const handleCancel = () => {
+        setVisible(false)
+      };
+    
 
 
     return useObserver(() =>
         <div className={style.roomBox}>
-            <Button type="primary" className={style.btn} onClick={() => { Room.visible = true }}> 添加教室  </Button>
+            <Button type="primary" className={style.btn} onClick={showModal}> 添加教室  </Button>
             <Modal
                 title="添加教室"
-                visible={Room.visible}
+                visible={visible}
+                onOk={handleOk}
+                onCancel={handleCancel}
                 footer={null}
             >
                 <Form
@@ -91,17 +107,17 @@ export default function Grade() {
                         label="教室号"
                         name="username"
                         rules={
-                            [{ required: true, pattern: /^[0-9]*$/, message: '输入教室号' }]}
+                            [{ required: true, pattern: /^[0-9]*$/, message: '输入教室号'}]}
                     >
                         <Input />
                     </Form.Item>
 
                     <Form.Item {...tailLayout}>
-                        <Button type="primary" htmlType="submit">  添加 </Button>
+                        <Button type="primary" htmlType="submit">添加</Button>
                     </Form.Item>
                 </Form>
             </Modal>
-            < Table
+            <Table
                 rowKey={(r) => r.room_text}
                 columns={columns}
                 dataSource={Room.roomlist}

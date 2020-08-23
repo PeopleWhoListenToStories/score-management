@@ -88,6 +88,7 @@ export default function Student() {
                 onFinish={onFinish}
                 form={addConsumerForm}
                 initialValues={{ grade_name: '', room_text: '请选择教室号', subject_text: '请选择课程' }}
+                className={style.forms}
             >
                 <Form.Item
                     name="grade_name"
@@ -95,7 +96,7 @@ export default function Student() {
                         [{ required: true, pattern: /^[a-z]{4,16}$/, message: '输入4-16位小写字母' }]}
                 >
                     <Input placeholder='姓名' />
-                    <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
+                    {/* <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
                         {
                             Class.classlist && Class.classlist.map((item: any, index) => {
                                 return <Option key={index} value={item.room_id}>{item.room_text}</Option>
@@ -108,16 +109,15 @@ export default function Student() {
                                 return <Option key={index} value={item.subject_id}>{item.subject_text}</Option>
                             })
                         }
-                    </Select>
+                    </Select
                     <Button type="primary">搜索</Button>
                     <Button type="primary"
                         onClick={() => addConsumerForm.resetFields()}
-                    >重置</Button>
+                    >重置</Button> */}
                 </Form.Item>
 
-                {/* <Form.Item
+                <Form.Item
                     name="room_text"
-
                     rules={[
                         {
                             required: true,
@@ -125,10 +125,10 @@ export default function Student() {
                         },
                     ]}
                 >
-                    <Select style={{ width: 180 }} onChange={handleChange}>
+                   <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
                         {
-                            Class.classlist && Class.classlist.map((item: any) => {
-                                return <Option key={item.room_id} value={item.room_id}>{item.room_text}</Option>
+                            Class.classlist && Class.classlist.map((item: any, index) => {
+                                return <Option key={index} value={item.room_id}>{item.room_text}</Option>
                             })
                         }
                     </Select>
@@ -143,16 +143,16 @@ export default function Student() {
                         },
                     ]}
                 >
-                    <Select style={{ width: 180 }} onChange={handleChange}>
+                   <Select className={style.Select} placeholder="请选择课程" style={{ width: 180 }} onChange={handleChange}>
                         {
-                            Class.classlist && Class.classlist.map((item: any) => {
-                                return <Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Option>
+                            Class.classlist && Class.classlist.map((item: any, index) => {
+                                return <Option key={index} value={item.subject_id}>{item.subject_text}</Option>
                             })
                         }
                     </Select>
                 </Form.Item>
                 <Button type="primary">搜索</Button>
-                <Button type="primary" onClick={() => addConsumerForm.resetFields()} >重置</Button> */}
+                <Button type="primary" onClick={() => addConsumerForm.resetFields()} >重置</Button>
 
             </Form>
             <Table columns={columns} dataSource={Stu.stulist&&Stu.stulist} rowKey={(r) => r.student_id} />

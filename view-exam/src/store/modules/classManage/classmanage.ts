@@ -6,7 +6,7 @@ export default class Class {
     @observable
     classlist = []
     @observable
-    con=[]
+    con:any={}
 
     @action
     async getClassmanage() {
@@ -34,9 +34,9 @@ export default class Class {
 
     @action
    async updateC(val: any) {
-       console.log(val)
+       console.log(this.con.grade_id,val.grade_name,val.subject_text,val.room_text)
 
-       let result =await updateClass(val.room_text,val.subject_text)
+       let result =await updateClass(this.con.grade_id,val.grade_name,val.subject_text,val.room_text)
        if(result.data.code===1){
            console.log(result.data.msg)
            this.getClassmanage()

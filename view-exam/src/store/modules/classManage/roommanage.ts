@@ -20,7 +20,7 @@ export default class Room {
         }
     }
 
-    @action
+    @action 
     showModal() {
         this.visible = true;
     };
