@@ -13,8 +13,9 @@ export default function () {
     ExamManagement.getExamTypedata();
     ExamManagement.getAllcourses();
   });
+
   async function onFinish(values: any) {
-    await ExamManagement.getdata(values.exam_id, values.subject_id)
+    await ExamManagement.getdata(values.user.exam_id, values.user.subject_id)
     history.push('/main/condition')
   };
 
@@ -85,40 +86,40 @@ export default function () {
     <div>
       <div>
         <Form {...layout} name="nest-messages" onFinish={onFinish}>
-        <Row style={{ width: 800 }}>
+          <Row style={{ width: 800 }}>
             <Col style={{ width: 350 }}>
-          <Form.Item name={['user', 'exam_id']} label="考试类型" rules={[{ required: true }]} >
-            <Select style={{ width: 200 }}>
-              {
-                ExamManagement.ExamTypedata.map((item: any,index:any) => {
-                  return (
-                    <Select.Option value={item.exam_id} key={index}>{item.exam_name}</Select.Option>
-                  )
-                })
-              }
-            </Select>
-          </Form.Item>
-          </Col>
+              <Form.Item name={['user', 'exam_id']} label="考试类型" rules={[{ required: true }]} >
+                <Select style={{ width: 200 }}>
+                  {
+                    ExamManagement.ExamTypedata.map((item: any, index: any) => {
+                      return (
+                        <Select.Option value={item.exam_id} key={index}>{item.exam_name}</Select.Option>
+                      )
+                    })
+                  }
+                </Select>
+              </Form.Item>
+            </Col>
             <Col>
-          <Form.Item name={['user', 'subject_id']} label="课程" rules={[{ required: true }]}>
-            <Select style={{ width: 200 }}>
-              {
-                ExamManagement.Allcoursesdata.map((item: any,index:any) => {
-                  return (
-                    <Select.Option value={item.subject_id} key={index}>{item.subject_text}</Select.Option>
-                  )
-                })
-              }
-            </Select>
-          </Form.Item>
-          </Col>
-          <Form.Item
-           wrapperCol={{ ...layout.wrapperCol, offset: 20 }}
-          >
-            <Button type="primary" htmlType="submit" >
-              <SearchOutlined /> 查询
+              <Form.Item name={['user', 'subject_id']} label="课程" rules={[{ required: true }]}>
+                <Select style={{ width: 200 }}>
+                  {
+                    ExamManagement.Allcoursesdata.map((item: any, index: any) => {
+                      return (
+                        <Select.Option value={item.subject_id} key={index}>{item.subject_text}</Select.Option>
+                      )
+                    })
+                  }
+                </Select>
+              </Form.Item>
+            </Col>
+            <Form.Item
+              wrapperCol={{ ...layout.wrapperCol, offset: 20 }}
+            >
+              <Button type="primary" htmlType="submit" >
+                <SearchOutlined /> 查询
          </Button>
-          </Form.Item>
+            </Form.Item>
           </Row>
         </Form>
       </div>

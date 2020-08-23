@@ -12,9 +12,6 @@ export const deleteRoom = (room_id:string) => ajax.delete('/manger/room/delete',
 // 添加教室
 export const addRoom = (room_text:string) => ajax.post('/manger/room',{room_text});
 
-// 添加班级
-// export const addClass = (grade_name:string,room_id:string,subject_id:string) => ajax.post('/manger/grade',{grade_name,room_id,subject_id});
-
 // 删除教室
 export const deleteclass = (grade_id:string) => ajax.delete('/manger/grade/delete',{data:{grade_id}});
 
@@ -29,3 +26,6 @@ export const already = () => ajax.get('/manger/student/new');
 
 // 删除学生
 export const delStu = (student_id:string) => ajax.delete('/manger/student/:id=>student_id',{data:{student_id}});
+
+//跟新班级
+export const updateClass = (room_id:string,room_text:string) => ajax.get('/manger/room/update',{params:{room_id,room_text}});

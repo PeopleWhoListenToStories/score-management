@@ -49,7 +49,7 @@ const list = [
     type: 'api接口权限',
     action: 'showApiAuthorityAction',
     list: 'ApiAuthorityList',
-    key: 'identity_api_authority_relation_id',
+    key: 'api_authority_id',
     colums: [
       {
         title: 'api权限名称',

@@ -15,7 +15,6 @@ export default function Student() {
     useEffect(() => {
         Stu.list();
     }, [Stu])
-
     function confirm(val: any) {
         message.success('删除成功');
         Stu.Del(val.student_id);
@@ -92,24 +91,20 @@ export default function Student() {
             >
                 <Form.Item
                     name="grade_name"
-                    rules={[
-                        {
-                            required: true,
-                            message: '请输入班级名!',
-                        },
-                    ]}
+                    rules={
+                        [{ required: true, pattern: /^[a-z]{4,16}$/, message: '输入4-16位小写字母' }]}
                 >
                     <Input placeholder='姓名' />
                     <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
                         {
-                            Class.classlist && Class.classlist.map((item: any,index) => {
+                            Class.classlist && Class.classlist.map((item: any, index) => {
                                 return <Option key={index} value={item.room_id}>{item.room_text}</Option>
                             })
                         }
                     </Select>
                     <Select className={style.Select} placeholder="请选择课程" style={{ width: 180 }} onChange={handleChange}>
                         {
-                            Class.classlist && Class.classlist.map((item: any,index) => {
+                            Class.classlist && Class.classlist.map((item: any, index) => {
                                 return <Option key={index} value={item.subject_id}>{item.subject_text}</Option>
                             })
                         }
@@ -118,10 +113,9 @@ export default function Student() {
                     <Button type="primary"
                         onClick={() => addConsumerForm.resetFields()}
                     >重置</Button>
-
                 </Form.Item>
 
-                <Form.Item
+                {/* <Form.Item
                     name="room_text"
 
                     rules={[
@@ -158,10 +152,10 @@ export default function Student() {
                     </Select>
                 </Form.Item>
                 <Button type="primary">搜索</Button>
-                <Button type="primary" onClick={() => addConsumerForm.resetFields()} >重置</Button>
+                <Button type="primary" onClick={() => addConsumerForm.resetFields()} >重置</Button> */}
 
             </Form>
-            <Table columns={columns} dataSource={Stu.stulist} rowKey={(r) => r.student_id} />
+            <Table columns={columns} dataSource={Stu.stulist&&Stu.stulist} rowKey={(r) => r.student_id} />
         </div>
     )
 }

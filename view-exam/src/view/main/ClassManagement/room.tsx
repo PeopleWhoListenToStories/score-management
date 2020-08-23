@@ -13,7 +13,7 @@ export default function Grade() {
 
     useEffect(() => {
         Room.getRoommanage();
-    },[])
+    },[Room])
 
 
     function confirm(val: any) {
@@ -35,9 +35,6 @@ export default function Grade() {
             render: (text: number, record: any) => {
                 return <span>
                     {
-                        // <button className='btn' onClick={() => {
-                        //     // Room.Del(record.room_id)
-                        // }}>删除</button>
                         <Popconfirm
                             title="确定要删除这项任务吗?"
                             onConfirm={() => {
@@ -91,14 +88,10 @@ export default function Grade() {
 
                 >
                     <Form.Item
-                        label="Username"
+                        label="教室号"
                         name="username"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your username!',
-                            },
-                        ]}
+                        rules={
+                            [{ required: true, pattern: /^[0-9]*$/, message: '输入教室号' }]}
                     >
                         <Input />
                     </Form.Item>

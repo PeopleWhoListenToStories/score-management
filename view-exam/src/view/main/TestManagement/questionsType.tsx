@@ -6,7 +6,7 @@ import { useObserver } from 'mobx-react-lite'
 
 import style from './question.module.css'
 //按钮
-import { Button ,Modal} from 'antd';
+import { Button, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 //表格
 import { Table, Space } from 'antd';
@@ -66,11 +66,9 @@ function QuestionsType() {
   return useObserver(() =>
     <div className={style.question}>
 
-      <Button type="primary" icon={<PlusOutlined />} size="middle" onClick={showModal}>
-        添加类型
-        </Button>
+      <Button type="primary" icon={<PlusOutlined />} size="middle" style={{margin:'10px'}} onClick={showModal}>  添加类型  </Button>
 
-      <Table columns={columns} dataSource={AllClass.Typedata} rowKey={(record) => record.questions_type_id}/>
+      <Table columns={columns} dataSource={AllClass.Typedata} rowKey={(record) => record.questions_type_id} />
 
       <Modal
         visible={visibled}
@@ -81,12 +79,12 @@ function QuestionsType() {
         okText="确定"
         footer={[
           // 定义右下角 按钮的地方 可根据需要使用 一个或者 2个按钮
-          <Button key="submit" type="primary" onClick={handleOk} style={{marginLeft:-180}} size='large'>确定</Button>,
-          <Button   key="back"  onClick={handleCancel}   style={{marginRight:180}}>
-          取消
+          <Button key="submit" type="primary" onClick={handleOk} style={{ marginLeft: -180 }} size='large'>确定</Button>,
+          <Button key="back" onClick={handleCancel} style={{ marginRight: 180 }}>
+            取消
           </Button>]}
       >
-        <h3 style={{textAlign:"center"}}>创建新类型</h3>
+        <h3 style={{ textAlign: "center" }}>创建新类型</h3>
         <Input placeholder="请输入类型名称" bordered={false} />
       </Modal>
 

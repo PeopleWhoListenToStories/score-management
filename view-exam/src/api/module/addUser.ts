@@ -25,7 +25,7 @@ export const setIdentityView = (identity_id: string, view_authority_id: string) 
 export const setIdentityApi = (identity_id: string, api_authority_id: string) => ajax.post('/user/setIdentityApi', { identity_id, api_authority_id })
 
 // 添加用户
-export const addUser = (user_name: string, user_pwd: string, identity_id: string) => ajax.post('/user', { user_name, user_pwd, identity_id })
+export const addUser = (user_name: string, user_pwd: string, identity_id: string,avatar:string) => ajax.post('/user', { user_name, user_pwd, identity_id,avatar })
 
 // 添加身份
 export const addIdentity = (identity_text: string) => ajax.get('/user/identity/edit', { params: { identity_text } })
