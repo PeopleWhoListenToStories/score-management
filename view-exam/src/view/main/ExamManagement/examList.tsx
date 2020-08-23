@@ -14,7 +14,7 @@ export default function () {
     ExamManagement.getAllcourses();
   });
   async function onFinish(values: any) {
-    await ExamManagement.getdata(values.exam_id, values.subject_id)
+    await ExamManagement.getdata(values.user.exam_id, values.user.subject_id)
     history.push('/main/condition')
   };
 

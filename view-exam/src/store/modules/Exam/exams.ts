@@ -53,13 +53,14 @@ export default class ExamManagement {
             let time = new Date(item._d).getTime()
             return time
         })
+        console.log(times)
         const subject_id = user.subject_id;
         const exam_id = user.exam_id;
         const title = user.title;
         const number = Number(user.number);
-        const start_time = times[0] * 1;
-        const end_time = times[1] * 1;
-
+        const start_time = times[0] ;
+        const end_time = times[1];
+         console.log(subject_id,exam_id,title,number,start_time,end_time)
         let result: any = await CreateExam(
             subject_id,
             exam_id,
@@ -68,6 +69,7 @@ export default class ExamManagement {
             end_time * 1,
             Number(number),
         )
+        console.log(result)
         if (result.data.code === 1) {
             this.examinationdata = result.data.data
         }
@@ -93,7 +95,9 @@ export default class ExamManagement {
     }
 
     getdata = async (exam_id: string, subject_id: string) => {
+        console.log(exam_id, subject_id)
         let result: any = await Getdata(exam_id, subject_id);
+        console.log(result)
         if (result.data.code === 1) {
             this.conditionsdata = result.data.data
             // this.examinationdata = result.data.data;

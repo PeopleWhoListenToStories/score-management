@@ -10,8 +10,6 @@ import { IMenuItem } from "../../utils/interface"
 import menu from "../../router/menu"
 
 const { SubMenu } = Menu;
-
-console.log(MenuSideCss, 'MenuSideCss')
 function changeOpenKey(menu: IMenuItem[]) {
   let index: string = "0";
   menu.forEach((item, i) => {
