@@ -40,7 +40,7 @@ export default function Login(props: any) {
           removeCookie('password');
           removeCookie('remember');
         }
-        history.push('/main');
+        history.replace('/main');
         MainStore.initAction();
       }
     } else {

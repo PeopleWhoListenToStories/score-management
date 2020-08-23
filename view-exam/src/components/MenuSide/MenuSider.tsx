@@ -11,8 +11,6 @@ import menu from "../../router/menu"
 
 const { SubMenu } = Menu;
 
-
-
 export default function MenuSider() {
   const [defaultKey, setOpenKey] = useState<string>('0');
 
@@ -52,7 +50,7 @@ export default function MenuSider() {
         theme="dark"
       >
         {menu.map((item: any, index: number) => {
-          return <SubMenu key={index} title={item.name} >
+          return <SubMenu key={index} title={item.name} icon={<item.meta.icon/>}  >
             {
               item.children && item.children.map((v: any) => {
                 if ((v.meta as any).show) {

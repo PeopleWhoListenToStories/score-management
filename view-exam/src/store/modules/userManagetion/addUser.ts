@@ -33,16 +33,15 @@ export default class AddUser {
 
   @action //  展示用户数据
   async showUserAction() {
-    if (this.UserList.length === 0) {
       const result: any = await showUser();
       if (result.data.code === 0) return message.warn(result.data.msg);
       if (result.data.code === 1) {
         this.UserList = result.data.data;
+        console.log(this.UserList,'UserList')
         console.log('showUserAction ok')
       } else {
         console.log('showUserAction error')
       }
-    }
   }
 
   @action  // 获取身份数据

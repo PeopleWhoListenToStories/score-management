@@ -13,7 +13,7 @@ export default function () {
     ExamManagement.getExamTypedata();
     ExamManagement.getAllcourses();
   });
-  
+
   async function onFinish(values: any) {
     await ExamManagement.getdata(values.user.exam_id, values.user.subject_id)
     history.push('/main/condition')
