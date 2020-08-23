@@ -11,13 +11,13 @@ interface Iprops {
 const whileList = ['/login', '/main', '/NoFound', 'NoServer']
 
 export default function RouterView({ routes }: Iprops) {
-  return  <Switch>
+  return <Switch>
     {
       routes && routes.map(item => {
         // 页面重定向
-        // if (item.redirect) {
-        //   return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
-
+        if (item.redirect) {
+          return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
+        }
         //   // if (item.path === '/') {
         //   //   return <Redirect key={item.path} from={item.path} to="/main"></Redirect>
         //   // } else {
@@ -26,6 +26,7 @@ export default function RouterView({ routes }: Iprops) {
         // }
 
         return <Route key={item.path} path={item.path} render={(props) => {
+
           // 用户登录拦截
           let isPath = props.match.path;
           if (!whileList.includes(isPath) && !getCookie('token')) {
@@ -47,13 +48,6 @@ export default function RouterView({ routes }: Iprops) {
       // window.addEventListener('hashchange', (event: HashChangeEvent) => {
       //   changeRoute(routes,  event.newURL.split('#')[1])
       // })
-    }
-    {
-
-      routes.filter(v => v.redirect).map((item, index) => {
-        console.log(item)
-        return <Redirect key={item.path} from={item.path} to={item.redirect as string}></Redirect>
-      })
     }
 
   </Switch>

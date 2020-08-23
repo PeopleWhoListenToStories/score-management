@@ -13,7 +13,7 @@ const AddTeacher: React.FC = () => {
 
   const { AddUserStore } = userStore();
 
-  const avatar = ' '; //更改的用户头像
+  const avatar = '123'; //更改的用户头像
   const [formRefOne] = Form.useForm();
   const [formRefOnes] = Form.useForm();
   const [formRefTwo] = Form.useForm();
@@ -32,9 +32,7 @@ const AddTeacher: React.FC = () => {
     AddUserStore.showUserAction();
     AddUserStore.showIdentityAction();
     AddUserStore.showViewAuthorityAction();
-
-
-  })
+  }, [])
 
   function callback(key: any) {
     console.log(key);
@@ -48,12 +46,11 @@ const AddTeacher: React.FC = () => {
         <div className={AddCss.item}>
           <Tabs defaultActiveKey="1" onChange={callback}>
             <TabPane tab="添加用户" key="1">
-              <Form {...layout} name="nest-messages1" onFinish={(values: any) => { AddUserStore.addUserAction(values.user_name, values.user_pwd, values.identity_id); formRefOne.resetFields() }} initialValues={{ identity_text: '' }} form={formRefOne}>
+              <Form {...layout} name="nest-messages1" onFinish={(values: any) => { AddUserStore.addUserAction(values.user_name, values.user_pwd, values.identity_id,avatar); formRefOne.resetFields() }} initialValues={{ identity_text: '' }} form={formRefOne}>
                 <Form.Item name="user_name" validateTrigger="onBlur" rules={
                   [{ required: true, pattern: /^[a-z]{4,16}$/, message: '输入4-16位小写字母' }]
                 }>
                   <Input placeholder="输入用户名" />
-
 
                 </Form.Item>
                 <Form.Item name="user_pwd" validateTrigger="onBlur"
@@ -148,7 +145,7 @@ const AddTeacher: React.FC = () => {
         <div className={AddCss.item}>
           <Tabs defaultActiveKey="1"  >
             <TabPane tab="添加身份" key="1">
-              <Form {...layout} name="nest-messages3" onFinish={(values: any) => { AddUserStore.addIdentityAction(values.identity_text); formRefTwo.resetFields() }} initialValues={{ identity_text: '' }} form={formRefTwo}>
+              <Form {...layout} name="nest-messages3" onFinish={async (values: any) => { await AddUserStore.addIdentityAction(values.identity_text);await AddUserStore.showIdentityAction(); await formRefTwo.resetFields() }} initialValues={{ identity_text: '' }} form={formRefTwo}>
                 <Form.Item name="identity_text" validateTrigger="onBlur" rules={[{ required: true, pattern: /^[\u4e00-\u9fa5_a-zA-Z0-9]+$/, message: '请输入合理的身份' }]}>
                   <Input placeholder="请输入用户名" />
                 </Form.Item>
@@ -165,7 +162,7 @@ const AddTeacher: React.FC = () => {
         <div className={AddCss.item}>
           <Tabs defaultActiveKey="1"  >
             <TabPane tab="添加api接口权限" key="1">
-              <Form {...layout} name="nest-messages4" onFinish={(values: any) => { AddUserStore.addAuthorityApiAction(values.identity_text, values.api_authority_url, values.api_authority_method); formRefThree.resetFields() }} initialValues={{ identity_text: '' }} form={formRefThree}>
+              <Form {...layout} name="nest-messages4" onFinish={async (values: any) => { await AddUserStore.addAuthorityApiAction(values.identity_text, values.api_authority_url, values.api_authority_method); formRefThree.resetFields() }} initialValues={{ identity_text: '' }} form={formRefThree}>
                 <Form.Item name="identity_text" validateTrigger="onBlur" rules={[{ required: true, pattern: /^[\u4e00-\u9fa5]{1,99}$/, message: '请输入汉字' }]}>
                   <Input placeholder="输入api接口权限名称" />
                 </Form.Item>
@@ -188,7 +185,7 @@ const AddTeacher: React.FC = () => {
         <div className={AddCss.item}>
           <Tabs defaultActiveKey="1"  >
             <TabPane tab="添加视图接口权限" key="1">
-              <Form {...layout} name="nest-messages5" onFinish={(values: any) => { AddUserStore.addAuthorityViewAction(AddUserStore.ViewAuthorityList[values.gender].view_authority_text, AddUserStore.ViewAuthorityList[values.gender].view_id); formRefFour.resetFields() }} initialValues={{ addAuthorityView: '' }} form={formRefFour}>
+              <Form {...layout} name="nest-messages5" onFinish={async (values: any) => { await AddUserStore.addAuthorityViewAction(AddUserStore.ViewAuthorityList[values.gender].view_authority_text, AddUserStore.ViewAuthorityList[values.gender].view_id); formRefFour.resetFields() }} initialValues={{ addAuthorityView: '' }} form={formRefFour}>
                 <Form.Item name="gender" label="" rules={[{ required: true }]}>
                   <Select
                     placeholder="请选择已有视图"
@@ -213,7 +210,7 @@ const AddTeacher: React.FC = () => {
         <div className={AddCss.item}>
           <Tabs defaultActiveKey="1"  >
             <TabPane tab="给身份设置api接口权限" key="1">
-              <Form name="nest-messages6" {...layout} onFinish={(values: any) => { AddUserStore.setIdentityViewAction(values.user.identity_id, values.user.identity_id.view_authority_id) }} form={formRefFive}>
+              <Form name="nest-messages6" {...layout} onFinish={async (values: any) => {await AddUserStore.setIdentityViewAction(values.user.identity_id, values.user.identity_id.view_authority_id) }} form={formRefFive}>
                 <Form.Item name={['user', 'api_authority_id']} rules={[{ required: true }]}>
                   <Select placeholder="选择api接口权限">
                     {

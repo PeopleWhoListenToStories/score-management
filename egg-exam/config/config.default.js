@@ -14,11 +14,11 @@ exports.security = {
 }
 exports.cluster = {
     listen: {
-      port: 7002
+        port: 7002
     }
 };
 exports.cors = {
-    origin:'*',
+    origin: '*',
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
 }
 
@@ -53,10 +53,10 @@ exports.whiteList = [
     route('/manger/student', 'POST'),
     route('/manger/grade', 'GET'),
     route('/manger/student/edit', 'PUT'),
-    route(/^\/user\/getAuthInfo\/*/,'any'),  //获取权限信息
-    route(/^\/user\/delAutho\/*/,'any'), // 删除权限信息
-    route('/user/cancelIdentityApi','POST') ,//取消身份的api接口权限
-    route('/user/cancelIdentityView','POST') ,//取消身份的视图接口权限
+    route(/^\/user\/getAuthInfo\/*/, 'any'),  //获取权限信息
+    route(/^\/user\/delAutho\/*/, 'any'), // 删除权限信息
+    route('/user/cancelIdentityApi', 'POST'),//取消身份的api接口权限
+    route('/user/cancelIdentityView', 'POST'),//取消身份的视图接口权限
     // route(/\/exam\/student\/*/,'GET')
 ]
 // 身份白名单，不需要验证身份
@@ -68,8 +68,8 @@ exports.identityWhiteList = [
     // 学生提交试卷
     route('/exam/student', 'POST'),
     // 学生获取试卷
-    route(/^\/exam\/unstart\/*/,'GET'),
-    route(/^\/exam\/exam\/*/,'PUT'),
+    route(/^\/exam\/unstart\/*/, 'GET'),
+    route(/^\/exam\/exam\/*/, 'PUT'),
     route(/^\/exam\/unstart\/*/, 'GET'),
     // 获取学生答题详情
     route(/^\/exam\/student\/*/, 'any'),
@@ -81,7 +81,7 @@ exports.identityWhiteList = [
     route(/^\/manger\/grade\/*/, 'any'),
     // 学生管理
     route(/^\/manger\/student\/*/, 'any'),
-    
+
 ];
 // 登录白名单，不需要验证登录
 exports.loginWhiteList = [
