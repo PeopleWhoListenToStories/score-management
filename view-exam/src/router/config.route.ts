@@ -22,19 +22,19 @@ function genterRouter(numes: IMenuItem[]) {
 
 // 获取到重定向数据 默认为数组的第一项
 function getFirstRedirect(menus: IMenuItem[]) {
-  return menus[0]?.children[0].path;
+  return menus[0]?.children[0].path.split('/')[2];
+  // return menus[0]?.children[0].path;
 }
 
 const routes = [
   {
     path: '/main',
     component: Main,
-    redirect: getFirstRedirect(menus),
     children: genterRouter(menus)
   },
   {
     path: '/login',
-    component: Login,
+    component: Login
   },
   {
     path: '/NoFound',
@@ -46,7 +46,7 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/main'
+    redirect: `/main/${getFirstRedirect(menus)}`
   }
 ]
 export default routes

@@ -54,7 +54,7 @@ export default function () {
                             <Input />
                         </Form.Item>
                         <Form.Item name={['user', 'exam_id']} label="选择考试类型" rules={[{ required: true }]}>
-                            <Select>
+                            <Select >
                                 {
                                     ExamManagement.ExamTypedata.map((item: any,index:any) => {
                                         return (

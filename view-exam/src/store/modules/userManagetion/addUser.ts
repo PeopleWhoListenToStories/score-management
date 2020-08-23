@@ -155,8 +155,8 @@ export default class AddUser {
   }
 
   @action // 添加用户
-  async addUserAction(user_name: string, user_pwd: string, identity_id: string) {
-    const result: any = await addUser(user_name, user_pwd, identity_id);
+  async addUserAction(user_name: string, user_pwd: string, identity_id: string, avatar: string) {
+    const result: any = await addUser(user_name, user_pwd, identity_id, avatar);
     if (result.data.code === 1) {
       message.success(result.data.msg)
     } else {

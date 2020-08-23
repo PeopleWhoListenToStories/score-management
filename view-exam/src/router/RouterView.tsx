@@ -15,9 +15,10 @@ export default function RouterView({ routes }: Iprops) {
     {
       routes && routes.map(item => {
         // 页面重定向
-        // if (item.redirect) {
-        //   return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
-
+        if (item.redirect) {
+          console.log(item)
+          return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
+        }
         //   // if (item.path === '/') {
         //   //   return <Redirect key={item.path} from={item.path} to="/main"></Redirect>
         //   // } else {
@@ -26,7 +27,7 @@ export default function RouterView({ routes }: Iprops) {
         // }
 
         return <Route key={item.path} path={item.path} render={(props) => {
-          console.log(props)
+
           // 用户登录拦截
           let isPath = props.match.path;
           if (!whileList.includes(isPath) && !getCookie('token')) {
@@ -49,12 +50,6 @@ export default function RouterView({ routes }: Iprops) {
       //   changeRoute(routes,  event.newURL.split('#')[1])
       // })
     }
-    {
-      routes.filter(v => v.redirect).map((item, index) => {
-        return <Redirect key={item.path} from={item.path} to={item.redirect as string}></Redirect>
-      })
-    }
-
   </Switch>
 }
 
