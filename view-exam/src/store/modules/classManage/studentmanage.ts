@@ -10,7 +10,6 @@ export default  class Stu {
     @action
     list(){
         Axios.get('/manger/student/new').then(res=>{
-            console.log(res)
             this.stulist=res.data.data
         })
     }

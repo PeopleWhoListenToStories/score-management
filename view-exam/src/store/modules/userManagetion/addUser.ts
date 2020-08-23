@@ -37,7 +37,6 @@ export default class AddUser {
       if (result.data.code === 0) return message.warn(result.data.msg);
       if (result.data.code === 1) {
         this.UserList = result.data.data;
-        console.log(this.UserList,'UserList')
         console.log('showUserAction ok')
       } else {
         console.log('showUserAction error')
