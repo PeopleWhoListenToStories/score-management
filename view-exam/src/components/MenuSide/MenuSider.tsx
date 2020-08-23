@@ -11,7 +11,6 @@ import { IMenuItem } from "../../utils/interface"
 import menu from "../../router/menu"
 
 const { SubMenu } = Menu;
-
 export default function MenuSider() {
   const [defaultKey, setOpenKey] = useState<string>('0');
   const [defaultName, setOpenName] = useState<string>('0');
