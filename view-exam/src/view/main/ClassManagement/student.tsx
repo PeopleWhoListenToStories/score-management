@@ -5,6 +5,7 @@ import style from './student.module.scss'
 import { Table, Form, Input, Button, Select, Popconfirm, message } from 'antd';
 
 
+
 export default function Student() {
     const { Stu, Class } = useStore();
     const { Option } = Select;
@@ -16,7 +17,6 @@ export default function Student() {
         Stu.list();
     }, [Stu])
     function confirm(val: any) {
-        message.success('删除成功');
         Stu.Del(val.student_id);
     }
 
@@ -24,6 +24,17 @@ export default function Student() {
         console.log(e);
     }
 
+
+
+    const onFinish = (values: any) => {
+        console.log('Success:123', values,);
+        const newList = new Proxy(Stu.stulist, {
+            get:(target, key, receiver)=>{
+                console.log(target, key, receiver,'obj, prop, newval')
+            }
+        })
+        // const list = Stu.stulist.filter((v:any)=>v.student_name === values.student_name);
+    };
 
     const columns = [
         {
@@ -73,14 +84,6 @@ export default function Student() {
         },
     ];
 
-    const onFinish = (values: any) => {
-        console.log('Success:123', values);
-    };
-
-    function handleChange(value: any) {
-        console.log(`selected ${value}`);
-    }
-
     return useObserver(() =>
         <div className={style.studentBox} >
             <Form
@@ -89,11 +92,11 @@ export default function Student() {
                 form={addConsumerForm}
                 initialValues={{ grade_name: '', room_text: '请选择教室号', subject_text: '请选择课程' }}
                 className={style.forms}
+                style={{ display: 'flex' }}
             >
                 <Form.Item
                     name="grade_name"
-                    rules={
-                        [{ required: true, pattern: /^[a-z]{4,16}$/, message: '输入4-16位小写字母' }]}
+                    rules={[{ required: true, pattern: /^[0-9a-zA-Z\u4E00-\u9FA5]+$/, message: '输入正确的用户名' }]}
                 >
                     <Input placeholder='姓名' />
                     {/* <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
@@ -125,7 +128,7 @@ export default function Student() {
                         },
                     ]}
                 >
-                   <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
+                    <Select placeholder="请选择教室号" style={{ width: 180 }}  >
                         {
                             Class.classlist && Class.classlist.map((item: any, index) => {
                                 return <Option key={index} value={item.room_id}>{item.room_text}</Option>
@@ -143,7 +146,7 @@ export default function Student() {
                         },
                     ]}
                 >
-                   <Select className={style.Select} placeholder="请选择课程" style={{ width: 180 }} onChange={handleChange}>
+                    <Select className={style.Select} placeholder="请选择课程" style={{ width: 180 }}  >
                         {
                             Class.classlist && Class.classlist.map((item: any, index) => {
                                 return <Option key={index} value={item.subject_id}>{item.subject_text}</Option>
@@ -151,11 +154,11 @@ export default function Student() {
                         }
                     </Select>
                 </Form.Item>
-                <Button type="primary">搜索</Button>
+                <Button type="primary" htmlType="submit">搜索</Button>
                 <Button type="primary" onClick={() => addConsumerForm.resetFields()} >重置</Button>
 
             </Form>
-            <Table columns={columns} dataSource={Stu.stulist&&Stu.stulist} rowKey={(r) => r.student_id} />
+            <Table columns={columns} dataSource={Stu.stulist && Stu.stulist} rowKey={(r) => r.student_id} />
         </div>
     )
 }

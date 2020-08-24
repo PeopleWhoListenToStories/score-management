@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import LoginCss from './Login.module.scss';
@@ -26,12 +26,15 @@ export default function Login(props: any) {
     couterRef.current.autoplay = true;
   }, [])
 
+  useLayoutEffect(()=>{
+    console.log(couterRef,'couterRef')
+  })
+
   async function onFinish(values: any) {
     console.log('Received values of form: ', values);
     if (values.randomNum === LoginStore.RandomCode) {
       const result: any = await LoginStore.loginAction(values.username, values.password);
       if (result.code === 1) {
-        MainStore.isGetInitFlag = true;
         if (values.remember) {
           setCookie('username', values.username);
           setCookie('password', values.password);
@@ -42,7 +45,6 @@ export default function Login(props: any) {
           removeCookie('remember');
         }
         history.replace('/main');
-        MainStore.initAction();
       }
     } else {
       console.log('重新输入验证码');

@@ -48,6 +48,7 @@ export default function Grade() {
   useEffect(() => {
     Class.getClassmanage();
   }, [Class])
+
   const columns = [
     { title: '班级名', dataIndex: 'grade_name', key: 'grade_name' },
     { title: '课程名', dataIndex: 'subject_text', key: 'subject_text' },
@@ -88,8 +89,6 @@ export default function Grade() {
   }
   ];
 
-
-
   return useObserver(() => <div className={style.grade}>
     <Button className={style.addBtn} onClick={showModal}> + 添加班级 </Button>
     <Table
@@ -115,7 +114,7 @@ export default function Grade() {
         visible={flag}
         onOk={FlagOk}
         onCancel={FlagCancel}
-          footer={null}
+        footer={null}
       >
         <UpDate />
       </Modal>
