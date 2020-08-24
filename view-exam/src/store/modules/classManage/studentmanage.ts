@@ -19,6 +19,7 @@ export default  class Stu {
        console.log(result)
        if(result){
            console.log(result.data.msg)
+           this.list()
        }
     }
 }

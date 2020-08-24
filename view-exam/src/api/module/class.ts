@@ -25,7 +25,7 @@ export const studentList = (student_id:string,student_name:string,student_pwd:st
 export const already = () => ajax.get('/manger/student/new'); 
 
 // 删除学生
-export const delStu = (student_id:string) => ajax.delete('/manger/student/:id=>student_id',{data:{student_id}});
+export const delStu = (student_id:string) => ajax.delete(`/manger/student/${student_id}`);
 
 //跟新班级
 export const updateClass = (grade_id:string,grade_name:string,subject_id:string,room_id:string) => ajax.put('/manger/grade/update',{grade_id,grade_name,subject_id,room_id});
