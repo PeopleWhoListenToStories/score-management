@@ -19,7 +19,6 @@ instance.interceptors.response.use((response: any) => {
   // NProgress.done();
   return response;
 }, error => {
-  // console.log(error.response.status, 'error.response.status')
   if(error && error.response){
     const code: number | undefined = error.response.status;
     switch (code) {
