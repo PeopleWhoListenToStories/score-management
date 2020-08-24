@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import LoginCss from './Login.module.scss';
@@ -16,14 +16,15 @@ export default function Login(props: any) {
 
   const { LoginStore, MainStore } = useStore();
   const history = useHistory();
+  let couterRef = useRef<HTMLVideoElement | any>(); 
 
   useEffect(() => {
     LoginStore.initRandomCode(); //获取验证码
   }, [LoginStore])
 
   useEffect(() => {
-
-  }, [LoginStore.isRemember])
+    couterRef.current.autoplay = true;
+  }, [])
 
   async function onFinish(values: any) {
     console.log('Received values of form: ', values);
@@ -70,7 +71,12 @@ export default function Login(props: any) {
   }
 
   return useObserver(() => <div className={LoginCss.Login}>
-    
+    <div className={LoginCss.videoBox}  >
+      <video className={LoginCss.video} muted  ref={couterRef} controls={true} loop={true}  >
+        <source src="./login.mp4" type="video/mp4" />
+      </video>
+    </div>
+
     <div className={LoginCss.innerBox}>
 
       <Form
@@ -109,7 +115,7 @@ export default function Login(props: any) {
           position: 'absolute',
           left: '0'
         }}>
-          <Tag color="#55acee" style={{ fontSize: '19px', padding: '15px 30px', border: 'none', lineHeight: '.5', maxHeight: '32px' }} onClick={() => { changeRandomNum() }}>{LoginStore.RandomCode}</Tag>
+          <Tag color="#55acee" style={{marginLeft:20, fontSize: '19px', padding: '15px 30px', border: 'none', lineHeight: '.5', maxHeight: '32px' }} onClick={() => { changeRandomNum() }}>{LoginStore.RandomCode}</Tag>
         </div>
 
         <Form.Item
