@@ -26,8 +26,8 @@ export default function Mask() {
 
     const onFinish = (values: any) => {
         console.log('Success:123', values);
-
         Class.updateC(values)
+        Class.flag=false
     };
 
     const { Option } = Select;

@@ -7,8 +7,8 @@ import Mask from '../../../components/mask/Mask'
 import UpDate from '../../../components/mask/Update'
 
 export default function Grade() {
-  let [visible, setVisible] = useState<boolean>();
-  let [flag, setFlag] = useState<boolean>();
+  // let [visible, setVisible] = useState<boolean>();
+  // let [flag, setFlag] = useState<boolean>();
 
   const { Class } = useStore();
 
@@ -22,28 +22,31 @@ export default function Grade() {
   }
  
   const showModal = () => {
-    setVisible(true)
+    Class.visible=true
   };
 
   const handleOk = () => {
-    setVisible(false)
+    Class.visible=false
   };
 
   const handleCancel = () => {
-    setVisible(false)
+    Class.visible=false
   };
 
   const showFlag = (val:any) => {
     Class.upd(val)
-    setFlag(true)
+    Class.flag=true
+    // setFlag(true)
   };
 
   const FlagOk = () => {
-    setFlag(false)
+    Class.flag=true
+    // setFlag(false)
   };
 
   const FlagCancel = () => {
-    setFlag(false)
+    Class.flag=true
+    // setFlag(false)
   };
   useEffect(() => {
     Class.getClassmanage();
@@ -100,7 +103,7 @@ export default function Grade() {
     <>
       <Modal
         title="Basic Modal"
-        visible={visible}
+        visible={Class.visible}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
@@ -112,7 +115,7 @@ export default function Grade() {
     <>
       <Modal
         title="Basic Modal"
-        visible={flag}
+        visible={Class.flag}
         onOk={FlagOk}
         onCancel={FlagCancel}
           footer={null}

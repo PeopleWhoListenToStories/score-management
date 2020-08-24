@@ -8,9 +8,7 @@ import './room.module.scss'
 
 export default function Grade() {
     const { Room } = useStore();
-    let [visible, setVisible] = useState<boolean>();
-
-    // const [flag, UseFlag] = useState<boolean>(Room.visible)
+    let [visible, setVisible] = useState<boolean>(false);
 
     useEffect(() => {
         Room.getRoommanage();
@@ -18,16 +16,16 @@ export default function Grade() {
 
 
     function confirm(val: any) {
+        setVisible(false)
         message.success('删除成功');
         Room.Del(val.room_id);
+        console.log(visible)
+        
     }
 
     function cancel(e: any) {
         console.log(e);
     }
-
- 
-
     const columns = [
         { title: '教室号', dataIndex: 'room_text', key: 'room_text' },
         {
@@ -68,8 +66,9 @@ export default function Grade() {
         },
     }; 
     const showModal = () => {
+        
         setVisible(true)
-      Room.visible = true 
+        console.log(visible)
       };
     
       const handleOk = () => {
@@ -79,7 +78,10 @@ export default function Grade() {
       const handleCancel = () => {
         setVisible(false)
       };
-    
+    const finish=(e:any)=>{
+        setVisible(false)
+        Room.onFinish(e)
+    }
 
 
     return useObserver(() =>
@@ -99,7 +101,8 @@ export default function Grade() {
                         remember: true,
                     }}
                     onFinish={(e) => {
-                        Room.onFinish(e)
+                        finish(e)
+                       
                     }}
 
                 >
@@ -107,7 +110,7 @@ export default function Grade() {
                         label="教室号"
                         name="username"
                         rules={
-                            [{ required: true, pattern: /^[0-9]*$/, message: '输入教室号'}]}
+                            [{ required: true, pattern: /^[0-9]{5}$/, message: '输入教室号'}]}
                     >
                         <Input />
                     </Form.Item>
