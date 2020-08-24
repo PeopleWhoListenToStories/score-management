@@ -96,13 +96,15 @@ export default function Student() {
             >
                 <Form.Item
                     name="grade_name"
+                    style={{padding:'0 20px 0 0'}}
                     rules={[{ required: true, pattern: /^[0-9a-zA-Z\u4E00-\u9FA5]+$/, message: '输入正确的用户名' }]}
                 >
-                    <Input placeholder='姓名' />
+                    <Input placeholder='姓名' style={{width:'100%'}}/>
                 </Form.Item>
 
                 <Form.Item
                     name="room_text"
+                    style={{padding:'0 20px 0 0'}}
                     rules={[
                         {
                             required: true,
@@ -121,6 +123,7 @@ export default function Student() {
                 </Form.Item>
                 <Form.Item
                     name="subject_text"
+                    style={{padding:'0 20px 0 0'}}
                     rules={[
                         {
                             required: true,
@@ -136,11 +139,13 @@ export default function Student() {
                         }
                     </Select>
                 </Form.Item>
-                <Button type="primary" htmlType="submit">搜索</Button>
-                <Button type="primary" onClick={() => addConsumerForm.resetFields()} >重置</Button>
+                <Button type="primary" htmlType="submit"style={{width:120,background:'linear-gradient(45deg, #063DFD,#5395F7 )'}} >搜索</Button>
+                <Button type="primary" style={{width:120,background:'linear-gradient(45deg, #063DFD,#5395F7 )'}} onClick={() => addConsumerForm.resetFields()} >重置</Button>
 
             </Form>
-            <Table columns={columns} dataSource={Stu.stulist && Stu.stulist} rowKey={(r) => r.student_id} />
+          <div className={style.inner}>
+          <Table columns={columns} dataSource={Stu.stulist && Stu.stulist} rowKey={(r) => r.student_id} />
+          </div>
         </div>
     )
 }

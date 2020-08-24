@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Modal ,Popconfirm, message } from 'antd';
+import { Table, Button, Modal, Popconfirm, message } from 'antd';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 import style from './grade.module.scss'
@@ -12,40 +12,40 @@ export default function Grade() {
 
   const { Class } = useStore();
 
-  function confirm(val:any) {
+  function confirm(val: any) {
     message.success('删除成功');
     Class.delList(val.grade_id);
   }
-  
-  function cancel(e:any) {
+
+  function cancel(e: any) {
     console.log(e);
   }
- 
+
   const showModal = () => {
-    Class.visible=true
+    Class.visible = true
   };
 
   const handleOk = () => {
-    Class.visible=false
+    Class.visible = false
   };
 
   const handleCancel = () => {
-    Class.visible=false
+    Class.visible = false
   };
 
-  const showFlag = (val:any) => {
+  const showFlag = (val: any) => {
     Class.upd(val)
-    Class.flag=true
+    Class.flag = true
     // setFlag(true)
   };
 
   const FlagOk = () => {
-    Class.flag=true
+    Class.flag = true
     // setFlag(false)
   };
 
   const FlagCancel = () => {
-    Class.flag=true
+    Class.flag = true
     // setFlag(false)
   };
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function Grade() {
       render: (text: number, record: any) => {
         return <span>
           {
-            <button className='btn' onClick={()=>{
+            <button className='btn' onClick={() => {
               showFlag(record)
             }}>修改</button>
           }
@@ -73,32 +73,42 @@ export default function Grade() {
       title: '操作2',
       key: 'action',
       render: (text: number, record: any) => {
-          return <span>
-              {
-                  <Popconfirm
-                  title="确定要删除这项任务吗?"
-                  onConfirm={()=>{
-                     confirm(record)
-                  }}
-                  onCancel={cancel}
-                  okText="确定"
-                  cancelText="取消"
-                >
-                  <span   >删除</span>
-                </Popconfirm>
-              }
-          </span>
+        return <span>
+          {
+            <Popconfirm
+              title="确定要删除这项任务吗?"
+              onConfirm={() => {
+                confirm(record)
+              }}
+              onCancel={cancel}
+              okText="确定"
+              cancelText="取消"
+            >
+              <span   >删除</span>
+            </Popconfirm>
+          }
+        </span>
       }
-  }
+    }
   ];
 
   return useObserver(() => <div className={style.grade}>
-    <Button className={style.addBtn} onClick={showModal}> + 添加班级 </Button>
-    <Table
-      columns={columns}
-      dataSource={Class.classlist}
-      rowKey={(r)=>r.grade_id}
-    />
+    <Button
+      className={style.addBtn}
+      style={{
+        background: 'linear-gradient(45deg, #063DFD,#5395F7)',
+        borderRadius: '3px',
+        padding: '0px 30px',
+        height: '40px'
+      }}
+      onClick={showModal}> + 添加班级 </Button>
+    <div className={style.inner}>
+      <Table
+        columns={columns}
+        dataSource={Class.classlist}
+        rowKey={(r) => r.grade_id}
+      />
+    </div>
     <>
       <Modal
         title="Basic Modal"

@@ -47,6 +47,7 @@ const routes = [
   {
     path: '/',
     redirect: `/main/${getFirstRedirect(menus)}`
-  }
+  },
+
 ]
 export default routes

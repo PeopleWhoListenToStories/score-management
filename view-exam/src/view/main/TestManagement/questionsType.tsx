@@ -66,7 +66,19 @@ function QuestionsType() {
   return useObserver(() =>
     <div className={style.question}>
 
-      <Button type="primary" icon={<PlusOutlined />} size="middle" style={{ margin: '10px' }} onClick={showModal}>  添加类型  </Button>
+      <Button type="primary"
+        icon={<PlusOutlined />}
+        size="middle"
+        style={{
+          margin: '10px',
+          padding: '0 40px',
+          height:'40px',
+          borderRadius: '4px',
+          border: '0',
+          fontSize: '14px',
+          color: '#fff',
+          background: 'linear-gradient(-90deg,#4e75ff,#0139fd)'
+        }} onClick={showModal}>  添加类型  </Button>
 
       <Modal
         visible={visibled}
@@ -87,8 +99,8 @@ function QuestionsType() {
             <Input placeholder="请输入类型名称" bordered={false} />
           </Form.Item>
           <Form.Item>
-            <Button key="submit" htmlType="submit" type="primary" style={{marginLeft:180}} size='large'>确定</Button>
-            <Button key="back" onClick={handleCancel}  style={{marginLeft:20}} >
+            <Button key="submit" htmlType="submit" type="primary" style={{ marginLeft: 180 }} size='large'>确定</Button>
+            <Button key="back" onClick={handleCancel} style={{ marginLeft: 20 }} >
               取消
         </Button>
           </Form.Item>

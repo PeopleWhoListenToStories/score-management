@@ -1,7 +1,15 @@
 .wrapper {
   width: auto;
   height: auto;
+  padding: 0 20px;
+}
+
+.wrapperInner {
+  width: auto;
+  height: auto;
   padding: 20px;
+  background-color: white;
+  border-radius: 9px;
 }
 
 :local(.ant-pagination-item-active) {
