@@ -35,4 +35,21 @@
     text-align: center;
   }
 }
+
+:local(.table_color_dust){
+  background-color: red;
+}
+
+:local(.ant-table-thead>.ant-table-cell){
+  text-align: center;
+  background-color: red;
+}
+
+:local(.ant-table-cell){
+  text-align: center;
+}
+
+:local(.rowActive){
+  background-color: rgba(25,200,250,.9);
+}
   

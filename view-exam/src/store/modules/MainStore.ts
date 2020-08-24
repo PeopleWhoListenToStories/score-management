@@ -46,10 +46,10 @@ export default class MainStore {
     }
   }
 
-  @action 
-  async removePathAction(path:string){
+  @action
+  async removePathAction(path: string) {
     const index = this.TagList.findIndex(v => v.path === path);
-      this.TagList.splice(index,1);
+    this.TagList.splice(index, 1);
   }
   //@action // 获取用户的视图权限数据
   // async getMenuListAction(user_id: string) {
