@@ -6,6 +6,7 @@ import { Table, Space } from 'antd';
 
 import ExamPaperClassListCss from "./examPaperClassList.module.scss";
 
+
 const ExamPaperClassList: React.FC = () => {
     const history = useHistory();
 
@@ -86,6 +87,7 @@ const ExamPaperClassList: React.FC = () => {
                         if (index % 2 === 1) className = 'dark-row';
                         return className;
                     }}
+                    
                     pagination={paginationConfig} />
         </div>)
     )

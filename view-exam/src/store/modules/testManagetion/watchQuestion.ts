@@ -86,6 +86,8 @@ export default class AllClasses {
                         this.Typedata = res.data.data
                     }
                 })
+            }else{
+                
             }
         })
     }

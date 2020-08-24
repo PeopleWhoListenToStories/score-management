@@ -4,7 +4,9 @@ import { useObserver } from 'mobx-react-lite'
 import LoginCss from './Login.module.scss';
 import useStore from '../../context/useStore';
 import { setCookie, getCookie, removeCookie } from "../../utils/myCookie"
-
+//视频插件
+// import { Player } from 'video-react';
+import ParticlesBg from 'particles-bg'
 // 引入antd
 import { Form, Input, Button, Checkbox, Tag } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -70,9 +72,9 @@ export default function Login(props: any) {
   }
 
   return useObserver(() => <div className={LoginCss.Login}>
+    <ParticlesBg color="skyblue" num={900} type="lines" bg={true} />
     
     <div className={LoginCss.innerBox}>
-
       <Form
         name="validate_other"
         className="login-form"
