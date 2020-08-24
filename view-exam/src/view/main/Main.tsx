@@ -5,6 +5,7 @@ import { useObserver } from 'mobx-react-lite';
 import Roterview from '../../router/RouterView';
 import useStore from '../../context/useStore';
 
+
 // 引入组件
 import MenuSider from '../../components/MenuSide/MenuSider';
 import HeaderBar from '../../components/HeaderBar/Header';
@@ -31,6 +32,7 @@ const getTitle = (path: string) => {
   return title;
 }
 
+
 const Main: React.FC = (props: any) => {
   const history = useHistory();
   // console.log(history.location.pathname)
@@ -39,6 +41,7 @@ const Main: React.FC = (props: any) => {
   MainStore.initAction();
 
   return useObserver(() => <MainWrapper className="Main"  >
+   
     <Layout>
       <Header style={{ background: '#fff' }}>
         <HeaderBar />
