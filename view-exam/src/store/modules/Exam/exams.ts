@@ -100,6 +100,7 @@ export default class ExamManagement {
         let result: any = await Getdata(exam_id, subject_id);
         console.log(result)
         if (result.data.code === 1) {
+            console.log(result.data.data)
             this.conditionsdata = result.data.data
             // this.examinationdata = result.data.data;
         }
