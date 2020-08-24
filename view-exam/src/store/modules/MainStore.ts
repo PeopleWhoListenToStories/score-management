@@ -28,7 +28,6 @@ export default class MainStore {
   async initAction() {
     if (this.isGetInitFlag) {
       const result: any = await getUserInfo();
-      console.log(result,'result')
       if (result.data.code === 1) {
         this.user_info = result.data.data;
         setCookie('user_id', result.data.data.user_id)

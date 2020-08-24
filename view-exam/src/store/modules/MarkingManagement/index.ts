@@ -16,13 +16,13 @@ class Marking {
   @action
   async getExamStudentDetailAction() {
     const result: any = await getExamStudentDetail();
-    console.log(result);
+    console.log(result)
   }
 
   @action
   async putExamStudentListAction() {
     const result: any = await putExamStudentList(100);
-    console.log(result);
+    console.log(result)
   }
 
 }

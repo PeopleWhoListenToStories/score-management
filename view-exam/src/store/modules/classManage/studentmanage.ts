@@ -20,10 +20,7 @@ export default  class Stu {
        if(result.data.code === 1){
         message.success(result.data.msg);
         this.list();
-       }else{
-        message.success(result.data.msg);
-       }
-        
+       } 
     }
 }
 

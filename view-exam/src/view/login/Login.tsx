@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useLayoutEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import LoginCss from './Login.module.scss';
@@ -16,7 +16,7 @@ export default function Login(props: any) {
   const [password, UsePassword] = useState<string>(getCookie('password') as string);
   const [remember, UseRemember] = useState<string>(getCookie('remember') as string);
 
-  const { LoginStore, MainStore } = useStore();
+  const { LoginStore } = useStore();
   const history = useHistory();
   // let couterRef = useRef<HTMLVideoElement | any>(); 
 

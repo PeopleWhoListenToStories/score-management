@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 import style from './student.module.scss'
-import { Table, Form, Input, Button, Select, Popconfirm, message } from 'antd';
+import { Table, Form, Input, Button, Select, Popconfirm } from 'antd';
 
 
 
@@ -28,11 +28,11 @@ export default function Student() {
 
     const onFinish = (values: any) => {
         console.log('Success:123', values,);
-        const newList = new Proxy(Stu.stulist, {
-            get:(target, key, receiver)=>{
-                console.log(target, key, receiver,'obj, prop, newval')
-            }
-        })
+        // const newList = new Proxy(Stu.stulist, {
+        //     get:(target, key, receiver)=>{
+        //         console.log(target, key, receiver,'obj, prop, newval')
+        //     }
+        // })
         // const list = Stu.stulist.filter((v:any)=>v.student_name === values.student_name);
     };
 

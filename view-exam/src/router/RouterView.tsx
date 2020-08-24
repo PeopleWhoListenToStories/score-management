@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import { IRouerItem } from "../utils/interface"
 import { getCookie } from "../utils/myCookie"
 import useStore from '../context/useStore'
@@ -11,7 +11,6 @@ interface Iprops {
 const whileList = ['/login', '/main', '/NoFound', 'NoServer']
 
 export default function RouterView({ routes }: Iprops) {
-  const history = useHistory();
   const { MainStore } = useStore();
   return <Switch>
     {

@@ -30,7 +30,6 @@ instance.interceptors.response.use((response: any) => {
     return Promise.resolve({ data: { code: undefined } })
   }
 }, error => {
-  console.log(error.code, error.message.indexOf('timeout'),   "failure...")
   if (error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1) {
     message.warn('请检查网络再重新连接')
     return Promise.reject('请检查网络再重新连接')
