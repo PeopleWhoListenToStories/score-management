@@ -9,24 +9,12 @@ export default class Room {
     @observable
     roomlist: any = []
 
-    @observable
-    visible: boolean = false
-
     @action
     async getRoommanage() {
         const result: any = await Axios.get('/manger/room');
         if (result.data.code === 1) {
             this.roomlist = result.data.data
         }
-    }
-
-    @action 
-    showModal() {
-        this.visible = true;
-    };
-    @action
-    close() {
-        this.visible = false;
     }
 
     @action
@@ -37,7 +25,6 @@ export default class Room {
             console.log(result.data.msg)
             this.getRoommanage();
         }
-        this.visible = false;
     };
 
     @action

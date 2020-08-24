@@ -93,27 +93,9 @@ export default function Student() {
                 <Form.Item
                     name="grade_name"
                     rules={
-                        [{ required: true, pattern: /^[a-z]{4,16}$/, message: '输入4-16位小写字母' }]}
+                        [{ required: true, pattern: /^[\u4e00-\u9fa5]{2,4}$/, message: '输入正确格式' }]}
                 >
                     <Input placeholder='姓名' />
-                    {/* <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
-                        {
-                            Class.classlist && Class.classlist.map((item: any, index) => {
-                                return <Option key={index} value={item.room_id}>{item.room_text}</Option>
-                            })
-                        }
-                    </Select>
-                    <Select className={style.Select} placeholder="请选择课程" style={{ width: 180 }} onChange={handleChange}>
-                        {
-                            Class.classlist && Class.classlist.map((item: any, index) => {
-                                return <Option key={index} value={item.subject_id}>{item.subject_text}</Option>
-                            })
-                        }
-                    </Select
-                    <Button type="primary">搜索</Button>
-                    <Button type="primary"
-                        onClick={() => addConsumerForm.resetFields()}
-                    >重置</Button> */}
                 </Form.Item>
 
                 <Form.Item

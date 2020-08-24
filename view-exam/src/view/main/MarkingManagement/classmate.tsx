@@ -14,6 +14,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
+    className:'classMate_ant-table-cell__TL53g',
     title: '班级',
     dataIndex: 'grade_id',
     key: "student_id",
@@ -21,6 +22,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
+    className:'classMate_ant-table-cell__TL53g',
     title: '姓名',
     dataIndex: 'student_name',
     key: "student_id",
@@ -28,6 +30,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
+    className:'classMate_ant-table-cell__TL53g',
     title: '阅卷状态',
     dataIndex: 'status',
     key: "student_id",
@@ -35,6 +38,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
+    className:'classMate_ant-table-cell__TL53g',
     title: '开始时间',
     dataIndex: 'start_time',
     key: "student_id",
@@ -43,6 +47,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
+    className:'classMate_ant-table-cell__TL53g',
     title: '结束时间',
     dataIndex: 'end_time',
     key: "student_id",
@@ -51,6 +56,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
+    className:'classMate_ant-table-cell__TL53g',
     title: '成材率',
     dataIndex: 'score',
     key: "student_id",
@@ -58,6 +64,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
+    className:'classMate_ant-table-cell__TL53g',
     title: '操作',
     key: 'student_id',
     render: (text: any) => (
@@ -72,10 +79,14 @@ const ClassMate: React.FC = () => {
   const { Class, Marking } = useStore();
   const [pageSize, UsePageSize] = useState<number>(10);
   const [current, UseCurrent] = useState<number>(1);
+  const [hoverIndex, setHoverIndex] = useState<string>(' ');
+
+  console.log(ClassMateCss, "ClassMateCss")
+
   useEffect(() => {
     Class.getClassmanage()
     Marking.getInitStudentAction()
-  }, [Class,Marking])
+  }, [Class, Marking])
 
   // 表单成功
   const onFinish = (values: any) => {
@@ -100,11 +111,11 @@ const ClassMate: React.FC = () => {
     UsePageSize(pageSize)
     UseCurrent(current)
   }
+
   // 分页器修改页数
   function changePage(current: number) {
     UseCurrent(current)
   }
-
 
   const handleChange = () => {
 
@@ -146,7 +157,27 @@ const ClassMate: React.FC = () => {
         </Form>
       </div>
       <div className={ClassMateCss.content}>
-        <Table columns={columns} dataSource={Marking.StudentList} pagination={paginationConfig} rowKey={(record) => record.student_id} />
+        <Table
+          rowClassName={(record: any, index: number) => {
+            return ''
+          }}
+          onRow={(row, index) => {
+            return {
+              onMouseEnter: event => {
+                console.log((event.target as any).parentNode)
+                return  ;
+              },
+              onMouseLeave: event => {
+                console.log(row, index, 'onMouseLeave')
+              }
+            }
+          }}
+          
+          columns={columns}
+          dataSource={Marking.StudentList}
+          pagination={paginationConfig}
+          rowKey={(record) => record.student_id} />
+
       </div>
     </div>)
   )

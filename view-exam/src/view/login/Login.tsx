@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import LoginCss from './Login.module.scss';
@@ -18,14 +18,15 @@ export default function Login(props: any) {
 
   const { LoginStore, MainStore } = useStore();
   const history = useHistory();
+  // let couterRef = useRef<HTMLVideoElement | any>(); 
 
   useEffect(() => {
     LoginStore.initRandomCode(); //获取验证码
   }, [LoginStore])
 
-  useEffect(() => {
-
-  }, [LoginStore.isRemember])
+  // useEffect(() => {
+  //   couterRef.current.autoplay = true;
+  // }, [])
 
   async function onFinish(values: any) {
     console.log('Received values of form: ', values);
@@ -72,8 +73,14 @@ export default function Login(props: any) {
   }
 
   return useObserver(() => <div className={LoginCss.Login}>
-    <ParticlesBg color="skyblue" num={900} type="lines" bg={true} />
+   
     
+    <div className={LoginCss.videoBox}  >
+      {/* <video className={LoginCss.video} muted  ref={couterRef} controls={true} loop={true}  >
+        <source src="./login.mp4" type="video/mp4" />
+      </video> */} <ParticlesBg color="skyblue" num={900} type="lines" bg={true} />
+    </div>
+
     <div className={LoginCss.innerBox}>
       <Form
         name="validate_other"
@@ -111,7 +118,7 @@ export default function Login(props: any) {
           position: 'absolute',
           left: '0'
         }}>
-          <Tag color="#55acee" style={{ fontSize: '19px', padding: '15px 30px', border: 'none', lineHeight: '.5', maxHeight: '32px' }} onClick={() => { changeRandomNum() }}>{LoginStore.RandomCode}</Tag>
+          <Tag color="#55acee" style={{marginLeft:20, fontSize: '19px', padding: '15px 30px', border: 'none', lineHeight: '.5', maxHeight: '32px' }} onClick={() => { changeRandomNum() }}>{LoginStore.RandomCode}</Tag>
         </div>
 
         <Form.Item
@@ -128,12 +135,12 @@ export default function Login(props: any) {
 
         <Form.Item>
           <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox onChange={(e) => { changePwd(e.target.checked) }}>Remember me</Checkbox>
+            <Checkbox style={{color:"white"}} onChange={(e) => { changePwd(e.target.checked) }}>Remember me</Checkbox>
           </Form.Item>
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" style={{width:"100%"}} className="login-form-button">
             登录
         </Button> Or <span  >去注册</span>
         </Form.Item>

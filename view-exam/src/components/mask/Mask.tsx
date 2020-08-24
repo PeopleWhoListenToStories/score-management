@@ -33,13 +33,13 @@ export default function Mask() {
     
     const onFinish = (values: any) => {
         console.log('Success:123', values);
-
         Class.addClassAction(values)
+        Class.visible=false
     };
 
 
-    return useObserver(()=> <div className={style.maskBox}>
-            <Form  {...layout}
+    return useObserver(()=> <div className={style.maskBox} >
+            <Form {...layout}
                 name="basic"
                 initialValues={{
                     status: ''
@@ -50,7 +50,7 @@ export default function Mask() {
                     label="班级名"
                     name="grade_name"
                     rules={
-                        [{ required: true, pattern: /^[0-9]*$/, message: '输入班级名' }]}
+                        [{ required: true, pattern: /^[0-9]*[a-z]|[A-Z]$/, message: '输入正确格式'}]}
                 >
                     <Input />
                 </Form.Item>
