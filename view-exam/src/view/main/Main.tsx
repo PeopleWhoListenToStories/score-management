@@ -24,7 +24,7 @@ const getTitle = (path: string) => {
   menu.forEach(item => {
     item.children.forEach((value: any) => {
       if (value.path === path) {
-        title = value.meta.title;
+        title = value.meta.name;
       }
     })
   })
