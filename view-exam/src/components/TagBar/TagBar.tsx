@@ -12,9 +12,9 @@ const TabBar: React.FC = () => {
 
   const { MainStore } = useStore();
 
-  function log(e: any) {
-    console.log(e)
-  }
+  // function log(e: any) {
+  //   console.log(e)
+  // }
 
   return useObserver(() => <div className={styles.TabBar}>
     {
