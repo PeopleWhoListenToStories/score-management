@@ -4,7 +4,9 @@ import { useObserver } from 'mobx-react-lite'
 import LoginCss from './Login.module.scss';
 import useStore from '../../context/useStore';
 import { setCookie, getCookie, removeCookie } from "../../utils/myCookie"
-
+//视频插件
+// import { Player } from 'video-react';
+import ParticlesBg from 'particles-bg'
 // 引入antd
 import { Form, Input, Button, Checkbox, Tag } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -16,18 +18,18 @@ export default function Login(props: any) {
 
   const { LoginStore, MainStore } = useStore();
   const history = useHistory();
-  let couterRef = useRef<HTMLVideoElement | any>(); 
+  // let couterRef = useRef<HTMLVideoElement | any>(); 
 
   useEffect(() => {
     LoginStore.initRandomCode(); //获取验证码
   }, [LoginStore])
 
-  useEffect(() => {
-    couterRef.current.autoplay = true;
-  }, [])
+  // useEffect(() => {
+  //   couterRef.current.autoplay = true;
+  // }, [])
 
-  useLayoutEffect(()=>{
-    console.log(couterRef,'couterRef')
+  useLayoutEffect(() => {
+    console.log(couterRef, 'couterRef')
   })
 
   async function onFinish(values: any) {
@@ -73,14 +75,16 @@ export default function Login(props: any) {
   }
 
   return useObserver(() => <div className={LoginCss.Login}>
+
+
     <div className={LoginCss.videoBox}  >
-      <video className={LoginCss.video} muted  ref={couterRef} controls={true} loop={true}  >
+      {/* <video className={LoginCss.video} muted  ref={couterRef} controls={true} loop={true}  >
         <source src="./login.mp4" type="video/mp4" />
-      </video>
+      </video> */}
+      <ParticlesBg color="skyblue" num={900} type="lines" bg={true} />
     </div>
 
     <div className={LoginCss.innerBox}>
-
       <Form
         name="validate_other"
         className="login-form"
@@ -117,7 +121,7 @@ export default function Login(props: any) {
           position: 'absolute',
           left: '0'
         }}>
-          <Tag color="#55acee" style={{marginLeft:20, fontSize: '19px', padding: '15px 30px', border: 'none', lineHeight: '.5', maxHeight: '32px' }} onClick={() => { changeRandomNum() }}>{LoginStore.RandomCode}</Tag>
+          <Tag color="#55acee" style={{ marginLeft: 20, fontSize: '19px', padding: '15px 30px', border: 'none', lineHeight: '.5', maxHeight: '32px' }} onClick={() => { changeRandomNum() }}>{LoginStore.RandomCode}</Tag>
         </div>
 
         <Form.Item
@@ -134,12 +138,12 @@ export default function Login(props: any) {
 
         <Form.Item>
           <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox onChange={(e) => { changePwd(e.target.checked) }}>Remember me</Checkbox>
+            <Checkbox style={{ color: "white" }} onChange={(e) => { changePwd(e.target.checked) }}>Remember me</Checkbox>
           </Form.Item>
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" style={{ width: "100%" }} className="login-form-button">
             登录
         </Button> Or <span  >去注册</span>
         </Form.Item>

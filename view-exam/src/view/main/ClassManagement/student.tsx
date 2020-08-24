@@ -99,24 +99,6 @@ export default function Student() {
                     rules={[{ required: true, pattern: /^[0-9a-zA-Z\u4E00-\u9FA5]+$/, message: '输入正确的用户名' }]}
                 >
                     <Input placeholder='姓名' />
-                    {/* <Select placeholder="请选择教室号" style={{ width: 180 }} onChange={handleChange}>
-                        {
-                            Class.classlist && Class.classlist.map((item: any, index) => {
-                                return <Option key={index} value={item.room_id}>{item.room_text}</Option>
-                            })
-                        }
-                    </Select>
-                    <Select className={style.Select} placeholder="请选择课程" style={{ width: 180 }} onChange={handleChange}>
-                        {
-                            Class.classlist && Class.classlist.map((item: any, index) => {
-                                return <Option key={index} value={item.subject_id}>{item.subject_text}</Option>
-                            })
-                        }
-                    </Select
-                    <Button type="primary">搜索</Button>
-                    <Button type="primary"
-                        onClick={() => addConsumerForm.resetFields()}
-                    >重置</Button> */}
                 </Form.Item>
 
                 <Form.Item

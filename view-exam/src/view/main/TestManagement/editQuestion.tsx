@@ -11,7 +11,7 @@ import {
     Modal
 } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { getCookie } from '../../../utils/myCookie'
+
 const { Option } = Select;
 export default function AddQuestions() {
     let [visible, setVisible] = useState<boolean>(false)
