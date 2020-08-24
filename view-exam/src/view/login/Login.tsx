@@ -28,10 +28,6 @@ export default function Login(props: any) {
   //   couterRef.current.autoplay = true;
   // }, [])
 
-  useLayoutEffect(() => {
-    console.log(couterRef, 'couterRef')
-  })
-
   async function onFinish(values: any) {
     console.log('Received values of form: ', values);
     if (values.randomNum === LoginStore.RandomCode) {
