@@ -1,8 +1,18 @@
 .roomBox{
-    width: 90%;
-    height:100%;
-    margin-left: 50px;
+    width: 100%;
+    height: auto;
+    padding: 0 20px;
 }
+
+
+.inner{
+    width: auto;
+    height: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 9px;
+}
+
 .btn{
     border:0;
     color:#fff;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import { IRouerItem } from "../utils/interface"
 import { getCookie } from "../utils/myCookie"
-
+import useStore from '../context/useStore'
 interface Iprops {
   routes: IRouerItem[]
 }
@@ -11,7 +11,7 @@ interface Iprops {
 const whileList = ['/login', '/main', '/NoFound', 'NoServer']
 
 export default function RouterView({ routes }: Iprops) {
-  const history = useHistory();
+  const { MainStore } = useStore();
   return <Switch>
     {
       routes && routes.map(item => {
@@ -30,7 +30,7 @@ export default function RouterView({ routes }: Iprops) {
 
           // 获取不到用户信息就去登录页面
           if (!getCookie('user_id')) {
-            console.warn( '获取不到用户信息' )
+            MainStore.initAction();
           }
 
           // 用户登录拦截

@@ -79,9 +79,7 @@ const ClassMate: React.FC = () => {
   const { Class, Marking } = useStore();
   const [pageSize, UsePageSize] = useState<number>(10);
   const [current, UseCurrent] = useState<number>(1);
-  const [hoverIndex, setHoverIndex] = useState<string>(' ');
-
-  console.log(ClassMateCss, "ClassMateCss")
+  // const [hoverIndex, setHoverIndex] = useState<string>(' ');
 
   useEffect(() => {
     Class.getClassmanage()

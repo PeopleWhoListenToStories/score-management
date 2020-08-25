@@ -75,10 +75,11 @@ const ExamPaperClassList: React.FC = () => {
         // Marking.getExamStudentDetailAction();
         // Marking.putExamStudentListAction();
         Class.getClassmanage(); // 获取班级数据
-    },[Class])
+    }, [Class])
 
     return useObserver(() => (
         <div className={ExamPaperClassListCss.wrapper}>
+            <div className={ExamPaperClassListCss.wrapperInner}>
                 <Table columns={columns}
                     dataSource={Class.classlist}
                     rowKey={(record: any) => record.grade_id}
@@ -87,8 +88,9 @@ const ExamPaperClassList: React.FC = () => {
                         if (index % 2 === 1) className = 'dark-row';
                         return className;
                     }}
-                    
+
                     pagination={paginationConfig} />
+            </div>
         </div>)
     )
 }
