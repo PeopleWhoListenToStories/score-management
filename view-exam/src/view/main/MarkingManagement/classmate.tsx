@@ -14,7 +14,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
-    className:'classMate_ant-table-cell__TL53g',
+    className: 'classMate_ant-table-cell__TL53g',
     title: '班级',
     dataIndex: 'grade_id',
     key: "student_id",
@@ -22,7 +22,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
-    className:'classMate_ant-table-cell__TL53g',
+    className: 'classMate_ant-table-cell__TL53g',
     title: '姓名',
     dataIndex: 'student_name',
     key: "student_id",
@@ -30,7 +30,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
-    className:'classMate_ant-table-cell__TL53g',
+    className: 'classMate_ant-table-cell__TL53g',
     title: '阅卷状态',
     dataIndex: 'status',
     key: "student_id",
@@ -38,7 +38,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
-    className:'classMate_ant-table-cell__TL53g',
+    className: 'classMate_ant-table-cell__TL53g',
     title: '开始时间',
     dataIndex: 'start_time',
     key: "student_id",
@@ -47,7 +47,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
-    className:'classMate_ant-table-cell__TL53g',
+    className: 'classMate_ant-table-cell__TL53g',
     title: '结束时间',
     dataIndex: 'end_time',
     key: "student_id",
@@ -56,7 +56,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
-    className:'classMate_ant-table-cell__TL53g',
+    className: 'classMate_ant-table-cell__TL53g',
     title: '成材率',
     dataIndex: 'score',
     key: "student_id",
@@ -64,7 +64,7 @@ const columns = [
   {
     // width:150,
     // align: 'center',
-    className:'classMate_ant-table-cell__TL53g',
+    className: 'classMate_ant-table-cell__TL53g',
     title: '操作',
     key: 'student_id',
     render: (text: any) => (
@@ -154,7 +154,7 @@ const ClassMate: React.FC = () => {
           </Row>
         </Form>
       </div>
-      <div className={ClassMateCss.content}>
+      <div className="context">
         <Table
           rowClassName={(record: any, index: number) => {
             return ''
@@ -162,20 +162,19 @@ const ClassMate: React.FC = () => {
           onRow={(row, index) => {
             return {
               onMouseEnter: event => {
-                console.log((event.target as any).parentNode)
-                return  ;
+                // console.log((event.target as any).parentNode)
+                return;
               },
               onMouseLeave: event => {
-                console.log(row, index, 'onMouseLeave')
+                // console.log(row, index, 'onMouseLeave')
               }
             }
           }}
-          
+
           columns={columns}
           dataSource={Marking.StudentList}
           pagination={paginationConfig}
           rowKey={(record) => record.student_id} />
-
       </div>
     </div>)
   )

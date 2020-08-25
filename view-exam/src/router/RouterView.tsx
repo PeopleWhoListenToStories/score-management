@@ -27,14 +27,14 @@ export default function RouterView({ routes }: Iprops) {
         // }
 
         return <Route key={item.path} path={item.path} render={(props) => {
+          let isPath = props.match.path;
 
-          // 获取不到用户信息就去登录页面
-          if (!getCookie('user_id')) {
+          // 获取不到用户信息就重新获取
+          if (!whileList.includes(isPath) && !getCookie('user_id')  ) {
             MainStore.initAction();
           }
-
+          
           // 用户登录拦截
-          let isPath = props.match.path;
           if (!whileList.includes(isPath) && !getCookie('token')) {
             props.history.replace(`/login?redirect=${encodeURIComponent(isPath)}`);
           }
