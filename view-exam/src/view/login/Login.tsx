@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import LoginCss from './Login.module.scss';
@@ -16,7 +16,7 @@ export default function Login(props: any) {
   const [password, UsePassword] = useState<string>(getCookie('password') as string);
   const [remember, UseRemember] = useState<string>(getCookie('remember') as string);
 
-  const { LoginStore, MainStore } = useStore();
+  const { LoginStore } = useStore();
   const history = useHistory();
   // let couterRef = useRef<HTMLVideoElement | any>(); 
 
@@ -33,7 +33,6 @@ export default function Login(props: any) {
     if (values.randomNum === LoginStore.RandomCode) {
       const result: any = await LoginStore.loginAction(values.username, values.password);
       if (result.code === 1) {
-        MainStore.isGetInitFlag = true;
         if (values.remember) {
           setCookie('username', values.username);
           setCookie('password', values.password);
@@ -44,7 +43,6 @@ export default function Login(props: any) {
           removeCookie('remember');
         }
         history.replace('/main');
-        MainStore.initAction();
       }
     } else {
       console.log('重新输入验证码');
@@ -73,12 +71,13 @@ export default function Login(props: any) {
   }
 
   return useObserver(() => <div className={LoginCss.Login}>
-   
-    
+
+
     <div className={LoginCss.videoBox}  >
       {/* <video className={LoginCss.video} muted  ref={couterRef} controls={true} loop={true}  >
         <source src="./login.mp4" type="video/mp4" />
-      </video> */} <ParticlesBg color="skyblue" num={900} type="lines" bg={true} />
+      </video> */}
+      <ParticlesBg color="skyblue" num={900} type="lines" bg={true} />
     </div>
 
     <div className={LoginCss.innerBox}>
@@ -118,7 +117,7 @@ export default function Login(props: any) {
           position: 'absolute',
           left: '0'
         }}>
-          <Tag color="#55acee" style={{marginLeft:20, fontSize: '19px', padding: '15px 30px', border: 'none', lineHeight: '.5', maxHeight: '32px' }} onClick={() => { changeRandomNum() }}>{LoginStore.RandomCode}</Tag>
+          <Tag color="#55acee" style={{ marginLeft: 20, fontSize: '19px', padding: '15px 30px', border: 'none', lineHeight: '.5', maxHeight: '32px' }} onClick={() => { changeRandomNum() }}>{LoginStore.RandomCode}</Tag>
         </div>
 
         <Form.Item
@@ -135,12 +134,12 @@ export default function Login(props: any) {
 
         <Form.Item>
           <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox style={{color:"white"}} onChange={(e) => { changePwd(e.target.checked) }}>Remember me</Checkbox>
+            <Checkbox style={{ color: "white" }} onChange={(e) => { changePwd(e.target.checked) }}>Remember me</Checkbox>
           </Form.Item>
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" style={{width:"100%"}} className="login-form-button">
+          <Button type="primary" htmlType="submit" style={{ width: "100%" }} className="login-form-button">
             登录
         </Button> Or <span  >去注册</span>
         </Form.Item>

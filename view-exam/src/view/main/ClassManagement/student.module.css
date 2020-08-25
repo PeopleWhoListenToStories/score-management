@@ -1,0 +1,31 @@
+.studentBox {
+  width: 90%;
+  height: auto;
+  padding: 0 20px;
+}
+
+.studentBox .inner {
+  width: auto;
+  height: auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 9px;
+}
+
+.studentBox Input {
+  width: 180px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.studentBox Button {
+  margin-left: 20px;
+}
+
+.studentBox .forms {
+  display: flex;
+}
+
+:local(.ant-form-item) {
+  padding: 0 20px;
+}

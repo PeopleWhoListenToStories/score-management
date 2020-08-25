@@ -12,7 +12,7 @@ export default function Grade() {
 
     useEffect(() => {
         Room.getRoommanage();
-    },[Room])
+    }, [Room])
 
 
     function confirm(val: any) {
@@ -20,7 +20,7 @@ export default function Grade() {
         message.success('删除成功');
         Room.Del(val.room_id);
         console.log(visible)
-        
+
     }
 
     function cancel(e: any) {
@@ -64,21 +64,21 @@ export default function Grade() {
             offset: 8,
             span: 16,
         },
-    }; 
+    };
     const showModal = () => {
-        
+
         setVisible(true)
         console.log(visible)
-      };
-    
-      const handleOk = () => {
+    };
+
+    const handleOk = () => {
         setVisible(false)
-      };
-    
-      const handleCancel = () => {
+    };
+
+    const handleCancel = () => {
         setVisible(false)
-      };
-    const finish=(e:any)=>{
+    };
+    const finish = (e: any) => {
         setVisible(false)
         Room.onFinish(e)
     }
@@ -86,7 +86,15 @@ export default function Grade() {
 
     return useObserver(() =>
         <div className={style.roomBox}>
-            <Button type="primary" className={style.btn} onClick={showModal}> 添加教室  </Button>
+            <Button type="primary"
+                style={{
+                    background: 'linear-gradient(45deg, #063DFD,#5395F7)',
+                    borderRadius: '3px',
+                    padding: '0px 40px',
+                    height: '40px'
+                }}
+                className={style.btn}
+                onClick={showModal}> 添加教室  </Button>
             <Modal
                 title="添加教室"
                 visible={visible}
@@ -102,7 +110,7 @@ export default function Grade() {
                     }}
                     onFinish={(e) => {
                         finish(e)
-                       
+
                     }}
 
                 >
@@ -110,7 +118,7 @@ export default function Grade() {
                         label="教室号"
                         name="username"
                         rules={
-                            [{ required: true, pattern: /^[0-9]{5}$/, message: '输入教室号'}]}
+                            [{ required: true, pattern: /^[0-9]{5}$/, message: '输入教室号' }]}
                     >
                         <Input />
                     </Form.Item>
@@ -120,12 +128,14 @@ export default function Grade() {
                     </Form.Item>
                 </Form>
             </Modal>
-            <Table
-                rowKey={(r) => r.room_text}
-                columns={columns}
-                dataSource={Room.roomlist}
-            >
-            </Table >
+            <div className={style.inner}>
+                <Table
+                    rowKey={(r) => r.room_text}
+                    columns={columns}
+                    dataSource={Room.roomlist}
+                >
+                </Table >
+            </div>
         </div>)
 
 }

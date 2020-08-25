@@ -46,9 +46,7 @@ export default class AllClasses {
     @action  // 获取全部试题
     getAllTest = () => {
         GetAllTest().then(res => {
-            console.log(res)
             if (res.data.code === 1) {
-                console.log(res)
                 this.AllTests = res.data.data
             }
         });
