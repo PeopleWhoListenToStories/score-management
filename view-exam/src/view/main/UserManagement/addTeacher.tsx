@@ -51,7 +51,7 @@ const AddTeacher: React.FC = () => {
         <div className={AddCss.item}>
           <Tabs defaultActiveKey="1" onChange={callback}>
             <TabPane tab="添加用户" key="1">
-              <Form {...layout} name="nest-messages1" onFinish={async (values: any) => { await AddUserStore.addUserAction(values.user_name, values.user_pwd, values.identity_id, avatar); await AddUserStore.showIdentityAction(); formRefOne.resetFields() }} initialValues={{ identity_text: '' }} form={formRefOne}>
+              <Form {...layout} name="nest-messages1" onFinish={async (values: any) => { await AddUserStore.addUserAction(values.user_name, values.user_pwd, values.identity_id, avatar); await AddUserStore.showIdentityAction(); await AddUserStore.showUserAction(); formRefOne.resetFields() }} initialValues={{ identity_text: '' }} form={formRefOne}>
                 <Form.Item name="user_name" validateTrigger="onBlur" rules={
                   [{ required: true, pattern: /^[a-z]{4,16}$/, message: '输入4-16位小写字母' }]
                 }>

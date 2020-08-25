@@ -5,7 +5,7 @@ import { getCookie } from "../utils/myCookie"
 
 const instance = axios.create({
   timeout: 1000,
-  baseURL: 'http://127.0.0.1:7002'
+  baseURL: 'http://120.53.2.185'
 })
 
 instance.interceptors.request.use((request: any) => {
@@ -18,7 +18,6 @@ instance.interceptors.request.use((request: any) => {
 
 instance.interceptors.response.use((response: any) => {
   // NProgress.done();
-  console.log(response, 'response')
   if (response.data.code === 1) {
     return response;
   } else if (response.data.code === 0) {

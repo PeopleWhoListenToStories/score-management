@@ -4,6 +4,9 @@ import menus from "../router/menu"
 //login
 import Login from '../view/login/Login'
 
+import SetUpApp from '../view/other/Setup'
+
+
 import Main from '../view/main/Main'
 
 // 错误处理页面
@@ -35,6 +38,10 @@ const routes = [
   {
     path: '/login',
     component: Login
+  },
+  {
+    path: '/setup',
+    component:SetUpApp
   },
   {
     path: '/NoFound',

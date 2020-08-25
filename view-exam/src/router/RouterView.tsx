@@ -28,12 +28,12 @@ export default function RouterView({ routes }: Iprops) {
 
         return <Route key={item.path} path={item.path} render={(props) => {
           let isPath = props.match.path;
-
+          
           // 获取不到用户信息就重新获取
-          if (!whileList.includes(isPath) && !getCookie('user_id')  ) {
+          if (!whileList.includes(isPath) && !(MainStore.user_info as any).user_name) {
             MainStore.initAction();
           }
-          
+
           // 用户登录拦截
           if (!whileList.includes(isPath) && !getCookie('token')) {
             props.history.replace(`/login?redirect=${encodeURIComponent(isPath)}`);
