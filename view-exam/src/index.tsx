@@ -8,12 +8,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-
-
 import 'moment/locale/zh-cn';
 
 import store from './store/index'
 import StoreContext from './context/StroeContext'
+
 ReactDOM.render(
   // <React.StrictMode>
   <StoreContext.Provider value={store}>
