@@ -1,7 +1,7 @@
 import React from 'react'
 import './header.scss'
 import { Menu, Dropdown, Avatar } from 'antd';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import useStore from '../../context/useStore'
 import { removeCookie } from "../../utils/myCookie"
@@ -22,7 +22,7 @@ export default function Header() {
     <Menu onClick={onClick}>
       <Menu.Item key="1">个人中心</Menu.Item>
       <Menu.Item key="2">我的班级</Menu.Item>
-      <Menu.Item key="3">设置</Menu.Item>
+      <Menu.Item key="3"><Link to="/setup">设置</Link></Menu.Item>
       <Menu.Item key="4">退出登录</Menu.Item>
     </Menu>
   );

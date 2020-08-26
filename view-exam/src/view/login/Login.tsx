@@ -21,6 +21,9 @@ export default function Login(props: any) {
   // let couterRef = useRef<HTMLVideoElement | any>(); 
 
   useEffect(() => {
+    removeCookie('user_id');
+    removeCookie('identity_id');
+    removeCookie('token');
     LoginStore.initRandomCode(); //获取验证码
   }, [LoginStore])
 
