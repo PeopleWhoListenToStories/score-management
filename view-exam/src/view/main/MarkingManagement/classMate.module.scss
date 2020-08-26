@@ -1,55 +1,36 @@
-.wrapper{
+ .wrapper{
   width: auto;
   height: auto;
   padding:20px;
-}
-
-.content{
-  border-radius: 5px;
-  background: white;
-}
-
-.top{
-  border-radius: 5px;
-  background: white;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding:30px;
-}
- 
-:local {
-  .ant-form  {
-    width: auto;
+  .top{
+    border-radius: 5px;
+    background: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    padding:30px;
   }
-  .ant-row {
-    margin-left: 70px;
+  .context{
+    border-radius: 5px;
   }
-  .ant-table-thead > tr > th {
-    text-align: center;
+  :global{
+    .ant-table-thead > tr > th {
+      text-align: center;
+    }
+    .ant-table-tbody > tr > td {
+      text-align: center;
+    }
+    .ant-form  {
+      width: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .rowActive{
+      background-color: rgba(25,200,250,.9);
+    }
+    .ant-table-tbody > tr:hover > td{
+      background-color:rgba(116,255,252,0.5) ;
+      }
   }
-  .ant-table-tbody > tr > td {
-    text-align: center;
-  }
 }
-
-:local(.table_color_dust){
-  background-color: red;
-}
-
-:local(.ant-table-thead>.ant-table-cell){
-  text-align: center;
-  background-color: red;
-}
-
-:local(.ant-table-cell){
-  text-align: center;
-}
-
-:local(.rowActive){
-  background-color: rgba(25,200,250,.9);
-}
-  

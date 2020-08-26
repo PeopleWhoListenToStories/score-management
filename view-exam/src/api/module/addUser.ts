@@ -37,5 +37,5 @@ export const addAuthorityApi = (api_authority_text: string, api_authority_url: s
 export const addAuthorityView = (view_authority_text: string, view_id: string) => ajax.get('/user/authorityView/edit', { params: { view_authority_text, view_id } })
 
 // 更新用户
-export const renewalUser = (user_id: string, user_name: string, user_pwd: string, identity_id: string, avatar?: string) => ajax.put('/user/user', { user_id, user_name, user_pwd, identity_id, avatar })
+export const renewalUser = (user_id: string, user_name?: string, user_pwd?: string, identity_id?: string, avatar?: string) => ajax.put('/user/user', { user_id, user_name, user_pwd, identity_id, avatar })
 
