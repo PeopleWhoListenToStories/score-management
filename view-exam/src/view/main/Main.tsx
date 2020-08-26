@@ -17,6 +17,8 @@ import { Layout } from 'antd';
 // 引入菜单配置
 import menu from '../../router/menu';
 
+import { FormattedMessage } from 'react-intl'; /* react-intl imports */
+
 const { Header, Sider, Content } = Layout;
 
 // 获取右侧渲染组件名称
@@ -32,16 +34,13 @@ const getTitle = (path: string) => {
   return title;
 }
 
-
 const Main: React.FC = (props: any) => {
   const history = useHistory();
-  // console.log(history.location.pathname)
   const { MainStore } = useStore();
 
   MainStore.initAction();
 
   return useObserver(() => <MainWrapper className="Main"  >
-   
     <Layout>
       <Header style={{ background: '#fff' }}>
         <HeaderBar />
@@ -50,9 +49,12 @@ const Main: React.FC = (props: any) => {
         <Sider style={{ background: '#232A41' }} ><MenuSider></MenuSider></Sider>
         <Content>
           <TagBar />
-          
           {/* <h2>{props.routes.find((v: any) => v.path == props.location.pathname)?.meta?.name}</h2> */}
-          <h2 style={{ padding: '20px' }}>{getTitle(history.location.pathname) ? getTitle(history.location.pathname) : '默认参数'}</h2>
+         
+          <h2 style={{ padding: '20px' }}>
+            {/* {getTitle(history.location.pathname)} */}
+            <FormattedMessage id={getTitle(history.location.pathname)} />
+          </h2>
           <Roterview routes={props.routes} />
         </Content>
       </Layout>
