@@ -1,12 +1,7 @@
 import React from 'react'
 import './header.scss'
-<<<<<<< HEAD
-import { Menu, Dropdown,Avatar } from 'antd';
-import { useHistory ,Link} from 'react-router-dom'
-=======
 import { Menu, Dropdown, Avatar } from 'antd';
 import { useHistory, Link } from 'react-router-dom'
->>>>>>> 11e7d59d24bcad6f539eff75d65ee5af16d06c64
 import { useObserver } from 'mobx-react-lite'
 import useStore from '../../context/useStore'
 import { removeCookie } from "../../utils/myCookie"
