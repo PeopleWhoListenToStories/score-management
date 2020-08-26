@@ -3,6 +3,7 @@ import menus from "../router/menu"
 
 //login
 import Login from '../view/login/Login'
+import Show from '../view/own/show'
 
 import Main from '../view/main/Main'
 
@@ -35,6 +36,9 @@ const routes = [
   {
     path: '/login',
     component: Login
+  },{
+    path: '/show',
+    component: Show
   },
   {
     path: '/NoFound',

@@ -1,14 +1,16 @@
 import React from 'react'
 import './header.scss'
-import { Menu, Dropdown, Avatar } from 'antd';
-import { useHistory } from 'react-router-dom'
+import { Menu, Dropdown,Avatar } from 'antd';
+import { useHistory ,Link} from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import useStore from '../../context/useStore'
 import { removeCookie } from "../../utils/myCookie"
 
+
 export default function Header() {
   const history = useHistory();
   const { MainStore } = useStore();
+
 
   function onClick(e: any) {
     if (e.key === '4')//退出
@@ -20,7 +22,7 @@ export default function Header() {
   };
   const menu = (
     <Menu onClick={onClick}>
-      <Menu.Item key="1">个人中心</Menu.Item>
+      <Menu.Item key="1"><Link to='/show'>个人中心</Link></Menu.Item>
       <Menu.Item key="2">我的班级</Menu.Item>
       <Menu.Item key="3">设置</Menu.Item>
       <Menu.Item key="4">退出登录</Menu.Item>
@@ -39,6 +41,7 @@ export default function Header() {
           </a>
         </Dropdown>
       </p>
-    </div>)
+        </div>)
   )
 }
+
