@@ -29,10 +29,10 @@ import ClassMate from "../view/main/MarkingManagement/classmate"
 
 const menus: IMenuItem[] = [
   {
-    name: '试题管理',
+    name: 'menus.question',
     meta: {
       icon: AppstoreOutlined,
-      name: '试题管理',
+      name: 'menus.question',
       show: true
     },
     children: [
@@ -41,7 +41,7 @@ const menus: IMenuItem[] = [
         // redirect: '/main/addQuestion',
         meta: {
           component: AddQuestionPage,
-          name: '添加试题',
+          name: 'menus.question.addQuestion',
           show: true
         }
       },
@@ -49,7 +49,7 @@ const menus: IMenuItem[] = [
         path: '/main/questionType',
         meta: {
           component: QuestionTypePage,
-          name: '试题分类',
+          name: 'menus.question.questionType',
           show: true
         }
       },
@@ -57,7 +57,7 @@ const menus: IMenuItem[] = [
         path: '/main/watchQuestions',
         meta: {
           component: WatchQuestionPage,
-          name: '试题详情',
+          name: 'menus.question.watchQuestions',
           show: true
         }
       },
@@ -80,10 +80,10 @@ const menus: IMenuItem[] = [
     ]
   },
   {
-    name: '用户管理',
+    name: 'menus.user',
     meta: {
       icon: UserOutlined,
-      name: '用户管理',
+      name: 'menus.user',
       show: true
     },
     children: [
@@ -91,7 +91,7 @@ const menus: IMenuItem[] = [
         path: '/main/addTeacher',
         meta: {
           component: AddTeacher,
-          name: '添加用户',
+          name: 'AddTeacher',
           show: true
         }
       },
@@ -99,17 +99,17 @@ const menus: IMenuItem[] = [
         path: '/main/viewTeacher',
         meta: {
           component: ViewTeacher,
-          name: '用户展示',
+          name: 'ViewTeacher',
           show: true
         }
       }
     ]
   },
   {
-    name: '考试管理',
+    name: 'menus.exam',
     meta: {
       icon: ScheduleOutlined,
-      name: '考试管理',
+      name: 'menus.exam',
       show: true
     },
     children: [
@@ -117,7 +117,7 @@ const menus: IMenuItem[] = [
         path: '/main/addExam',
         meta: {
           component: AddExamPage,
-          name: '添加考试',
+          name: 'AddExamPage',
           show: true
         }
       },
@@ -125,7 +125,7 @@ const menus: IMenuItem[] = [
         path: '/main/userList',
         meta: {
           component: UserListPage,
-          name: '试卷列表',
+          name: 'UserListPage',
           show: true
         }
       },
@@ -133,7 +133,7 @@ const menus: IMenuItem[] = [
         path: '/main/edits',
         meta: {
           component: EditPage,
-          name: '编辑页面',
+          name: 'EditPage',
           show: false
         }
       },
@@ -141,17 +141,17 @@ const menus: IMenuItem[] = [
         path: '/main/condition',
         meta: {
           component: ConditionPage,
-          name: '条件',
+          name: 'ConditionPage',
           show: false
         }
       }
     ]
   },
   {
-    name: '班级管理',
+    name: 'menus.class',
     meta: {
       icon: TableOutlined,
-      name: '班级管理',
+      name: 'menus.class',
       show: true
     },
     children: [
@@ -159,7 +159,7 @@ const menus: IMenuItem[] = [
         path: '/main/grade',
         meta: {
           component: GeadePage,
-          name: '教室管理',
+          name: 'GeadePage',
           show: true
         }
       },
@@ -167,7 +167,7 @@ const menus: IMenuItem[] = [
         path: '/main/room',
         meta: {
           component: RoomPage,
-          name: '班级管理',
+          name: 'RoomPage',
           show: true
         }
       },
@@ -175,17 +175,17 @@ const menus: IMenuItem[] = [
         path: '/main/student',
         meta: {
           component: StudentPage,
-          name: '学生管理',
+          name: 'StudentPage',
           show: true
         }
       }
     ]
   },
   {
-    name: '阅卷管理',
+    name: 'menus.merge',
     meta: {
       icon: MergeCellsOutlined,
-      name: '阅卷管理',
+      name: 'menus.merge',
       show: true
     },
     children: [
@@ -193,7 +193,7 @@ const menus: IMenuItem[] = [
         path: '/main/examPaperClassList',
         meta: {
           component: ExamPaperClassListPage,
-          name: '待批班级',
+          name: 'ExamPaperClassListPage',
           show: true
         }
       },
@@ -201,7 +201,7 @@ const menus: IMenuItem[] = [
         path: '/main/classmate',
         meta: {
           component: ClassMate,
-          name: ' ',
+          name: 'ClassMate',
           show: false
         }
       }

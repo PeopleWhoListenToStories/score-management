@@ -1,16 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import styles from './SetUp.module.css'
 import { useObserver } from "mobx-react-lite"
-import { Input, Form, Button, Avatar, Upload, Select } from 'antd';
+import { useHistory } from "react-router-dom"
+import { Input, Form, Button, Avatar, Upload, Select, Modal } from 'antd';
 import useStore from '../../context/useStore'
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+const { confirm } = Modal;
 
 const SetUpApp: React.FC = () => {
   const { MainStore, AddUserStore } = useStore();
-  let [avatar, setAvatar] = useState<string>((MainStore.user_info as any).avatar);
+  const history = useHistory();
+  const [avatar, setAvatar] = useState<string>(MainStore.user_info.avatar);
+  const [historyOff, setHistoryOff] = useState<boolean>(true);
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    MainStore.initAction();
+    setAvatar(MainStore.user_info.avatar)
+  }, [])
 
   useEffect(() => {
     AddUserStore.showIdentityAction();
   }, [])
+
+  history.listen((location, action) => {
+    console.log(avatar , MainStore.user_info.avatar)
+    if (avatar !== MainStore.user_info.avatar) {
+      if (history.action === 'POP') {
+        history.replace('/setup')
+        confirm({
+          title: 'you change info save?',
+          icon: <ExclamationCircleOutlined />,
+          content: 'Some descriptions',
+          onOk: () => {
+            history.replace('/main')
+          },
+          onCancel: () => {
+            history.replace('/main')
+          },
+        });
+      }
+    }
+
+  })
 
   async function changeAvatar(e: any) {
     if (e.file.status === 'done') {
@@ -19,22 +51,18 @@ const SetUpApp: React.FC = () => {
       setAvatar(data[index].path);
     }
   }
-  // user_id: string, user_name?: string, user_pwd?: string, identity_id?: string, avatar?: string
+
   function onFinishFn(values: any) {
     let newAvatar = values.avatar?.file ? values.avatar.file.response.data[0].path : avatar;
-    AddUserStore.renewalUserAction((MainStore.user_info as any).user_id,values.user_name,values.user_pwd,values.identity_id,newAvatar);
+    AddUserStore.renewalUserAction((MainStore.user_info as any).user_id, values.user_name, values.user_pwd, values.identity_id, newAvatar);
+    MainStore.isGetInitFlag = true;
     MainStore.initAction()
   }
 
-  return useObserver(() => <div className={styles.SetUp}>
+  form.setFieldsValue({ ...MainStore.user_info });
 
-    <Form onFinish={(values: any) => { onFinishFn(values) }}
-      initialValues={{
-        avatar: avatar,
-        user_name: (MainStore.user_info as any).user_name,
-        identity_id: (MainStore.user_info as any).identity_id,
-        identity_text: (MainStore.user_info as any).identity_text,
-      }}>
+  return useObserver(() => <div className={styles.SetUp}>
+    <Form onFinish={(values: any) => { onFinishFn(values) }} form={form}>
       <Form.Item name="avatar" label="头　像" style={{ height: '50px', lineHeight: '50px' }}>
         <Upload
           name="avatar"
@@ -50,7 +78,7 @@ const SetUpApp: React.FC = () => {
       </Form.Item>
       <Form.Item name="identity_id" label="身　份">
         <Select>
-          {AddUserStore.IdentityList && AddUserStore.IdentityList.map((item, index) => {
+          {AddUserStore.IdentityList && AddUserStore.IdentityList.map((item) => {
             return <Select.Option key={item.identity_id} value={item.identity_id}>{item.identity_text}</Select.Option>
           })}
         </Select>
