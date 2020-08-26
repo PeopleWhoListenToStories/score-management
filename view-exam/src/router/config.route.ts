@@ -4,7 +4,7 @@ import menus from "../router/menu"
 //login
 import Login from '../view/login/Login'
 
-import SetUpApp from '../view/other/Setup'
+// import SetUpApp from '../view/other/Setup'
 
 
 import Main from '../view/main/Main'
@@ -39,10 +39,10 @@ const routes = [
     path: '/login',
     component: Login
   },
-  {
-    path: '/setup',
-    component:SetUpApp
-  },
+  // {
+  //   path: '/setup',
+  //   component:SetUpApp
+  // },
   {
     path: '/NoFound',
     component: NoFound

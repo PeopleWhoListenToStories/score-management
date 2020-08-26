@@ -9,7 +9,7 @@ import { Menu } from 'antd';
 import { IMenuItem } from "../../utils/interface"
 
 import menu from "../../router/menu"
-
+import {FormattedMessage} from 'react-intl'
 const { SubMenu } = Menu;
 export default function MenuSider() {
   const [defaultKey, setOpenKey] = useState<string>('0');
@@ -53,7 +53,7 @@ export default function MenuSider() {
         theme="dark"
       >
         {menu.map((item: any, index: number) => {
-          return <SubMenu key={index} title={item.name} icon={<item.meta.icon />}  >
+          return <SubMenu key={index}  title={<FormattedMessage id={item.name} defaultMessage={item.name}/>} icon={<item.meta.icon />}  >
             {
               item.children && item.children.map((v: any) => {
                 if ((v.meta as any).show) {

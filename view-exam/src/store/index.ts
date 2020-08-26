@@ -16,6 +16,7 @@ import Stu from './modules/classManage/studentmanage'
 
 import Marking from "./modules/MarkingManagement/index"
 
+import lang from './modules/lang/lang'
 export default {
   Test: new Test(),
   LoginStore: new Login(),
@@ -26,5 +27,6 @@ export default {
   Class: new Class(),
   Room:new Room(),
   Marking:new Marking(),
-  Stu: new Stu()
+  Stu: new Stu(),
+  Lang:new lang(),
 }

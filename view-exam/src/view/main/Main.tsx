@@ -5,6 +5,7 @@ import { useObserver } from 'mobx-react-lite';
 import Roterview from '../../router/RouterView';
 import useStore from '../../context/useStore';
 
+import {injectIntl} from 'react-intl'
 
 // 引入组件
 import MenuSider from '../../components/MenuSide/MenuSider';
@@ -39,7 +40,6 @@ const Main: React.FC = (props: any) => {
   const { MainStore } = useStore();
 
   MainStore.initAction();
-
   return useObserver(() => <MainWrapper className="Main"  >
    
     <Layout>
@@ -59,7 +59,7 @@ const Main: React.FC = (props: any) => {
     </Layout>
   </MainWrapper>)
 }
-export default Main;
+export default injectIntl(Main);
 
 const MainWrapper = styled.div`
   wdith:100%;

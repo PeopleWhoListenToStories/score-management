@@ -29,7 +29,7 @@ import ClassMate from "../view/main/MarkingManagement/classmate"
 
 const menus: IMenuItem[] = [
   {
-    name: '试题管理',
+    name:'menu.question',
     meta: {
       icon: AppstoreOutlined,
       name: '试题管理',
@@ -39,9 +39,10 @@ const menus: IMenuItem[] = [
       {
         path: '/main/addQuestion',
         // redirect: '/main/addQuestion',
+       
         meta: {
           component: AddQuestionPage,
-          name: '添加试题',
+          name: 'menu.question.addQuestion',
           show: true
         }
       },
