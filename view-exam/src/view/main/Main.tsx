@@ -10,6 +10,7 @@ import useStore from '../../context/useStore';
 import MenuSider from '../../components/MenuSide/MenuSider';
 import HeaderBar from '../../components/HeaderBar/Header';
 import TagBar from '../../components/TagBar/TagBar';
+import AfterSale from '../../components/afterSale/AfterSale'
 
 // 引入antd
 import { Layout } from 'antd';
@@ -41,6 +42,8 @@ const Main: React.FC = (props: any) => {
   MainStore.initAction();
 
   return useObserver(() => <MainWrapper className="Main"  >
+    {/* 售后聊天框 */}
+    {MainStore.AfterSaleVisable ? <AfterSale /> : ''}
     <Layout>
       <Header style={{ background: '#fff' }}>
         <HeaderBar />
@@ -50,7 +53,7 @@ const Main: React.FC = (props: any) => {
         <Content>
           <TagBar />
           {/* <h2>{props.routes.find((v: any) => v.path == props.location.pathname)?.meta?.name}</h2> */}
-         
+
           <h2 style={{ padding: '20px' }}>
             {/* {getTitle(history.location.pathname)} */}
             <FormattedMessage id={getTitle(history.location.pathname)} />

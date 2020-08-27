@@ -24,7 +24,7 @@ const SetUpApp: React.FC = () => {
   }, [])
 
   history.listen((location, action) => {
-    console.log(avatar , MainStore.user_info.avatar)
+    console.log(avatar, MainStore.user_info.avatar)
     if (avatar !== MainStore.user_info.avatar) {
       if (history.action === 'POP') {
         history.replace('/setup')
@@ -33,10 +33,10 @@ const SetUpApp: React.FC = () => {
           icon: <ExclamationCircleOutlined />,
           content: 'Some descriptions',
           onOk: () => {
-            history.replace('/main')
+            history.replace('/')
           },
           onCancel: () => {
-            history.replace('/main')
+            history.replace('/')
           },
         });
       }
