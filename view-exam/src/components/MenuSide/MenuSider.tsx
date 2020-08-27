@@ -54,7 +54,7 @@ export default function MenuSider() {
         mode="inline"
         theme="dark"
       >
-        
+
         {menu.map((item: any, index: number) => {
           return <SubMenu key={index} title={<FormattedMessage id={item.name} defaultMessage={item.name}></FormattedMessage>} icon={<item.meta.icon />}  >
             {

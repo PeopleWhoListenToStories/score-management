@@ -1,8 +1,10 @@
 const US = {
   'menus.question':'Question',
+  
   'menus.question.addQuestion': 'AddQuestion',
   'menus.question.questionType': 'QuestionType',
   'menus.question.watchQuestions': 'WatchQuestions',
+
   'menus.user':'user',
   'menus.user.AddTeacher':'AddTeacher',
   'menus.user.ViewTeacher':'ViewTeacher',

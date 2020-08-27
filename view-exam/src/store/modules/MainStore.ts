@@ -21,6 +21,8 @@ export default class MainStore {
   NoViewAuthority: any[] = []; // 没有权限视图列表
   @observable
   TagList: Array<{ name: string, path: string }> = []; // 标签列表
+  @observable
+  AfterSaleVisable:boolean = false;
   
   isGetInitFlag: boolean = true; // 获取个人信息开关
 
@@ -36,6 +38,10 @@ export default class MainStore {
         this.isGetInitFlag = false;
       }
     }
+  }
+
+  @action changeAfterSaleVisable(val:boolean){
+    this.AfterSaleVisable = val;
   }
 
   @action
