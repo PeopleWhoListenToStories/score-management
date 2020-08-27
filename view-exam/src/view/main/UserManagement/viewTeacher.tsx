@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Radio, Table } from 'antd';
+import { Radio, Table, Button } from 'antd';
 import ViewTeacherCss from './viewTeacher.module.css';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
+import XLSX from "xlsx"
 
 const list = [
   {
@@ -134,11 +135,17 @@ export default function ViewTeacher() {
 
   useEffect(() => {
     AddUserStore[list[curIndex].action]();
-  }, [AddUserStore,curIndex])
+  }, [AddUserStore, curIndex])
 
   // 切换下标
   const onChange = (index: string) => {
     setCurIndex(Number(index));
+  }
+
+  function ExectOutput() {
+    (window as any)._hmt.push(['_trackEvent', "视图管理", "click", "导出execl"]);
+    // console.log(AddUserStore[list[curIndex].list);
+    // const ws = XLSX.utils.json_to_sheet(AddUserStore[list[curIndex].list);
   }
 
   return useObserver(() => (
@@ -154,7 +161,7 @@ export default function ViewTeacher() {
         </Radio.Group>
       </div>
       {/* 提示标签 */}
-      <h2>{list[curIndex].type}</h2>
+      <h2>{list[curIndex].type}  <Button type="primary" onClick={ExectOutput}>导出 </Button></h2>
       {/* 表格 */}
       <Table columns={list[curIndex].colums} dataSource={AddUserStore[list[curIndex].list]} rowKey={list[curIndex].key} />
     </div>)

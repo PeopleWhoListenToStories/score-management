@@ -1,11 +1,12 @@
 .AfterSale{
   width: 500px;
   position: fixed;
-  bottom: 10px;
+  top: 70%;
   left: 70%;
   z-index: 9999;
   background-color: white;
   border-radius: 3px;
+  transform: translateX(-50%);
   box-shadow:black 0px 0px 5px;//将h-shadow,v-shadow设为0px,实现四周阴影
   nav{
     height: 40px;

@@ -1,12 +1,12 @@
 .AfterSale {
-  width: 30%;
+  width: 500px;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%);
+  top: 70%;
+  left: 70%;
   z-index: 9999;
   background-color: white;
   border-radius: 3px;
+  transform: translateX(-50%);
   box-shadow: black 0px 0px 5px;
 }
 
