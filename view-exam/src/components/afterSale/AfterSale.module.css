@@ -28,14 +28,22 @@
 }
 
 .AfterSale :global section {
-  min-height: 150px;
-  height: 150px;
+  min-height: 200px;
+  height: 200px;
   overflow-y: auto;
 }
 
 .AfterSale :global section .left {
+  height: 50px;
   text-align: left;
   padding-left: 5px;
+}
+
+.AfterSale :global section .left p:nth-child(1) {
+  height: 20px;
+  line-height: 20px;
+  font-size: 15px;
+  color: #ccc;
 }
 
 .AfterSale :global section .left span {
@@ -55,6 +63,10 @@
   border-radius: 5px;
   background: #15a855;
   color: black;
+}
+
+.AfterSale :global section p {
+  margin-bottom: 0;
 }
 
 .AfterSale :global section::-webkit-scrollbar {
