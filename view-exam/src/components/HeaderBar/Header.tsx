@@ -9,6 +9,8 @@ import { Radio } from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
 
+import Music from '../Music/music'
+
 export default function Header() {
   const history = useHistory();
   const { MainStore, Language } = useStore();
@@ -53,14 +55,15 @@ export default function Header() {
           </a>
         </Dropdown>
       </p>
-      <p>
+      <div>
         <div className="change-locale" >
           <Radio.Group value={Language.locale} onChange={changeLocale}>
             <Radio.Button key="en" value={'en'}> English </Radio.Button>
             <Radio.Button key="zh" value={'zh'}>  中文  </Radio.Button>
           </Radio.Group>
         </div>
-      </p>
+      </div>
+      <Music />
     </div>)
   )
 }
