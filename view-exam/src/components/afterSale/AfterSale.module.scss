@@ -1,0 +1,62 @@
+.AfterSale{
+  width: 500px;
+  position: fixed;
+  bottom: 10px;
+  left: 70%;
+  z-index: 9999;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow:black 0px 0px 5px;//将h-shadow,v-shadow设为0px,实现四周阴影
+  nav{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+  }
+  li{
+    width: auto;
+    height: 30px;
+    line-height: 30px;
+  }
+  :global{
+    .add{
+      text-align: center;
+      padding: 10px 0;
+    }
+    section{
+      min-height: 150px;
+      height: 150px;
+      overflow-y: auto;
+      .left{
+        text-align: left;
+        padding-left: 5px;
+        span{
+          padding: 0 10px;
+          border-radius: 5px;
+          background: rgb(219, 219, 219);
+          color: black;
+        }
+      }
+      .right{
+        text-align: right;
+        padding-right: 5px;
+        span{
+          padding: 0 10px;
+          border-radius: 5px;
+          background: rgb(21, 168, 85);
+          color: black;
+        }
+      }
+    }
+    section::-webkit-scrollbar{
+      width:10px;
+      height:10px;
+    }
+    section::-webkit-scrollbar-thumb{
+      background-color:rgba(0,0,0,.05);
+      border-radius:10px;
+      --webkit-box-shadow:inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+    }
+  }
+
+}
+
