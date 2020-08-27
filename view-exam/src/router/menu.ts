@@ -92,7 +92,7 @@ const menus: IMenuItem[] = [
         path: '/main/addTeacher',
         meta: {
           component: AddTeacher,
-          name: 'AddTeacher',
+          name: 'menus.user.AddTeacher',
           show: true
         }
       },
@@ -100,7 +100,7 @@ const menus: IMenuItem[] = [
         path: '/main/viewTeacher',
         meta: {
           component: ViewTeacher,
-          name: 'ViewTeacher',
+          name: 'menus.user.ViewTeacher',
           show: true
         }
       }
@@ -118,7 +118,7 @@ const menus: IMenuItem[] = [
         path: '/main/addExam',
         meta: {
           component: AddExamPage,
-          name: 'AddExamPage',
+          name: 'menus.exam.AddExamPage',
           show: true
         }
       },
@@ -126,7 +126,7 @@ const menus: IMenuItem[] = [
         path: '/main/userList',
         meta: {
           component: UserListPage,
-          name: 'UserListPage',
+          name: 'menus.exam.UserListPage',
           show: true
         }
       },
@@ -134,7 +134,7 @@ const menus: IMenuItem[] = [
         path: '/main/edits',
         meta: {
           component: EditPage,
-          name: 'EditPage',
+          name: 'menus.exam.EditPage',
           show: false
         }
       },
@@ -142,7 +142,7 @@ const menus: IMenuItem[] = [
         path: '/main/condition',
         meta: {
           component: ConditionPage,
-          name: 'ConditionPage',
+          name: 'menus.exam.ConditionPage',
           show: false
         }
       }
@@ -160,7 +160,7 @@ const menus: IMenuItem[] = [
         path: '/main/grade',
         meta: {
           component: GeadePage,
-          name: 'GeadePage',
+          name: 'menus.class.GeadePage',
           show: true
         }
       },
@@ -168,7 +168,7 @@ const menus: IMenuItem[] = [
         path: '/main/room',
         meta: {
           component: RoomPage,
-          name: 'RoomPage',
+          name: 'menus.class.RoomPage',
           show: true
         }
       },
@@ -176,7 +176,7 @@ const menus: IMenuItem[] = [
         path: '/main/student',
         meta: {
           component: StudentPage,
-          name: 'StudentPage',
+          name: 'menus.class.StudentPage',
           show: true
         }
       }
@@ -194,7 +194,7 @@ const menus: IMenuItem[] = [
         path: '/main/examPaperClassList',
         meta: {
           component: ExamPaperClassListPage,
-          name: 'ExamPaperClassListPage',
+          name: 'menus.merge.ExamPaperClassListPage',
           show: true
         }
       },
@@ -202,7 +202,7 @@ const menus: IMenuItem[] = [
         path: '/main/classmate',
         meta: {
           component: ClassMate,
-          name: 'ClassMate',
+          name: 'menus.merge.ClassMate',
           show: false
         }
       }

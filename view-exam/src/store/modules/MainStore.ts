@@ -21,6 +21,8 @@ export default class MainStore {
   NoViewAuthority: any[] = []; // 没有权限视图列表
   @observable
   TagList: Array<{ name: string, path: string }> = []; // 标签列表
+  @observable
+  AfterSaleVisable:boolean = false;
   
   isGetInitFlag: boolean = true; // 获取个人信息开关
 
@@ -34,8 +36,13 @@ export default class MainStore {
         setCookie('identity_id', result.data.data.identity_id); //设置权限id字段
         // await this.getMenuListAction(result.data.data.user_id)
         this.isGetInitFlag = false;
+        console.log(this.MenuList)
       }
     }
+  }
+
+  @action changeAfterSaleVisable(val:boolean){
+    this.AfterSaleVisable = val;
   }
 
   @action

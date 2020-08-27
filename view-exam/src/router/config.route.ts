@@ -4,6 +4,7 @@ import menus from "../router/menu"
 //login
 import Login from '../view/login/Login'
 import SetUpApp from '../view/other/Setup'
+import ShowApp from '../view/show/Show'
 
 
 import Main from '../view/main/Main'
@@ -41,6 +42,10 @@ const routes = [
   {
     path: '/setup',
     component:SetUpApp
+  },
+  {
+    path: '/show',
+    component:ShowApp
   },
   {
     path: '/NoFound',

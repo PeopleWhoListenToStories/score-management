@@ -5,10 +5,10 @@ import { useHistory, Link } from 'react-router-dom'
 import { useObserver } from 'mobx-react-lite'
 import useStore from '../../context/useStore'
 import { removeCookie } from "../../utils/myCookie"
-import { ConfigProvider, Radio } from 'antd';
+import { Radio } from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
-import krEa from 'antd/es/locale/ko_KR'
+import krEa from 'antd/es/locale/ko_KR';
 
 export default function Header() {
   const history = useHistory();
@@ -17,19 +17,14 @@ export default function Header() {
   function changeLocale(e: any) {
     const localeValue = e.target.value;
     Language.changeLanguage(localeValue)
-    console.log(Language)
-    // if (!localeValue) {
-    //   moment.locale('en');
-    // } else {
-    //   moment.locale('zh-cn');
-    // }
   };
   function onClick(e: any) {
-    if (e.key === '4')//退出
-    {
+    if (e.key === '4'){//退出 
       window.sessionStorage.removeItem('token');
       removeCookie('user_id');
       history.push('/Login')
+    }else if (e.key === '5'){
+      MainStore.changeAfterSaleVisable(true)
     }
   };
   const menu = (
@@ -37,6 +32,7 @@ export default function Header() {
       <Menu.Item key="1"><Link to='/show'>个人中心</Link></Menu.Item>
       <Menu.Item key="2">我的班级</Menu.Item>
       <Menu.Item key="3"><Link to="/setup">设置</Link></Menu.Item>
+      <Menu.Item key="5">联系售后</Menu.Item>
       <Menu.Item key="4">退出登录</Menu.Item>
     </Menu>
   );
@@ -58,7 +54,7 @@ export default function Header() {
           <Radio.Group value={Language.locale} onChange={changeLocale}>
             <Radio.Button key="en" value={'en'}> English </Radio.Button>
             <Radio.Button key="zh" value={'zh'}>  中文  </Radio.Button>
-            <Radio.Button key="kr" value={'kr'}>  韩文  </Radio.Button>
+            <Radio.Button key="kr" value={'kr'}>  한국어  </Radio.Button>
           </Radio.Group>
         </div>
       </p>
