@@ -144,8 +144,10 @@ export default function ViewTeacher() {
 
   function ExectOutput() {
     (window as any)._hmt.push(['_trackEvent', "视图管理", "click", "导出execl"]);
-    // console.log(AddUserStore[list[curIndex].list);
-    // const ws = XLSX.utils.json_to_sheet(AddUserStore[list[curIndex].list);
+    const ws = XLSX.utils.json_to_sheet(AddUserStore[list[curIndex].list]);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, `${list[curIndex].type}`);
+    XLSX.writeFile(wb, `${list[curIndex].type}.xlsx`)
   }
 
   return useObserver(() => (

@@ -4,6 +4,8 @@ import ClassMateCss from "./classMate.module.scss";
 import useStore from "../../../context/useStore";
 import { Form, Table, Select, Button, Space, Row, Col } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import xlsx from "xlsx"
+
 const { Option } = Select;
 const layout = {
   labelCol: { span: 8 },
@@ -79,6 +81,7 @@ const ClassMate: React.FC = () => {
   const { Class, Marking } = useStore();
   const [pageSize, UsePageSize] = useState<number>(10);
   const [current, UseCurrent] = useState<number>(1);
+  const [uploadExcel, setUploadExcel] = useState<any>({data:[],columns:[]});
   // const [hoverIndex, setHoverIndex] = useState<string>(' ');
 
   useEffect(() => {
@@ -123,6 +126,33 @@ const ClassMate: React.FC = () => {
     labelCol: { span: 4 },
     // wrapperCol: { span: 14 },
   };
+
+  // 导入
+  function excelInOut(e: any) {
+    let file = e.target.files[0];
+    let Render = new FileReader();
+    Render.readAsArrayBuffer(file);
+
+    Render.onload = function (e) {
+      let buffer = new Uint8Array(e.target?.result as any)
+      let workbook = xlsx.read(buffer, { type: 'array' });
+      let worksheet = workbook.Sheets['身份和api接口关系']
+      let data: any = xlsx.utils.sheet_to_json(worksheet);
+      let columns: any[] = [];
+      for (let key in data[0]) {
+        columns.push({
+          name: key,
+          dataIndex: key
+        })
+      }
+      let uploadExcel = {
+        columns,
+        data: data
+      }
+      setUploadExcel(uploadExcel);
+    }
+
+  }
 
   return useObserver(() =>
     (<div className={ClassMateCss.wrapper}>
@@ -175,6 +205,13 @@ const ClassMate: React.FC = () => {
           dataSource={Marking.StudentList}
           pagination={paginationConfig}
           rowKey={(record) => record.student_id} />
+
+        <Button type="primary" value="导入" ><input type="file" style={{ width: '50px' }} onChange={excelInOut} /></Button>
+        <Table
+          columns={uploadExcel.columns}
+          dataSource={uploadExcel.data}
+          // pagination={paginationConfig}
+          rowKey={(record) => record.identity_api_authority_relation_id} />
       </div>
     </div>)
   )

@@ -30,6 +30,7 @@ const AfterSale: React.FC = () => {
   }
 
   function btnFn(e: any) {
+    MainStore.changeMessageFlag(false); // 修改通知信息图标开关
     setBtnDisable(true)
     let timer = setTimeout(() => {
       setBtnDisable(false)
@@ -42,20 +43,25 @@ const AfterSale: React.FC = () => {
   }
 
   useEffect(() => {
-    socket.emit('messageOn')
+    MainStore.changeMessageFlag(false); // 修改通知信息图标开关
+  })
 
+  useEffect(() => {
+    socket.emit('messageOn')
     // 接收消息
     socket.on('message', (res: any) => {
       console.log(res)
+      MainStore.changeMessageFlag(true); // 修改通知信息图标开关
       setList(res.data.slice(0, -1))
-      sectionRef.current.scrollTop = (sectionRef.current.childNodes.length + 1) * sectionRef.current.firstChild.offsetHeight
+      if (sectionRef.current) {
+        sectionRef.current.scrollTop = ((sectionRef.current?.childNodes.length + 1) * sectionRef.current.firstChild.offsetHeight)
+      }
       // res返回格式有前后端自己协定
       if (res.status === 200) {
         console.log(res, "res")
       }
     })
   }, [])
-
 
   return <div className={styles.AfterSale} ref={afterSaleRef}   >
     <nav>售后聊天工作室
@@ -74,7 +80,7 @@ const AfterSale: React.FC = () => {
     <div className="add">
       <Input type="text" style={{ width: '50%' }} placeholder="输入您想说的话" value={value} onChange={(e) => { setValue(e.target.value) }} />
       <Button disabled={btnDisable} onClick={btnFn}>发送</Button>
-      <Button onClick={() => { setList([]); setCurVal('') }}>清空</Button>
+      <Button onClick={() => { setList([]); setCurVal(undefined) }}>清空</Button>
     </div>
   </div>
 }
