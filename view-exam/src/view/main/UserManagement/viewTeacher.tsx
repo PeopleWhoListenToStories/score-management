@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Radio, Table } from 'antd';
+import { Radio, Table, Button, Input } from 'antd';
 import ViewTeacherCss from './viewTeacher.module.css';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
-
+import XLSX from 'xlsx'
 const list = [
   {
     id: '1',
@@ -140,6 +140,20 @@ export default function ViewTeacher() {
   const onChange = (index: string) => {
     setCurIndex(Number(index));
   }
+  function exportExcel(){
+    // window._hmt.push(['_trackEvent', '页面管理', 'click', '导出']);
+    //1.生成worksheet
+    let ws=XLSX.utils.json_to_sheet(AddUserStore[list[curIndex].list]);
+    let wb=XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,ws,list[curIndex].id)
+    XLSX.writeFile(wb,'用户管理.xlsx')
+
+  }
+  function importExcel(e:React.ChangeEvent<HTMLInputElement>){
+    console.log(e.target.files)
+    // window._hmt.push(['_trackEvent', '页面管理', 'click', '引入']);
+
+  }
 
   return useObserver(() => (
     <div className={ViewTeacherCss.ViewTeacher}>
@@ -153,6 +167,10 @@ export default function ViewTeacher() {
           }
         </Radio.Group>
       </div>
+      <Button type='primary' onClick={exportExcel}>导出</Button>
+      <Button type='primary'>
+        <Input type='file' placeholder='导入表格' onChange={importExcel} />
+      </Button>
       {/* 提示标签 */}
       <h2>{list[curIndex].type}</h2>
       {/* 表格 */}

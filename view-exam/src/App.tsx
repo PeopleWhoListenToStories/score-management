@@ -1,51 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HashRouter } from 'react-router-dom';
 import RouterView from './router/RouterView';
 import routes from './router/config.route'
 import { IRouerItem } from "./utils/interface"
+import useStore from './context/useStore'
 import './App.css';
-// import { ConfigProvider,Radio } from 'antd';
 
+// 配置国际化
+import { IntlProvider } from 'react-intl'; /* react-intl imports */
+// import zh from "react-intl/locale-data/zh";
+// import en from "react-intl/locale-data/en";
+// addLocaleData([...en, ...zh]);  // 引入多语言环境的数据
 
-// import enUS from 'antd/es/locale/en_US';
-// import zhCN from 'antd/es/locale/zh_CN';
+import { useObserver } from 'mobx-react-lite';
+
 function App() {
-  // let [locale,setLocale]=useState()
-  // const changeLocale = (e:any) => {
-  //   const localeValue = e.target.value;
-  //   setLocale(localeValue)
-  
-  // };
-  return (
-    <div className="App">
-      {/* <div>
-        <div className="change-locale">
-          <span style={{ marginRight: 16 }}>Change locale of components: </span>
-          <Radio.Group value={locale} onChange={changeLocale}>
-            <Radio.Button key="en" value={enUS}>
-              English
-            </Radio.Button>
-            <Radio.Button key="cn" value={zhCN}>
-              中文
-            </Radio.Button>
-          </Radio.Group>
-        </div>
-        <ConfigProvider locale={locale}>
-         <HashRouter>
+  const { Language } = useStore();
+  return useObserver(() => (
+    <div className="App">   
+      <IntlProvider locale={Language.locale } messages={Language.defaultLanguage} >
+        <HashRouter>
           <RouterView routes={routes as IRouerItem[]} />
         </HashRouter>
-        </ConfigProvider>
-
-        
-      </div> */}
-      <HashRouter>
-          <RouterView routes={routes as IRouerItem[]} />
-        </HashRouter>
-        
-     
-    </div>
+      </IntlProvider>
+    </div>)
   );
 }
 
 export default App;
-

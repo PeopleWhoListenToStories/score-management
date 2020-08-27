@@ -37,7 +37,6 @@ export default class AddUser {
     if (result.data.code === 1) {
       this.UserList = result.data.data;
       console.log('showUserAction ok')
-      console.log( this.UserList)
     }
   }
 
@@ -136,11 +135,9 @@ export default class AddUser {
 
   @action // 更新用户
   async renewalUserAction(user_id: string, user_name?: string, user_pwd?: string, identity_id?: string, avatar?: string) {
-    console.log(user_id, user_name, user_pwd, identity_id, avatar)
     const result: any = await renewalUser(user_id, user_name, user_pwd, identity_id,avatar);
     if (result.data.code === 1) {
       message.success(result.data.msg)
     }
   }
 }
-

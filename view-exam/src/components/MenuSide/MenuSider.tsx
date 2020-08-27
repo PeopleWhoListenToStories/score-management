@@ -10,6 +10,8 @@ import { IMenuItem } from "../../utils/interface"
 
 import menu from "../../router/menu"
 
+import { FormattedMessage } from 'react-intl'; /* react-intl imports */
+
 const { SubMenu } = Menu;
 export default function MenuSider() {
   const [defaultKey, setOpenKey] = useState<string>('0');
@@ -52,13 +54,14 @@ export default function MenuSider() {
         mode="inline"
         theme="dark"
       >
+        
         {menu.map((item: any, index: number) => {
-          return <SubMenu key={index} title={item.name} icon={<item.meta.icon />}  >
+          return <SubMenu key={index} title={<FormattedMessage id={item.name} defaultMessage={item.name}></FormattedMessage>} icon={<item.meta.icon />}  >
             {
               item.children && item.children.map((v: any) => {
                 if ((v.meta as any).show) {
                   return <Menu.Item key={v.path} onClick={() => { MainStore.TagAction({ path: v.path, name: v.meta.name }) }}>
-                    <Link to={v.path} >{(v.meta as any).name}</Link>
+                    <Link to={v.path} ><FormattedMessage id={(v.meta as any).name} defaultMessage={(v.meta as any).name}></FormattedMessage></Link>
                   </Menu.Item>
                 }
               })
