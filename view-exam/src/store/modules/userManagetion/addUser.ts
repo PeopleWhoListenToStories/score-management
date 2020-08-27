@@ -37,6 +37,7 @@ export default class AddUser {
     if (result.data.code === 1) {
       this.UserList = result.data.data;
       console.log('showUserAction ok')
+      console.log( this.UserList)
     }
   }
 

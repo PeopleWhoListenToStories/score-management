@@ -3,8 +3,6 @@ import menus from "../router/menu"
 
 //login
 import Login from '../view/login/Login'
-import Show from '../view/own/show'
-
 import SetUpApp from '../view/other/Setup'
 
 
@@ -39,9 +37,6 @@ const routes = [
   {
     path: '/login',
     component: Login
-  },{
-    path: '/show',
-    component: Show
   },
   {
     path: '/setup',
