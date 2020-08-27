@@ -6,7 +6,6 @@ class lang{
 
     @action                                                  
     changeLocals(loca:string){
-        console.log(loca)
         this.local=loca
     }
 }

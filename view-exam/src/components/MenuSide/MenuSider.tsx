@@ -58,7 +58,7 @@ export default function MenuSider() {
               item.children && item.children.map((v: any) => {
                 if ((v.meta as any).show) {
                   return <Menu.Item key={v.path} onClick={() => { MainStore.TagAction({ path: v.path, name: v.meta.name }) }}>
-                    <Link to={v.path} >{(v.meta as any).name}</Link>
+                    <Link to={v.path} >{<FormattedMessage id={(v.meta as any).name} defaultMessage={(v.meta as any).name}/>}</Link>
                   </Menu.Item>
                 }
               })

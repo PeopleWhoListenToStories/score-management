@@ -13,6 +13,10 @@ import Main from '../view/main/Main'
 import NoFound from '../view/error/NoFound';
 import NoServer from '../view/error/NoServer';
 
+
+//方法
+import Export from '../view/main/ways/export'
+
 // 格式化nume数据格式
 function genterRouter(numes: IMenuItem[]) {
   let routes: IRouerItem[] = [];
@@ -30,6 +34,10 @@ function getFirstRedirect(menus: IMenuItem[]) {
 }
 
 const routes = [
+{
+  path:'/export',
+  component:Export
+},
   {
     path: '/main',
     component: Main,

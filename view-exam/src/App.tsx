@@ -15,15 +15,17 @@ import useStore from './context/useStore'
 import { IntlProvider } from 'react-intl';
 import zh_CN from "./lang/zh_CN"
 import en_US from "./lang/en_US"
+
 const localeMap = {
-  en: en_US,
-  zh: zh_CN,
+  'en': en_US,
+  'zh': zh_CN,
 }
 
 function App() {
-  let {Lang} =useStore()
+  let {Lang} =useStore() 
+  console.log((localeMap as any)[Lang.local] )
 
-  return useObserver(() =>
+  return useObserver(() =>  
     <div className="App">
 
       <span style={{ marginRight: 16 }}>Change locale of components: </span>
@@ -31,7 +33,7 @@ function App() {
         <Radio.Button key="en" value='en'>
           English
             </Radio.Button>
-        <Radio.Button key="cn" value='cn'>
+        <Radio.Button key="zh" value='zh'>
           中文
             </Radio.Button>
       </Radio.Group>
@@ -41,7 +43,7 @@ function App() {
           <RouterView routes={routes as IRouerItem[]} key={locale ? locale.locale : 'en' } />
         </HashRouter>
         </ConfigProvider> */}
-      <IntlProvider locale={Lang.local} messages={localeMap[Lang.local as 'en' | 'zh']}>
+      <IntlProvider locale={Lang.local} messages={(localeMap as any)[Lang.local] }>
         <HashRouter>
           <RouterView routes={routes as IRouerItem[]} />
         </HashRouter>

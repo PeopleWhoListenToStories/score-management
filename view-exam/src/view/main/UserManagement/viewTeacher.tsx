@@ -4,6 +4,7 @@ import ViewTeacherCss from './viewTeacher.module.css';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 
+import xlsx from 'xlsx'
 const list = [
   {
     id: '1',
@@ -140,11 +141,18 @@ export default function ViewTeacher() {
   const onChange = (index: string) => {
     setCurIndex(Number(index));
   }
-
+  //导出方法
+  const exct=()=>{
+    let ws=xlsx.utils.json_to_sheet(AddUserStore.UserList);
+    let wb=xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(wb,ws,"user");
+    xlsx.writeFile(wb,'user.xlsx')
+  }
   return useObserver(() => (
     <div className={ViewTeacherCss.ViewTeacher}>
       {/* 头部tab */}
       <div>
+        <button onClick={()=>{exct()}}>导出文件</button>
         <Radio.Group onChange={(e) => { onChange(e.target.value) }} defaultValue={0}>
           {
             list && list.map((item: any, index: number) => {

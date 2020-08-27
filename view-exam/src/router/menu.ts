@@ -27,19 +27,21 @@ import StudentPage from '../view/main/ClassManagement/student'
 import ExamPaperClassListPage from '../view/main/MarkingManagement/examPaperClassList'
 import ClassMate from "../view/main/MarkingManagement/classmate"
 
+
 const menus: IMenuItem[] = [
+ 
   {
     name:'menu.question',
     meta: {
       icon: AppstoreOutlined,
-      name: '试题管理',
+      name: 'menu.question',
       show: true
     },
     children: [
+     
       {
         path: '/main/addQuestion',
         // redirect: '/main/addQuestion',
-       
         meta: {
           component: AddQuestionPage,
           name: 'menu.question.addQuestion',
