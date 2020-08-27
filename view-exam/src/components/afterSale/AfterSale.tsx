@@ -12,9 +12,12 @@ const AfterSale: React.FC = () => {
   const [list, setList] = useState<any[]>([])
   const [curVal, setCurVal] = useState<string>();
   const [btnDisable, setBtnDisable] = useState<boolean>(false);
-
+  //拖拽
+  let [data, setdata] = useState<string>()
+  let [translateX, settranslateX] = useState<number>(0)
+  let [translateY, settranslateY] = useState<number>(0)
+  let [root, setroot] = useState<any>({})
   const sectionRef: any = useRef();
-  const afterSaleRef: any = useRef();
 
   const { MainStore } = useStore();
 
@@ -63,7 +66,47 @@ const AfterSale: React.FC = () => {
     })
   }, [])
 
-  return <div className={styles.AfterSale} ref={afterSaleRef}   >
+
+  const afterSaleRef = useCallback(
+    element => element && setroot(element),
+    []
+  )
+  let small_down = (e: any) => {
+    var obig = root.parentNode;
+    var osmall = root;
+    var e = e || window.event;
+    /*用于保存小的div拖拽前的坐标*/
+    osmall.startX = e.clientX - osmall.offsetLeft;
+    osmall.startY = e.clientY - osmall.offsetTop;
+    /*鼠标的移动事件*/
+    document.onmousemove = function (e) {
+      var e = e || window.event;
+      osmall.style.left = e.clientX - osmall.startX + "px";
+      osmall.style.top = e.clientY - osmall.startY + "px";
+      /*对于大的DIV四个边界的判断*/
+      let x = obig.offsetWidth - osmall.offsetWidth
+      let y = obig.offsetHeight - osmall.offsetHeight
+      if (e.clientX - osmall.startX <= 250) {
+        osmall.style.left = 250 + "px";
+      }
+      if (e.clientY - osmall.startY <= 0) {
+        osmall.style.top = 0 + "px";
+      }
+      if (e.clientX - osmall.startX >= (x + 250)) {
+        osmall.style.left = x +250 + "px";
+      }
+      if (e.clientY - osmall.startY >= y) {
+        osmall.style.top = y + "px";
+      }
+    };
+    /*鼠标的抬起事件,终止拖动*/
+    document.onmouseup = function () {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    };
+  }
+
+  return <div className={styles.AfterSale} ref={afterSaleRef}   onMouseDown={e => small_down(e)} style={{position:"absolute", left: `${translateX + 200}px`,top:`${translateY+200}px`}}  >
     <nav>售后聊天工作室
       <Tag closable onClose={log}></Tag></nav>
     <section ref={sectionRef}>

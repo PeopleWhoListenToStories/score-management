@@ -8,6 +8,8 @@ import {
   FacebookOutlined
 } from '@ant-design/icons';
 
+import { FormattedMessage } from 'react-intl'; /* react-intl imports */
+
 const TabBar: React.FC = () => {
 
   const { MainStore } = useStore();
@@ -19,7 +21,7 @@ const TabBar: React.FC = () => {
   return useObserver(() => <div className={styles.TabBar}>
     {
       MainStore.TagList && MainStore.TagList.map((item: any) => {
-        return <Tag key={item.path} closable onClose={() => { MainStore.removePathAction(item.path) }} icon={<FacebookOutlined />} color="#3b5999"> <Link to={item.path}>{item.name}</Link>  </Tag>
+        return <Tag key={item.path} closable onClose={() => { MainStore.removePathAction(item.path) }} icon={<FacebookOutlined />} color="#3b5999"> <Link to={item.path}><FormattedMessage id={item.name} defaultMessage={item.name}></FormattedMessage></Link>  </Tag>
       })
     }
   </div>)

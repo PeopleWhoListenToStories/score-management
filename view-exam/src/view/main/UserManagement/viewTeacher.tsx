@@ -5,6 +5,7 @@ import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 import XLSX from "xlsx"
 
+import xlsx from 'xlsx'
 const list = [
   {
     id: '1',
@@ -148,28 +149,31 @@ export default function ViewTeacher() {
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, `${list[curIndex].type}`);
     XLSX.writeFile(wb, `${list[curIndex].type}.xlsx`)
+    //导出方法
+    const exct = () => {
+      let ws = xlsx.utils.json_to_sheet(AddUserStore.UserList);
+      let wb = xlsx.utils.book_new();
+      xlsx.utils.book_append_sheet(wb, ws, "user");
+      xlsx.writeFile(wb, 'user.xlsx')
+    }
+    return useObserver(() => (
+      <div className={ViewTeacherCss.ViewTeacher}>
+        {/* 头部tab */}
+        <div>
+          <button onClick={() => { exct() }}>导出文件</button>
+          <Radio.Group onChange={(e) => { onChange(e.target.value) }} defaultValue={0}>
+            {
+              list && list.map((item: any, index: number) => {
+                return <Radio.Button value={index} key={index}>{item.type}</Radio.Button>
+              })
+            }
+          </Radio.Group>
+        </div>
+        {/* 提示标签 */}
+        <h2>{list[curIndex].type}  <Button type="primary" >导出 </Button></h2>
+        {/* 表格 */}
+        <Table columns={list[curIndex].colums} dataSource={AddUserStore[list[curIndex].list]} rowKey={list[curIndex].key} />
+      </div>)
+    )
   }
-
-  return useObserver(() => (
-    <div className={ViewTeacherCss.ViewTeacher}>
-      {/* 头部tab */}
-      <div>
-        <Radio.Group onChange={(e) => { onChange(e.target.value) }} defaultValue={0}>
-          {
-            list && list.map((item: any, index: number) => {
-              return <Radio.Button value={index} key={index}>{item.type}</Radio.Button>
-            })
-          }
-        </Radio.Group>
-      </div>
-      {/* 提示标签 */}
-      <h2>{list[curIndex].type}  <Button type="primary" onClick={ExectOutput}>导出 </Button></h2>
-      {/* 表格 */}
-      <Table columns={list[curIndex].colums} dataSource={AddUserStore[list[curIndex].list]} rowKey={list[curIndex].key} />
-    </div>)
-  )
 }
-
-
-
-
