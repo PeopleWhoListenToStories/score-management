@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import styles from "./AfterSale.module.scss";
 import io from 'socket.io-client'
-
+import moment from 'moment'
 import useStore from '../../context/useStore'
 import { Button, Input, Tag } from 'antd'
 
@@ -36,7 +36,7 @@ const AfterSale: React.FC = () => {
       setBtnDisable(false)
     }, 2500)
     // 发送消息
-    socket.emit('messageOn', { user: MainStore.user_info.user_name, msg: value })
+    socket.emit('messageOn', { user: MainStore.user_info.user_name, msg: value, time: Date.now() * 1 })
     setCurVal(value)
     setValue('')
     return () => clearTimeout(timer);
@@ -55,7 +55,7 @@ const AfterSale: React.FC = () => {
         console.log(res, "res")
       }
     })
-  },[])
+  }, [])
 
 
   return <div className={styles.AfterSale} ref={afterSaleRef}   >
@@ -64,7 +64,10 @@ const AfterSale: React.FC = () => {
     <section ref={sectionRef}>
       {
         list.map((item, index) => {
-          return <li className="left" key={index} ><label>{item.user}  </label>:<span>{item.msg}</span></li>
+          return <li className="left" key={index} >
+            <p> {item.user} : {moment(item.time).format('YYYY-MM-DD HH:mm:ss')}</p>
+            <p><span>{item.msg}</span></p>
+          </li>
         })
       }
       <li className="right"><span>{curVal}</span></li>
