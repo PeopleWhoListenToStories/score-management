@@ -12,7 +12,7 @@ interface Item {
 
 export default class MainStore {
   @observable
-  user_info: {} = {}; //用户的id
+  user_info:any = {}; //用户的id
   @observable
   MenuList: Item[] = []; // 菜单列表
   @observable
@@ -20,22 +20,28 @@ export default class MainStore {
   @observable
   NoViewAuthority: any[] = []; // 没有权限视图列表
   @observable
-  isGetInitFlag: boolean = true; // 获取个人信息开关
-  @observable
   TagList: Array<{ name: string, path: string }> = []; // 标签列表
+  @observable
+  AfterSaleVisable:boolean = false;
+  
+  isGetInitFlag: boolean = true; // 获取个人信息开关
 
   @action  // 获取列表数据方法
   async initAction() {
     if (this.isGetInitFlag) {
       const result: any = await getUserInfo();
       if (result.data.code === 1) {
-        this.user_info = result.data.data;
+        this.user_info =   result.data.data;
         setCookie('user_id', result.data.data.user_id)
         setCookie('identity_id', result.data.data.identity_id); //设置权限id字段
         // await this.getMenuListAction(result.data.data.user_id)
         this.isGetInitFlag = false;
       }
     }
+  }
+
+  @action changeAfterSaleVisable(val:boolean){
+    this.AfterSaleVisable = val;
   }
 
   @action

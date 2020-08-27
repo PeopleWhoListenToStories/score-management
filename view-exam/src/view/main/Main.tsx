@@ -11,12 +11,15 @@ import {injectIntl} from 'react-intl'
 import MenuSider from '../../components/MenuSide/MenuSider';
 import HeaderBar from '../../components/HeaderBar/Header';
 import TagBar from '../../components/TagBar/TagBar';
+import AfterSale from '../../components/afterSale/AfterSale'
 
 // 引入antd
 import { Layout } from 'antd';
 
 // 引入菜单配置
 import menu from '../../router/menu';
+
+import { FormattedMessage } from 'react-intl'; /* react-intl imports */
 
 const { Header, Sider, Content } = Layout;
 
@@ -33,15 +36,14 @@ const getTitle = (path: string) => {
   return title;
 }
 
-
 const Main: React.FC = (props: any) => {
   const history = useHistory();
-  // console.log(history.location.pathname)
   const { MainStore } = useStore();
 
   MainStore.initAction();
   return useObserver(() => <MainWrapper className="Main"  >
-   
+    {/* 售后聊天框 */}
+    {MainStore.AfterSaleVisable ? <AfterSale /> : ''}
     <Layout>
       <Header style={{ background: '#fff' }}>
         <HeaderBar />
@@ -50,9 +52,12 @@ const Main: React.FC = (props: any) => {
         <Sider style={{ background: '#232A41' }} ><MenuSider></MenuSider></Sider>
         <Content>
           <TagBar />
-          
           {/* <h2>{props.routes.find((v: any) => v.path == props.location.pathname)?.meta?.name}</h2> */}
-          <h2 style={{ padding: '20px' }}>{getTitle(history.location.pathname) ? getTitle(history.location.pathname) : '默认参数'}</h2>
+
+          <h2 style={{ padding: '20px' }}>
+            {getTitle(history.location.pathname)}
+            {/* <FormattedMessage id={getTitle(history.location.pathname)} defaultMessage={getTitle(history.location.pathname)}/> */}
+          </h2>
           <Roterview routes={props.routes} />
         </Content>
       </Layout>

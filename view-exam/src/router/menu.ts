@@ -31,10 +31,10 @@ import ClassMate from "../view/main/MarkingManagement/classmate"
 const menus: IMenuItem[] = [
  
   {
-    name:'menu.question',
+    name: 'menus.question',
     meta: {
       icon: AppstoreOutlined,
-      name: 'menu.question',
+      name: 'menus.question',
       show: true
     },
     children: [
@@ -44,7 +44,7 @@ const menus: IMenuItem[] = [
         // redirect: '/main/addQuestion',
         meta: {
           component: AddQuestionPage,
-          name: 'menu.question.addQuestion',
+          name: 'menus.question.addQuestion',
           show: true
         }
       },
@@ -52,7 +52,7 @@ const menus: IMenuItem[] = [
         path: '/main/questionType',
         meta: {
           component: QuestionTypePage,
-          name: '试题分类',
+          name: 'menus.question.questionType',
           show: true
         }
       },
@@ -60,7 +60,7 @@ const menus: IMenuItem[] = [
         path: '/main/watchQuestions',
         meta: {
           component: WatchQuestionPage,
-          name: '试题详情',
+          name: 'menus.question.watchQuestions',
           show: true
         }
       },
@@ -83,10 +83,10 @@ const menus: IMenuItem[] = [
     ]
   },
   {
-    name: '用户管理',
+    name: 'menus.user',
     meta: {
       icon: UserOutlined,
-      name: '用户管理',
+      name: 'menus.user',
       show: true
     },
     children: [
@@ -94,7 +94,7 @@ const menus: IMenuItem[] = [
         path: '/main/addTeacher',
         meta: {
           component: AddTeacher,
-          name: '添加用户',
+          name: 'menus.user.AddTeacher',
           show: true
         }
       },
@@ -102,17 +102,17 @@ const menus: IMenuItem[] = [
         path: '/main/viewTeacher',
         meta: {
           component: ViewTeacher,
-          name: '用户展示',
+          name: 'menus.user.ViewTeacher',
           show: true
         }
       }
     ]
   },
   {
-    name: '考试管理',
+    name: 'menus.exam',
     meta: {
       icon: ScheduleOutlined,
-      name: '考试管理',
+      name: 'menus.exam',
       show: true
     },
     children: [
@@ -120,7 +120,7 @@ const menus: IMenuItem[] = [
         path: '/main/addExam',
         meta: {
           component: AddExamPage,
-          name: '添加考试',
+          name: 'menus.exam.AddExamPage',
           show: true
         }
       },
@@ -128,7 +128,7 @@ const menus: IMenuItem[] = [
         path: '/main/userList',
         meta: {
           component: UserListPage,
-          name: '试卷列表',
+          name: 'menus.exam.UserListPage',
           show: true
         }
       },
@@ -136,7 +136,7 @@ const menus: IMenuItem[] = [
         path: '/main/edits',
         meta: {
           component: EditPage,
-          name: '编辑页面',
+          name: 'menus.exam.EditPage',
           show: false
         }
       },
@@ -144,17 +144,17 @@ const menus: IMenuItem[] = [
         path: '/main/condition',
         meta: {
           component: ConditionPage,
-          name: '条件',
+          name: 'menus.exam.ConditionPage',
           show: false
         }
       }
     ]
   },
   {
-    name: '班级管理',
+    name: 'menus.class',
     meta: {
       icon: TableOutlined,
-      name: '班级管理',
+      name: 'menus.class',
       show: true
     },
     children: [
@@ -162,7 +162,7 @@ const menus: IMenuItem[] = [
         path: '/main/grade',
         meta: {
           component: GeadePage,
-          name: '教室管理',
+          name: 'menus.class.GeadePage',
           show: true
         }
       },
@@ -170,7 +170,7 @@ const menus: IMenuItem[] = [
         path: '/main/room',
         meta: {
           component: RoomPage,
-          name: '班级管理',
+          name: 'menus.class.RoomPage',
           show: true
         }
       },
@@ -178,17 +178,17 @@ const menus: IMenuItem[] = [
         path: '/main/student',
         meta: {
           component: StudentPage,
-          name: '学生管理',
+          name: 'menus.class.StudentPage',
           show: true
         }
       }
     ]
   },
   {
-    name: '阅卷管理',
+    name: 'menus.merge',
     meta: {
       icon: MergeCellsOutlined,
-      name: '阅卷管理',
+      name: 'menus.merge',
       show: true
     },
     children: [
@@ -196,7 +196,7 @@ const menus: IMenuItem[] = [
         path: '/main/examPaperClassList',
         meta: {
           component: ExamPaperClassListPage,
-          name: '待批班级',
+          name: 'menus.merge.ExamPaperClassListPage',
           show: true
         }
       },
@@ -204,7 +204,7 @@ const menus: IMenuItem[] = [
         path: '/main/classmate',
         meta: {
           component: ClassMate,
-          name: ' ',
+          name: 'menus.merge.ClassMate',
           show: false
         }
       }
