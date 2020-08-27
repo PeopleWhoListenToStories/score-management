@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from 'react'
+<<<<<<< HEAD
 import { Radio, Table, Button, Input } from 'antd';
 import ViewTeacherCss from './viewTeacher.module.css';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
 import XLSX from 'xlsx'
+=======
+import { Radio, Table, Button } from 'antd';
+import ViewTeacherCss from './viewTeacher.module.css';
+import useStore from '../../../context/useStore'
+import { useObserver } from 'mobx-react-lite'
+import XLSX from "xlsx"
+
+import xlsx from 'xlsx'
+>>>>>>> 8d7236e45c5aae6e68fe7cc4b5d17e5df8dd7d76
 const list = [
   {
     id: '1',
@@ -134,12 +144,13 @@ export default function ViewTeacher() {
   let [uploadExcel, setUploadExcel] = useState<{data:any[], columns:any[]}>({data:[], columns:[]});
   useEffect(() => {
     AddUserStore[list[curIndex].action]();
-  }, [AddUserStore,curIndex])
+  }, [AddUserStore, curIndex])
 
   // 切换下标
   const onChange = (index: string) => {
     setCurIndex(Number(index));
   }
+<<<<<<< HEAD
   function exportExcel(){
     (window as any)._hmt.push(['_trackEvent', '页面管理', 'click', '导出']);
     //1.生成worksheet
@@ -179,10 +190,20 @@ export default function ViewTeacher() {
 
   }
 
+=======
+  //导出方法
+  const exct=()=>{
+    let ws=xlsx.utils.json_to_sheet(AddUserStore.UserList);
+    let wb=xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(wb,ws,"user");
+    xlsx.writeFile(wb,'user.xlsx')
+  }
+>>>>>>> 8d7236e45c5aae6e68fe7cc4b5d17e5df8dd7d76
   return useObserver(() => (
     <div className={ViewTeacherCss.ViewTeacher}>
       {/* 头部tab */}
       <div>
+        <button onClick={()=>{exct()}}>导出文件</button>
         <Radio.Group onChange={(e) => { onChange(e.target.value) }} defaultValue={0}>
           {
             list && list.map((item: any, index: number) => {
@@ -196,7 +217,7 @@ export default function ViewTeacher() {
         <Input type='file' placeholder='导入表格' onChange={importExcel} />
       </Button>
       {/* 提示标签 */}
-      <h2>{list[curIndex].type}</h2>
+      <h2>{list[curIndex].type}  <Button type="primary" >导出 </Button></h2>
       {/* 表格 */}
       <Table columns={list[curIndex].colums} dataSource={AddUserStore[list[curIndex].list]} rowKey={list[curIndex].key} />
       <img src="" alt=""/>

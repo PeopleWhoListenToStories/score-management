@@ -28,7 +28,9 @@ import StudentPage from '../view/main/ClassManagement/student'
 import ExamPaperClassListPage from '../view/main/MarkingManagement/examPaperClassList'
 import ClassMate from "../view/main/MarkingManagement/classmate"
 
+
 const menus: IMenuItem[] = [
+ 
   {
     name: 'menus.question',
     meta: {
@@ -37,6 +39,7 @@ const menus: IMenuItem[] = [
       show: true
     },
     children: [
+     
       {
         path: '/main/addQuestion',
         // redirect: '/main/addQuestion',

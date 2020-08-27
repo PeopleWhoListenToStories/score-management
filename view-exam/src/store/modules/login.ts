@@ -24,6 +24,7 @@ export default class Login {
 
   async initRandomCode() {
     const result: any = await getRandomCode();
+    console.log(result)
     if (result.data.code === 1) {
       this.RandomCode = result.data.randomNum;
     }
