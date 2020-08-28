@@ -7,7 +7,7 @@ const message = {
   'en': enUS,
   'zh': zhCN,
   'jp': JP,
-  'kr':kr
+  'kr': kr
 }
 
 class Language {
