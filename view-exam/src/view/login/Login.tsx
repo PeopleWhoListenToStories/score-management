@@ -16,7 +16,7 @@ export default function Login(props: any) {
   const [password, UsePassword] = useState<string>(getCookie('password') as string);
   const [remember, UseRemember] = useState<string>(getCookie('remember') as string);
 
-  const { LoginStore } = useStore();
+  const { LoginStore, MainStore } = useStore();
   const history = useHistory();
   // let couterRef = useRef<HTMLVideoElement | any>(); 
 
@@ -94,7 +94,7 @@ export default function Login(props: any) {
         <Form.Item
           name="username"
           validateTrigger="onBlur"
-          rules={[{ pattern: /^[a-z]{4,16}$/, message: '请输入您的用户名!', required: true }]}
+          rules={[{ pattern: /^[a-z0-9]{4,16}$/, message: '请输入您的用户名!', required: true }]}
         >
           <Input value="123" prefix={<UserOutlined className="site-form-item-icon" />} name="username" placeholder="Username" onChange={(e) => { UseUsername(e.target.value) }} />
         </Form.Item>

@@ -5,8 +5,9 @@ import { getCookie } from "../utils/myCookie"
 
 const instance = axios.create({
   timeout: 1000,
-  baseURL: 'http://120.53.2.185'
-  // baseURL: 'http://127.0.0.1:7002'
+  baseURL: 'http://127.0.0.1:7002'
+  // baseURL: 'http://120.53.2.185'
+  // baseURL: 'https://exam.jasonandjay.com/'
 
 })
 

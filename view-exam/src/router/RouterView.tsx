@@ -3,22 +3,23 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { IRouerItem } from "../utils/interface"
 import { getCookie } from "../utils/myCookie"
 import useStore from '../context/useStore'
-interface Iprops {
-  routes: IRouerItem[]
-}
 
 // 登录白名单
 const whileList = ['/login', '/main', '/NoFound', 'NoServer']
 
-export default function RouterView({ routes }: Iprops) {
+interface Iprops {
+  routes: IRouerItem[]
+}
+
+const RouterView: React.FC<Iprops> = (props) => {
   const { MainStore } = useStore();
   return <Switch>
     {
-      routes && routes.map(item => {
+      props.routes && props.routes.map(item => {
         // 页面重定向
-        if (item.redirect) {
-          return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
-        }
+        // if (item.redirect) {
+        //   return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
+        // }
         //   // if (item.path === '/') {
         //   //   return <Redirect key={item.path} from={item.path} to="/main"></Redirect>
         //   // } else {
@@ -28,16 +29,19 @@ export default function RouterView({ routes }: Iprops) {
 
         return <Route key={item.path} path={item.path} render={(props) => {
           let isPath = props.match.path;
-          
-          // 获取不到用户信息就重新获取
-          if (!whileList.includes(isPath) && !(MainStore.user_info as any).user_name) {
-            MainStore.initAction();
-          }
 
           // 用户登录拦截
           if (!whileList.includes(isPath) && !getCookie('token')) {
             props.history.replace(`/login?redirect=${encodeURIComponent(isPath)}`);
           }
+          // 获取不到用户信息就重新获取
+          if (getCookie('token') && !Object.keys(MainStore.user_info).length) {
+            //  获取用户基本信息
+            MainStore.getUserInfoAction();
+            //  获取用户权限信息
+            MainStore.getMenuListAction()
+          }
+
           if (item.children) {
             return <item.component {...props} routes={item.children} meta={item.meta}></item.component>
           } else {
@@ -58,6 +62,9 @@ export default function RouterView({ routes }: Iprops) {
 
   </Switch>
 }
+
+
+export default RouterView
 
 // function changeRoute(arr: any[], val: string) {
 //   console.log(arr, val, '=========')

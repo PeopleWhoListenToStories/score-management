@@ -1,35 +1,32 @@
-import React from 'react';
-
 export interface IMenuItem {
   name: string,
   meta?: {
     icon: any,
     name: string,
+    title?: string,
     show: boolean
   },
-  redirect?: string,
   children: Array<{
     path: string,
-    redirect?:string,
-    meta?: {
-      component: any,
+    component?: any,
+    meta: {
       name: string,
-      icon?: any,
-      show: boolean
+      title?: string,
+      show: boolean,
+      view_id: string
     }
   }>
 }
 
 export interface IRouerItem {
-  path?: string,
+  path: string,
   name?: string,
   redirect?: string,
   component?: any,
   children?: IRouerItem[],
-  meta: {
-    icon?: any,
-    name: string,
+  meta?: {
+    title: string,
     show: boolean,
-    component: any
+    component: any,
   }
 }

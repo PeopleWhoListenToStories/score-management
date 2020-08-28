@@ -21,10 +21,7 @@ import StoreContext from './context/StroeContext'
 ReactDOM.render(
   // <React.StrictMode>
   <StoreContext.Provider value={store}>
-  <App />
-    {/* <IntlProvider locale={store.Lang.local} messages={localeMap[store.Lang.local as 'en'|'zh']}>
-      
-    </IntlProvider > */}
+    <App />
   </StoreContext.Provider>
   // </React.StrictMode>,
   , document.getElementById('root')

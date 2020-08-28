@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HashRouter } from 'react-router-dom';
 import RouterView from './router/RouterView';
-import routes from './router/config.route'
 import { IRouerItem } from "./utils/interface"
 import useStore from './context/useStore'
 import './App.css';
@@ -14,13 +13,26 @@ import { IntlProvider } from 'react-intl'; /* react-intl imports */
 
 import { useObserver } from 'mobx-react-lite';
 
+import routerConfig from './router/config.route'
+
 function App() {
-  const { Language } = useStore();
+  const { Language, MainStore } = useStore();
+  useEffect(() => {
+    MainStore.getMenuListAction()
+  }, [])
+
+  function geneRoutes() {
+    (routerConfig.routes[1] as IRouerItem).children = MainStore.routes;
+    return routerConfig.routes;
+  }
+
   return useObserver(() => (
-    <div className="App">   
-      <IntlProvider locale={Language.locale } messages={Language.defaultLanguage} >
+    <div className="App">
+      <IntlProvider locale={Language.locale} messages={Language.defaultLanguage} >
         <HashRouter>
-          <RouterView routes={routes as IRouerItem[]} />
+          {/* <RouterView routes={routes as IRouerItem[]} /> */}
+ 
+          <RouterView routes={geneRoutes()}></RouterView>
         </HashRouter>
       </IntlProvider>
     </div>)

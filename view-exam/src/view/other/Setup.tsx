@@ -15,7 +15,7 @@ const SetUpApp: React.FC = () => {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    MainStore.initAction();
+    MainStore.getUserInfoAction();
     setAvatar(MainStore.user_info.avatar)
   }, [])
 
@@ -73,7 +73,7 @@ const SetUpApp: React.FC = () => {
     let newAvatar = values.avatar?.file ? values.avatar.file.response.data[0].path : avatar;
     AddUserStore.renewalUserAction((MainStore.user_info as any).user_id, values.user_name, values.user_pwd, values.identity_id, newAvatar);
     MainStore.isGetInitFlag = true;
-    MainStore.initAction()
+    MainStore.getUserInfoAction()
   }
 
   form.setFieldsValue({ ...MainStore.user_info });
