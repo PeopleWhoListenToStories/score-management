@@ -39,3 +39,6 @@ export const addAuthorityView = (view_authority_text: string, view_id: string) =
 // 更新用户
 export const renewalUser = (user_id: string, user_name?: string, user_pwd?: string, identity_id?: string, avatar?: string) => ajax.put('/user/user', { user_id, user_name, user_pwd, identity_id, avatar })
 
+export const getUserNew = (user_id: any) => ajax.get('/user/new', { params: user_id })
+
+// http://127.0.0.1:7002/user/new?user_id=ceyal-7d7n67

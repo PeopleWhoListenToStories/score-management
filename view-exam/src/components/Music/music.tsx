@@ -31,7 +31,7 @@ export default function Music() {
             }
 
 
-            <audio ref={useRef1} controls src='https://win-web-nf01-sycdn.kuwo.cn/efe0823488f4700f843337022f810e99/5f47b0d2/resource/n3/60/83/3770030867.mp3' autoPlay ></audio>
+            <audio ref={useRef1}  src='https://win-web-nf01-sycdn.kuwo.cn/efe0823488f4700f843337022f810e99/5f47b0d2/resource/n3/60/83/3770030867.mp3' autoPlay ></audio>
         </div>
     )
 }

@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useObserver } from 'mobx-react-lite';
-import Roterview from '../../router/RouterView';
+import RouterView from '../../router/RouterView';
 import useStore from '../../context/useStore';
-
-import { injectIntl } from 'react-intl'
 
 // 引入组件
 import MenuSider from '../../components/MenuSide/MenuSider';
@@ -40,7 +38,6 @@ const Main: React.FC = (props: any) => {
   const history = useHistory();
   const { MainStore } = useStore();
 
-  MainStore.initAction();
   return useObserver(() => <MainWrapper className="Main"  >
     {/* 售后聊天框 */}
     {MainStore.AfterSaleVisable ? <AfterSale /> : ''}
@@ -58,14 +55,14 @@ const Main: React.FC = (props: any) => {
             < FormattedMessage id={getTitle(history.location.pathname)} defaultMessage={getTitle(history.location.pathname)} ></FormattedMessage >
             {/* <FormattedMessage id={getTitle(history.location.pathname)} defaultMessage={getTitle(history.location.pathname)}/> */}
           </h2>
-          <Roterview routes={props.routes} />
+          <RouterView routes={props.routes && props.routes} />
         </Content>
       </Layout>
     </Layout>
   </MainWrapper>)
 }
 // export default injectIntl(Main);
-export default injectIntl(Main);
+export default Main;
 
 
 const MainWrapper = styled.div`

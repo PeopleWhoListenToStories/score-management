@@ -1,4 +1,4 @@
-    
+
 import { IMenuItem } from "../utils/interface"
 import { AppstoreOutlined, UserOutlined, ScheduleOutlined, TableOutlined, MergeCellsOutlined } from '@ant-design/icons';
 
@@ -29,189 +29,199 @@ import ExamPaperClassListPage from '../view/main/MarkingManagement/examPaperClas
 import ClassMate from "../view/main/MarkingManagement/classmate"
 
 
-const menus: IMenuItem[] = [
- 
-  {
+const menus = [{
+  name: 'menus.question',
+  meta: {
+    icon: AppstoreOutlined,
     name: 'menus.question',
-    meta: {
-      icon: AppstoreOutlined,
-      name: 'menus.question',
-      show: true
-    },
-    children: [
-     
-      {
-        path: '/main/addQuestion',
-        // redirect: '/main/addQuestion',
-        meta: {
-          component: AddQuestionPage,
-          name: 'menus.question.addQuestion',
-          show: true
-        }
-      },
-      {
-        path: '/main/questionType',
-        meta: {
-          component: QuestionTypePage,
-          name: 'menus.question.questionType',
-          show: true
-        }
-      },
-      {
-        path: '/main/watchQuestions',
-        meta: {
-          component: WatchQuestionPage,
-          name: 'menus.question.watchQuestions',
-          show: true
-        }
-      },
-      {
-        path: '/main/detail',
-        meta: {
-          component: DetailPage,
-          name: '详情',
-          show: false
-        }
-      },
-      {
-        path: '/main/editQuestion',
-        meta: {
-          component: EditQuestionPage,
-          name: '编辑',
-          show: false
-        }
-      }
-    ]
+    show: true
   },
-  {
+  children: [
+    {
+      path: '/main/addQuestion',
+      // redirect: '/main/addQuestion',
+      component: AddQuestionPage,
+      meta: {
+        name: 'menus.question.addQuestion',
+        show: true,
+        view_id: 'main-addQuestions'
+      }
+    },
+    {
+      path: '/main/questionType',
+      component: QuestionTypePage,
+      meta: {
+        name: 'menus.question.questionType',
+        show: true,
+        view_id: 'main-questionsType'
+      }
+    },
+    {
+      path: '/main/watchQuestions',
+      component: WatchQuestionPage,
+      meta: {
+        name: 'menus.question.watchQuestions',
+        show: true,
+        view_id: 'main-watchQuestions'
+      }
+    },
+    {
+      path: '/main/detail',
+      component: DetailPage,
+      meta: {
+        name: '详情',
+        show: false,
+        view_id: 'main-questionsDetail'
+      }
+    },
+    {
+      path: '/main/editQuestion',
+      component: EditQuestionPage,
+      meta: {
+        name: '编辑',
+        show: false
+      }
+    }
+  ]
+},
+{
+  name: 'menus.user',
+  meta: {
+    icon: UserOutlined,
     name: 'menus.user',
-    meta: {
-      icon: UserOutlined,
-      name: 'menus.user',
-      show: true
-    },
-    children: [
-      {
-        path: '/main/addTeacher',
-        meta: {
-          component: AddTeacher,
-          name: 'menus.user.AddTeacher',
-          show: true
-        }
-      },
-      {
-        path: '/main/viewTeacher',
-        meta: {
-          component: ViewTeacher,
-          name: 'menus.user.ViewTeacher',
-          show: true
-        }
-      }
-    ]
+    show: true
   },
-  {
+  children: [
+    {
+      path: '/main/addTeacher',
+      component: AddTeacher,
+      meta: {
+        name: 'menus.user.AddTeacher',
+        show: true,
+        view_id: "main-addUser"
+      }
+    },
+    {
+      path: '/main/viewTeacher',
+      component: ViewTeacher,
+      meta: {
+        name: 'menus.user.ViewTeacher',
+        show: true,
+        view_id: "main-showUser"
+      }
+    }
+  ]
+},
+{
+  name: 'menus.exam',
+  meta: {
+    icon: ScheduleOutlined,
     name: 'menus.exam',
-    meta: {
-      icon: ScheduleOutlined,
-      name: 'menus.exam',
-      show: true
-    },
-    children: [
-      {
-        path: '/main/addExam',
-        meta: {
-          component: AddExamPage,
-          name: 'menus.exam.AddExamPage',
-          show: true
-        }
-      },
-      {
-        path: '/main/userList',
-        meta: {
-          component: UserListPage,
-          name: 'menus.exam.UserListPage',
-          show: true
-        }
-      },
-      {
-        path: '/main/edits',
-        meta: {
-          component: EditPage,
-          name: 'menus.exam.EditPage',
-          show: false
-        }
-      },
-      {
-        path: '/main/condition',
-        meta: {
-          component: ConditionPage,
-          name: 'menus.exam.ConditionPage',
-          show: false
-        }
-      }
-    ]
+    show: true
   },
-  {
+  children: [
+    {
+      path: '/main/addExam',
+      component: AddExamPage,
+      meta: {
+        name: 'menus.exam.AddExamPage',
+        show: true,
+        view_id: "main-addExam"
+      }
+    },
+    {
+      path: '/main/userList',
+      component: UserListPage,
+      meta: {
+        name: 'menus.exam.UserListPage',
+        show: true,
+        view_id: "main-examList"
+      }
+    },
+    {
+      path: '/main/edits',
+      component: EditPage,
+      meta: {
+        name: 'menus.exam.EditPage',
+        show: false,
+        view_id: "main-examDetail"
+      }
+    },
+    {
+      path: '/main/condition',
+      component: ConditionPage,
+      meta: {
+        name: 'menus.exam.ConditionPage',
+        show: false
+      }
+    }
+  ]
+},
+{
+  name: 'menus.class',
+  meta: {
+    icon: TableOutlined,
     name: 'menus.class',
-    meta: {
-      icon: TableOutlined,
-      name: 'menus.class',
-      show: true
-    },
-    children: [
-      {
-        path: '/main/grade',
-        meta: {
-          component: GeadePage,
-          name: 'menus.class.GeadePage',
-          show: true
-        }
-      },
-      {
-        path: '/main/room',
-        meta: {
-          component: RoomPage,
-          name: 'menus.class.RoomPage',
-          show: true
-        }
-      },
-      {
-        path: '/main/student',
-        meta: {
-          component: StudentPage,
-          name: 'menus.class.StudentPage',
-          show: true
-        }
-      }
-    ]
+    show: true
   },
-  {
-    name: 'menus.merge',
-    meta: {
-      icon: MergeCellsOutlined,
-      name: 'menus.merge',
-      show: true
-    },
-    children: [
-      {
-        path: '/main/examPaperClassList',
-        meta: {
-          component: ExamPaperClassListPage,
-          name: 'menus.merge.ExamPaperClassListPage',
-          show: true
-        }
-      },
-      {
-        path: '/main/classmate',
-        meta: {
-          component: ClassMate,
-          name: 'menus.merge.ClassMate',
-          show: false
-        }
+  children: [
+    {
+      path: '/main/grade',
+      component: GeadePage,
+      meta: {
+        name: 'menus.class.GeadePage',
+        show: true,
+        view_id: "main-grade"
       }
-    ]
-  }
-
+    },
+    {
+      path: '/main/room',
+      component: RoomPage,
+      meta: {
+        name: 'menus.class.RoomPage',
+        show: true,
+        view_id: "main-room"
+      }
+    },
+    {
+      path: '/main/student',
+      component: StudentPage,
+      meta: {
+        name: 'menus.class.StudentPage',
+        show: true,
+        view_id: "main-student"
+      }
+    }
+  ]
+},
+{
+  name: 'menus.merge',
+  meta: {
+    icon: MergeCellsOutlined,
+    name: 'menus.merge',
+    show: true
+  },
+  children: [
+    {
+      path: '/main/examPaperClassList',
+      component: ExamPaperClassListPage,
+      meta: {
+        name: 'menus.merge.ExamPaperClassListPage',
+        show: true,
+        view_id: "main-examPaperClassList"
+      }
+    },
+    {
+      path: '/main/classmate',
+      component: ClassMate,
+      meta: {
+        name: 'menus.merge.ClassMate',
+        show: false,
+        view_id: "main-examinationPapers"
+      }
+    }
+  ]
+}
 ]
 
 export default menus

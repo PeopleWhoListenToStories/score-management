@@ -4,4 +4,4 @@ import ajax from '../../utils/request'
 export const getUserInfo = () => ajax.get('/user/userInfo');
 
 // 获取菜单列表接口
-export const getMenuList = (user_id: string) => ajax.get('/user/new', { params: { user_id } })
+export const getMenuList = (user_id: string) => ajax.get(`/user/new`, { params: { user_id } })
