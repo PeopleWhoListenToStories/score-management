@@ -23,24 +23,41 @@ const SetUpApp: React.FC = () => {
     AddUserStore.showIdentityAction();
   }, [])
 
-  history.listen((location, action) => {
-    console.log(avatar, MainStore.user_info.avatar)
-    if (avatar !== MainStore.user_info.avatar) {
-      if (history.action === 'POP') {
-        history.replace('/setup')
-        confirm({
-          title: 'you change info save?',
-          icon: <ExclamationCircleOutlined />,
-          content: 'Some descriptions',
-          onOk: () => {
-            history.replace('/')
-          },
-          onCancel: () => {
-            history.replace('/')
-          },
-        });
-      }
+  window.addEventListener('popstate', (e: any) => {
+    // history.replace('/')
+    let r: any = window.confirm("您还没有保存 确认要退出吗?");
+    if (r) {
+      history.go(-1)
+    } else {
+      history.go(0)
     }
+  })
+
+
+  history.listen((location, action) => {
+    // console.log(avatar, MainStore.user_info.avatar)
+    // if (history.action === 'POP') {
+    //   if (avatar !== MainStore.user_info.avatar) {
+    //     let r: any = window.confirm("您还没有保存 确认要退出吗?");
+    //   }
+    // }
+
+    // if (avatar !== MainStore.user_info.avatar) {
+    // if (history.action === 'POP') {
+    //   history.replace('/setup')
+    //   confirm({
+    //     title: 'you change info save?',
+    //     icon: <ExclamationCircleOutlined />,
+    //     content: 'Some descriptions',
+    //     onOk: () => {
+    //       history.replace('/')
+    //     },
+    //     onCancel: () => {
+    //       history.replace('/')
+    //     },
+    //   });
+    // }
+    // }
 
   })
 
