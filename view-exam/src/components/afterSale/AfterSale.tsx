@@ -4,9 +4,7 @@ import io from 'socket.io-client'
 import moment from 'moment'
 import useStore from '../../context/useStore'
 import { Button, Input, Tag } from 'antd'
-
-const socket = io('http://10.4.161.2:5000/');
-
+const socket = io('http://10.4.161.3:5000/');
 const AfterSale: React.FC = () => {
   const [value, setValue] = useState<string>('')
   const [list, setList] = useState<any[]>([])
