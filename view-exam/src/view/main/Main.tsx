@@ -5,7 +5,7 @@ import { useObserver } from 'mobx-react-lite';
 import Roterview from '../../router/RouterView';
 import useStore from '../../context/useStore';
 
-import {injectIntl} from 'react-intl'
+import { injectIntl } from 'react-intl'
 
 // 引入组件
 import MenuSider from '../../components/MenuSide/MenuSider';
@@ -44,7 +44,7 @@ const Main: React.FC = (props: any) => {
   return useObserver(() => <MainWrapper className="Main"  >
     {/* 售后聊天框 */}
     {MainStore.AfterSaleVisable ? <AfterSale /> : ''}
-    <Layout>
+    <Layout style={{ overflow: 'hidden' }}>
       <Header style={{ background: '#fff' }}>
         <HeaderBar />
       </Header>
@@ -55,7 +55,7 @@ const Main: React.FC = (props: any) => {
           {/* <h2>{props.routes.find((v: any) => v.path == props.location.pathname)?.meta?.name}</h2> */}
 
           <h2 style={{ padding: '20px' }}>
-            {getTitle(history.location.pathname)}
+            < FormattedMessage id={getTitle(history.location.pathname)} defaultMessage={getTitle(history.location.pathname)} ></FormattedMessage >
             {/* <FormattedMessage id={getTitle(history.location.pathname)} defaultMessage={getTitle(history.location.pathname)}/> */}
           </h2>
           <Roterview routes={props.routes} />
@@ -64,7 +64,9 @@ const Main: React.FC = (props: any) => {
     </Layout>
   </MainWrapper>)
 }
+// export default injectIntl(Main);
 export default injectIntl(Main);
+
 
 const MainWrapper = styled.div`
   wdith:100%;
