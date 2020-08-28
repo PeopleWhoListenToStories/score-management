@@ -11,6 +11,8 @@ import Main from '../view/main/Main'
 import NoFound from '../view/error/NoFound';
 import NoServer from '../view/error/NoServer';
 
+import SetUpApp from '../view/other/Setup'
+
 // 格式化nume数据格式
 function genterRouter(numes: IMenuItem[]) {
   let routes: IRouerItem[] = [];
@@ -41,10 +43,10 @@ const routes = [
   //   path: '/show',
   //   component: Show
   // },
-  // {
-  //   path: '/setup',
-  //   component:SetUpApp
-  // },
+  {
+    path: '/setup',
+    component:SetUpApp
+  },
   {
     path: '/show',
     component: ShowApp
