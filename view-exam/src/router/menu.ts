@@ -42,7 +42,7 @@ const menus: IMenuItem[] = [
      
       {
         path: '/main/addQuestion',
-        // redirect: '/main/addQuestion',
+        redirect: '/main/addQuestion',
         meta: {
           component: AddQuestionPage,
           name: 'menus.question.addQuestion',

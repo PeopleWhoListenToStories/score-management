@@ -39,10 +39,6 @@ const routes = [
     path: '/login',
     component: Login
   },
-  //  {
-  //   path: '/show',
-  //   component: Show
-  // },
   {
     path: '/setup',
     component:SetUpApp
