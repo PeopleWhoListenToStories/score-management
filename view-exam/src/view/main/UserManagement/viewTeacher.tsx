@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Radio, Table, Button } from 'antd';
+import { Radio, Table, Button, Input } from 'antd';
 import ViewTeacherCss from './viewTeacher.module.css';
 import useStore from '../../../context/useStore'
 import { useObserver } from 'mobx-react-lite'
-import XLSX from "xlsx"
-
+import XLSX from 'xlsx'
 import xlsx from 'xlsx'
 const list = [
   {
@@ -133,7 +132,7 @@ export default function ViewTeacher() {
   const { AddUserStore } = useStore();
 
   const [curIndex, setCurIndex] = useState<number>(0);
-
+  let [uploadExcel, setUploadExcel] = useState<{data:any[], columns:any[]}>({data:[], columns:[]});
   useEffect(() => {
     AddUserStore[list[curIndex].action]();
   }, [AddUserStore, curIndex])
@@ -142,38 +141,109 @@ export default function ViewTeacher() {
   const onChange = (index: string) => {
     setCurIndex(Number(index));
   }
+  function exportExcel(){
+    (window as any)._hmt.push(['_trackEvent', '页面管理', 'click', '导出']);
+    //1.生成worksheet
+    let ws=XLSX.utils.json_to_sheet(AddUserStore[list[curIndex].list]);
+    let wb=XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,ws,list[curIndex].id)
+    XLSX.writeFile(wb,'用户管理.xlsx')
 
-  function ExectOutput() {
-    (window as any)._hmt.push(['_trackEvent', "视图管理", "click", "导出execl"]);
-    const ws = XLSX.utils.json_to_sheet(AddUserStore[list[curIndex].list]);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, `${list[curIndex].type}`);
-    XLSX.writeFile(wb, `${list[curIndex].type}.xlsx`)
-    //导出方法
-    const exct = () => {
-      let ws = xlsx.utils.json_to_sheet(AddUserStore.UserList);
-      let wb = xlsx.utils.book_new();
-      xlsx.utils.book_append_sheet(wb, ws, "user");
-      xlsx.writeFile(wb, 'user.xlsx')
-    }
-    return useObserver(() => (
-      <div className={ViewTeacherCss.ViewTeacher}>
-        {/* 头部tab */}
-        <div>
-          <button onClick={() => { exct() }}>导出文件</button>
-          <Radio.Group onChange={(e) => { onChange(e.target.value) }} defaultValue={0}>
-            {
-              list && list.map((item: any, index: number) => {
-                return <Radio.Button value={index} key={index}>{item.type}</Radio.Button>
-              })
-            }
-          </Radio.Group>
-        </div>
-        {/* 提示标签 */}
-        <h2>{list[curIndex].type}  <Button type="primary" >导出 </Button></h2>
-        {/* 表格 */}
-        <Table columns={list[curIndex].colums} dataSource={AddUserStore[list[curIndex].list]} rowKey={list[curIndex].key} />
-      </div>)
-    )
   }
+  function importExcel(e:React.ChangeEvent<HTMLInputElement>){
+    (window as any)._hmt.push(['_trackEvent', '页面管理', 'click', '引入']);
+    if(e.target.files){
+      let file=e.target.files[0];
+      let reader=new FileReader();
+      reader.readAsArrayBuffer(file);
+      reader.onload = function(e){
+          let buffer = new Uint8Array(e.target?.result as unknown as number);
+          var workbook = XLSX.read(buffer, {type: 'array'});
+          console.log('workbook...', workbook);
+          let worksheet = workbook.Sheets['123'];
+          let data:any [] = XLSX.utils.sheet_to_json(worksheet);
+          let columns = [];
+          for (let key in data[0]){
+              columns.push({
+                  name: data[0][key],
+                  dataIndex: key
+              })
+          }
+          let uploadExcel = {
+              columns,
+              data: data
+          }
+          setUploadExcel(uploadExcel);
+          console.log('data...', uploadExcel);
+      }
+    }
+
+  }
+
+  //导出方法
+  const exct=()=>{
+    let ws=xlsx.utils.json_to_sheet(AddUserStore.UserList);
+    let wb=xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(wb,ws,"user");
+    xlsx.writeFile(wb,'user.xlsx')
+  }
+  return useObserver(() => (
+    <div className={ViewTeacherCss.ViewTeacher}>
+      {/* 头部tab */}
+      <div>
+        <button onClick={()=>{exct()}}>导出文件</button>
+        <Radio.Group onChange={(e) => { onChange(e.target.value) }} defaultValue={0}>
+          {
+            list && list.map((item: any, index: number) => {
+              return <Radio.Button value={index} key={index}>{item.type}</Radio.Button>
+            })
+          }
+        </Radio.Group>
+      </div>
+      <Button type='primary' onClick={exportExcel}>导出</Button>
+      <Button type='primary'>
+        <Input type='file' placeholder='导入表格' onChange={importExcel} />
+      </Button>
+      {/* 提示标签 */}
+      <h2>{list[curIndex].type}  <Button type="primary" >导出 </Button></h2>
+      {/* 表格 */}
+      <Table columns={list[curIndex].colums} dataSource={AddUserStore[list[curIndex].list]} rowKey={list[curIndex].key} />
+      <img src="" alt=""/>
+    </div>)
+  )
 }
+
+//   function ExectOutput() {
+//     (window as any)._hmt.push(['_trackEvent', "视图管理", "click", "导出execl"]);
+//     const ws = XLSX.utils.json_to_sheet(AddUserStore[list[curIndex].list]);
+//     const wb = XLSX.utils.book_new();
+//     XLSX.utils.book_append_sheet(wb, ws, `${list[curIndex].type}`);
+//     XLSX.writeFile(wb, `${list[curIndex].type}.xlsx`)
+//     //导出方法
+//     const exct = () => {
+//       let ws = xlsx.utils.json_to_sheet(AddUserStore.UserList);
+//       let wb = xlsx.utils.book_new();
+//       xlsx.utils.book_append_sheet(wb, ws, "user");
+//       xlsx.writeFile(wb, 'user.xlsx')
+//     }
+//     return useObserver(() => (
+//       <div className={ViewTeacherCss.ViewTeacher}>
+//         {/* 头部tab */}
+//         <div>
+//           <button onClick={() => { exct() }}>导出文件</button>
+//           <Radio.Group onChange={(e) => { onChange(e.target.value) }} defaultValue={0}>
+//             {
+//               list && list.map((item: any, index: number) => {
+//                 return <Radio.Button value={index} key={index}>{item.type}</Radio.Button>
+//               })
+//             }
+//           </Radio.Group>
+//         </div>
+//         {/* 提示标签 */}
+//         <h2>{list[curIndex].type}  <Button type="primary" >导出 </Button></h2>
+//         {/* 表格 */}
+//         <Table columns={list[curIndex].colums} dataSource={AddUserStore[list[curIndex].list]} rowKey={list[curIndex].key} />
+//       </div>)
+//     )
+//   }
+// }

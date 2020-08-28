@@ -8,7 +8,10 @@ import { removeCookie } from "../../utils/myCookie"
 import { Radio } from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
+import krEa from 'antd/es/locale/ko_KR';
+
 import { createFromIconfontCN, HeartTwoTone } from '@ant-design/icons';
+
 const IconFont = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
 });
@@ -20,11 +23,6 @@ export default function Header() {
   function changeLocale(e: any) {
     const localeValue = e.target.value;
     Language.changeLanguage(localeValue)
-    // if (!localeValue) {
-    //   moment.locale('en');
-    // } else {
-    //   moment.locale('zh-cn');
-    // }
   };
   function onClick(e: any) {
     if (e.key === '4') {//退出 
@@ -61,10 +59,10 @@ export default function Header() {
           <Radio.Group value={Language.locale} onChange={changeLocale}>
             <Radio.Button key="en" value={'en'}> English </Radio.Button>
             <Radio.Button key="zh" value={'zh'}>  中文  </Radio.Button>
+            <Radio.Button key="kr" value={'kr'}>  한국어  </Radio.Button>
           </Radio.Group>
         </div>
       </div>
     </div>)
   )
 }
-

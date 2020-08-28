@@ -38,6 +38,7 @@ export default class MainStore {
         setCookie('identity_id', result.data.data.identity_id); //设置权限id字段
         // await this.getMenuListAction(result.data.data.user_id)
         this.isGetInitFlag = false;
+        console.log(this.MenuList)
       }
     }
   }
@@ -85,4 +86,3 @@ export default class MainStore {
   //   }
   // }
 }
-
