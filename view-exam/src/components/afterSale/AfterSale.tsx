@@ -4,15 +4,19 @@ import io from 'socket.io-client'
 import moment from 'moment'
 import useStore from '../../context/useStore'
 import { Button, Input, Tag } from 'antd'
+
 const socket = io('http://10.4.161.3:5000/');
 const AfterSale: React.FC = () => {
   const [value, setValue] = useState<string>('')
   const [list, setList] = useState<any[]>([])
   const [curVal, setCurVal] = useState<string>();
   const [btnDisable, setBtnDisable] = useState<boolean>(false);
-
+  //拖拽
+  let [data, setdata] = useState<string>()
+  let [translateX, settranslateX] = useState<number>(0)
+  let [translateY, settranslateY] = useState<number>(0)
+  let [root, setroot] = useState<any>({})
   const sectionRef: any = useRef();
-  const afterSaleRef: any = useRef();
 
   const { MainStore } = useStore();
 
@@ -28,6 +32,7 @@ const AfterSale: React.FC = () => {
   }
 
   function btnFn(e: any) {
+    MainStore.changeMessageFlag(false); // 修改通知信息图标开关
     setBtnDisable(true)
     let timer = setTimeout(() => {
       setBtnDisable(false)
@@ -40,13 +45,19 @@ const AfterSale: React.FC = () => {
   }
 
   useEffect(() => {
-    socket.emit('messageOn')
+    MainStore.changeMessageFlag(false); // 修改通知信息图标开关
+  })
 
+  useEffect(() => {
+    socket.emit('messageOn')
     // 接收消息
     socket.on('message', (res: any) => {
       console.log(res)
+      MainStore.changeMessageFlag(true); // 修改通知信息图标开关
       setList(res.data.slice(0, -1))
-      sectionRef.current.scrollTop = (sectionRef.current.childNodes.length + 1) * sectionRef.current.firstChild.offsetHeight
+      if (sectionRef.current) {
+        sectionRef.current.scrollTop = ((sectionRef.current?.childNodes.length + 1) * sectionRef.current.firstChild.offsetHeight)
+      }
       // res返回格式有前后端自己协定
       if (res.status === 200) {
         console.log(res, "res")
@@ -55,7 +66,46 @@ const AfterSale: React.FC = () => {
   }, [])
 
 
-  return <div className={styles.AfterSale} ref={afterSaleRef}   >
+  const afterSaleRef = useCallback(
+    element => element && setroot(element),
+    []
+  )
+  let small_down = (e: any) => {
+    var obig = root.parentNode;
+    var osmall = root;
+    var e = e || window.event;
+    /*用于保存小的div拖拽前的坐标*/
+    osmall.startX = e.clientX - osmall.offsetLeft;
+    osmall.startY = e.clientY - osmall.offsetTop;
+    /*鼠标的移动事件*/
+    document.onmousemove = function (e) {
+      var e = e || window.event;
+      osmall.style.left = e.clientX - osmall.startX + "px";
+      osmall.style.top = e.clientY - osmall.startY + "px";
+      /*对于大的DIV四个边界的判断*/
+      let x = obig.offsetWidth - osmall.offsetWidth
+      let y = obig.offsetHeight - osmall.offsetHeight
+      if (e.clientX - osmall.startX <= 250) {
+        osmall.style.left = 250 + "px";
+      }
+      if (e.clientY - osmall.startY <= 0) {
+        osmall.style.top = 0 + "px";
+      }
+      if (e.clientX - osmall.startX >= (x + 250)) {
+        osmall.style.left = x +250 + "px";
+      }
+      if (e.clientY - osmall.startY >= y) {
+        osmall.style.top = y + "px";
+      }
+    };
+    /*鼠标的抬起事件,终止拖动*/
+    document.onmouseup = function () {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    };
+  }
+
+  return <div className={styles.AfterSale} ref={afterSaleRef}   onMouseDown={e => small_down(e)} style={{position:"absolute", left: `${translateX + 200}px`,top:`${translateY+200}px`}}  >
     <nav>售后聊天工作室
       <Tag closable onClose={log}></Tag></nav>
     <section ref={sectionRef}>
@@ -72,7 +122,7 @@ const AfterSale: React.FC = () => {
     <div className="add">
       <Input type="text" style={{ width: '50%' }} placeholder="输入您想说的话" value={value} onChange={(e) => { setValue(e.target.value) }} />
       <Button disabled={btnDisable} onClick={btnFn}>发送</Button>
-      <Button onClick={() => { setList([]); setCurVal('') }}>清空</Button>
+      <Button onClick={() => { setList([]); setCurVal(undefined) }}>清空</Button>
     </div>
   </div>
 }
