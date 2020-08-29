@@ -1,6 +1,8 @@
 import { IMenuItem, IRouerItem } from "../utils/interface"
 import menus from "../router/menu"
 
+import Ways from '../view/ways/export'
+
 //login
 import Login from '../view/login/Login'
 import ShowApp from '../view/show/Show'
@@ -28,6 +30,10 @@ function getFirstRedirect(menus: IMenuItem[]) {
 }
 
 const routes = [
+  {
+    path:'/export',
+    component:Ways,
+  },
   {
     path: '/main',
     component: Main,
