@@ -25,6 +25,7 @@ export default function Login(props: any) {
     removeCookie('identity_id');
     removeCookie('token');
     LoginStore.initRandomCode(); //获取验证码
+    MainStore.user_info = {};
   }, [LoginStore])
 
   // useEffect(() => {

@@ -28,6 +28,7 @@ export default function MenuSider() {
         }
       })
     })
+    console.log(index)
     return index;
   }
 
@@ -41,7 +42,7 @@ export default function MenuSider() {
   }, [changeOpenKey(menu)])
 
   function OpenClickMenu(obj: any) {
-    // console.log(obj)
+    setOpenKey(obj.keyPath[1])
   }
 
   function OpenChangeMenu(openKeys: any) {
