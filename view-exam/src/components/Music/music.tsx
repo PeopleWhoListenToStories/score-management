@@ -24,14 +24,14 @@ export default function Music() {
     let play = () => {
         if (useRef1.current.paused) {
             useRef1.current.play();
-        }else{
+        } else {
             useRef1.current.pause();
         }
         setisplay(!isplay)
 
     }
     return (
-        <div className='music'>
+        <div className='music'  >
             {
                 isplay ? <span onClick={() => { play() }}><PauseCircleFilled /></span> : <span onClick={() => { play() }}><CaretRightFilled /></span>
             }
