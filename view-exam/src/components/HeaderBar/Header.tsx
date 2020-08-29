@@ -8,6 +8,7 @@ import { removeCookie } from "../../utils/myCookie"
 import { Radio } from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
+import ja_JP from 'antd/es/locale/ja_JP';
 import krEa from 'antd/es/locale/ko_KR';
 
 import { createFromIconfontCN, HeartTwoTone } from '@ant-design/icons';
@@ -61,6 +62,7 @@ export default function Header() {
           <Radio.Group value={Language.locale} onChange={changeLocale}>
             <Radio.Button key="en" value={'en'}> English </Radio.Button>
             <Radio.Button key="zh" value={'zh'}>  中文  </Radio.Button>
+            <Radio.Button key="jp" value={'jp'}>  日本語  </Radio.Button>
             <Radio.Button key="kr" value={'kr'}>  한국어  </Radio.Button>
           </Radio.Group>
         </div>

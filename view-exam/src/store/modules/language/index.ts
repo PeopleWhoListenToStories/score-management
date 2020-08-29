@@ -1,13 +1,13 @@
 import { observable, action } from 'mobx'
-
+import JP from '../../../langauge/JP'
 import zhCN from "../../../langauge/CN"
 import enUS from "../../../langauge/US"
-import krEa from '../../../langauge/KR'
-
+import kr from "../../../langauge/KR"
 const message = {
   'en': enUS,
   'zh': zhCN,
-  'kr': krEa
+  'jp': JP,
+  'kr': kr
 }
 
 class Language {

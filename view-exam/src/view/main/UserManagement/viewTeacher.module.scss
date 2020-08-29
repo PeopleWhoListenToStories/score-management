@@ -2,8 +2,9 @@
   width: 100%;
   height: auto;
   padding:0 20px;
-}
 
+}
+  
 :local(h2){
   padding:20px 0px;
 }
@@ -14,5 +15,8 @@
   }
   .ant-table-row > tr > td{
     text-align: center;
+  }
+  .ant-btn {
+    height:200px;
   }
 }
