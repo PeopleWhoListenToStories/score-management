@@ -28,6 +28,8 @@ const getTitle = (path: string) => {
     item.children.forEach((value: any) => {
       if (value.path === path) {
         title = value.meta.name;
+      }else{
+        title = ' '
       }
     })
   })
@@ -52,18 +54,19 @@ const Main: React.FC = (props: any) => {
           {/* <h2>{props.routes.find((v: any) => v.path == props.location.pathname)?.meta?.name}</h2> */}
 
           <h2 style={{ padding: '20px' }}>
-            < FormattedMessage id={getTitle(history.location.pathname)} defaultMessage={getTitle(history.location.pathname)} ></FormattedMessage >
+            < FormattedMessage
+              id={getTitle(history.location.pathname)}
+              defaultMessage={getTitle(history.location.pathname)} ></FormattedMessage >
             {/* <FormattedMessage id={getTitle(history.location.pathname)} defaultMessage={getTitle(history.location.pathname)}/> */}
           </h2>
           <RouterView routes={props.routes && props.routes} />
         </Content>
       </Layout>
     </Layout>
-  </MainWrapper>)
+  </MainWrapper >)
 }
 // export default injectIntl(Main);
 export default Main;
-
 
 const MainWrapper = styled.div`
   wdith:100%;
