@@ -11,6 +11,7 @@ import HeaderBar from '../../components/HeaderBar/Header';
 import TagBar from '../../components/TagBar/TagBar';
 import AfterSale from '../../components/afterSale/AfterSale'
 
+
 // 引入antd
 import { Layout } from 'antd';
 
@@ -28,7 +29,7 @@ const getTitle = (path: string) => {
     item.children.forEach((value: any) => {
       if (value.path === path) {
         title = value.meta.name;
-      }else{
+      } else {
         title = ' '
       }
     })
@@ -56,7 +57,7 @@ const Main: React.FC = (props: any) => {
           <h2 style={{ padding: '20px' }}>
             < FormattedMessage
               id={getTitle(history.location.pathname)}
-              defaultMessage={getTitle(history.location.pathname)} ></FormattedMessage >
+              defaultMessage={getTitle(history.location.pathname)} />
             {/* <FormattedMessage id={getTitle(history.location.pathname)} defaultMessage={getTitle(history.location.pathname)}/> */}
           </h2>
           <RouterView routes={props.routes && props.routes} />

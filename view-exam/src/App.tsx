@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
+import './App.css';
 import { HashRouter } from 'react-router-dom';
 import RouterView from './router/RouterView';
 import { IRouerItem } from "./utils/interface"
 import useStore from './context/useStore'
-import './App.css';
-
+import styled from 'styled-components'
 // 配置国际化
 import { IntlProvider } from 'react-intl'; /* react-intl imports */
 // import zh from "react-intl/locale-data/zh";
@@ -28,15 +28,25 @@ function App() {
 
   return useObserver(() => (
     <div className="App">
-      <IntlProvider locale={Language.locale} messages={Language.defaultLanguage} >
-        <HashRouter>
-          {/* <RouterView routes={routes as IRouerItem[]} /> */}
- 
-          <RouterView routes={geneRoutes()}></RouterView>
-        </HashRouter>
-      </IntlProvider>
+      <Suspense fallback={<LoadingWrapper><div>Loading profile...</div></LoadingWrapper>}>
+        <IntlProvider locale={Language.locale} messages={Language.defaultLanguage} >
+          <HashRouter>
+            {/* <RouterView routes={routes as IRouerItem[]} /> */}
+
+            <RouterView routes={geneRoutes()}></RouterView>
+          </HashRouter>
+        </IntlProvider>
+      </Suspense>
     </div>)
   );
 }
 
 export default App;
+
+const LoadingWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  background:#fff;
+  display: grid;
+  margin: auto;
+`

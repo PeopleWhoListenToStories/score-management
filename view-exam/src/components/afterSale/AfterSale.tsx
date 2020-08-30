@@ -6,6 +6,7 @@ import useStore from '../../context/useStore'
 import { Button, Input, Tag } from 'antd'
 
 const socket = io('http://10.4.161.18:5000/');
+
 const AfterSale: React.FC = () => {
   const [value, setValue] = useState<string>('')
   const [list, setList] = useState<any[]>([])
@@ -70,6 +71,7 @@ const AfterSale: React.FC = () => {
     element => element && setroot(element),
     []
   )
+
   let small_down = (e: any) => {
     var obig = root.parentNode;
     var osmall = root;

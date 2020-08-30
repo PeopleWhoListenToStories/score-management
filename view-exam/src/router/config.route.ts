@@ -1,17 +1,18 @@
 import { IMenuItem, IRouerItem } from "../utils/interface"
 import menus from "../router/menu"
+import React from 'react';
 
 //login
-import Login from '../view/login/Login'
-import ShowApp from '../view/show/Show'
+const Login = React.lazy(() => import('../view/login/Login'));
+const ShowApp = React.lazy(() => import('../view/show/Show'));
 
-import Main from '../view/main/Main'
+const Main = React.lazy(() => import('../view/main/Main'));
 
 // 错误处理页面
-import NoFound from '../view/error/NoFound';
-import NoServer from '../view/error/NoServer';
+const NoFound = React.lazy(() => import('../view/error/NoFound'));;
+const NoServer = React.lazy(() => import('../view/error/NoServer'));;
 
-import SetUpApp from '../view/other/Setup'
+const SetUpApp = React.lazy(() => import('../view/other/Setup'));
 
 // 获取到重定向数据 默认为数组的第一项
 function getFirstRedirect(menus: any[]) {

@@ -1,32 +1,31 @@
-
-import { IMenuItem } from "../utils/interface"
+import React from 'react';
 import { AppstoreOutlined, UserOutlined, ScheduleOutlined, TableOutlined, MergeCellsOutlined } from '@ant-design/icons';
 
 // 试题管理
-import AddQuestionPage from '../view/main/TestManagement/addQuestions';
-import QuestionTypePage from '../view/main/TestManagement/questionsType';
-import WatchQuestionPage from '../view/main/TestManagement/watchQuestions';
-import DetailPage from "../view/main/TestManagement/testDetail"
-import EditQuestionPage from "../view/main/TestManagement/editQuestion"
+const AddQuestionPage = React.lazy(() => import('../view/main/TestManagement/addQuestions'));
+const QuestionTypePage = React.lazy(() => import('../view/main/TestManagement/questionsType'));
+const WatchQuestionPage = React.lazy(() => import('../view/main/TestManagement/watchQuestions'));
+const DetailPage = React.lazy(() => import("../view/main/TestManagement/testDetail"));
+const EditQuestionPage = React.lazy(() => import("../view/main/TestManagement/editQuestion"));
 
 // 用户管理
-import AddTeacher from '../view/main/UserManagement/addTeacher';
-import ViewTeacher from '../view/main/UserManagement/viewTeacher';
+const AddTeacher = React.lazy(() => import('../view/main/UserManagement/addTeacher'));
+const ViewTeacher = React.lazy(() => import('../view/main/UserManagement/viewTeacher'));
 
 // 考试管理
-import AddExamPage from '../view/main/ExamManagement/addExam';
-import UserListPage from '../view/main/ExamManagement/examList';
-import EditPage from "../view/main/ExamManagement/edits";
-import ConditionPage from "../view/main/ExamManagement/condition"
+const AddExamPage = React.lazy(() => import('../view/main/ExamManagement/addExam'));
+const UserListPage = React.lazy(() => import('../view/main/ExamManagement/examList'));
+const EditPage = React.lazy(() => import("../view/main/ExamManagement/edits"));
+const ConditionPage = React.lazy(() => import("../view/main/ExamManagement/condition"));
 
 // 班级管理
-import GeadePage from '../view/main/ClassManagement/grade'
-import RoomPage from '../view/main/ClassManagement/room'
-import StudentPage from '../view/main/ClassManagement/student'
+const GeadePage = React.lazy(() => import('../view/main/ClassManagement/grade'));
+const RoomPage = React.lazy(() => import('../view/main/ClassManagement/room'));
+const StudentPage = React.lazy(() => import('../view/main/ClassManagement/student'));
 
 // 阅卷管理
-import ExamPaperClassListPage from '../view/main/MarkingManagement/examPaperClassList'
-import ClassMate from "../view/main/MarkingManagement/classmate"
+const ExamPaperClassListPage = React.lazy(() => import('../view/main/MarkingManagement/examPaperClassList'));
+const ClassMate = React.lazy(() => import("../view/main/MarkingManagement/classmate"));
 
 
 const menus = [{

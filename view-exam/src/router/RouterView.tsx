@@ -17,9 +17,9 @@ const RouterView: React.FC<Iprops> = (props) => {
     {
       props.routes && props.routes.map(item => {
         // 页面重定向
-        // if (item.redirect) {
-        //   return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
-        // }
+        if (item.redirect) {
+          return <Redirect key={item.path} from={item.path} to={item.redirect}></Redirect>
+        }
         //   // if (item.path === '/') {
         //   //   return <Redirect key={item.path} from={item.path} to="/main"></Redirect>
         //   // } else {
@@ -34,6 +34,7 @@ const RouterView: React.FC<Iprops> = (props) => {
           if (!whileList.includes(isPath) && !getCookie('token')) {
             props.history.replace(`/login?redirect=${encodeURIComponent(isPath)}`);
           }
+
           // 获取不到用户信息就重新获取
           if (getCookie('token') && !Object.keys(MainStore.user_info).length) {
             //  获取用户基本信息

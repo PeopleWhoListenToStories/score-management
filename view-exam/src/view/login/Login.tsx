@@ -11,10 +11,16 @@ import ParticlesBg from 'particles-bg'
 import { Form, Input, Button, Checkbox, Tag } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
+import io, { Socket } from 'socket.io-client';
+
+const socket = io('http://10.4.161.18:5000/');
+
+
 export default function Login(props: any) {
   const [username, UseUsername] = useState<string>(getCookie('username') as string);
   const [password, UsePassword] = useState<string>(getCookie('password') as string);
   const [remember, UseRemember] = useState<string>(getCookie('remember') as string);
+  const [off, setOff] = useState<boolean>()
 
   const { LoginStore, MainStore } = useStore();
   const history = useHistory();
@@ -26,17 +32,32 @@ export default function Login(props: any) {
     removeCookie('token');
     LoginStore.initRandomCode(); //获取验证码
     MainStore.user_info = {};
-  }, [LoginStore])
+  }, [])
+
+  function loginMessage(user_name: string) {
+    socket.emit('loginMessage', { user_name: user_name, time: Date.now() * 1 })
+    socket.on('loginServeMessage', (res: boolean) => {
+      setOff(res);
+    })
+    return off;
+  }
+
+  function loginServeMessage() {
+
+  }
 
   // useEffect(() => {
   //   couterRef.current.autoplay = true;
   // }, [])
 
   async function onFinish(values: any) {
+    loginServeMessage()
     console.log('Received values of form: ', values);
     if (values.randomNum === LoginStore.RandomCode) {
       const result: any = await LoginStore.loginAction(values.username, values.password);
       if (result.code === 1) {
+        await loginMessage(values.username);
+        // if (off) {
         if (values.remember) {
           setCookie('username', values.username);
           setCookie('password', values.password);
@@ -47,6 +68,10 @@ export default function Login(props: any) {
           removeCookie('remember');
         }
         history.replace('/main');
+        // } else {
+        //   window.confirm('此用户已经登录了 请您更换账号')
+        // }
+
       }
     } else {
       console.log('重新输入验证码');
